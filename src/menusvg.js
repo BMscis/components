@@ -1,24 +1,33 @@
 import { Animator, SVG } from '@svgdotjs/svg.js';
 import anime from '../node_modules/animejs/lib/anime.es.js';
-import gltfobj from './assets/3d/COA_GLT3.glb'
-import * as BABYLON from '@babylonjs/core/Legacy/legacy'
-import 'babylonjs-loaders'
-import menu from './assets/img/menu.svg'
+import mv from '@google/model-viewer'
+import envHdri from './assets/3d/studio024.hdr'
+import coa from './assets/3d/C2.glb'
+import ec from './assets/svg/ec2XL.svg'
 //header 5vmin
 //paragraph 3vmin
 //navbar 3.5vmin
 //menubar 3.2vmin
+function pOne(){
+    var p1 = document.createElement('div')
+    p1.classList.add('p1')
+    p1.setAttribute('id','p1')
+    document.body.appendChild(p1)
+}
 function drawNavbar() {
+    pOne()
     var rect = document.createElement('div')
     rect.setAttribute('id', 'navbar')
-    document.body.appendChild(rect)
-
+    document.getElementById('p1').appendChild(rect)
+    var ecVg = document.createElement('img')
+    ecVg.setAttribute('src', ec)
+    rect.appendChild(ecVg)
     function menuIcon() {
-        var draw = SVG().addTo('#body').size('15vmin', '15vmin').attr({
-            id:'menuicon'
+        var draw = SVG().addTo('#p1').size('15vmin', '15vmin').attr({
+            id: 'menuicon'
         })
         var drawline = draw.path('M10 15 L40 15 Z M10 25 L40 25 Z M10 35 L40 35').stroke({
-            color: "#F44336",
+            color: "whitesmoke",
             width: 3,
         })
         drawline.mouseover(function () {
@@ -33,19 +42,19 @@ function drawNavbar() {
             })
         })
     }
-    function navText(text) {
+    function navText(text,clr) {
         var draw2 = SVG().addTo('#navbar').size('24vmin', '10vmin')
         var graphictext = draw2.text(text).attr({
-            fill: '#DF7B74',
+            fill: clr,
             y: '44.49%',
-            x:'50%'
+            x: '50%'
         })
         graphictext.css('cursor', 'pointer')
         graphictext.mouseover(function () {
             graphictext.fill('#F44336')
         })
         graphictext.mouseout(function () {
-            graphictext.fill('#DF7B74')
+            graphictext.fill(clr)
         })
         graphictext.font({
             anchor: 'middle',
@@ -68,162 +77,174 @@ function drawNavbar() {
         })
     }
     menuIcon()
-    navText('Graphic Design')
-    navText('3D Design')
-    navText('Web Development')
+    navText('Graphic Design','#ffffff')
+    navText('3D Design','#DF7B74')
+    navText('Web Development','#ffffff')
 
 }
-function drawTextbody(){
+function drawTextbody() {
     var rect1 = document.createElement('div')
-    rect1.setAttribute('id','textbody')
-    document.body.appendChild(rect1)
+    rect1.setAttribute('id', 'textbody')
+    document.getElementById('p1').appendChild(rect1)
 
-    function heading(text){
+    function heading(text) {
         var draw = SVG().addTo('#textbody').size('100%', '10vmin')
         var heading = draw.text(text)
         heading.font({
             anchor: 'middle',
             size: '3vmin',
             family: ' ACBlack',
-            fill:'#F44336'
+            fill: '#F44336'
         }).attr({
-            x:'-100%',
-            y:'15.98%',
-            id:'headingtext'
+            x: '-100%',
+            y: '15.98%',
+            id: 'headingtext'
         })
         anime({
             targets: '#headingtext',
-            translateX:'120%',
+            translateX: '120%',
             duration: 3000
         })
 
     }
-    function text(text){
+    function text(text) {
         var draw = SVG().addTo('#textbody').size('100%', '10vmin')
         var heading = draw.text(text)
         heading.font({
             anchor: 'start',
             size: '3vmin',
             family: ' ACBlack',
-            fill:'#1A78D9'
+            fill: '#1A78D9'
         }).attr({
-            x:'20%',
-            y:'15.98%',
-            id:'headingtext',
-            opacity:0
+            x: '20%',
+            y: '15.98%',
+            id: 'headingtext',
+            opacity: 0
         })
-        anime({
-            targets: '#headingtext',
-            opacity:1,
-            duration: 8000
-        })
+        heading.animate({
+            duration: 2000,
+            delay:1000,
+            when:'now',
+            swing:true,
+            times:1,
+            wait:200
+        }).attr({opacity: '1'})
+        heading.animate({
+            duration: 2000,
+            delay:1000,
+            when:'after',
+            swing:false,
+            times:1,
+            wait:200
+        }).attr({opacity: '0'})
 
     }
-    heading('Hello,')
     text('Welcome to the espii club.')
 }
-function drawVisualpad(){
+function drawVisualpad() {
     var rect2 = document.createElement('div')
-    rect2.setAttribute('id','visualpad')
-    document.body.appendChild(rect2)  
+    rect2.setAttribute('id', 'visualpad')
+    document.getElementById('p1').appendChild(rect2)
 
-    var draw = SVG().addTo('#visualpad').size('100%', '100%').attr({
-        x:0,
-        y:0
-    })
-    function rectSizereturn(){
-        if (window.screen.width <= 600){
-            return '70%'
-        }
-        else{
-            return '40%'
-        }
-    }
-    function rectCenter(){
-        if (window.screen.width <= 600){
-            return '15%'
-        }
-        else{
-            return '30%'
-        }
-    }
-    function rectsize(){
-        if (window.screen.width <= 600){
-            console.log('true')
-            rect.width('70%')
-            rect.x('15%')
-        }
-        else{
-            rect.width('40%')
-            rect.x('30%')
-        }
-    }
-    var rect = draw.rect(rectSizereturn(),'100%').attr({
-        fill:'#1A78D9',
-        x:rectCenter(),
-        rx:10,
-        ry:10,
-    })
+    // var draw = SVG().addTo('#visualpad').attr({
+    //     x: 0,
+    //     y: 0,
+    // })
+    // draw.css('width','clamp(40ch, 50%, 80ch)')
+    // draw.css('height','clamp(55ch, 50%, 80ch)')
+    // // function rectSizereturn() {
+    // //     if (window.screen.width <= 600) {
+    // //         return '70%'
+    // //     }
+    // //     else {
+    // //         return '40%'
+    // //     }
+    // // }
+    // // function rectCenter() {
+    // //     if (window.screen.width <= 600) {
+    // //         return '15%'
+    // //     }
+    // //     else {
+    // //         return '30%'
+    // //     }
+    // // }
+    // // function rectsize() {
+    // //     if (window.screen.width <= 600) {
+    // //         console.log('true')
+    // //         rect.width('70%')
+    // //         rect.x('15%')
+    // //     }
+    // //     else {
+    // //         rect.width('40%')
+    // //         rect.x('30%')
+    // //     }
+    // // }
+    // function rectsize(){
+    //     rect.css('height','100%')
+    //     rect.css('width','100%')
 
-    window.addEventListener('resize',e=>{
-        rectsize()
-    })
-    var circle = draw.circle('20%','20%').attr({
-        fill:'#30D975',
-        cx:'50%',
-        cy:'50%',
-    })
-    var circle2 = draw.circle('10%','15%').attr({
-        fill:'#1A78D9',
-        cx:'50%',
-        cy:'50%',
-    })
-    var circle3 = draw.circle('5%','5%').attr({
-        fill:'#C8D945',
-        cx:'50%',
-        cy:'50%',
-    })
-    var circle4 = draw.circle('25%','20%').attr({
-        fill:'#1A78D9',
-        cx:'50%',
-        cy:'50%',
-        id:'circletransform',
-    })
-    circle4.css('transform-origin', 'center')
-        anime({
-            targets:'#circletransform',
-            scale:0.125,
-            delay:2000,
-            duration:8000
+    // }
+    // // var rect = draw.rect('100%','100%').attr({
+    // //     fill: '#1A78D9',
+    // //     rx: 10,
+    // //     ry: 10,
+    // // })
+    // // rect.css('margin','auto')
+    // var circle = draw.circle('20%', '20%').attr({
+    //     fill: '#30D975',
+    //     cx: '50%',
+    //     cy: '50%',
+    // })
+    // var circle2 = draw.circle('10%', '15%').attr({
+    //     fill: '#1A78D9',
+    //     cx: '50%',
+    //     cy: '50%',
+    // })
+    // var circle3 = draw.circle('5%', '5%').attr({
+    //     fill: '#C8D945',
+    //     cx: '50%',
+    //     cy: '50%',
+    // })
+    // var circle4 = draw.circle('25%', '20%').attr({
+    //     fill: '#1A78D9',
+    //     cx: '50%',
+    //     cy: '50%',
+    //     id: 'circletransform',
+    // })
+    // circle4.css('transform-origin', 'center')
+    // anime({
+    //     targets: '#circletransform',
+    //     scale: 0.125,
+    //     delay: 2000,
+    //     duration: 8000
 
-        })
-    
-}
-function threeDscene(){
-    var draw = SVG().addTo('#body').size('100vw', '100vh')
-    var rect = draw.rect('100%','100%').attr({
-        id: '3dScene',
-        fill:'#1A78D9'
-    })
-    var canvas = document.createElement('canvas')
-    canvas.style.width = '100vw'
-    canvas.style.height = '100vh'
-    canvas.style.backgroundImage = menu
-    document.body.appendChild(canvas)
-    var engine = new BABYLON.Engine(canvas, true)
-    var scene = new BABYLON.Scene(engine)
-    var camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0,5,-10,scene))
-    camera.setTarget(BABYLON.Vector3.Zero())
-    camera.attachControl(canvas, false)
-    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene)
-    BABYLON.SceneLoader.ImportMesh(undefined,'webpack://espii-components/./src/assets/3d/','COA_GLT3.glb',scene)
-    engine.runRenderLoop(function(){
-        scene.render()
-    })
+    // })
 
 }
-export { drawTextbody}
+function drawDisplaypad(){
+    var p2 = document.createElement('div')
+    p2.classList.add('p2')
+    p2.setAttribute('id','p2')
+    document.body.appendChild(p2)
+}
+function threeDscene() {
+    var modelV = document.createElement('model-viewer')
+    modelV.setAttribute('src', coa)
+    modelV.style.width ='clamp(200px, 50%, 500px)'
+    modelV.style.height ='clamp(300px, 50%, 1000px)'
+    modelV.style.margin = 'auto'
+    modelV.setAttribute('camera-controls','')
+    modelV.setAttribute('auto-rotate','')
+    modelV.setAttribute('shadow-intensity','4')
+    modelV.setAttribute('shadow-softness','0')
+    modelV.setAttribute('field-of-view','50')
+    modelV.setAttribute('max-field-of-view','50deg')
+    modelV.setAttribute('environment-image',envHdri)
+    document.getElementById('p2').appendChild(modelV)
+}
+export { drawTextbody }
 export { drawNavbar }
 export { drawVisualpad }
 export { threeDscene }
+export { drawDisplaypad }
 

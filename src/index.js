@@ -4,7 +4,8 @@ import {
     drawNavbar,
     drawTextbody,
     drawVisualpad,
-    threeDscene
+    threeDscene,
+    drawDisplaypad
 } from './menusvg';
 const animescript = document.createElement('script');
 animescript.setAttribute('src', 'anime.min.js')
@@ -12,6 +13,8 @@ window.addEventListener('load', e => {
     drawNavbar()
     drawTextbody()
     drawVisualpad()
+    drawDisplaypad()
     threeDscene()
+
 })
 document.body.setAttribute('id', 'body')

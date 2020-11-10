@@ -11,10 +11,9 @@
   "author": "BMscis",
   "license": "ISC",
   "devDependencies": {
-    "@babylonjs/core": "^4.1.0",
+    "@babylonjs/loaders": "^4.1.0",
     "@svgdotjs/svg.js": "^3.0.16",
     "animejs": "^3.2.1",
-    "babylonjs-loaders": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.0",
     "csv-loader": "^3.0.3",
@@ -34,6 +33,7 @@
     "yamljs": "^0.3.0"
   },
   "dependencies": {
+    "@google/model-viewer": "^1.3.0",
     "lodash": "^4.17.20"
   }
 }

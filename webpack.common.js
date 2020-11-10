@@ -5,7 +5,7 @@ const Manifest = require('webpack-manifest-plugin');
 
 module.exports = {
     entry: {
-        context: path.resolve(__dirname,'src'),
+        context: path.resolve(__dirname, 'src'),
         app: './src/index.js'
     },
     module: {
@@ -23,7 +23,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|svg|jpg|gif|glb|gltf)$/,
+                test: [/\.(bin)$/, /\.(png|svg|jpg|gif|glb|gltf|hdr)$/],
                 use: [
                     'file-loader',
                 ],
@@ -31,7 +31,12 @@ module.exports = {
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
-                    'file-loader',
+                    {
+                    loader: 'file-loader',
+                    options:{
+                        name: '[name]-[hash].[ext]'
+                    }
+                    }
                 ],
             },
             {
