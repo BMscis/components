@@ -18,8 +18,8 @@ body{
     overflow-x: hidden;
     background-image: url(./assets//svg/bgXL.svg);
     background-repeat: no-repeat;
-    background-size: cover;
-    // margin: 0;
+    background-size: contain;
+    margin: 0;
     background-attachment: fixed;
 }
 svg{
@@ -35,7 +35,7 @@ svg{
     align-items: center;
 }
 #menuicon{
-    position: absolute;
+    position: fixed;
 }
 #visualpad{
     width: -webkit-fill-available;
@@ -49,7 +49,7 @@ model-viewer > *{
 img{
     width: 80px;
     height: 80px;
-    position: absolute;
+    position: fixed;
     left: calc(50vw - 48px);
     top:13vmin;
     cursor: pointer;

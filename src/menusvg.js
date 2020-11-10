@@ -245,6 +245,6 @@ function threeDscene() {
 export { drawTextbody }
 export { drawNavbar }
 export { drawVisualpad }
-export { threeDscene }
+// export { threeDscene }
 export { drawDisplaypad }
 
