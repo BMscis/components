@@ -8,17 +8,17 @@ import ec from './assets/svg/ec2XL.svg'
 //paragraph 3vmin
 //navbar 3.5vmin
 //menubar 3.2vmin
-function pOne(){
+function pOne() {
     var p1 = document.createElement('div')
     p1.classList.add('p1')
-    p1.setAttribute('id','p1')
+    p1.setAttribute('id', 'p1')
     document.body.appendChild(p1)
 }
 function drawNavbar() {
     pOne()
     var rect = document.createElement('div')
     rect.setAttribute('id', 'navbar')
-    document.getElementById('p1').appendChild(rect)
+    document.body.appendChild(rect)
     var ecVg = document.createElement('img')
     ecVg.setAttribute('src', ec)
     rect.appendChild(ecVg)
@@ -27,22 +27,24 @@ function drawNavbar() {
             id: 'menuicon'
         })
         var drawline = draw.path('M10 15 L40 15 Z M10 25 L40 25 Z M10 35 L40 35').stroke({
-            color: "whitesmoke",
+            color: "#19518c",
             width: 3,
         })
         drawline.mouseover(function () {
             drawline.stroke({
-                color: '#1A78D9'
+                color: 'whitesmoke'
             })
             drawline.css('cursor', 'pointer')
         })
         drawline.mouseout(function () {
             drawline.stroke({
-                color: '#F44336'
+                color: '#19518c'
             })
         })
+
     }
-    function navText(text,clr) {
+
+    function navText(text, clr) {
         var draw2 = SVG().addTo('#navbar').size('24vmin', '10vmin')
         var graphictext = draw2.text(text).attr({
             fill: clr,
@@ -77,9 +79,9 @@ function drawNavbar() {
         })
     }
     menuIcon()
-    navText('Graphic Design','#ffffff')
-    navText('3D Design','#DF7B74')
-    navText('Web Development','#ffffff')
+    navText('Graphic Design', '#1a78d9')
+    navText('3D Design', '#1a78d9')
+    navText('Web Development', '#1a78d9')
 
 }
 function drawTextbody() {
@@ -92,9 +94,9 @@ function drawTextbody() {
         var heading = draw.text(text)
         heading.font({
             anchor: 'middle',
-            size: '3vmin',
+            size: '5vmin',
             family: ' ACBlack',
-            fill: '#F44336'
+            fill: 'BLACK'
         }).attr({
             x: '-100%',
             y: '15.98%',
@@ -102,7 +104,7 @@ function drawTextbody() {
         })
         anime({
             targets: '#headingtext',
-            translateX: '120%',
+            translateX: '150%',
             duration: 3000
         })
 
@@ -111,34 +113,35 @@ function drawTextbody() {
         var draw = SVG().addTo('#textbody').size('100%', '10vmin')
         var heading = draw.text(text)
         heading.font({
-            anchor: 'start',
+            anchor: 'middle',
             size: '3vmin',
             family: ' ACBlack',
-            fill: '#1A78D9'
+            fill: 'GRAY'
         }).attr({
-            x: '20%',
+            x: '50%',
             y: '15.98%',
             id: 'headingtext',
             opacity: 0
         })
         heading.animate({
             duration: 2000,
-            delay:1000,
-            when:'now',
-            swing:true,
-            times:1,
-            wait:200
-        }).attr({opacity: '1'})
+            delay: 1000,
+            when: 'now',
+            swing: true,
+            times: 1,
+            wait: 200
+        }).attr({ opacity: '1' })
         heading.animate({
             duration: 2000,
-            delay:1000,
-            when:'after',
-            swing:false,
-            times:1,
-            wait:200
-        }).attr({opacity: '0'})
+            delay: 1000,
+            when: 'after',
+            swing: false,
+            times: 1,
+            wait: 200
+        }).attr({ opacity: '0.5' })
 
     }
+    heading('Hello!')
     text('Welcome to the espii club.')
 }
 function drawVisualpad() {
@@ -221,25 +224,25 @@ function drawVisualpad() {
     // })
 
 }
-function drawDisplaypad(){
+function drawDisplaypad() {
     var p2 = document.createElement('div')
     p2.classList.add('p2')
-    p2.setAttribute('id','p2')
+    p2.setAttribute('id', 'p2')
     document.body.appendChild(p2)
 }
 function threeDscene() {
     var modelV = document.createElement('model-viewer')
     modelV.setAttribute('src', coa)
-    modelV.style.width ='clamp(200px, 50%, 500px)'
-    modelV.style.height ='clamp(300px, 50%, 1000px)'
+    modelV.style.width = 'clamp(200px, 50%, 500px)'
+    modelV.style.height = 'clamp(300px, 50%, 1000px)'
     modelV.style.margin = 'auto'
-    modelV.setAttribute('camera-controls','')
-    modelV.setAttribute('auto-rotate','')
-    modelV.setAttribute('shadow-intensity','4')
-    modelV.setAttribute('shadow-softness','0')
-    modelV.setAttribute('field-of-view','50')
-    modelV.setAttribute('max-field-of-view','50deg')
-    modelV.setAttribute('environment-image',envHdri)
+    modelV.setAttribute('camera-controls', '')
+    modelV.setAttribute('auto-rotate', '')
+    modelV.setAttribute('shadow-intensity', '4')
+    modelV.setAttribute('shadow-softness', '0')
+    modelV.setAttribute('field-of-view', '50')
+    modelV.setAttribute('max-field-of-view', '50deg')
+    modelV.setAttribute('environment-image', envHdri)
     document.getElementById('p2').appendChild(modelV)
 }
 export { drawTextbody }

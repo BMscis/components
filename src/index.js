@@ -11,10 +11,10 @@ const animescript = document.createElement('script');
 animescript.setAttribute('src', 'anime.min.js')
 window.addEventListener('load', e => {
     drawNavbar()
-    drawTextbody()
     drawVisualpad()
+    drawTextbody()
     drawDisplaypad()
-    threeDscene()
+    // threeDscene()
 
 })
 document.body.setAttribute('id', 'body')
