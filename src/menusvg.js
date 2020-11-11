@@ -10,8 +10,8 @@ import ec from './assets/svg/ec2XL.svg'
 //menubar 3.2vmin
 function pOne() {
     var p1 = document.createElement('div')
-    p1.classList.add('p1')
-    p1.setAttribute('id', 'p1')
+    p1.classList.add('p1a')
+    p1.setAttribute('id', 'p1a')
     document.body.appendChild(p1)
 }
 function drawNavbar() {
@@ -21,14 +21,19 @@ function drawNavbar() {
     document.body.appendChild(rect)
     var ecVg = document.createElement('img')
     ecVg.setAttribute('src', ec)
-    rect.appendChild(ecVg)
+    document.body.appendChild(ecVg)
     function menuIcon() {
-        var draw = SVG().addTo('#p1').size('15vmin', '15vmin').attr({
+        var draw = SVG().addTo('#p1a').size('15vmin', '15vmin').attr({
             id: 'menuicon'
         })
         var drawline = draw.path('M10 15 L40 15 Z M10 25 L40 25 Z M10 35 L40 35').stroke({
             color: "#19518c",
             width: 3,
+        })
+        window.addEventListener('scroll',e=>{
+            drawline.stroke({
+                color:'#f44236'
+            })
         })
         drawline.mouseover(function () {
             drawline.stroke({
@@ -87,7 +92,7 @@ function drawNavbar() {
 function drawTextbody() {
     var rect1 = document.createElement('div')
     rect1.setAttribute('id', 'textbody')
-    document.getElementById('p1').appendChild(rect1)
+    document.getElementById('p1a').appendChild(rect1)
 
     function heading(text) {
         var draw = SVG().addTo('#textbody').size('100%', '10vmin')
@@ -147,7 +152,7 @@ function drawTextbody() {
 function drawVisualpad() {
     var rect2 = document.createElement('div')
     rect2.setAttribute('id', 'visualpad')
-    document.getElementById('p1').appendChild(rect2)
+    document.getElementById('p1a').appendChild(rect2)
 
     // var draw = SVG().addTo('#visualpad').attr({
     //     x: 0,
@@ -226,8 +231,8 @@ function drawVisualpad() {
 }
 function drawDisplaypad() {
     var p2 = document.createElement('div')
-    p2.classList.add('p2')
-    p2.setAttribute('id', 'p2')
+    p2.classList.add('p2a')
+    p2.setAttribute('id', 'p2a')
     document.body.appendChild(p2)
 }
 function threeDscene() {
@@ -243,7 +248,7 @@ function threeDscene() {
     modelV.setAttribute('field-of-view', '50')
     modelV.setAttribute('max-field-of-view', '50deg')
     modelV.setAttribute('environment-image', envHdri)
-    document.getElementById('p2').appendChild(modelV)
+    document.getElementById('p2a').appendChild(modelV)
 }
 export { drawTextbody }
 export { drawNavbar }
