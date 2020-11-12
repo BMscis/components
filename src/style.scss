@@ -19,6 +19,22 @@ body{
     background-repeat: no-repeat;
     margin: 0;
 }
+#content{
+    position: fixed;
+    top:0
+}
+
+#drawline{
+    cursor: pointer;
+}
+#drawline:hover{
+    stroke:#99c0e9;
+}
+#menublock{
+    transform: translateX(-1000px);
+    width: clamp(150px,50%,400px);
+    height: clamp(500px,50%,700px);
+}
 svg{
 }
 #navbar{
@@ -34,6 +50,7 @@ svg{
 }
 #menuicon{
     position: fixed;
+    top: 0;
 }
 #visualpad{
     width: -webkit-fill-available;
@@ -58,7 +75,7 @@ img{
     height:90vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 .p2a{
     width: 100%;

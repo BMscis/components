@@ -1,154 +1,8 @@
-import { Animator, SVG } from '@svgdotjs/svg.js';
 import anime from '../node_modules/animejs/lib/anime.es.js';
 import mv from '@google/model-viewer'
 import envHdri from './assets/3d/studio024.hdr'
 import coa from './assets/3d/C2.glb'
-import ec from './assets/svg/ec2XL.svg'
-//header 5vmin
-//paragraph 3vmin
-//navbar 3.5vmin
-//menubar 3.2vmin
-function pOne() {
-    var p1 = document.createElement('div')
-    p1.classList.add('p1a')
-    p1.setAttribute('id', 'p1a')
-    document.body.appendChild(p1)
-}
-function drawNavbar() {
-    pOne()
-    var rect = document.createElement('div')
-    rect.setAttribute('id', 'navbar')
-    document.body.appendChild(rect)
-    var ecVg = document.createElement('img')
-    ecVg.setAttribute('src', ec)
-    document.body.appendChild(ecVg)
-    function menuIcon() {
-        var draw = SVG().addTo('#p1a').size('15vmin', '15vmin').attr({
-            id: 'menuicon'
-        })
-        var drawline = draw.path('M10 15 L40 15 Z M10 25 L40 25 Z M10 35 L40 35').stroke({
-            color: "#19518c",
-            width: 3,
-        })
-        window.addEventListener('scroll',e=>{
-            drawline.stroke({
-                color:'#f44236'
-            })
-        })
-        drawline.mouseover(function () {
-            drawline.stroke({
-                color: 'whitesmoke'
-            })
-            drawline.css('cursor', 'pointer')
-        })
-        drawline.mouseout(function () {
-            drawline.stroke({
-                color: '#19518c'
-            })
-        })
 
-    }
-
-    function navText(text, clr) {
-        var draw2 = SVG().addTo('#navbar').size('24vmin', '10vmin')
-        var graphictext = draw2.text(text).attr({
-            fill: clr,
-            y: '44.49%',
-            x: '50%'
-        })
-        graphictext.css('cursor', 'pointer')
-        graphictext.mouseover(function () {
-            graphictext.fill('#F44336')
-        })
-        graphictext.mouseout(function () {
-            graphictext.fill(clr)
-        })
-        graphictext.font({
-            anchor: 'middle',
-            size: '2.5vmin',
-            family: 'ACBoldSemiCn'
-        })
-        window.addEventListener('resize', e => {
-            console.log(draw2.width())
-            if (window.screen.width < 600) {
-                graphictext.font({
-                    size: '50%'
-                })
-
-            }
-            else {
-                graphictext.font({
-                    size: '70%'
-                })
-            }
-        })
-    }
-    menuIcon()
-    navText('Graphic Design', '#1a78d9')
-    navText('3D Design', '#1a78d9')
-    navText('Web Development', '#1a78d9')
-
-}
-function drawTextbody() {
-    var rect1 = document.createElement('div')
-    rect1.setAttribute('id', 'textbody')
-    document.getElementById('p1a').appendChild(rect1)
-
-    function heading(text) {
-        var draw = SVG().addTo('#textbody').size('100%', '10vmin')
-        var heading = draw.text(text)
-        heading.font({
-            anchor: 'middle',
-            size: '5vmin',
-            family: ' ACBlack',
-            fill: 'BLACK'
-        }).attr({
-            x: '-100%',
-            y: '15.98%',
-            id: 'headingtext'
-        })
-        anime({
-            targets: '#headingtext',
-            translateX: '150%',
-            duration: 3000
-        })
-
-    }
-    function text(text) {
-        var draw = SVG().addTo('#textbody').size('100%', '10vmin')
-        var heading = draw.text(text)
-        heading.font({
-            anchor: 'middle',
-            size: '3vmin',
-            family: ' ACBlack',
-            fill: 'GRAY'
-        }).attr({
-            x: '50%',
-            y: '15.98%',
-            id: 'headingtext',
-            opacity: 0
-        })
-        heading.animate({
-            duration: 2000,
-            delay: 1000,
-            when: 'now',
-            swing: true,
-            times: 1,
-            wait: 200
-        }).attr({ opacity: '1' })
-        heading.animate({
-            duration: 2000,
-            delay: 1000,
-            when: 'after',
-            swing: false,
-            times: 1,
-            wait: 200
-        }).attr({ opacity: '0.5' })
-
-    }
-    heading('Hello!')
-    text('Welcome to the espii club.')
-}
 function drawVisualpad() {
     var rect2 = document.createElement('div')
     rect2.setAttribute('id', 'visualpad')
@@ -229,12 +83,6 @@ function drawVisualpad() {
     // })
 
 }
-function drawDisplaypad() {
-    var p2 = document.createElement('div')
-    p2.classList.add('p2a')
-    p2.setAttribute('id', 'p2a')
-    document.body.appendChild(p2)
-}
 function threeDscene() {
     var modelV = document.createElement('model-viewer')
     modelV.setAttribute('src', coa)
@@ -250,9 +98,5 @@ function threeDscene() {
     modelV.setAttribute('environment-image', envHdri)
     document.getElementById('p2a').appendChild(modelV)
 }
-export { drawTextbody }
-export { drawNavbar }
-export { drawVisualpad }
 // export { threeDscene }
-export { drawDisplaypad }
 
