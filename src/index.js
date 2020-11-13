@@ -5,12 +5,11 @@ import {drawNavbar} from './navbar';
 import {drawTextbody} from './textbody';
 import {menuIcon} from './menuicon';
 import {placeText} from './navtext';
+import {divs} from './div'
 const animescript = document.createElement('script');
 animescript.setAttribute('src', 'anime.min.js')
 window.addEventListener('load', e => {
+    divs()
     menuIcon()
-    bodyParts()
-    drawTextbody()
-    placeText()
 })
 document.body.setAttribute('id', 'body')

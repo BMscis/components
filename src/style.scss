@@ -6,24 +6,26 @@ $espii-tetiary-color:#DF7B74;
 $espii-base-color:whitesmoke;
 $espii-accent-color:#1A78D9;
 html{
-    background-image: url(./assets/svg/bg2.svg);
-    background-repeat: no-repeat;
+
     background-position: bottom;
     background-color: whitesmoke;
+    overflow: overlay;
+}
+::-webkit-scrollbar{
+    width: 0;
 }
 body{
-    width: auto;
-    height: auto;
-    overflow-x: hidden;
     background-image: url(./assets//svg/Nbg.svg);
+    background-position: top;
     background-repeat: no-repeat;
-    margin: 0;
+    margin: 0;    
 }
 #content{
     position: fixed;
-    top:0
+    top:10px;
+    z-index:1;
+    width: 100%;
 }
-
 #drawline{
     cursor: pointer;
 }
@@ -35,10 +37,19 @@ body{
     width: clamp(150px,50%,400px);
     height: clamp(500px,50%,700px);
 }
-svg{
+#b1{
+    height: calc(100vh - 20vmin);
+    width: 100%;
+    position: relative;
+    top: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 #navbar{
-    width: 100%;
+    width: 80%;
     height: 10vmin;
     background-color: transparent;
     display: flex;
@@ -46,57 +57,85 @@ svg{
     justify-content: space-evenly;
     align-items: center;
     position: sticky;
-    top:0
+    top:0;
+    float: right;
+    z-index: 2;
+
 }
-#menuicon{
-    position: fixed;
-    top: 0;
+#textbody{
+    background-image: url('./assets/svg/ec2XL.svg');
+    background-repeat: no-repeat;
+    background-position: center;
 }
-#visualpad{
-    width: -webkit-fill-available;
-    height: 65vmin;
+#b2{
+    background-image: url(./assets/svg/bg2.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+#carousel{
+    width: 100%;
+    min-height:600px;
+    background-color:transparent;
+    position: relative;
+    top:12vmin;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    overflow: auto;
+    scroll-behavior: smooth;
+    transform: translateX(-100%);
 }
-model-viewer > *{
-    outline: none;
-}
-img{
-    width: 80px;
-    height: 80px;
-    position: fixed;
-    top:13vmin;
+#carouselblock{
+    width: 280px;
+    min-width: 280px;
+    min-height:400px;
+    background-image: url(./assets/img/bW.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    background-position: center;
+    border-radius: 10px;
     cursor: pointer;
-    left: calc(50vw - 40px);
-    
+    opacity: 0.5;
+    overflow: auto;
+    transition: opacity 0.5s ease;
 }
-.p1a{
-    width: 100%;
-    height:90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#carouselblock.active{
+    opacity:1
 }
-.p2a{
-    width: 100%;
-    height: 100vh;
-    background-repeat:no-repeat ;
-    background-size: contain ;
-    background-position: bottom;
+#nxt{
+    width: 120px;
+    height: 120px;
+    background-image: url(./assets/svg/nxt.svg);
+    background-repeat: no-repeat;
     background-color: transparent;
+    background-position: center;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    right: 20px;
+    top:50vh
 }
-.p2a:hover{
-    html{
-        background-color: #F44336;
+
+@media only  Screen and(max-width:600px){
+    #carouselblock{
+        min-width: 100%;
+        width: 100%;
     }
-}
-@media only screen and (max-width: 990px){
-    #visualpad{
-        flex-direction: column;
-    }
-}
-@media only screen and (max-width: 320px){
     #navbar{
         display: none;
+    }
+}
+@media only  Screen and(min-width:600px){
+    #carouselblock{
+        width: 360%;
+    }
+    #carousel{
+        justify-content: flex-start;
     }
 }
