@@ -1,0 +1,62 @@
+@keyframes flashlogo{
+
+    5%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 3vmin);
+    }
+    10%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 4vmin);
+    }
+    15%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -14vmin, transparent 5vmin);
+    }
+    25%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -13vmin, transparent 6vmin);
+    }
+    30%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -12vmin, transparent 7vmin);
+    }
+    35%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -11vmin, transparent 8vmin);
+    }
+    40%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -10vmin, transparent 9vmin);
+    }
+    45%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -9vmin, transparent 10vmin);
+    }
+    
+    50%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 10vmin);
+    }
+    55%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -13vmin, transparent 10vmin);
+    }
+    60%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -10vmin, transparent 10vmin);
+    }
+    65%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -5vmin, transparent 10vmin);
+    }
+    70%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 0vmin, transparent 10vmin);
+    }
+    75%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 3vmin, transparent 10vmin);
+    }
+    80%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 5vmin, transparent 10vmin);
+    }
+    85%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 9vmin, transparent 10vmin);
+    }
+    90%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 10vmin, transparent 10vmin);
+    }
+    95%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 12vmin, transparent 10vmin);
+    }
+    100%{
+    background-image:linear-gradient(91deg, transparent, #800E11, #e51900 15vmin, transparent 10vmin),radial-gradient(#5df7ffa1 14%,#0d0f11 ,21%,#0b213f);
+    }
+
+}

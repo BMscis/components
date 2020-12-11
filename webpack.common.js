@@ -2,11 +2,12 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Manifest = require('webpack-manifest-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
         context: path.resolve(__dirname, 'src'),
-        app: './src/index.js'
+        app: './src/index.js',
     },
     module: {
         rules: [
@@ -51,6 +52,7 @@ module.exports = {
                     'xml-loader',
                 ],
             },
+
             // {
             //     test: /\.toml$/,
             //     type: 'json',
@@ -79,6 +81,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Home',
         }),
+        new webpack.ProvidePlugin({
+            $:'jquery',
+            jQuery:'jquery',
+            "window.jQuery": "jquery"
+        })
     ],
     output: {
         filename: '[name].[contenthash].js',

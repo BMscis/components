@@ -1,15 +1,21 @@
 import './style.scss';
 import menu from './assets/img/menu.svg';
-import {bodyParts} from './pOne';
-import {drawNavbar} from './navbar';
-import {drawTextbody} from './textbody';
-import {menuIcon} from './menuicon';
-import {placeText} from './navtext';
-import {divs} from './div'
+import { logoIcon } from './menuicon';
+import { resizeStory } from './storyResize';
+import { divs } from './div'
+import './components/carousel/carousel'
 const animescript = document.createElement('script');
 animescript.setAttribute('src', 'anime.min.js')
+
 window.addEventListener('load', e => {
     divs()
-    menuIcon()
+    logoIcon()
+    //renderStory()
+    //load()
+    var es = document.createElement('es-carousel')
+    es.setAttribute('width', document.body.clientWidth)
+    document.querySelector('#b2').appendChild(es)
 })
+
+
 document.body.setAttribute('id', 'body')
