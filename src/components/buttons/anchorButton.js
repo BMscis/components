@@ -25,7 +25,7 @@ class AnchorButton extends HTMLElement{
         :host(:hover) {
             -webkit-background-clip: border-box;
             -webkit-text-fill-color: #f1f1f1;
-            opacity:0.4;
+            opacity:1;
         }
         </style>
     `
@@ -49,6 +49,15 @@ class AnchorButton extends HTMLElement{
     connectedCallback(){
         
         this.css = 0
+        this.addEventListener('click', e=>{
+            var story = document.querySelector('es-carousel').shadow.querySelector('es-story.active')
+            var whiteboard = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-whiteboard")
+            var closeButton = story.shadowRoot.querySelector("es-closebutton")
+            //whiteboard.setAttribute('active','')
+            story.setAttribute('expand',true)
+            story.setAttribute('details','')
+            closeButton.setAttribute('show','')
+        })
         this.render();
     }
     render(){

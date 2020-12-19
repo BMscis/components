@@ -2,6 +2,13 @@
 import '../storyBoard/story'
 import '../buttons/nextButton'
 import '../buttons/previousButton'
+import '../whiteboard/whiteboard'
+
+//images
+import webdev from '../../assets/svg/webdev.svg'
+import coa from '../../assets/svg/coa.svg'
+import me from '../../assets/svg/me.svg'
+import stairs from '../../assets/svg/stairs2.svg'
 class Carousel extends HTMLElement{
     constructor(){
         super()
@@ -43,11 +50,12 @@ class Carousel extends HTMLElement{
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <es-previous></es-previous>
-            <es-story class="active 0"></es-story>
-            <es-story class="1"              ></es-story>
-            <es-story class="2"              ></es-story>
-            <es-story class="3"              ></es-story>
-            <es-story class="4"              ></es-story>
+            <es-whiteboard></es-whiteboard>
+            <es-story h1='3D' h2='Design ' img=${coa} imgset=${{'one':webdev,'two':coa,'three':me,'four':stairs}} class="active 0"></es-story>
+            <es-story h1='Web ' h2='Development ' img=${webdev} class="1"              ></es-story>
+            <es-story h1='Graphic' h2='Design' img=${me} class="2"              ></es-story>
+            <es-story h1='UI/UX' h2='Design' img=${stairs} class="3"              ></es-story>
+            <es-story h1=' ' h2=' ' class="4"              ></es-story>
             <es-next></es      
         `
     }
@@ -57,12 +65,16 @@ class Carousel extends HTMLElement{
         :host{
             width:100%;
             height:100%;
+            left:0;
             display: -webkit-box;
             position: absolute;
             overflow:hidden;
             perspective: 1000px;
             perspective-origin: center;
             transition:0.5s ease-in-out;
+            -webkit-box-align: center;
+            overflow-y:auto;
+            top:10vmin;
         }
         </style>
         `

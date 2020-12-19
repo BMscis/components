@@ -1,5 +1,4 @@
 import btnGradient from '../../assets/svg/buttonGradient.svg'
-import { story } from '../../story'
 class NextButton extends HTMLElement{
     constructor(){
         super()
@@ -17,7 +16,7 @@ class NextButton extends HTMLElement{
                 box-sizing: border-box;
                 position: absolute;
                 top:50%;
-                right:20px;
+                right:150px;
                 display: block;
                 transform: scale(var(--ggs,1));
                 width: 22px;

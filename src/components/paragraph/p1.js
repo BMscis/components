@@ -12,7 +12,7 @@ class P1 extends HTMLElement{
                 font-family:ACLight;
                 color: palegoldenrod;
                 padding: 20px;
-                margin: 0 50px 50px 0;
+                z-index:1;
             }
         </style>
         `

@@ -16,7 +16,7 @@ class PreviousButton extends HTMLElement{
                 box-sizing: border-box;
                 position: absolute;
                 top:50%;
-                left:20px;
+                left:150px;
                 display: block;
                 transform: scale(var(--ggs,1));
                 width: 22px;

@@ -1,7 +1,5 @@
 //images
-import webdev from '../../assets/svg/webdev.svg'
-import coa from '../../assets/svg/coa.svg'
-import me from '../../assets/svg/me.svg'
+
 
 
 class StoryImages extends HTMLElement{
@@ -17,10 +15,26 @@ class StoryImages extends HTMLElement{
         return `
         <style>
         :host{
+            width:50%;
+            height:50%;
+            display:flex;
+            position:relative;
+        }
+        img{
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            height: 50%;
+            height:100%;
+            width:100%;
+            position:relative;
+            margin:5px;
+            transition:0.5s ease;
+        }
+        img{
+            cursor:pointer;
+        }
+        img:hover{
+            transform:scale(1.5)
         }
         </style>
         `
@@ -29,27 +43,26 @@ class StoryImages extends HTMLElement{
         return this.getAttribute('img')
     }
     set img(val){
-        return this.style.backgroundImage = 'url(' + val +')'
+        return this.setAttribute('img',val)
     }
     get width(){
         return this.getAttribute('width')
     }
     set width(val){
         return this.style.width = val
-        
     }
+
     attributeChangedCallback(prop,oldVal,newVal){
         if (prop === "img" || "width"){this.render()}
     }
     connectedCallback(){
-        this.img = coa
-        this.width = '50%'
+        //this.width = '50%'
         this.render();
     }
     render(){
         return this.shadow.innerHTML = `
         ${this.styleTemplate}
-        <slot></slot>`
+        <img src=${this.img}>`
     }
 }
 customElements.define('es-image', StoryImages);

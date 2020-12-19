@@ -1,9 +1,7 @@
 
 class H2 extends HTMLElement{
     static get properties(){
-        return {
-            text:{type:String}
-        }
+        return ['text']
     }
     get styleTemplate(){
         return `
@@ -18,6 +16,7 @@ class H2 extends HTMLElement{
                 padding: 0 0 20px 20px ;
                 display: grid;
                 white-space: nowrap;
+                position:relative;
             }
         </style>
         `
@@ -29,10 +28,20 @@ class H2 extends HTMLElement{
     connectedCallback(){
         this.render();
     }
+    attributeChangedCallback(prop,oldVal,newVal){
+        if (prop === "text" ){
+            console.log('text rendered')}
+    }
+    get text(){
+        return this.getAttribute('text')
+    }
+    set text(val){
+        return this.setAttribute('text',val)
+    }
     render(){
         this.shadow.innerHTML=`
         ${this.styleTemplate}
-        <text>Design</text>`
+        <text>${this.text}</text>`
     }
 }
 customElements.define('es-heading2', H2);
