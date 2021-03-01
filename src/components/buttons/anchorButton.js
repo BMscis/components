@@ -50,13 +50,18 @@ class AnchorButton extends HTMLElement{
         
         this.css = 0
         this.addEventListener('click', e=>{
-            var story = document.querySelector('es-carousel').shadow.querySelector('es-story.active')
-            var whiteboard = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-whiteboard")
+            var carousel = document.querySelector('es-carousel')
+            var prevButton = carousel.shadow.children[2]
+            var textBoard = carousel.shadow.children[1]
+            var nextButton = carousel.shadow.lastChild
+            prevButton.setAttribute('hide','')
+            textBoard.setAttribute('hide','')
+            nextButton.setAttribute('hide','')
+            var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
             var closeButton = story.shadowRoot.querySelector("es-closebutton")
-            //whiteboard.setAttribute('active','')
-            story.setAttribute('expand',true)
-            story.setAttribute('details','')
-            closeButton.setAttribute('show','')
+            story.setAttribute('expand','')
+            carousel.setAttribute('expand','')
+            //closeButton.setAttribute('show','')
         })
         this.render();
     }

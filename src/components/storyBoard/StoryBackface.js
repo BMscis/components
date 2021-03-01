@@ -28,17 +28,18 @@ class StoryBackface extends HTMLElement{
 
     connectedCallback(){
         console.log('StoryBackface connected')
+        this.images = [one,two,three,four]
+        console.log(this.images.length)
         this.render()
     }
     render(){
         console.log('StoryBackface rendering')
-        var imgs = this.images
-        console.log(imgs)
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            ${imgs.forEach(element => {
-                `<es-image img=${element}></es-image>`                
-            })}
+            <img src=${one}>
+            <img src=${two}>
+            <img src=${three}>
+            <img src=${four}>
             `
     }
     get styledTemplate(){
@@ -49,18 +50,31 @@ class StoryBackface extends HTMLElement{
         :host{
             display: flex;
             flex-flow: wrap;
-            width:50%;
-            height:60%;
-            padding:20px;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+            margin:20px;
             overflow-y:auto;
             overflow-x:hidden;
             box-sizing:border-box;
             scrollbar-width:none;
             backdrop-filter: blur(40px);
             background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 0vmin);
+            perspective: 1000px;
         }
         es-image img{
             opacity:0.5;
+        }
+        img{
+            width:80%;
+            height:80%;
+            padding:2% 10% 10% 2%;
+            cursor:pointer;
+            position: sticky;
+            top:0;
+            transform:scale3d(0.7,0.7,0.7) rotateY(45deg)
+        }
+        img(:hover){
         }
         </style>`
     }

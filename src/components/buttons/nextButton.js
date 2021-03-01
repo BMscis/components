@@ -3,10 +3,10 @@ class NextButton extends HTMLElement{
     constructor(){
         super()
         this.shadow = this.attachShadow({mode:'open'})
-
+        this.move()
     }
     static get observedAttributes(){
-        return ['onclick']
+        return ['onclick','move']
     }
     get styleTemplate(){
         return `
@@ -15,13 +15,14 @@ class NextButton extends HTMLElement{
                 cursor: pointer;
                 box-sizing: border-box;
                 position: absolute;
-                top:50%;
-                right:150px;
+                top:80%;
+                right:${this.cssX};
                 display: block;
                 transform: scale(var(--ggs,1));
+                transform-origin: center;
                 width: 22px;
                 height: 22px;
-                border: 2px dotted;
+                //border: 2px dotted;
                 border-image: ${'url('+btnGradient+')'};
                 border-image-slice: 8;
                 border-image-width: 7px;
@@ -32,10 +33,8 @@ class NextButton extends HTMLElement{
                 content: "";
                 box-sizing: border-box;
                 position: absolute;
-                top: -2px;
-                left: -2px;
                 display: block;
-                transform: scale(var(--ggs,2)) rotate(45deg);
+                transform: scale(var(--ggs,1)) rotate(45deg);
                 width: 22px;
                 height: 22px;
                 border-left: 2px dotted;
@@ -49,51 +48,69 @@ class NextButton extends HTMLElement{
                 display: block;
                 box-sizing: border-box;
                 position: absolute;
-                width: 6px;
-                height: 6px;
-                border-bottom: 2px inset;
-                border-right: 2px inset;
-                left: 5px;
-                top: 6px;
+                width: 22px;
+                height: 22px;
+                border-bottom: 7px inset;
+                border-right: 7px solid white;
+                border-radius:25%;
                 transform: rotate(-45deg);
             }
+            :host([hide]){
+                display:none;
+            }
             :host(:hover){
-                transform: scale(var(--ggs,2)) rotate(360deg);
+                transform: scaleY(1.5) scaleX(2);
             }
             </style>
         `
     }
+    get cssX(){
+        return this.getAttribute('cssX')
+    }
+    set cssX(val){
+        return this.setAttribute('cssX',val)
+    }
     connectedCallback(){
-        console.log('nextC')
         this.addEventListener('click',e=>{
-            console.log('next clicked')
-            var story = document.querySelector('es-carousel').shadow.querySelector('es-story.active')
+            console.log('NEXT')
+            var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
             if (story.nextElementSibling != document.querySelector('es-carousel').shadow.querySelector('es-next') ){
                 if (story.nextElementSibling){
-                console.log(true)
-                story.setAttribute('rclick',true)
-                story.classList.remove('active')
-                if(story.previousElementSibling.hasAttribute('Rclick')){
-                    story.previousElementSibling.removeAttribute('Rclick')
-                }
-                if(story.hasAttribute('active')){
-                    story.removeAttribute('active')
-                }
-                story.nextElementSibling.classList.add('active')
-                story.nextElementSibling.setAttribute('active','')
+                console.log('STORY: ' + story.getAttribute('class'))    
+                story.removeAttribute('active')
+                story.nextElementSibling.setAttribute('active','right')
             }
-            else{
-                return
-            }
+            return
         }
+        return
         })
         this.render()
+
+    }
+    move(){
+        var i = document.querySelector('es-carousel').clientWidth
+        var c = 0.2*i
+        if (i <= 700){
+            var x = i/2
+            y = 300/1.5
+        }
+        else{
+            var x = (i - c)/2
+            var y = 300/1.5
+        }
+        
+        var position = Math.round(x - y)
+        this.cssX = position + 'px'
+
     }
     disconnectedCallback(){
         console.log('nextD')
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        this.render()
+        if (prop == 'move'){
+            this.move()
+            this.render()
+        }
     }
     
     render(){

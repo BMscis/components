@@ -2,8 +2,8 @@
 import anime from '../../../node_modules/animejs/lib/anime.es.js';
 
 //components
-import '../typography/h1/h1'
-import '../typography/h2/h2'
+import '../h1/h1'
+import '../h2/h2'
 import '../buttons/anchorButton'
 import '../paragraph/p1'
 import './storyImage'
@@ -27,40 +27,33 @@ export class Story extends HTMLElement {
         this.setup()
     }
     attributeChangedCallback(prop, oldVal, newVal) {
-        console.log('STORY: '+ this.getAttribute('class') + ' ATTRIBUTE-CHANGE:' + prop)
+        console.log('story attributechange:' + this.classList)
         switch (prop) {
             case 'active':
                 switch (newVal) {
                     case null:
-                        console.log('STORY: '+ this.getAttribute('class') + ' ACTIVE: moveback')
-                        this.moveInactive()
+                        this.moveBack()
                         return
                     case '':
-                        console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: none')
                         return
                     case 'right':
-                        console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: right')
                         this.moveMe('right')
                         return
                     case 'left':
-                        console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: left')
                         this.moveMe('left')
                 }
                 return
             case 'cssx':
                 switch (this.hasAttribute('active')) {
                     case true:
-                        console.log('STORY: '+ this.getAttribute('class') + ' has ACTIVE: cssx change: ' + this.cssX)
                         return
                     case false:
-                        console.log('STORY: '+ this.getAttribute('class') + ' has NO ACTIVE: cssx change: ' + this.cssX)
                         this.moveBack()
                         return
                 }
             case 'expand':
                 switch(this.hasAttribute('expand')){
                     case true:
-                        console.log('STORY: '+ this.getAttribute('class') +' EXPAND')
                         this.xpand()
                         this.backface = 0
                         this.render()
@@ -69,19 +62,12 @@ export class Story extends HTMLElement {
                         return
                 }
                 return
-                case 'close':
-                console.log('STORY: '+ this.getAttribute('class') +' CONTRACT')
+            case 'close':
                 this.cloze()
                 return
             case 'resize':
-                console.log('STORY: '+ this.getAttribute('class') +' RESIZE')
                 this.resize()
                 return
-            case 'imgset':
-                this.imgset
-                return
-            case 'staticx':
-                console.log('STORY: '+ this.getAttribute('class') + ' - StaticX change' )
         }
 
     }
@@ -149,11 +135,10 @@ export class Story extends HTMLElement {
         return this.setAttribute('staticx', val)
     }
     get imgset() {
-        
-        return this.imgset
+        return this.getAttribute('imgset')
     }
     set imgset(val) {
-        return this.imgset = val
+        return this.setAttribute('imgset', val)
     }
     get active() {
         return this.getAttribute('active')
@@ -167,36 +152,13 @@ export class Story extends HTMLElement {
     set inactive(val) {
         return this.setAttribute('inactive', '')
     }
-    get ptext(){
-        return this.getAttribute('ptext')
-    }
-    set ptext(val){
-        return this.setAttribute('ptext')
-    }
     setup() {
-        // i = clientwidth
-        // c = 20% of clientwidth
-        // x = offset to left of screen
-        // y = storywidth
-        // z = story offset
-        // position = central position of story
-        // next = next position
-        // previous = previous position
-        // xp = expand story positon
-        // cd = close position
-
-        var i = document.querySelector('es-carousel').clientWidth
+        var i = window.innerWidth
         var c = Math.round(0.2*i)
-        if (i <= 700){
-            var x = Math.round(i)
-        }
-        else{
-            var x = Math.round(i+c)
-        }
+        var x = Math.round(i+c)
         var y = 300
         var z = this.offsetLeft
         var position = Math.round((x-y)/2)
-        var cPosition = Math.round((i-y)/2)
         var next = Math.round(-(x-(3*y))/2)
         var previous = Math.round((x-(3*y))/2)
         var xp = -z + c
@@ -214,11 +176,25 @@ export class Story extends HTMLElement {
         console.log('SETUP: xpand'+ xp)
         console.log('SETUP: coll'+ cl)
         console.log('SETUP: close'+ cd)
-        this.cssX = position + 'px'
-        this.setAttribute('storyOffset', z)
-        this.setAttribute('expandx', xp)
-        this.setAttribute('closeX', cd)
-        this.setAttribute('Cposition',cPosition)
+        var windowWidth = Math.round(window.innerWidth / 2)
+        var windowOffset = Math.round(windowWidth + (windowWidth * (20 / 100)))
+        console.log('SETUP: windowOffet'+ windowOffset)
+        var windowOffsetStart = Math.round(window.innerWidth * (20 / 100))
+        var thisWdith = 300 / 2
+        var centerPoint = windowOffset - thisWdith
+        var thisOffset = this.offsetLeft
+        var nextPoint = Math.round(centerPoint - 300)
+        var previousPoint = Math.round(centerPoint - 300)
+        var thisExpand = Math.round(-thisOffset + windowOffsetStart)
+        var thisCollapse = Math.round(-thisOffset - windowOffset)
+        var close = (thisCollapse - windowOffset) + thisOffset
+        var center = centerPoint + close
+        this.cssX = centerPoint + 'px'
+        this.setAttribute('storyOffset', thisOffset)
+        this.setAttribute('windowoffset', windowOffset)
+        this.setAttribute('expandx', thisExpand)
+        //this.staticX = centerPoint
+        this.setAttribute('closeX', center)
         switch (this.hasAttribute('active')) {
             case true:
                 this.moveActive()
@@ -230,18 +206,15 @@ export class Story extends HTMLElement {
     moveMe(val) {
         switch (val) {
             case 'right':
-                console.log('STORY: '+ this.getAttribute('class')+ ' moveRIGHT')
-                var staticx = this.cssX
-                var np = parseInt(staticx) - 300
+                var np = parseInt(this.cssX) - 300
                 this.cssX = np + 'px'
                 this.moveActive()
                 var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
                 storyInacitve.forEach(element => {
-                    element.setAttribute('cssx', np + 'px')
+                    element.setAttribute('cssx', this.cssX)
                 });
                 return
             case 'left':
-                console.log('STORY: '+ this.getAttribute('class')+ 'moveLEFT')
                 var np = parseInt(this.cssX) + 300
                 this.cssX = np + 'px'
                 this.moveActive()
@@ -278,21 +251,12 @@ export class Story extends HTMLElement {
         });
     }
     resize(){
-        var cW = document.querySelector('es-carousel').clientWidth
-        var windowWidth = Math.round(cW / 2)
-        var i = document.querySelector('es-carousel').clientWidth
-        var c = Math.round(0.2*i)
-        if (i <= 700){
-            var x = Math.round(i)
-        }
-        else{
-            var x = Math.round(i+c)
-        }
-        var y = 300
-        var z = this.offsetLeft
-        var position = Math.round((x-y)/2)
-
-        this.cssX = position + 'px'
+        var windowWidth = Math.round(window.innerWidth / 2)
+        var windowOffset = Math.round(windowWidth + (windowWidth * (20 / 100)))
+        var windowOffsetStart = Math.round(window.innerWidth * (20 / 100))
+        var thisWdith = 300 / 2
+        var centerPoint = windowOffset - thisWdith - parseInt(this.storyOffset)
+        this.cssX = centerPoint + 'px'
         this.moveActive()
         var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
         storyInacitve.forEach(element => {
@@ -301,7 +265,7 @@ export class Story extends HTMLElement {
 
     }
     moveActive() {
-        console.log('STORY: ' + this.getAttribute('class') +" transform: translateX(" + this.cssX + ") scale(0.8)")
+        console.log("transform: translateX(" + this.cssX + ") scale(0.8)")
         if (this.hasAttribute('active')) {
             this.animate([
                 { transform: "translateX(" + this.cssX + ")" }
@@ -329,10 +293,9 @@ export class Story extends HTMLElement {
 
     }
     moveInactive() {
-        let cssX = this.cssX
-        console.log('STORY: ' + this.getAttribute('class') + " INACTIVE-TRANSFORM: translateX(" + cssX + ") scale(0.8)")
+        console.log("INACTIVEtransform: translateX(" + this.cssX + ") scale(0.8)")
         this.animate([
-            { transform: "translateX(" + cssX + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
+            { transform: "translateX(" + this.cssX + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
         ],
             {
                 duration: 500,
@@ -349,18 +312,18 @@ export class Story extends HTMLElement {
     }
     static get observedAttributes() {
         return [
-            'active', 'move', 'cssx', 'expand', 'close', 'resize', 'expandx','staticx','imgset'
+            'active', 'move', 'cssx', 'expand', 'close', 'resize', 'expandx','staticx'
         ];
     }
     render() {
         console.log('BACKFACE ==: ' + this.backface)
         if (this.backface) {
-            console.log(' story render backface')
+            console.log('story render backface')
             this.shadow.innerHTML = `
             ${this.styleTemplate}
             <es-closebutton></es-closebutton>
             <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
-            <es-storybackface images=></es-storybackface>
+            <es-storybackface images=${this.imgset}></es-storybackface>
             `
         }
         else {
@@ -369,7 +332,7 @@ export class Story extends HTMLElement {
         ${this.styleTemplate}
         <es-image img = ${this.img}></es-image>
         <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
-        <es-p text='${this.ptext}'></es-p>
+        <es-p></es-p>
         <es-button></es-button>`}
     }
     disconnectedCallback() {
@@ -404,7 +367,6 @@ export class Story extends HTMLElement {
         justify-content: space-around;
         opacity: 0.5;
         z-index:0;
-        filter: blur(5px);
     }
     :host([active]){
         opacity: 1;
@@ -414,9 +376,6 @@ export class Story extends HTMLElement {
         box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
         transform-style: preserve-3d;
         transform-origin:center;
-        filter: blur(0px);
-        z-index:1;
-
     }
     :host([active])::after,
     :host::after{
@@ -441,10 +400,6 @@ export class Story extends HTMLElement {
         height:100%;
         justify-content: space-evenly;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
-    }
-    :host([expand]:hover){
-        transform: scale(var(--ggs,1)) rotate(360deg);
-
     }
         </style>
     `

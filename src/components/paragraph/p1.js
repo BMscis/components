@@ -1,36 +1,46 @@
-
 class P1 extends HTMLElement{
-    static get properties(){
-        return []
-    }
-    get styleTemplate(){
-        return  `
-        <style>
-            :host{
-                width: fit-content;
-                position: relative;
-                font-family:ACLight;
-                color: palegoldenrod;
-                padding: 20px;
-                z-index:1;
-            }
-        </style>
-        `
-    }
-    constructor (){
+    constructor(){
         super()
+        console.log('p1 constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
-    connectedCallback(){
-        this.render();
+    static get observedAttributes(){
+        return []
     }
-    disconnectedCallback(){
-
+    attributeChangedCallback(prop,oldVal,newVal){
+        console.log('p1 attribute change')
+    }
+    connectedCallback(){
+        console.log('p1 connected')
+        this.render()
+    }
+    get text(){
+        return this.getAttribute('text')
+    }
+    set text(val){
+        return this.setAttribute('text',val)
     }
     render(){
-        this.shadow.innerHTML=`
-        ${this.styleTemplate}
-        <slot">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore </slot>`
+        console.log('p1 rendering')
+        this.shadow.innerHTML =  `
+            ${this.styledTemplate}
+            <slot>${this.text}</slot>
+            `
+    }
+    get styledTemplate(){
+        return `<style>
+        :host{
+            width: fit-content;
+            position: relative;
+            font-family:ACLight;
+            color: palegoldenrod;
+            padding: 20px;
+            z-index:1;
+        }
+        </style>`
+    }
+    disconnectedCallback(){
+        console.log('p1 disconnect')
     }
 }
 customElements.define('es-p', P1);

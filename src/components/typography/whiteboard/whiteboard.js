@@ -1,9 +1,9 @@
 import './whiteboardBlock'
 import './whiteboardBlockPage'
-import '../paragraph/p1'
+import '../../paragraph/p1'
 import '../h1/h1'
 import '../h2/h2'
-import bg from '../../assets/img/espiilogo.svg'
+import bg from '../../../assets/img/espiilogo.svg'
 class WhiteBoard extends HTMLElement{
     constructor(){
         super()

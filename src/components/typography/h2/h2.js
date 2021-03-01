@@ -7,16 +7,21 @@ class H2 extends HTMLElement{
         return `
         <style>
             :host{
-                font-size: 3vmin;
+                font-size: 2vmin;
                 z-index: 2;
-                font-family: 'ACBlack';
-                background: linear-gradient(to right, #cc3e14, yellowgreen);
+                font-family: 'ACBoldSemiCn';
+                background: #ff5e00;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 padding: 0 0 20px 20px ;
                 display: grid;
                 white-space: nowrap;
                 position:relative;
+                cursor:pointer;
+            }
+            :host(:hover){
+                background: linear-gradient(to right, ghostwhite, yellowgreen);
+                -webkit-background-clip: text;
             }
         </style>
         `

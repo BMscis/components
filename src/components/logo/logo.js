@@ -28,14 +28,14 @@ class Logo extends HTMLElement{
          {
             transform: scale(var(--ggs,1))
             box-sizing: border-box;
-            position: fixed;
             top:6vh;
             display: flex;
             justify-content: center;
             width: 20px;
             height: 20px;
             border-radius: 3px;
-            background-image: linear-gradient(to bottom right, #435269, #5190ec 47%, transparent 47% 53%, #5190ec -11%,#244069);
+            background-image: linear-gradient(to bottom right , #3ffd1e ,#1b5028 46% 45%,transparent 55%, #1b5028 55% ,#3bab57 );
+            filter: saturate(2) blur(0.2px);
             transform: rotate(45deg);
             
         }
@@ -55,7 +55,7 @@ class Logo extends HTMLElement{
             height: 80px;
             width: 80px;
             position: absolute;
-            background-image: linear-gradient(91deg, transparent, #800E11, #e51900 15vmin, transparent 10vmin);
+            background-image: radial-gradient(circle at top,#3ffd1e,32%,#010500 63%);
             background-size: contain;
             background-repeat: no-repeat;
             

@@ -9,11 +9,12 @@ $espii-taste-color:#e2e22c;
 
 html{
     //background-color: #111010;
-    background-image:url(./assets/img/ws37.png);
+    background-image:url(./assets/img/ws20.png);
     background-position: center;
     -webkit-box-align: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: left, right;
     height: -webkit-fill-available;
     //background-blend-mode:screen;
     margin: 0;
@@ -27,7 +28,8 @@ html{
     transition: 0.5s ease-in-out;
 }
 body{
-    background-color: transparent;
+    //background-image: linear-gradient(to bottom right, #f5f5f500, #f4433600);
+    background:transparent;
     display: flex;
     flex-direction: row;
     justify-content: center;
