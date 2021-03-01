@@ -13,6 +13,7 @@ class CloseButton extends HTMLElement{
     connectedCallback(){
         console.log('CloseButton connected')
         this.addEventListener('click',e =>{
+            console.log('CLOSE')
             var carousel = document.querySelector('es-carousel')
             var prevbutton = carousel.shadow.children[2]
             var textBoard = carousel.shadow.children[1]

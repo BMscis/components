@@ -40,6 +40,9 @@ class Textboard extends HTMLElement{
             display: none
         }
         @media only screen and (max-width: 800px){
+            :host{
+                display:none;
+            }
             text{
                 font-size:5vmin;
             }

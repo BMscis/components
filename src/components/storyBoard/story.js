@@ -47,18 +47,18 @@ export class Story extends HTMLElement {
                         this.moveMe('left')
                 }
                 return
-            case 'cssx':
+            case 'cssmove':
                 switch (this.hasAttribute('active')) {
                     case true:
-                        console.log('STORY: '+ this.getAttribute('class') + ' has ACTIVE: cssx change: ' + this.cssX)
+                        console.log('STORY: '+ this.getAttribute('class') + ' has ACTIVE: cssmove change')
                         return
                     case false:
-                        console.log('STORY: '+ this.getAttribute('class') + ' has NO ACTIVE: cssx change: ' + this.cssX)
-                        this.moveBack()
+                        console.log('STORY: '+ this.getAttribute('class') + ' has NO ACTIVE: cssmove change')
+                        this.moveInactive()
                         return
                 }
-            case 'expand':
-                switch(this.hasAttribute('expand')){
+            case 'expandstory':
+                switch(this.hasAttribute('expandstory')){
                     case true:
                         console.log('STORY: '+ this.getAttribute('class') +' EXPAND')
                         this.xpand()
@@ -68,7 +68,6 @@ export class Story extends HTMLElement {
                     case false:
                         return
                 }
-                return
                 case 'close':
                 console.log('STORY: '+ this.getAttribute('class') +' CONTRACT')
                 this.cloze()
@@ -76,12 +75,14 @@ export class Story extends HTMLElement {
             case 'resize':
                 console.log('STORY: '+ this.getAttribute('class') +' RESIZE')
                 this.resize()
+                this.removeAttribute('resize')
                 return
             case 'imgset':
                 this.imgset
                 return
-            case 'staticx':
-                console.log('STORY: '+ this.getAttribute('class') + ' - StaticX change' )
+            case 'ptext':
+                this.ptext
+                return
         }
 
     }
@@ -103,12 +104,17 @@ export class Story extends HTMLElement {
     set closeLeft(val) {
         return this.setAttribute('closeleft', val)
     }
-    get cssX() {
-        return this.getAttribute('cssx')
+    get cssMove() {
+        return this.getAttribute('cssmove')
     }
-    set cssX(val) {
-        this.setAttribute('staticx', val)
-        return this.setAttribute('cssx', val)
+    set cssMove(val) {
+        return this.setAttribute('cssmove', val)
+    }
+    get cssMoveClose() {
+        return this.getAttribute('cssmoveclose')
+    }
+    set cssMoveClose(val) {
+        return this.setAttribute('cssmoveclose', val)
     }
     get img() {
         console.log('GET img')
@@ -130,30 +136,29 @@ export class Story extends HTMLElement {
     set h2(val) {
         return this.setAttribute('h2', val)
     }
-    get expand() {
-        return this.getAttribute('expand')
+    get expandStory() {
+        return this.getAttribute('expandstory')
     }
-    set expand(val) {
-        return this.setAttribute('expand', val)
+    set expandStory(val) {
+        return this.setAttribute('expandstory', val)
     }
-    get expandX() {
-        return this.getAttribute('expandx')
+    get expandLeft() {
+        return this.getAttribute('expandleft')
     }
-    set expandX(val) {
-        return this.setAttribute('expandx', val)
-    }
-    get staticX() {
-        return this.getAttribute('staticx')
-    }
-    set staticX(val) {
-        return this.setAttribute('staticx', val)
+    set expandLeft(val) {
+        return this.setAttribute('expandleft', val)
     }
     get imgset() {
-        
         return this.imgset
     }
     set imgset(val) {
         return this.imgset = val
+    }
+    get ptext(){
+        return this.getAttribute('ptext')
+    }
+    set ptext(val){
+        return this.setAttribute('ptext')
     }
     get active() {
         return this.getAttribute('active')
@@ -167,57 +172,36 @@ export class Story extends HTMLElement {
     set inactive(val) {
         return this.setAttribute('inactive', '')
     }
-    get ptext(){
-        return this.getAttribute('ptext')
-    }
-    set ptext(val){
-        return this.setAttribute('ptext')
-    }
     setup() {
-        // i = clientwidth
-        // c = 20% of clientwidth
-        // x = offset to left of screen
-        // y = storywidth
-        // z = story offset
-        // position = central position of story
+        // fullWidth = clientwidth
+        // textBoardSpace = 20% of clientwidth
+        // storySpace = offset to left of screen
+        // storyWidth = storywidth
+        // storyOffset = story offset
+        // centerPosition = central position of story
         // next = next position
         // previous = previous position
-        // xp = expand story positon
+        // expandLeft = expand story positon
         // cd = close position
 
-        var i = document.querySelector('es-carousel').clientWidth
-        var c = Math.round(0.2*i)
-        if (i <= 700){
-            var x = Math.round(i)
+        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var textBoardSpace = Math.round(0.2*fullWidth)
+        var storyOffset = this.offsetLeft
+        if (fullWidth <= 700 ){
+            var storySpace = Math.round(fullWidth)
+            var expandLeft = Math.round(-storyOffset )
         }
         else{
-            var x = Math.round(i+c)
+            var storySpace = Math.round(fullWidth + textBoardSpace)
+            var expandLeft = Math.round(-storyOffset + textBoardSpace)
         }
-        var y = 300
-        var z = this.offsetLeft
-        var position = Math.round((x-y)/2)
-        var cPosition = Math.round((i-y)/2)
-        var next = Math.round(-(x-(3*y))/2)
-        var previous = Math.round((x-(3*y))/2)
-        var xp = -z + c
-        var cl = -z - c
-        var cz = (-c - x)/2
-        var cd = Math.round((-c - x + i - (3*y))/2)
-        console.log('SETUP: i'+i )
-        console.log('SETUP: c'+c )
-        console.log('SETUP: x'+x )
-        console.log('SETUP: y'+y )
-        console.log('SETUP: z'+z )
-        console.log('SETUP: position'+ position)
-        console.log('SETUP: next'+ next)
-        console.log('SETUP: previous'+ previous)
-        console.log('SETUP: xpand'+ xp)
-        console.log('SETUP: coll'+ cl)
-        console.log('SETUP: close'+ cd)
-        this.cssX = position + 'px'
-        this.setAttribute('storyOffset', z)
-        this.setAttribute('expandx', xp)
-        this.setAttribute('closeX', cd)
+        var storyWidth = 300
+        var centerPosition = Math.round((storySpace - storyWidth)/2)
+        var cPosition = Math.round((fullWidth-storyWidth)/2)
+
+        this.cssMove = centerPosition + 'px'
+        this.setAttribute('storyOffset', storyOffset)
+        this.setAttribute('expandleft', expandLeft)
         this.setAttribute('Cposition',cPosition)
         switch (this.hasAttribute('active')) {
             case true:
@@ -231,80 +215,111 @@ export class Story extends HTMLElement {
         switch (val) {
             case 'right':
                 console.log('STORY: '+ this.getAttribute('class')+ ' moveRIGHT')
-                var staticx = this.cssX
-                var np = parseInt(staticx) - 300
-                this.cssX = np + 'px'
+                var cssmove = this.cssMove
+                var moveStory = parseInt(cssmove) - 300
+                var moveStoryPx = moveStory + 'px'
+                this.cssMove = moveStoryPx
                 this.moveActive()
                 var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
                 storyInacitve.forEach(element => {
-                    element.setAttribute('cssx', np + 'px')
+                    element.setAttribute('cssmove', moveStoryPx)
                 });
                 return
             case 'left':
                 console.log('STORY: '+ this.getAttribute('class')+ 'moveLEFT')
-                var np = parseInt(this.cssX) + 300
-                this.cssX = np + 'px'
+                var moveStory = parseInt(this.cssMove) + 300
+                var moveStoryPx = moveStory + 'px'
+                this.cssMove = moveStoryPx
                 this.moveActive()
                 var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
                 storyInacitve.forEach(element => {
-                    element.setAttribute('cssx', this.cssX)
+                    element.setAttribute('cssmove', moveStoryPx)
                 });
 
         }
     }
-    moveBack() {
-        this.moveInactive()
-        return
-    }
     xpand(){
-        var ex = this.expandX
-        this.setAttribute('cssx',ex + 'px')
+        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var textBoardSpace = Math.round(0.2*fullWidth)
+        if (fullWidth <= 700){
+            var storyOffset = this.offsetLeft
+            var expandLeft = Math.round(-storyOffset )
+        }
+        else{
+            var storyOffset = this.offsetLeft
+            var expandLeft = Math.round(-storyOffset + textBoardSpace)
+        }
+        var expandLeftPx = expandLeft + 'px'
+        this.cssMove  = expandLeftPx
         this.moveActive()
         var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
         storyInacitve.forEach(element => {
-            element.setAttribute('cssx', this.cssX)
+            element.setAttribute('cssmove', expandLeftPx)
         });
         return
     }
     cloze(){
-        this.setAttribute('cssx',this.staticX)
-        this.removeAttribute('expand')
+        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var textBoardSpace = Math.round(0.2*fullWidth)
+        var storyOffset = this.offsetLeft
+        var storyWidth = 300
+
+        if (fullWidth <= 700 ){
+            var storySpace = Math.round(fullWidth)
+        }
+        else{
+            var storySpace = Math.round(fullWidth + textBoardSpace)
+        }
+
+        var centerPosition = Math.round((storySpace - storyWidth)/2) - storyOffset
+        var centerPositionPx = centerPosition + 'px'
+
+        this.storyOffset = storyOffset
+
+        this.cssMove = centerPositionPx
+        this.removeAttribute('expandstory')
         this.removeAttribute('backface')
         this.moveActive()
         this.render()
         var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
         storyInacitve.forEach(element => {
-            element.setAttribute('cssx', this.cssX)
+            element.setAttribute('cssmove', centerPositionPx)
         });
     }
     resize(){
-        var cW = document.querySelector('es-carousel').clientWidth
-        var windowWidth = Math.round(cW / 2)
-        var i = document.querySelector('es-carousel').clientWidth
-        var c = Math.round(0.2*i)
-        if (i <= 700){
-            var x = Math.round(i)
+        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var textBoardSpace = Math.round(0.2*fullWidth)
+        var storyOffset = this.offsetLeft
+        var storyWidth = 300
+
+        if (fullWidth <= 700 ){
+            var storySpace = Math.round(fullWidth)
         }
         else{
-            var x = Math.round(i+c)
+            var storySpace = Math.round(fullWidth + textBoardSpace)
         }
-        var y = 300
-        var z = this.offsetLeft
-        var position = Math.round((x-y)/2)
+        var centerPosition = Math.round((storySpace - storyWidth)/2) - storyOffset
+        var centerPositionPx = centerPosition + 'px'
 
-        this.cssX = position + 'px'
+        this.cssMove = centerPositionPx
+        this.storyOffset = storyOffset
+        
         this.moveActive()
+
         var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
         storyInacitve.forEach(element => {
-            element.setAttribute('cssx', this.cssX)
+            element.setAttribute('cssmove', centerPositionPx)
         });
-
+        
+        console.log("RESIZED")
+        return
     }
     moveActive() {
-        console.log('STORY: ' + this.getAttribute('class') +" transform: translateX(" + this.cssX + ") scale(0.8)")
+        var cssmove = this.cssMove
+        console.log('STORY: ' + this.getAttribute('class') +" transform: translateX(" + cssmove + ") scale(0.8)")
         if (this.hasAttribute('active')) {
             this.animate([
-                { transform: "translateX(" + this.cssX + ")" }
+                { transform: "translateX(" + cssmove + ")" }
             ],
                 {
                     duration: 500,
@@ -316,7 +331,7 @@ export class Story extends HTMLElement {
         }
         else {
             this.animate([
-                { transform: "translateX(" + this.cssX + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
+                { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
             ],
                 {
                     duration: 500,
@@ -329,10 +344,10 @@ export class Story extends HTMLElement {
 
     }
     moveInactive() {
-        let cssX = this.cssX
-        console.log('STORY: ' + this.getAttribute('class') + " INACTIVE-TRANSFORM: translateX(" + cssX + ") scale(0.8)")
+        let cssmove = this.cssMove
+        console.log('STORY: ' + this.getAttribute('class') + " INACTIVE-TRANSFORM: translateX(" + cssmove + ") scale(0.8)")
         this.animate([
-            { transform: "translateX(" + cssX + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
+            { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
         ],
             {
                 duration: 500,
@@ -349,7 +364,7 @@ export class Story extends HTMLElement {
     }
     static get observedAttributes() {
         return [
-            'active', 'move', 'cssx', 'expand', 'close', 'resize', 'expandx','staticx','imgset'
+            'active', 'move', 'cssmove', 'expandstory', 'close', 'resize', 'expandleft','imgset','ptext'
         ];
     }
     render() {
@@ -434,7 +449,7 @@ export class Story extends HTMLElement {
         filter:opacity(0.5);
         z-index: -1;
     }
-    :host([expand]){
+    :host([expandstory]){
         background-image:none;
         backdrop-filter: blur(40px);
         min-width: 80%;
@@ -442,7 +457,7 @@ export class Story extends HTMLElement {
         justify-content: space-evenly;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
     }
-    :host([expand]:hover){
+    :host([expandstory]:hover){
         transform: scale(var(--ggs,1)) rotate(360deg);
 
     }

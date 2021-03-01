@@ -86,19 +86,19 @@ class PreviousButton extends HTMLElement {
         this.render()
     }
     move(){
-        var i = document.querySelector('es-carousel').clientWidth
-        var c = 0.2*i
-        if (i <= 700){
-            var x = i/2
-            y = 300/1.5
+        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var textBoardSpace = 0.2*fullWidth
+        if (fullWidth <= 700){
+            var storySpace = fullWidth/2
+            nextToStoryBoard = 300/1.5
         }
         else{
-            var x = Math.round((i + c)/2)
-            var y = 300/1.5
+            var storySpace = Math.round((fullWidth + textBoardSpace)/2)
+            var nextToStoryBoard = 300/1.5
         }
         
-        var position = Math.round(x - y)
-        this.cssX = position + 'px'
+        var centerPosition = Math.round(storySpace - nextToStoryBoard)
+        this.cssX = centerPosition + 'px'
     }
     disconnectedCallback() {
         console.log('previousD')
