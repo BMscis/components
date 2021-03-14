@@ -1,9 +1,5 @@
 //components
-import '../../typography/h1/h1'
-import '../../typography/bodyfont/label'
-import '../../logo/logo'
-import '../searchbar/searchbar'
-import '../../buttons/menuButton'
+
 //images
 class Navbar extends HTMLElement{
     constructor(){

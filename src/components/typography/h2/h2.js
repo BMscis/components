@@ -20,7 +20,7 @@ class H2 extends HTMLElement{
                 cursor:pointer;
             }
             :host(:hover){
-                background: linear-gradient(to right, ghostwhite, yellowgreen);
+                background: linear-gradient(to right, #c30047, #1a71ff);
                 -webkit-background-clip: text;
             }
         </style>

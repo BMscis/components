@@ -15,12 +15,12 @@ class MenuButton extends HTMLElement {
         this.addEventListener('click', e => {
             console.log('sidebar')
             if (this.active == 'true') {
-                var sidebar = document.querySelector("#body > es-sidebar")
+                var sidebar = document.querySelector("es-sidebar")
                 sidebar.setAttribute('expand', 'false')
                 this.removeAttribute('active')
             }
             else {
-                var sidebar = document.querySelector("#body > es-sidebar")
+                var sidebar = document.querySelector("es-sidebar")
                 sidebar.setAttribute('expand', 'true')
                 this.active = 'true'
             }
@@ -42,17 +42,19 @@ class MenuButton extends HTMLElement {
     get styledTemplate() {
         return `<style>
         :host {
-            color: #7992bf;
+            color: #01802c;
             position: absolute;
             left:20px;
             transform: scale(var(--ggs,1));
             margin-left: 2px;
             margin-top: 10px;
-            width: 17px;
-            height: 1px;
+            width: 25px;
+            height: 3px;
             background-color: currentColor;
             cursor: pointer;
             transition:0.5s ease;
+            transform-style:preserve-3d;
+            transform-origin: center;
             display: flex;
             flex-direction: column;
             align-self: flex-end;
@@ -65,9 +67,12 @@ class MenuButton extends HTMLElement {
             position: absolute;
             top: -5px;
             left: 0;
-            width: 17px;
-            height: 1px;
+            width: 30px;
+            height: 3px;
             background-color: currentColor;
+            transition:0.5s ease;
+            transform-style:preserve-3d;
+            transform-origin: center;
           }
           
         :host::after {
@@ -75,21 +80,24 @@ class MenuButton extends HTMLElement {
             position: absolute;
             top: 5px;
             left: 0;
-            width: 17px;
-            height: 1px;
+            width: 30px;
+            height: 3px;
             background-color: currentColor;
+            transition:0.5s ease;
+            transform-style:preserve-3d;
+            transform-origin: center;
           }
         :host(:hover){
-            color:#19eff4
+            color:#81e900;
+            width:6px;
         }
         :host([active]){
             background-color: #00000a;
-            background-image: url(./assets/img/ws8.png);
             background-blend-mode: hard-light;
             background-position: top;
             background-size: cover;
             background-repeat: no-repeat;
-            opacity: 0.5;
+            //opacity: 0.5;
             border-radius: 5px;
             width:0;
         }
@@ -99,8 +107,8 @@ class MenuButton extends HTMLElement {
             top: -5px;
             left: 0;
             transform: rotate(45deg);
-            width: 17px;
-            height: 1px;
+            width: 30px;
+            height: 3px;
             background-color: currentColor;
         }
         :host([active])::after {
@@ -109,9 +117,10 @@ class MenuButton extends HTMLElement {
             top: -5px;
             left: 0;
             transform: rotate( -45deg);
-            width: 17px;
-            height: 1px;
+            width: 30px;
+            height: 5px;
             background-color: currentColor;
+            filter: drop-shadow(2px 2px 1px black);
         }
         </style>`
     }

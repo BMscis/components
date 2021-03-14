@@ -1,16 +1,11 @@
 //import {Story} from '../storyBoard/story'
-import '../buttons/nextButton'
-import '../buttons/previousButton'
-import '../typography/whiteboard/whiteboard'
-import { Story } from '../storyBoard/story'
-import '../typography/textboard/textboard'
+
 //images
-import webdev from '../../assets/svg/webdev.svg'
-import coa from '../../assets/svg/coa.svg'
-import me from '../../assets/svg/me.svg'
-import stairs from '../../assets/svg/stairs2.svg'
-import ws4 from '../../assets/img/ws37.png'
-import ws from '../../assets/img/ws.png'
+import webdev from '../../assets/svg/webdev.gif'
+import coa from '../../assets/svg/coa.gif'
+import me from '../../assets/svg/me.gif'
+import stairs from '../../assets/svg/stairs2.gif'
+import ws from '../../assets/svg/ws.gif'
 class Carousel extends HTMLElement {
     constructor() {
         super()
@@ -70,8 +65,8 @@ class Carousel extends HTMLElement {
             var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
             story.setAttribute('resize', 'true')
 
-            var prevButton = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-previous")
-            var nextButton = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-next")
+            var prevButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-previous")
+            var nextButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-next")
             prevButton.setAttribute('move','')
             nextButton.setAttribute('move','')
             this.disconnectedCallback()

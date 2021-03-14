@@ -1,4 +1,4 @@
-import bg from '../../../assets/img/ws34.png'
+//import bg from '../../../assets/img/ws34.png'
 class WhiteBoardBlock extends HTMLElement{
     constructor(){
         super()

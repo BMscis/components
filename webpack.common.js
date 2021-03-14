@@ -3,11 +3,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Manifest = require('webpack-manifest-plugin');
 const webpack = require('webpack');
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
+const glob = require('glob')
 
 module.exports = {
     entry: {
-        context: path.resolve(__dirname, 'src'),
-        app: './src/index.js',
+        fonts:glob.sync('./src/assets/fonts/*.otf'),
+        style:glob.sync('./src/*.scss'),
+        images:glob.sync('./src/assets/img/*.{gif,jpg}'),
+        preloadImages:('./src/assets/svg/ws38.jpg'),
+        es_components:glob.sync('./src/components/**/*.js')
     },
     module: {
         rules: [
@@ -80,7 +85,15 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Home',
+            template:'./src/index.html'
         }),
+        new PreloadWebpackPlugin({
+            rel: 'preload',
+            include:{
+                type:'asyncCHunks',
+                entries:['preloadImages', 'style']
+            }
+          }),
         new webpack.ProvidePlugin({
             $:'jquery',
             jQuery:'jquery',
@@ -92,7 +105,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     optimization: {
-        moduleIds: 'hashed',
+        moduleIds: 'deterministic',
         runtimeChunk: 'single',
         splitChunks: {
             cacheGroups: {

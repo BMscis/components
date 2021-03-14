@@ -62,7 +62,10 @@ class AnchorButton extends HTMLElement{
             var closeButton = story.shadowRoot.querySelector("es-closebutton")
             story.setAttribute('expandstory','')
             carousel.setAttribute('expand','')
-            //closeButton.setAttribute('show','')
+            var storyBackface = document.querySelector("es-carousel").shadowRoot.querySelector("es-story[active] ").shadowRoot.querySelector("es-storybackface")
+            console.log("STORYBACKFACE: " + typeof(storyBackface))
+
+            storyBackface.setAttribute('scaler','true')
         })
         this.render();
     }

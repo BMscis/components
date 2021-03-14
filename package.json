@@ -1,6 +1,6 @@
 {
   "name": "espii-components",
-  "version": "3.0.0",
+  "version": "3.5.0",
   "description": "Components for espii club",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "devDependencies": {
     "@babylonjs/loaders": "^4.1.0",
     "@svgdotjs/svg.js": "^3.0.16",
+    "@vue/preload-webpack-plugin": "^2.0.0",
     "animejs": "^3.2.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.0",

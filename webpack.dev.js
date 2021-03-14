@@ -8,6 +8,7 @@ module.exports = merge(common, {
     contentBase: './dist',
     watchContentBase: true,
     overlay: true,
-    hot:true
+    hot:true,
+    disableHostCheck: true,
   },
 });

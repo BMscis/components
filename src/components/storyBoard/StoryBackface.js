@@ -1,11 +1,12 @@
+//modules
+import anime from '../../../node_modules/animejs/lib/anime.es.js';
 //components
-import './storyImage'
 
 //images
-import one from '../../assets/img/ws10.png'
-import two from '../../assets/img/ws11.png'
-import three from '../../assets/img/ws12.png'
-import four from '../../assets/img/ws13.png'
+// import one from '../../assets/img/lg.png'
+// import two from '../../assets/img/Asset2.png'
+// import three from '../../assets/img/Asset3.png'
+// import four from '../../assets/img/Asset1.png'
 
 class StoryBackface extends HTMLElement{
     constructor(){
@@ -14,10 +15,18 @@ class StoryBackface extends HTMLElement{
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
-        return []
+        return ['scaler','images']
     }
     attributeChangedCallback(prop,oldVal,newVal){
         console.log('StoryBackface attribute change')
+        switch(prop){
+            case 'scaler':
+                this.scale()
+                return
+            case 'images':
+                console.log()
+                return
+        }
     }
     get images(){
         return this.getAttribute('images')
@@ -28,19 +37,23 @@ class StoryBackface extends HTMLElement{
 
     connectedCallback(){
         console.log('StoryBackface connected')
-        this.images = [one,two,three,four]
-        console.log(this.images.length)
         this.render()
     }
     render(){
         console.log('StoryBackface rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            <img src=${one}>
-            <img src=${two}>
-            <img src=${three}>
-            <img src=${four}>
             `
+    }
+    scale(){
+        var images = this.shadowRoot.querySelectorAll('div')
+        anime({
+            targets: images,
+            scale:[0.1, 1],
+            rotateY:20,
+            delay:500,
+            duration:3000
+        })
     }
     get styledTemplate(){
         return `<style>
@@ -48,34 +61,18 @@ class StoryBackface extends HTMLElement{
             width: 0;
         }
         :host{
-            display: flex;
-            flex-flow: wrap;
-            justify-content: flex-start;
+            display: -webkit-box;
+            flex-wrap: wrap;
             width: 100%;
             height: 100%;
-            margin:20px;
-            overflow-y:auto;
-            overflow-x:hidden;
-            box-sizing:border-box;
-            scrollbar-width:none;
+            margin: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
             backdrop-filter: blur(40px);
-            background-image:linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 0vmin);
-            perspective: 1000px;
+            background-image: linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 0vmin);
+            transform-style:preserve-3d;
         }
-        es-image img{
-            opacity:0.5;
-        }
-        img{
-            width:80%;
-            height:80%;
-            padding:2% 10% 10% 2%;
-            cursor:pointer;
-            position: sticky;
-            top:0;
-            transform:scale3d(0.7,0.7,0.7) rotateY(45deg)
-        }
-        img(:hover){
-        }
+  
         </style>`
     }
     disconnectedCallback(){

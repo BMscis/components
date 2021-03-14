@@ -1,6 +1,5 @@
 //components
-import '../../buttons/menuButton'
-import '../../typography/h2/h2'
+
 class Sidebar extends HTMLElement{
     constructor(){
         super()

@@ -25,7 +25,7 @@ class Searchbar extends HTMLElement{
     get styledTemplate(){
         return `<style>
         :host{
-            background-image:radial-gradient(circle at bottom, #0087e3fa, transparent);
+            background-image:radial-gradient(circle at bottom,  #bd4411, transparent);
             height: 3.5vmin;
             width: 40%;
             display:flex;
@@ -35,6 +35,8 @@ class Searchbar extends HTMLElement{
             border-radius:10px;
             z-index:0;
             align-self:flex-end;
+            
+    box-shadow: inset 20px 1px 4px 0px #0000003d;
         }
         input{
             outline:none;
@@ -63,7 +65,7 @@ class Searchbar extends HTMLElement{
             border-radius: 100%;
             margin-left: 5px;
             margin-top: -4px;
-            color:#00e3e3fa;
+            color:#c97a00;
             background-color:transparent;
             cursor:pointer;
         }

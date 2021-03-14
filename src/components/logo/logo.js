@@ -70,6 +70,7 @@ class Logo extends HTMLElement{
             top: -30.45px;
             right: -32px;
             transform: rotate(133deg);
+            filter: brightness(0.6);
         }
         </style>`
     }

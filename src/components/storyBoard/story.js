@@ -2,22 +2,16 @@
 import anime from '../../../node_modules/animejs/lib/anime.es.js';
 
 //components
-import '../typography/h1/h1'
-import '../typography/h2/h2'
-import '../buttons/anchorButton'
-import '../paragraph/p1'
-import './storyImage'
-import '../buttons/closeButton'
-import './StoryBackface'
+
+//import '../bars/imagebar/imagebar'
 
 //images
-import bg from '../../assets/img/WTArtboard.jpg'
-import bgO from '../../assets/img/UTArtboard 1-20.jpg'
-import { Thumbs } from 'swiper'
-import { forEach } from 'lodash'
-import stairs from '../../assets/svg/stairs2.svg'
-import ws from '../../assets/img/ws24.png'
-
+import bg from '../../assets/img/ws38.jpg'
+import bgO from '../../assets/img/UTArtboard-1-20.gif'
+import one from '../../assets/img/lg.gif'
+import two from '../../assets/img/Asset2.gif'
+import three from '../../assets/img/Asset3.gif'
+import four from '../../assets/img/Asset1.gif'
 
 export class Story extends HTMLElement {
     constructor() {
@@ -149,10 +143,16 @@ export class Story extends HTMLElement {
         return this.setAttribute('expandleft', val)
     }
     get imgset() {
-        return this.imgset
+        return this.getAttribute('imgset')
     }
     set imgset(val) {
-        return this.imgset = val
+        // for(var i = 0; i < val.length; i++){
+        //     //console.log(i)
+        //     let img = document.createElement('es-imagebar')
+        //     img.setAttribute('src', val[i])
+        //     imageColl.appendChild(img)
+        // }
+        //return this.appendChild(imageColl)
     }
     get ptext(){
         return this.getAttribute('ptext')
@@ -318,44 +318,68 @@ export class Story extends HTMLElement {
         var cssmove = this.cssMove
         console.log('STORY: ' + this.getAttribute('class') +" transform: translateX(" + cssmove + ") scale(0.8)")
         if (this.hasAttribute('active')) {
-            this.animate([
-                { transform: "translateX(" + cssmove + ")" }
-            ],
-                {
-                    duration: 500,
-                    fill: 'forwards',
-                    easing: 'cubic-bezier(.39,.11,.61,.84)'
+            anime({
+                targets:this,
+                translateX:parseInt(cssmove),
+                rotateY:0,
+                scale:1,
+                duration:200,
+                easing:'easeOutQuart'
+            })
+            // this.animate([
+            //     { transform: "translateX(" + cssmove + ")" }
+            // ],
+            //     {
+            //         duration: 500,
+            //         fill: 'forwards',
+            //         easing: 'cubic-bezier(.39,.11,.61,.84)'
 
-                }
-            )
+            //     }
+            // )
         }
         else {
-            this.animate([
-                { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
-            ],
-                {
-                    duration: 500,
-                    fill: 'forwards',
-                    easing: 'cubic-bezier(.39,.11,.61,.84)'
+            anime({
+                targets:this,
+                translateX:parseInt(cssmove),
+                scale:0.7,
+                rotateY:45,
+                easing:'easeOutQuart',
+                duration:200
+            })
+            // this.animate([
+            //     { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
+            // ],
+            //     {
+            //         duration: 500,
+            //         fill: 'forwards',
+            //         easing: 'cubic-bezier(.39,.11,.61,.84)'
 
-                }
-            )
+            //     }
+            // )
         }
 
     }
     moveInactive() {
         let cssmove = this.cssMove
         console.log('STORY: ' + this.getAttribute('class') + " INACTIVE-TRANSFORM: translateX(" + cssmove + ") scale(0.8)")
-        this.animate([
-            { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
-        ],
-            {
-                duration: 500,
-                fill: 'forwards',
-                easing: 'cubic-bezier(.39,.11,.61,.84)'
+        anime({
+            targets:this,
+            translateX:parseInt(cssmove),
+            scale:0.7,
+            rotateY:20,
+            easing:'easeOutQuart',
+            duration:200
+        })
+        // this.animate([
+        //     { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
+        // ],
+        //     {
+        //         duration: 500,
+        //         fill: 'forwards',
+        //         easing: 'cubic-bezier(.39,.11,.61,.84)'
 
-            }
-        )
+        //     }
+        // )
     }
     connectedCallback() {
         console.log('story connected: ' + this.classList)
@@ -368,14 +392,14 @@ export class Story extends HTMLElement {
         ];
     }
     render() {
-        console.log('BACKFACE ==: ' + this.backface)
         if (this.backface) {
             console.log(' story render backface')
+            this.imgset = [one, two,three,four]
             this.shadow.innerHTML = `
             ${this.styleTemplate}
             <es-closebutton></es-closebutton>
             <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
-            <es-storybackface images=></es-storybackface>
+            <es-storybackface images=${this.imgset}></es-storybackface>
             `
         }
         else {
@@ -426,11 +450,15 @@ export class Story extends HTMLElement {
         position: relative;
         background-image: url(${bg});
         transition: 0.5s ease-in-out;
-        box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
+        //box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
         transform-style: preserve-3d;
         transform-origin:center;
         filter: blur(0px);
         z-index:1;
+        border-right: 1px outset;
+        border-left: 1px outset;
+        border-image: linear-gradient(transparent, transparent,#e63380,transparent,transparent);
+        border-image-slice:1
 
     }
     :host([active])::after,
@@ -456,6 +484,7 @@ export class Story extends HTMLElement {
         height:100%;
         justify-content: space-evenly;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
+        background:border-box
     }
     :host([expandstory]:hover){
         transform: scale(var(--ggs,1)) rotate(360deg);

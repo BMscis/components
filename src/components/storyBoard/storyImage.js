@@ -29,6 +29,7 @@ class StoryImages extends HTMLElement{
             position:relative;
             margin:5px;
             transition:0.5s ease;
+            opacity:0.5;
         }
         img{
             cursor:pointer;

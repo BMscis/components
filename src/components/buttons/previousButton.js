@@ -1,4 +1,4 @@
-import btnGradient from '../../assets/svg/buttonGradient.svg'
+//import btnGradient from '../../assets/svg/buttonGradient.gif'
 class PreviousButton extends HTMLElement {
     constructor() {
         super()
@@ -23,7 +23,6 @@ class PreviousButton extends HTMLElement {
                 width: 22px;
                 height: 22px;
                 //border: 2px dotted;
-                border-image: ${'url(' + btnGradient + ')'};
                 border-image-slice: 8;
                 border-image-width: 7px;
                 border-image-outset: 0;
@@ -41,7 +40,6 @@ class PreviousButton extends HTMLElement {
                 border-left: 2px dotted;
                 border-radius: 100px;
                 cursor: pointer;
-                border-image: ${'url(' + btnGradient + ')'};
                 border-image-width: 2px;
             }
             :host::after{
