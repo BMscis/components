@@ -8,10 +8,13 @@ import anime from '../../../node_modules/animejs/lib/anime.es.js';
 //images
 import bg from '../../assets/img/ws38.jpg'
 import bgO from '../../assets/img/UTArtboard-1-20.gif'
-import one from '../../assets/img/lg.gif'
-import two from '../../assets/img/Asset2.gif'
-import three from '../../assets/img/Asset3.gif'
-import four from '../../assets/img/Asset1.gif'
+import one from '../../assets/img/Asset4.png'
+import two from '../../assets/img/Asset2.png'
+import three from '../../assets/img/espiiforweb.png'
+import four from '../../assets/img/jasenalogo.png'
+import five from '../../assets/img/Asset5.png'
+import six from '../../assets/img/Asset6.png'
+import seven from '../../assets/img/phone.png'
 
 export class Story extends HTMLElement {
     constructor() {
@@ -146,13 +149,15 @@ export class Story extends HTMLElement {
         return this.getAttribute('imgset')
     }
     set imgset(val) {
-        // for(var i = 0; i < val.length; i++){
-        //     //console.log(i)
-        //     let img = document.createElement('es-imagebar')
-        //     img.setAttribute('src', val[i])
-        //     imageColl.appendChild(img)
-        // }
-        //return this.appendChild(imageColl)
+        for(var i = 0; i < val.length; i++){
+             //console.log(i)
+             let img = document.createElement('es-imagebar')
+             img.setAttribute('src', val[i][0])
+             img.setAttribute('text',val[i][1])
+             console.log(this.shadowRoot.lastElementChild)
+             this.shadowRoot.lastElementChild.shadowRoot.lastElementChild.appendChild(img)
+         }
+        return 
     }
     get ptext(){
         return this.getAttribute('ptext')
@@ -394,13 +399,18 @@ export class Story extends HTMLElement {
     render() {
         if (this.backface) {
             console.log(' story render backface')
-            this.imgset = [one, two,three,four]
             this.shadow.innerHTML = `
             ${this.styleTemplate}
             <es-closebutton></es-closebutton>
             <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
-            <es-storybackface images=${this.imgset}></es-storybackface>
+            <es-storybackface ></es-storybackface>
             `
+            if(this.classList.contains('0')){
+                this.imgset = [[one, 'Organization Logos'], [two,'Coart Of Arms'],[three,'Corporate Logos'],[four,'Production Logos']]
+            }
+            if(this.classList.contains('1')){
+                this.imgset = [[five, 'Social Media Design'],[six,'App Design'],[seven,'App Design']]
+            }
         }
         else {
             console.log('story render')
@@ -444,6 +454,7 @@ export class Story extends HTMLElement {
         opacity: 0.5;
         z-index:0;
         filter: blur(5px);
+        overflow: hidden;
     }
     :host([active]){
         opacity: 1;

@@ -43,10 +43,11 @@ class StoryBackface extends HTMLElement{
         console.log('StoryBackface rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
+            <slot></slot>
             `
     }
     scale(){
-        var images = this.shadowRoot.querySelectorAll('div')
+        var images = this.shadowRoot.querySelectorAll('slot')
         anime({
             targets: images,
             scale:[0.1, 1],
@@ -61,16 +62,24 @@ class StoryBackface extends HTMLElement{
             width: 0;
         }
         :host{
-            display: -webkit-box;
-            flex-wrap: wrap;
+            display: flex;
+            flex-direction:column;
             width: 100%;
             height: 100%;
             margin: 20px;
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
             backdrop-filter: blur(40px);
             background-image: linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 0vmin);
             transform-style:preserve-3d;
+        }
+        slot{
+            width: 100%;
+            height: auto;
+            position:relative;
+            overflow:auto;
+            display:flex;
+            flex-direction: column;
+
         }
   
         </style>`
