@@ -85,7 +85,8 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Home',
-            template:'./src/index.html'
+            template:'./src/index.html',
+            filename:'index.md'
         }),
         new PreloadWebpackPlugin({
             rel: 'preload',
