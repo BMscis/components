@@ -1,17 +1,17 @@
 class P1 extends HTMLElement{
     constructor(){
         super()
-        console.log('p1 constructed')
+        //console.log('p1 constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('p1 attribute change')
+        //console.log('p1 attribute change')
     }
     connectedCallback(){
-        console.log('p1 connected')
+        //console.log('p1 connected')
         this.render()
     }
     get text(){
@@ -21,7 +21,7 @@ class P1 extends HTMLElement{
         return this.setAttribute('text',val)
     }
     render(){
-        console.log('p1 rendering')
+        //console.log('p1 rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <slot>${this.text}</slot>
@@ -41,7 +41,7 @@ class P1 extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('p1 disconnect')
+        //console.log('p1 disconnect')
     }
 }
 customElements.define('es-p', P1);

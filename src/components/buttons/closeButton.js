@@ -1,19 +1,19 @@
 class CloseButton extends HTMLElement{
     constructor(){
         super()
-        console.log('CloseButton constructed')
+        //console.log('CloseButton constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('CloseButton attribute change')
+        //console.log('CloseButton attribute change')
     }
     connectedCallback(){
-        console.log('CloseButton connected')
+        //console.log('CloseButton connected')
         this.addEventListener('click',e =>{
-            console.log('CLOSE')
+            //console.log('CLOSE')
             var carousel = document.querySelector('es-carousel')
             var prevbutton = carousel.shadow.children[2]
             var textBoard = carousel.shadow.children[1]
@@ -29,7 +29,7 @@ class CloseButton extends HTMLElement{
         this.render()
     }
     render(){
-        console.log('CloseButton rendering')
+        //console.log('CloseButton rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             `
@@ -81,7 +81,7 @@ class CloseButton extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('CloseButton disconnect')
+        //console.log('CloseButton disconnect')
     }
 }
 customElements.define('es-closebutton', CloseButton);

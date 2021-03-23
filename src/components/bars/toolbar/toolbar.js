@@ -1,21 +1,21 @@
 class Toolbar extends HTMLElement{
     constructor(){
         super()
-        console.log('toolbar constructed')
+        //console.log('toolbar constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('toolbar attribute change')
+        //console.log('toolbar attribute change')
     }
     connectedCallback(){
-        console.log('toolbar connected')
+        //console.log('toolbar connected')
         this.render()
     }
     render(){
-        console.log('toolbar rendering')
+        //console.log('toolbar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <es-menubutton></es-menubutton>
@@ -35,7 +35,7 @@ class Toolbar extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('toolbar disconnect')
+        //console.log('toolbar disconnect')
     }
 }
 customElements.define('es-toolbar', Toolbar);

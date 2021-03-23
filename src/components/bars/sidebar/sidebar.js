@@ -3,14 +3,14 @@
 class Sidebar extends HTMLElement{
     constructor(){
         super()
-        console.log('Sidebar constructed')
+        //console.log('Sidebar constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return ['expand']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('Sidebar attribute change')
+        //console.log('Sidebar attribute change')
         if( prop == 'expand'){
             if( newVal == 'true'){
                 this.expand = 1
@@ -24,7 +24,7 @@ class Sidebar extends HTMLElement{
         }
     }
     connectedCallback(){
-        console.log('Sidebar connected')
+        //console.log('Sidebar connected')
         this.render()
     }
     get expand(){
@@ -39,7 +39,7 @@ class Sidebar extends HTMLElement{
         }
     }
     render(){
-        console.log('Sidebar rendering')
+        //console.log('Sidebar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <es-searchbar></es-searchbar>
@@ -83,7 +83,7 @@ class Sidebar extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('Sidebar disconnect')
+        //console.log('Sidebar disconnect')
     }
 }
 customElements.define('es-sidebar', Sidebar);

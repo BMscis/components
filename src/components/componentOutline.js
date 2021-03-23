@@ -1,25 +1,25 @@
 class Component extends HTMLElement{
     constructor(){
         super()
-        console.log('Component constructed')
+        //console.log('Component constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('Component attribute change')
+        //console.log('Component attribute change')
         switch(prop){
             case '':
                 return
         }
     }
     connectedCallback(){
-        console.log('Component connected')
+        //console.log('Component connected')
         this.render()
     }
     render(){
-        console.log('Component rendering')
+        //console.log('Component rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             `
@@ -28,7 +28,7 @@ class Component extends HTMLElement{
         return `<style></style>`
     }
     disconnectedCallback(){
-        console.log('Component disconnect')
+        //console.log('Component disconnect')
     }
 }
 customElements.define('es-component', Component);

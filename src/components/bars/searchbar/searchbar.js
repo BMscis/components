@@ -1,21 +1,21 @@
 class Searchbar extends HTMLElement{
     constructor(){
         super()
-        console.log('searchbar constructed')
+        //console.log('searchbar constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('searchbar attribute change')
+        //console.log('searchbar attribute change')
     }
     connectedCallback(){
-        console.log('searchbar connected')
+        //console.log('searchbar connected')
         this.render()
     }
     render(){
-        console.log('searchbar rendering')
+        //console.log('searchbar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <button type="submit" class='gg-search'></button>
@@ -86,7 +86,7 @@ class Searchbar extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('searchbar disconnect')
+        //console.log('searchbar disconnect')
     }
 }
 customElements.define('es-searchbar', Searchbar);

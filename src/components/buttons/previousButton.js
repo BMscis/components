@@ -70,9 +70,9 @@ class PreviousButton extends HTMLElement {
         return this.setAttribute('cssX',val)
     }
     connectedCallback() {
-        console.log('previousC')
+        //console.log('previousC')
         this.addEventListener('click', e => {
-            console.log('previous clicked')
+            //console.log('previous clicked')
             var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
             if (story.previousElementSibling != document.querySelector('es-carousel').shadow.querySelector('es-previous')) {
                 if (story.previousElementSibling) {
@@ -99,7 +99,7 @@ class PreviousButton extends HTMLElement {
         this.cssX = centerPosition + 'px'
     }
     disconnectedCallback() {
-        console.log('previousD')
+        //console.log('previousD')
     }
     attributeChangedCallback(prop, oldVal, newVal) {
         if (prop == 'move'){

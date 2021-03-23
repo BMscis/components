@@ -38,7 +38,8 @@ class Label extends HTMLElement{
 
     attributeChangedCallback(prop,oldVal,newVal){
         if (prop === "text" ){
-            console.log('text rendered')}
+            //console.log('text rendered')}
+        }
     }
     get text(){
         return this.getAttribute('text')

@@ -1,14 +1,14 @@
 class Imagebar extends HTMLElement{
     constructor(){
         super()
-        console.log('imagebar constructed')
+        //console.log('imagebar constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return ['src','text']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('imagebar attribute change')
+        //console.log('imagebar attribute change')
         switch(prop){
             case 'src':
                 if(newVal === oldVal){
@@ -30,15 +30,15 @@ class Imagebar extends HTMLElement{
         }
     }
     connectedCallback(){
-        console.log('imagebar connected')
+        //console.log('imagebar connected')
         // this.addEventListener('mouseover', e=>{
         //     this.scrollIntoView(alignToTop)
-        //     console.log('hover')
+        //     //console.log('hover')
         // })
         this.render()
     }
     render(){
-        console.log('imagebar rendering')
+        //console.log('imagebar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <img src=${this.src}>
@@ -132,7 +132,7 @@ class Imagebar extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('imagebar disconnect')
+        //console.log('imagebar disconnect')
     }
 }
 customElements.define('es-imagebar', Imagebar);

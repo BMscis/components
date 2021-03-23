@@ -1,21 +1,21 @@
 class WhiteBoardBlockPage extends HTMLElement{
     constructor(){
         super()
-        console.log('WhiteBoardBlockPage constructed')
+        //console.log('WhiteBoardBlockPage constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('WhiteBoardBlockPage attribute change')
+        //console.log('WhiteBoardBlockPage attribute change')
     }
     connectedCallback(){
-        console.log('WhiteBoardBlockPage connected')
+        //console.log('WhiteBoardBlockPage connected')
         this.render()
     }
     render(){
-        console.log('WhiteBoardBlockPage rendering')
+        //console.log('WhiteBoardBlockPage rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             `
@@ -42,7 +42,7 @@ class WhiteBoardBlockPage extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('WhiteBoardBlockPage disconnect')
+        //console.log('WhiteBoardBlockPage disconnect')
     }
 }
 customElements.define('es-whiteboardblockpage', WhiteBoardBlockPage);

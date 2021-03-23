@@ -11,20 +11,20 @@ import anime from '../../../node_modules/animejs/lib/anime.es.js';
 class StoryBackface extends HTMLElement{
     constructor(){
         super()
-        console.log('StoryBackface constructed')
+        //console.log('StoryBackface constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return ['scaler','images']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('StoryBackface attribute change')
+        //console.log('StoryBackface attribute change')
         switch(prop){
             case 'scaler':
                 this.scale()
                 return
             case 'images':
-                console.log()
+                //console.log()
                 return
         }
     }
@@ -36,11 +36,11 @@ class StoryBackface extends HTMLElement{
     }
 
     connectedCallback(){
-        console.log('StoryBackface connected')
+        //console.log('StoryBackface connected')
         this.render()
     }
     render(){
-        console.log('StoryBackface rendering')
+        //console.log('StoryBackface rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <slot></slot>
@@ -91,7 +91,7 @@ class StoryBackface extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('StoryBackface disconnect')
+        //console.log('StoryBackface disconnect')
     }
 }
 customElements.define('es-storybackface', StoryBackface);

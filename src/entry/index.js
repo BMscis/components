@@ -5,7 +5,7 @@ animescript.setAttribute('src', 'anime.min.js')
 //logoIcon()
 //renderStory()
 //load()
-console.log("@INDEX")
+//console.log("@INDEX")
 var html = document.querySelector("html")
 
 function detectMob() {
@@ -26,7 +26,7 @@ function detectMob() {
 var navi = detectMob()
 
 window.addEventListener('resize',e=>{
-    console.log('@ WINDOW RESIZE')
+    //console.log('@ WINDOW RESIZE')
     var carousel = document.querySelector('es-carousel')
     var htmlx = document.querySelector("html")
     var navbar = document.querySelector('es-navbar')

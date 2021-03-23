@@ -1,19 +1,19 @@
 class MenuButton extends HTMLElement {
     constructor() {
         super()
-        console.log('MenuButton constructed')
+        //console.log('MenuButton constructed')
         this.shadow = this.attachShadow({ mode: 'open' })
     }
     static get observedAttributes() {
         return []
     }
     attributeChangedCallback(prop, oldVal, newVal) {
-        console.log('MenuButton attribute change')
+        //console.log('MenuButton attribute change')
     }
     connectedCallback() {
-        console.log('MenuButton connected')
+        //console.log('MenuButton connected')
         this.addEventListener('click', e => {
-            console.log('sidebar')
+            //console.log('sidebar')
             if (this.active == 'true') {
                 var sidebar = document.querySelector("es-sidebar")
                 sidebar.setAttribute('expand', 'false')
@@ -34,7 +34,7 @@ class MenuButton extends HTMLElement {
         return this.setAttribute('active', val)
     }
     render() {
-        console.log('MenuButton rendering')
+        //console.log('MenuButton rendering')
         this.shadow.innerHTML = `
             ${this.styledTemplate}
             `
@@ -125,7 +125,7 @@ class MenuButton extends HTMLElement {
         </style>`
     }
     disconnectedCallback() {
-        console.log('MenuButton disconnect')
+        //console.log('MenuButton disconnect')
     }
 }
 customElements.define('es-menubutton', MenuButton);

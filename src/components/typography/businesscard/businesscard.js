@@ -3,14 +3,14 @@ import anime from '../../../../node_modules/animejs/lib/anime.es.js';
 class Businesscard extends HTMLElement {
     constructor() {
         super()
-        console.log('businesscard constructed')
+        //console.log('businesscard constructed')
         this.shadow = this.attachShadow({ mode: 'open' })
     }
     static get observedAttributes() {
         return ['text']
     }
     attributeChangedCallback(prop, oldVal, newVal) {
-        console.log('businesscard attribute change')
+        //console.log('businesscard attribute change')
         switch(prop){
             case 'text':
                 if(newVal != oldVal){
@@ -34,11 +34,11 @@ class Businesscard extends HTMLElement {
         return this.setAttribute('backgroundimage', val)
     }
     connectedCallback() {
-        console.log('businesscard connected')
+        //console.log('businesscard connected')
         this.render()
     }
     render() {
-        console.log('businesscard rendering')
+        //console.log('businesscard rendering')
         this.shadow.innerHTML = `
             ${this.getTemplate()}
             ${this.styledTemplate}
@@ -192,7 +192,7 @@ class Businesscard extends HTMLElement {
         return '<es-textboard ></es-textboard>'
     }
     disconnectedCallback() {
-        console.log('businesscard disconnect')
+        //console.log('businesscard disconnect')
     }
 }
 customElements.define('es-businesscard', Businesscard);

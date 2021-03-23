@@ -70,11 +70,11 @@ class NextButton extends HTMLElement{
     }
     connectedCallback(){
         this.addEventListener('click',e=>{
-            console.log('NEXT')
+            //console.log('NEXT')
             var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
             if (story.nextElementSibling != document.querySelector('es-carousel').shadow.querySelector('es-next') ){
                 if (story.nextElementSibling){
-                console.log('STORY: ' + story.getAttribute('class'))    
+                //console.log('STORY: ' + story.getAttribute('class'))    
                 story.removeAttribute('active')
                 story.nextElementSibling.setAttribute('active','right')
             }
@@ -102,7 +102,7 @@ class NextButton extends HTMLElement{
 
     }
     disconnectedCallback(){
-        console.log('nextD')
+        //console.log('nextD')
     }
     attributeChangedCallback(prop,oldVal,newVal){
         if (prop == 'move'){

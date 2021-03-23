@@ -1,21 +1,21 @@
 class Textboard extends HTMLElement{
     constructor(){
         super()
-        console.log('textboard constructed')
+        //console.log('textboard constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('textboard attribute change')
+        //console.log('textboard attribute change')
     }
     connectedCallback(){
-        console.log('textboard connected')
+        //console.log('textboard connected')
         this.render()
     }
     render(){
-        console.log('textboard rendering')
+        //console.log('textboard rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <text>Build better products faster.</tex>
@@ -49,7 +49,7 @@ class Textboard extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('textboard disconnect')
+        //console.log('textboard disconnect')
     }
 }
 customElements.define('es-textboard', Textboard);

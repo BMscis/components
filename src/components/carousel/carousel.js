@@ -9,7 +9,7 @@ import stairs from '../../assets/svg/stairs2.gif'
 class Carousel extends HTMLElement {
     constructor() {
         super()
-        console.log('Carousel constructed')
+        //console.log('Carousel constructed')
         this.shadow = this.attachShadow({ mode: 'open' })
     }
     //attributes
@@ -17,14 +17,14 @@ class Carousel extends HTMLElement {
         return ['width', 'nextwidth', 'backface','resize']
     }
     attributeChangedCallback(prop, oldVal, newVal) {
-        console.log('Carousel change')
+        //console.log('Carousel change')
         switch (prop) {
             case 'width':
-                console.log('carousel width change')
+                //console.log('carousel width change')
                 return
             case 'backface':
                 if (newVal == 'true') {
-                    console.log('backface is true.')
+                    //console.log('backface is true.')
                     this.render(true)
                     return
                 }
@@ -33,7 +33,7 @@ class Carousel extends HTMLElement {
                 }
             case 'resize':
                 if(newVal == 'true' && oldVal != newVal){
-                    console.log('Carousel resize')
+                    //console.log('Carousel resize')
                     this.resize = newVal
                     return
                 }
@@ -48,19 +48,19 @@ class Carousel extends HTMLElement {
 
     }
     get width() {
-        console.log('Carousel get width')
+        //console.log('Carousel get width')
         return this.getAttribute('width')
     }
     set width(val) {
-        console.log('Carousel set width')
+        //console.log('Carousel set width')
         return this.setAttribute('width')
     }
     get backface() {
-        console.log('Carousel get backface')
+        //console.log('Carousel get backface')
         return this.getAttribute('backface')
     }
     set backface(val) {
-        console.log('Carousel set backface')
+        //console.log('Carousel set backface')
         return this.setAttribute('backface', val)
     }
     get resize(){
@@ -80,11 +80,11 @@ class Carousel extends HTMLElement {
     setImages() {
         var dw = [webdev, coa, me, stairs]
         Story.imgset = dw
-        console.log(Story)
+        //console.log(Story)
         return
     }
     resizeCar(){
-        console.log('RESIZING')
+        //console.log('RESIZING')
         var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
         //var navbar = document.querySelector('es-navbar')
         var prevButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-previous")
@@ -97,14 +97,14 @@ class Carousel extends HTMLElement {
         return
     }
     connectedCallback() {
-        console.log('Carousel connected')
+        //console.log('Carousel connected')
         this.render(false)
         this.disconnectedCallback()
     }
     render(val) {
-        console.log('Carousel rendered')
+        //console.log('Carousel rendered')
         var cWidth = window.innerWidth
-        console.log(cWidth)
+        //console.log(cWidth)
         if (val == true) {
             this.shadow.innerHTML = `
             ${this.styledTemplate}
@@ -160,7 +160,7 @@ class Carousel extends HTMLElement {
         `
     }
     disconnectedCallback() {
-        console.log('Carousel disconnect')
+        //console.log('Carousel disconnect')
         return false
     }
 }

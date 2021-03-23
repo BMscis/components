@@ -50,7 +50,7 @@ class AnchorButton extends HTMLElement{
         
         this.css = 0
         this.addEventListener('click', e=>{
-            console.log('EXPAND')
+            //console.log('EXPAND')
             var carousel = document.querySelector('es-carousel')
             var prevButton = carousel.shadow.children[2]
             var textBoard = carousel.shadow.children[1]
@@ -63,7 +63,7 @@ class AnchorButton extends HTMLElement{
             story.setAttribute('expandstory','')
             carousel.setAttribute('expand','')
             var storyBackface = document.querySelector("es-carousel").shadowRoot.querySelector("es-story[active] ").shadowRoot.querySelector("es-storybackface")
-            console.log("STORYBACKFACE: " + typeof(storyBackface))
+            //console.log("STORYBACKFACE: " + typeof(storyBackface))
 
             storyBackface.setAttribute('scaler','true')
         })

@@ -1,21 +1,21 @@
 class Logo extends HTMLElement{
     constructor(){
         super()
-        console.log('Logo constructed')
+        //console.log('Logo constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('Logo attribute change')
+        //console.log('Logo attribute change')
     }
     connectedCallback(){
-        console.log('Logo connected')
+        //console.log('Logo connected')
         this.render()
     }
     render(){
-        console.log('Logo rendering')
+        //console.log('Logo rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             `
@@ -84,7 +84,7 @@ class Logo extends HTMLElement{
         </style>`
     }
     disconnectedCallback(){
-        console.log('Logo disconnect')
+        //console.log('Logo disconnect')
     }
 }
 customElements.define('es-logo', Logo);

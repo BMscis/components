@@ -3,21 +3,21 @@
 class WhiteBoard extends HTMLElement{
     constructor(){
         super()
-        console.log('WhiteBoard constructed')
+        //console.log('WhiteBoard constructed')
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        console.log('WhiteBoard attribute change')
+        //console.log('WhiteBoard attribute change')
     }
     connectedCallback(){
-        console.log('WhiteBoard connected')
+        //console.log('WhiteBoard connected')
         this.render()
     }
     render(){
-        console.log('WhiteBoard rendering')
+        //console.log('WhiteBoard rendering')
         this.shadow.innerHTML =  `
         ${this.styledTemplate}
         <es-heading text=3D></es-heading>
@@ -47,7 +47,7 @@ class WhiteBoard extends HTMLElement{
         
     }
     disconnectedCallback(){
-        console.log('WhiteBoard disconnect')
+        //console.log('WhiteBoard disconnect')
     }
 }
 customElements.define('es-whiteboard', WhiteBoard);

@@ -19,45 +19,45 @@ import seven from '../../assets/img/phone.png'
 export class Story extends HTMLElement {
     constructor() {
         super()
-        console.log('story constructed')
+        //console.log('story constructed')
         this.shadow = this.attachShadow({ mode: 'open' })
         this.setup()
     }
     attributeChangedCallback(prop, oldVal, newVal) {
-        console.log('STORY: '+ this.getAttribute('class') + ' ATTRIBUTE-CHANGE:' + prop)
+        //console.log('STORY: '+ this.getAttribute('class') + ' ATTRIBUTE-CHANGE:' + prop)
         switch (prop) {
             case 'active':
                 switch (newVal) {
                     case null:
-                        console.log('STORY: '+ this.getAttribute('class') + ' ACTIVE: moveback')
+                        //console.log('STORY: '+ this.getAttribute('class') + ' ACTIVE: moveback')
                         this.moveInactive()
                         return
                     case '':
-                        console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: none')
+                        //console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: none')
                         return
                     case 'right':
-                        console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: right')
+                        //console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: right')
                         this.moveMe('right')
                         return
                     case 'left':
-                        console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: left')
+                        //console.log('STORY: '+ this.getAttribute('class') +' ACTIVE: left')
                         this.moveMe('left')
                 }
                 return
             case 'cssmove':
                 switch (this.hasAttribute('active')) {
                     case true:
-                        console.log('STORY: '+ this.getAttribute('class') + ' has ACTIVE: cssmove change')
+                        //console.log('STORY: '+ this.getAttribute('class') + ' has ACTIVE: cssmove change')
                         return
                     case false:
-                        console.log('STORY: '+ this.getAttribute('class') + ' has NO ACTIVE: cssmove change')
+                        //console.log('STORY: '+ this.getAttribute('class') + ' has NO ACTIVE: cssmove change')
                         this.moveInactive()
                         return
                 }
             case 'expandstory':
                 switch(this.hasAttribute('expandstory')){
                     case true:
-                        console.log('STORY: '+ this.getAttribute('class') +' EXPAND')
+                        //console.log('STORY: '+ this.getAttribute('class') +' EXPAND')
                         this.xpand()
                         this.backface = 0
                         this.render()
@@ -66,11 +66,11 @@ export class Story extends HTMLElement {
                         return
                 }
                 case 'close':
-                console.log('STORY: '+ this.getAttribute('class') +' CONTRACT')
+                //console.log('STORY: '+ this.getAttribute('class') +' CONTRACT')
                 this.cloze()
                 return
             case 'resize':
-                console.log('STORY: '+ this.getAttribute('class') +' RESIZE')
+                //console.log('STORY: '+ this.getAttribute('class') +' RESIZE')
                 this.resize()
                 this.removeAttribute('resize')
                 this.render()
@@ -115,11 +115,11 @@ export class Story extends HTMLElement {
         return this.setAttribute('cssmoveclose', val)
     }
     get img() {
-        console.log('GET img')
+        //console.log('GET img')
         return this.getAttribute('img')
     }
     set img(val) {
-        console.log('SET IMG setting image')
+        //console.log('SET IMG setting image')
         return this.setAttribute('img', val)
     }
     get h1() {
@@ -151,11 +151,11 @@ export class Story extends HTMLElement {
     }
     set imgset(val) {
         for(var i = 0; i < val.length; i++){
-             //console.log(i)
+             ////console.log(i)
              let img = document.createElement('es-imagebar')
              img.setAttribute('src', val[i][0])
              img.setAttribute('text',val[i][1])
-             console.log(this.shadowRoot.lastElementChild)
+             //console.log(this.shadowRoot.lastElementChild)
              this.shadowRoot.lastElementChild.shadowRoot.lastElementChild.appendChild(img)
          }
         return 
@@ -220,7 +220,7 @@ export class Story extends HTMLElement {
     moveMe(val) {
         switch (val) {
             case 'right':
-                console.log('STORY: '+ this.getAttribute('class')+ ' moveRIGHT')
+                //console.log('STORY: '+ this.getAttribute('class')+ ' moveRIGHT')
                 var cssmove = this.cssMove
                 var moveStory = parseInt(cssmove) - 300
                 var moveStoryPx = moveStory + 'px'
@@ -232,7 +232,7 @@ export class Story extends HTMLElement {
                 });
                 return
             case 'left':
-                console.log('STORY: '+ this.getAttribute('class')+ 'moveLEFT')
+                //console.log('STORY: '+ this.getAttribute('class')+ 'moveLEFT')
                 var moveStory = parseInt(this.cssMove) + 300
                 var moveStoryPx = moveStory + 'px'
                 this.cssMove = moveStoryPx
@@ -318,12 +318,12 @@ export class Story extends HTMLElement {
             element.setAttribute('cssmove', centerPositionPx)
         });
         
-        console.log("RESIZED")
+        //console.log("RESIZED")
         return
     }
     moveActive() {
         var cssmove = this.cssMove
-        console.log('STORY: ' + this.getAttribute('class') +" transform: translateX(" + cssmove + ") scale(0.8)")
+        //console.log('STORY: ' + this.getAttribute('class') +" transform: translateX(" + cssmove + ") scale(0.8)")
         if (this.hasAttribute('active')) {
             anime({
                 targets:this,
@@ -368,7 +368,7 @@ export class Story extends HTMLElement {
     }
     moveInactive() {
         let cssmove = this.cssMove
-        console.log('STORY: ' + this.getAttribute('class') + " INACTIVE-TRANSFORM: translateX(" + cssmove + ") scale(0.8)")
+        //console.log('STORY: ' + this.getAttribute('class') + " INACTIVE-TRANSFORM: translateX(" + cssmove + ") scale(0.8)")
         anime({
             targets:this,
             translateX:parseInt(cssmove),
@@ -389,7 +389,7 @@ export class Story extends HTMLElement {
         // )
     }
     connectedCallback() {
-        console.log('story connected: ' + this.classList)
+        //console.log('story connected: ' + this.classList)
         this.render();
         this.disconnectedCallback()
     }
@@ -400,7 +400,7 @@ export class Story extends HTMLElement {
     }
     render() {
         if (this.backface) {
-            console.log(' story render backface')
+            //console.log(' story render backface')
             this.shadow.innerHTML = `
             ${this.styleTemplate}
             <div>
@@ -417,7 +417,7 @@ export class Story extends HTMLElement {
             }
         }
         else {
-            console.log('story render')
+            //console.log('story render')
             this.shadow.innerHTML = `
         ${this.styleTemplate}
         <es-image img = ${this.img}></es-image>
@@ -426,7 +426,7 @@ export class Story extends HTMLElement {
         <es-button></es-button>`}
     }
     disconnectedCallback() {
-        console.log('story disconnected')
+        //console.log('story disconnected')
     }
     get styleTemplate() {
         return `<style>
