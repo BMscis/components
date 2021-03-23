@@ -144,7 +144,6 @@ class Carousel extends HTMLElement {
             background-repeat:no-repeat;
         }
         :host([expand]){
-            //background-image:url(${ws});
             backdrop-filter: blur(5px);
         }
         :host(:hover){
