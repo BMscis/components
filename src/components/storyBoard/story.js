@@ -6,8 +6,8 @@ import anime from '../../../node_modules/animejs/lib/anime.es.js';
 //import '../bars/imagebar/imagebar'
 
 //images
-import bg from '../../assets/img/ws38.jpg'
-import bgO from '../../assets/img/UTArtboard-1-20.gif'
+//import bg from '../../assets/img/ws38.jpg'
+//import bgO from '../../assets/img/UTArtboard-1-20.gif'
 import one from '../../assets/img/Asset4.png'
 import two from '../../assets/img/Asset2.png'
 import three from '../../assets/img/espiiforweb.png'

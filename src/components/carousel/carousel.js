@@ -5,7 +5,7 @@ import webdev from '../../assets/svg/webdev.gif'
 import coa from '../../assets/svg/coa.gif'
 import me from '../../assets/svg/me.gif'
 import stairs from '../../assets/svg/stairs2.gif'
-import ws from '../../assets/svg/ws.gif'
+//import ws from '../../assets/svg/ws.gif'
 class Carousel extends HTMLElement {
     constructor() {
         super()
