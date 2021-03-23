@@ -12,7 +12,7 @@ module.exports = {
         fonts:glob.sync('./src/assets/fonts/*.otf'),
         style:glob.sync('./src/*.scss'),
         images:glob.sync('./src/assets/img/*.{gif,jpg,png}'),
-        preloadImages:('./src/assets/svg/ws38.jpg'),
+        preloadImages:('./src/assets/svg/ws382.jpg'),
         es_components:glob.sync('./src/components/**/*.js')
     },
     module: {
