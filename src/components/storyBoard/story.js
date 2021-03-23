@@ -442,7 +442,6 @@ export class Story extends HTMLElement {
         position: relative;
         border-radius: 3px;
         height: 500px;
-        //background-image: ${'url(' + bgO + ')'};
         background-color: #b1b1;
         background-position: bottom;
         background-repeat: no-repeat;
@@ -473,7 +472,6 @@ export class Story extends HTMLElement {
     :host([active]){
         opacity: 1;
         position: relative;
-        //background-image: url(${bg});
         transition: 0.5s ease-in-out;
         //box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
         transform-style: preserve-3d;
