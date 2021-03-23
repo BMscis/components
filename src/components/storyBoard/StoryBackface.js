@@ -47,14 +47,15 @@ class StoryBackface extends HTMLElement{
             `
     }
     scale(){
-        var images = this.shadowRoot.querySelectorAll('slot')
-        anime({
-            targets: images,
-            scale:[0.1, 1],
-            rotateY:20,
-            delay:500,
-            duration:3000
-        })
+        // var images = this.shadowRoot.querySelectorAll('slot')
+        // anime({
+        //     targets: images,
+        //     scale:[0.1, 1],
+        //     rotateY:20,
+        //     delay:500,
+        //     duration:3000
+        // })
+        return
     }
     get styledTemplate(){
         return `<style>
@@ -67,18 +68,20 @@ class StoryBackface extends HTMLElement{
             width: 100%;
             height: 100%;
             margin: 20px;
-            overflow: hidden;
             backdrop-filter: blur(40px);
             background-image: linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 0vmin);
             transform-style:preserve-3d;
+            overflow:scroll;
+            position:absolute;
+            overflow:hidden;
         }
         slot{
             width: 100%;
             height: auto;
             position:relative;
-            overflow:auto;
             display:flex;
             flex-direction: column;
+            overflow:auto;
 
         }
   

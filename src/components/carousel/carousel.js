@@ -14,7 +14,7 @@ class Carousel extends HTMLElement {
     }
     //attributes
     static get observedAttributes() {
-        return ['width', 'nextwidth', 'backface']
+        return ['width', 'nextwidth', 'backface','resize']
     }
     attributeChangedCallback(prop, oldVal, newVal) {
         console.log('Carousel change')
@@ -29,6 +29,19 @@ class Carousel extends HTMLElement {
                     return
                 }
                 else {
+                    return
+                }
+            case 'resize':
+                if(newVal == 'true' && oldVal != newVal){
+                    console.log('Carousel resize')
+                    this.resize = newVal
+                    return
+                }
+                if(newVal == 'false' && oldVal != newVal){
+                    this.resize = newVal
+                    return
+                }
+                else{
                     return
                 }
         }
@@ -50,28 +63,43 @@ class Carousel extends HTMLElement {
         console.log('Carousel set backface')
         return this.setAttribute('backface', val)
     }
+    get resize(){
+        return this.getAttribute('resize')
+    }
+    set resize(val){
+        if(val === 'true'){
+            this.setAttribute('resize', val)
+            this.resizeCar()
+            this.setAttribute('resize','false')
+            return
+        }
+        if(val === 'false'){
+            return this.setAttribute('resize',val)
+        }
+    }
     setImages() {
         var dw = [webdev, coa, me, stairs]
         Story.imgset = dw
         console.log(Story)
         return
     }
+    resizeCar(){
+        console.log('RESIZING')
+        var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
+        //var navbar = document.querySelector('es-navbar')
+        var prevButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-previous")
+        var nextButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-next")
+        
+        story.setAttribute('resize', 'true')
+        //navbar.setAttribute('render','true')
+        prevButton.setAttribute('move','')
+        nextButton.setAttribute('move','')
+        return
+    }
     connectedCallback() {
         console.log('Carousel connected')
         this.render(false)
         this.disconnectedCallback()
-        window.addEventListener('resize', e => {
-            console.log('RESIZING')
-            var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
-            story.setAttribute('resize', 'true')
-
-            var prevButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-previous")
-            var nextButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-next")
-            prevButton.setAttribute('move','')
-            nextButton.setAttribute('move','')
-            this.disconnectedCallback()
-        })
-
     }
     render(val) {
         console.log('Carousel rendered')
@@ -103,23 +131,21 @@ class Carousel extends HTMLElement {
         return `<style>
         :host{
             width:100%;
-            height:calc(100vh - 10vmin);
+            height:100%;
             right:0;
             display: -webkit-box;
-            position: absolute;
+            position: relative;
             overflow:hidden;
             perspective: 600px;
             perspective-origin: center;
             transition:0.5s ease-in-out;
             -webkit-box-align: center;
-            overflow-y:scroll;
-            top:10vmin;
-            background-image: radial-gradient(circle at bottom left,#00f5de00 ,68%,transparent 44%,#000024,rgb(0 54 142),transparent);
+            //background-image: radial-gradient(circle at bottom left,#00f5de00 ,68%,transparent 44%,#000024,rgb(0 54 142),transparent);
             background-repeat:no-repeat;
         }
         :host([expand]){
             //background-image:url(${ws});
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(5px);
         }
         :host(:hover){
             //backdrop-filter: blur(15px);

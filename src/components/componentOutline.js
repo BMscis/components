@@ -9,6 +9,10 @@ class Component extends HTMLElement{
     }
     attributeChangedCallback(prop,oldVal,newVal){
         console.log('Component attribute change')
+        switch(prop){
+            case '':
+                return
+        }
     }
     connectedCallback(){
         console.log('Component connected')

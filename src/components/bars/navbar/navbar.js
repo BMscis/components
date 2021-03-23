@@ -8,10 +8,15 @@ class Navbar extends HTMLElement{
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
-        return []
+        return ['render']
     }
     attributeChangedCallback(prop,oldVal,newVal){
         console.log('Navbar attribute change')
+        switch(prop){
+            case 'render':
+                this.render()
+                return
+        }
     }
     connectedCallback(){
         console.log('Navbar connected')
@@ -19,24 +24,31 @@ class Navbar extends HTMLElement{
     }
     render(){
         console.log('Navbar rendering')
-        this.shadow.innerHTML =  `
+        var htmlmobi = document.querySelector("html")
+        if(htmlmobi == true || htmlmobi.clientWidth < 800){
+            this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            <es-menubutton></es-menubutton>
             <es-logo></es-logo>
-            <es-searchbar></es-searchbar>
             <es-label text='Welcome to espii club.' textafter=''></es-label>
             `
+        }
+        else{
+        this.shadow.innerHTML =  `
+            ${this.styledTemplate}
+            <es-label text='Welcome to espii club.' textafter=''></es-label>
+            `
+        }
     }
     get styledTemplate(){
         return `<style>
         :host{
-        position:absolute;
+        position:relative;
         top:0;
         left:0;
         width:100%;
         height:10vmin;
         display:flex;
-        justify-content:space-between;
+        justify-content:flex-end;
         align-items:center;
         backgrond:transparent;
         padding: 0 calc(10% - 20px);

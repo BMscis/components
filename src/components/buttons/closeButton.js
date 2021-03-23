@@ -38,7 +38,7 @@ class CloseButton extends HTMLElement{
         return `<style>
         :host {
             box-sizing: border-box;
-            position: absolute;
+            position: relative;
             top: 0;
             left: 0;
             margin:20px;

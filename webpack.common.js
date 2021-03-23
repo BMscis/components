@@ -8,6 +8,7 @@ const glob = require('glob')
 
 module.exports = {
     entry: {
+        entry:glob.sync('./src/entry/index.js'),
         fonts:glob.sync('./src/assets/fonts/*.otf'),
         style:glob.sync('./src/*.scss'),
         images:glob.sync('./src/assets/img/*.{gif,jpg,png}'),
@@ -85,8 +86,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Home',
-            template:'./src/index.html',
-            filename:'index.md'
+            filename:'index.html'
         }),
         new PreloadWebpackPlugin({
             rel: 'preload',
@@ -103,7 +103,7 @@ module.exports = {
     ],
     output: {
         filename: '[name].[contenthash].js',
-        path: path.resolve(__dirname, 'docs'),
+        path: path.resolve(__dirname, 'dist'),
     },
     optimization: {
         moduleIds: 'deterministic',

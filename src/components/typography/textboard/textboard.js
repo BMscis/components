@@ -39,7 +39,7 @@ class Textboard extends HTMLElement{
         :host([hide]){
             display: none
         }
-        @media only screen and (max-width: 800px){
+         @media only screen and (max-width: 800px){
             :host{
                 display:none;
             }

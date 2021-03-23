@@ -22,13 +22,14 @@ class Logo extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
-        :host {
-        }
         :host
          {
+            position: absolute;
+            z-index:3;
             transform: scale(var(--ggs,1))
             box-sizing: border-box;
-            top:6vh;
+            top:3vh;
+            left:calc(50% - 10px);
             display: flex;
             justify-content: center;
             width: 20px;
@@ -37,6 +38,7 @@ class Logo extends HTMLElement{
             background-image: linear-gradient(to bottom right , #3ffd1e ,#1b5028 46% 45%,transparent 55%, #1b5028 55% ,#3bab57 );
             filter: saturate(2) blur(0.2px);
             transform: rotate(45deg);
+            transition:0.5s ease;
             
         }
         :host(:hover){
@@ -71,6 +73,13 @@ class Logo extends HTMLElement{
             right: -32px;
             transform: rotate(133deg);
             filter: brightness(0.6);
+        }
+        @media only screen and (max-width: 800px){
+            :host{
+                left:revert;
+                margin: auto;
+                right: calc(50% - 10px);
+            }
         }
         </style>`
     }

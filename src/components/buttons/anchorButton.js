@@ -20,7 +20,7 @@ class AnchorButton extends HTMLElement{
             z-index:1;
             height: fit-content;
             margin: 20px;
-            font-size: 1.5vw;
+            font-size: 25px;
         }
         :host(:hover) {
             -webkit-background-clip: border-box;

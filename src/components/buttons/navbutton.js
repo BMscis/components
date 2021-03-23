@@ -1,5 +1,5 @@
 
-class H2 extends HTMLElement{
+class Navbutton extends HTMLElement{
     static get properties(){
         return ['text']
     }
@@ -19,6 +19,7 @@ class H2 extends HTMLElement{
                 white-space: nowrap;
                 position:relative;
                 cursor:pointer;
+                transition:0.5s ease;
                 
             }
             :host([active]){
@@ -26,14 +27,32 @@ class H2 extends HTMLElement{
                 -webkit-background-clip: text;
                 filter: brightness(2)
                 opacity:1;
+                transition:0.5s ease;
             }
             :host([inactive]){
-                filter:brightness(0.5);
                 opacity:0.5;
+                transition:0.5s ease;
             }
-            :host(:hover){
-                background: linear-gradient(to right, #c30047, #1a71ff);
+            :host([inactive]:hover){
+                opacity:1;
+
+            }
+            button {
+                border: none;
                 -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                outline: none;
+                border-radius: 2px;
+                font-family: 'ACBlack';
+                cursor:pointer;
+                z-index:3
+            }
+            :host([active]) button{
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: #e22b99;
+                background: transparent;
+                border-bottom: 2px solid;
+                border-bottom-color: blueviolet;
             }
         </style>
         `
@@ -43,6 +62,18 @@ class H2 extends HTMLElement{
         this.shadow = this.attachShadow({mode:'open'})
     }
     connectedCallback(){
+        this.addEventListener('click',e=>{
+            if(this.hasAttribute('inactive')){
+                var activeNavbutton = document.querySelector("es-sidebar").shadowRoot.querySelector("es-navbutton[active]")
+                activeNavbutton.removeAttribute('active')
+                activeNavbutton.setAttribute('inactive','')
+                this.removeAttribute('inactive')
+                this.setAttribute('active','')
+            }
+            if(this.hasAttribute('active')){
+                return
+            }
+        })
         this.render();
     }
     attributeChangedCallback(prop,oldVal,newVal){
@@ -58,7 +89,7 @@ class H2 extends HTMLElement{
     render(){
         this.shadow.innerHTML=`
         ${this.styleTemplate}
-        <text>${this.text}</text>`
+        <button>${this.text}</button>`
     }
 }
-customElements.define('es-heading2', H2);
+customElements.define('es-navbutton', Navbutton);

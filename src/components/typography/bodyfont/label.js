@@ -19,7 +19,7 @@ class Label extends HTMLElement{
             }
             :host::after{
                 content:"${this.textAfter}";
-                font-size: 2vmin;
+                font-size: 16px;
                 z-index: 2;
                 font-family: 'ACBlack';
                 background: linear-gradient(to right, #cc3e14, yellowgreen);

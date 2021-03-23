@@ -19,15 +19,14 @@ class Searchbar extends HTMLElement{
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <button class='gg-search'></button>
-            <input type='text'>
             `
     }
     get styledTemplate(){
         return `<style>
         :host{
-            background-image:radial-gradient(circle at bottom,  #bd4411, transparent);
+            //background-image:radial-gradient(circle at bottom,  #bd4411, transparent);
             height: 3.5vmin;
-            width: 40%;
+            //width: 40%;
             display:flex;
             flex-direction: row;
             justify-content:space-between;
@@ -35,8 +34,7 @@ class Searchbar extends HTMLElement{
             border-radius:10px;
             z-index:0;
             align-self:flex-end;
-            
-    box-shadow: inset 20px 1px 4px 0px #0000003d;
+            //box-shadow: inset 20px 1px 4px 0px #0000003d;
         }
         input{
             outline:none;
@@ -68,6 +66,7 @@ class Searchbar extends HTMLElement{
             color:#c97a00;
             background-color:transparent;
             cursor:pointer;
+            outline: none;
         }
         .gg-search::after {
             content: "";

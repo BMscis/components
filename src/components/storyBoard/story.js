@@ -252,7 +252,8 @@ export class Story extends HTMLElement {
         }
         else{
             var storyOffset = this.offsetLeft
-            var expandLeft = Math.round(-storyOffset + textBoardSpace)
+            //var expandLeft = Math.round(-storyOffset + textBoardSpace)
+            var expandLeft = Math.round(-storyOffset )
         }
         var expandLeftPx = expandLeft + 'px'
         this.cssMove  = expandLeftPx
@@ -401,8 +402,10 @@ export class Story extends HTMLElement {
             console.log(' story render backface')
             this.shadow.innerHTML = `
             ${this.styleTemplate}
-            <es-closebutton></es-closebutton>
-            <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
+            <div>
+                <es-closebutton></es-closebutton>
+                <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
+            </div>
             <es-storybackface ></es-storybackface>
             `
             if(this.classList.contains('0')){
@@ -433,12 +436,13 @@ export class Story extends HTMLElement {
             width: 0;
         }
         :host{
+        width:300px;
         min-width:300px;
         max-width:300px;
         position: relative;
         border-radius: 3px;
-        height: 85vh;
-        background-image: ${'url(' + bgO + ')'};
+        height: 500px;
+        //background-image: ${'url(' + bgO + ')'};
         background-color: #b1b1;
         background-position: bottom;
         background-repeat: no-repeat;
@@ -454,12 +458,22 @@ export class Story extends HTMLElement {
         opacity: 0.5;
         z-index:0;
         filter: blur(5px);
-        overflow: hidden;
+    }
+    :host([backface]){
+        display:flex;
+        flex-direction:row;
+        align-items:flex-start;
+    }
+    div{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width:20%;
     }
     :host([active]){
         opacity: 1;
         position: relative;
-        background-image: url(${bg});
+        //background-image: url(${bg});
         transition: 0.5s ease-in-out;
         //box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
         transform-style: preserve-3d;
@@ -490,12 +504,15 @@ export class Story extends HTMLElement {
     }
     :host([expandstory]){
         background-image:none;
-        backdrop-filter: blur(40px);
+        backdrop-filter: blur(5px);
         min-width: 80%;
         height:100%;
-        justify-content: space-evenly;
+        flex-wrap: wrap;
+        justify-content: end;
+        flex-direction: column;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
-        background:border-box
+        background:border-box;
+        overflow:hidden;
     }
     :host([expandstory]:hover){
         transform: scale(var(--ggs,1)) rotate(360deg);

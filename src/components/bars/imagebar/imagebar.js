@@ -81,14 +81,15 @@ class Imagebar extends HTMLElement{
         }
         .tooltiptext{
             opacity:0;
-            width: 120px;
+            width: 200px;
             color: #fff;
             text-align: center;
             padding: 5px 0;
             border-radius: 6px;
             position: absolute;
-            left: 90%;
-            top: 60%;
+            left: calc(500px + 120px);
+            top: 30%;
+            white-space: pre;
             transition:1s ease-in-out;
             font-family: ACSemiLight;
             background: radial-gradient(#ffffff 28%, transparent);
@@ -98,14 +99,14 @@ class Imagebar extends HTMLElement{
         }
         .descriptiontext{
             opacity:0;
-            width: 350px;
+            width: 400px;
             color: #fff;
             text-align: center;
             padding: 5px 0;
             border-radius: 6px;
             position: absolute;
-            left: 90%;
-            top: 75%;
+            left: calc(500px + 60px);
+            top: 40%;
             transition:1s ease-in-out;
             font-family: ACSemiLight;
             background: radial-gradient(#ffffff 28%, transparent);
@@ -114,7 +115,7 @@ class Imagebar extends HTMLElement{
             filter: drop-shadow(-27px 22px 5px black) saturate(0.5);
         }
         :host(:hover){
-            transform: translate3d(0, -17%, 0px) scale(1);
+            //transform: translate3d(0, -17%, 0px) scale(1);
             opacity:1;
         }
         :host(:hover) .tooltiptext{

@@ -7,7 +7,7 @@ class H1 extends HTMLElement{
         return  `
         <style>
             :host{
-                font-size: 6vmin;
+                font-size: 50px;
                 z-index: 2;
                 text-align: center;
                 font-family: 'ACBlack';
@@ -19,7 +19,7 @@ class H1 extends HTMLElement{
             }
             :host::after{
                 content:"${this.textAfter}";
-                font-size: 3vmin;
+                font-size: 25px;
                 z-index: 2;
                 font-family: 'ACBlack';
                 background: linear-gradient(to right, #cc3e14, yellowgreen);
