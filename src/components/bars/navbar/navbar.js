@@ -42,7 +42,7 @@ class Navbar extends HTMLElement{
     get styledTemplate(){
         return `<style>
         :host{
-        position:absolute;
+        position:relative;
         top:0;
         left:0;
         width:100%;
