@@ -18,20 +18,20 @@ class Searchbar extends HTMLElement{
         console.log('searchbar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            <button class='gg-search'></button>
+            <button type="submit" class='gg-search'></button>
+            <input  type="search" name='search' id='search' autofocus="autofocus" input>
             `
     }
     get styledTemplate(){
         return `<style>
         :host{
             //background-image:radial-gradient(circle at bottom,  #bd4411, transparent);
-            height: 3.5vmin;
+            height: 40px;
             //width: 40%;
-            display:flex;
-            flex-direction: row;
-            justify-content:space-between;
+            display:inline-grid;
             align-items:center;
             border-radius:10px;
+            padding-left:20px;
             z-index:0;
             align-self:flex-end;
             //box-shadow: inset 20px 1px 4px 0px #0000003d;
@@ -39,31 +39,33 @@ class Searchbar extends HTMLElement{
         input{
             outline:none;
             border:none;
-            width:-webkit-fill-available;
             font-size:medium;
-            padding-left:10px;
-            height:100%;
-            background:none;
+            padding-left:35px;
+            height:20px;
+            background:transparent;
             z-index:1;
             text-spacing:2px;
-            color:white;
             font-family: ACLight;
+            border-image: linear-gradient(to right, blue , red);
+            border-image-slice: 10;
+            border-radius: 24px;
+            border-bottom: 1px solid;
+            color:white;
+}
         }
         input:hover (~ .gg-search){
             color:red;
         }
         .gg-search {
             box-sizing: border-box;
-            position: relative;
+            position: absolute;
             display: block;
             transform: scale(var(--ggs,1));
             width: 16px;
             height: 16px;
             border: 2px solid;
             border-radius: 100%;
-            margin-left: 5px;
-            margin-top: -4px;
-            color:#c97a00;
+            color:aliceblue;
             background-color:transparent;
             cursor:pointer;
             outline: none;

@@ -67,13 +67,13 @@ class StoryBackface extends HTMLElement{
             flex-direction:column;
             width: 100%;
             height: 100%;
-            margin: 20px;
+            padding: 20px;
             backdrop-filter: blur(40px);
             background-image: linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 0vmin);
             transform-style:preserve-3d;
-            overflow:scroll;
-            position:absolute;
             overflow:hidden;
+            position:absolute;
+            overflow:scroll;
         }
         slot{
             width: 100%;
@@ -81,7 +81,10 @@ class StoryBackface extends HTMLElement{
             position:relative;
             display:flex;
             flex-direction: column;
-            overflow:auto;
+           //padding: 5% 0 0 20%;
+            overflow:scroll;
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
 
         }
   

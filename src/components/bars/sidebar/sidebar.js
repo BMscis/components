@@ -42,30 +42,30 @@ class Sidebar extends HTMLElement{
         console.log('Sidebar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            <es-searchbar contracted ></es-searchbar>
+            <es-searchbar></es-searchbar>
             <es-navbutton active text='Portfolio'></es-navbutton>
-            <es-navbutton inactive text='About Us'></es-navbutton>
             <es-navbutton inactive text='Contact Us'></es-navbutton>
             `
     }
     get styledTemplate(){
         return `<style>
+        *{
+            box-sizing: border-box;
+        }
         :host{
         position:absolute;
-        width:100vmin;
+        width:30%;
         //left:-20%;
-        top:10vmin;
+        top: calc(3vh + 20px);
         //backdrop-filter: hue-rotate(242deg);
-        //height:calc(100vh - 10vmin);
+        height:80px;
         background:transparent;
         backdrop-filter:blur(5px);
         z-index:1;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
         border-radius:2px;
-        padding:5px;
-        display:flex;
-        flex-direction:row;
-        justify-content:space-evenly;
+        padding:5px 5px 5px 20px;
+        display:block;
         flex-wrap:wrap;
         //background-image:radial-gradient(circle at center top, hsl(181 96% 22% / 1),2%, transparent,#ac39496b 144%);
         background:transparent;
@@ -74,6 +74,11 @@ class Sidebar extends HTMLElement{
     }
     :host([expand]){
         left:0;
+    }
+    @media only Screen and (max-width:800px){
+        :host{
+            width:50vmin;
+        }
     }
         </style>`
     }

@@ -46,8 +46,8 @@ class MenuButton extends HTMLElement {
             position: absolute;
             left:20px;
             transform: scale(var(--ggs,1));
-            margin-left: 2px;
-            margin-top: 10px;
+            padding-left: 2px;
+            padding-top: 10px;
             width: 25px;
             height: 3px;
             background-color: currentColor;

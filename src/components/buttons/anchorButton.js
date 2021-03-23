@@ -19,7 +19,7 @@ class AnchorButton extends HTMLElement{
             cursor: pointer;
             z-index:1;
             height: fit-content;
-            margin: 20px;
+            padding: 20px;
             font-size: 25px;
         }
         :host(:hover) {

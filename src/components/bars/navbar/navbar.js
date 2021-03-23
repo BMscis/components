@@ -45,8 +45,8 @@ class Navbar extends HTMLElement{
         position:relative;
         top:0;
         left:0;
-        width:100%;
-        height:10vmin;
+        width:100vw;
+        height:3vh;
         display:flex;
         justify-content:flex-end;
         align-items:center;
@@ -57,7 +57,7 @@ class Navbar extends HTMLElement{
     }
         hr{
             position:absolute;
-            width:100%;
+            width:100vw;
             top:9vmin;
         }
         </style>`

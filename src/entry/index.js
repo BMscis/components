@@ -38,10 +38,14 @@ window.addEventListener('resize',e=>{
          var nav = document.createElement('es-navbar')
          document.body.prepend(nav)
      }
+    html.setAttribute('style','height:' + window.innerHeight + 'px') 
+    document.body.setAttribute('style','height:' + window.innerHeight + 'px') 
 })
 html.setAttribute('dir','ltr')
 html.setAttribute('lang','eng')
 html.setAttribute('mobi', navi)
+html.setAttribute('style','height:' + window.innerHeight + 'px') 
+document.body.setAttribute('style','height:' + window.innerHeight + 'px') 
 
 if (navi === true || html.clientWidth < 800){
     //var navbar= document.createElement('es-navbar')

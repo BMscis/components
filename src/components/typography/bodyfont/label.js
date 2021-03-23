@@ -7,7 +7,7 @@ class Label extends HTMLElement{
         return  `
         <style>
             :host{
-                font-size: 2vmin;
+                font-size: 16px;
                 z-index: 2;
                 text-align: center;
                 font-family: 'ACBlack';

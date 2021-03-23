@@ -117,7 +117,7 @@ class Carousel extends HTMLElement {
         else {
             this.shadow.innerHTML = `
             ${this.styledTemplate}
-            <es-textboard></es-textboard>
+            <es-businesscard text='Portfolio'></es-businesscard>
             <es-previous></es-previous>
             <es-story h1='3D' h2='Design ' img=${coa} active class="0" ptext="Get access to hyper-realistic 3D designs with real-time animation."></es-story>
             <es-story h1='Web ' h2='Development ' img=${webdev} class="1"  ptext='create modern websites '></es-story>
@@ -130,12 +130,13 @@ class Carousel extends HTMLElement {
     get styledTemplate() {
         return `<style>
         :host{
-            width:100%;
-            height:100%;
+            width:100vw;
+            top: calc(3vh + 20px + 80px);
+            height:calc(${window.innerHeight}px - 3vh - 20px - 80px);
             right:0;
-            display: -webkit-box;
-            position: relative;
-            overflow:hidden;
+            display: flex;
+            flex-direction:row;
+            position:absolute;
             perspective: 600px;
             perspective-origin: center;
             transition:0.5s ease-in-out;
@@ -149,6 +150,11 @@ class Carousel extends HTMLElement {
         :host(:hover){
             //backdrop-filter: blur(15px);
 
+        }
+        @media only Screen and (max-width:800px){
+            :host{
+                
+            }
         }
         </style>
         `

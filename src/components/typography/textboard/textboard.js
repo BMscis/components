@@ -25,7 +25,6 @@ class Textboard extends HTMLElement{
         return `<style>
        :host{
             position:absolute;
-            width:30%;
             top:30%;
             left:10%;
             z-index:1;

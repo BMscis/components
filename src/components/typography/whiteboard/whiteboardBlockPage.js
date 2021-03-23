@@ -23,7 +23,7 @@ class WhiteBoardBlockPage extends HTMLElement{
     get styledTemplate(){
         return `<style>
         :host{
-            width:100%;
+            width:100vw;
             height:100%;
             border-radius:10px;
             position:absolute;

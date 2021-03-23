@@ -53,6 +53,8 @@ class Navbutton extends HTMLElement{
                 background: transparent;
                 border-bottom: 2px solid;
                 border-bottom-color: blueviolet;
+                border-image: linear-gradient(to right,transparent 30%, blue 35%, red 50%, transparent 70%);
+                border-image-slice: 8;
             }
         </style>
         `
@@ -69,6 +71,9 @@ class Navbutton extends HTMLElement{
                 activeNavbutton.setAttribute('inactive','')
                 this.removeAttribute('inactive')
                 this.setAttribute('active','')
+                var businesscard = document.querySelector('es-carousel').shadowRoot.querySelector("es-businesscard");
+                businesscard.setAttribute('text',this.text)
+                
             }
             if(this.hasAttribute('active')){
                 return

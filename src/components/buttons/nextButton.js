@@ -15,7 +15,7 @@ class NextButton extends HTMLElement{
                 cursor: pointer;
                 box-sizing: border-box;
                 position: absolute;
-                top:80%;
+                top:calc((${window.innerHeight}px - 3vh - 20px - 80px)/2);
                 right:${this.cssX};
                 display: block;
                 transform: scale(var(--ggs,1));

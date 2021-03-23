@@ -25,9 +25,9 @@ class StoryImages extends HTMLElement{
             background-position: center;
             background-size: contain;
             height:100%;
-            width:100%;
+            width:100vw;
             position:relative;
-            margin:5px;
+            padding:5px;
             transition:0.5s ease;
             opacity:0.5;
         }

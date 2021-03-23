@@ -77,7 +77,7 @@ class Logo extends HTMLElement{
         @media only screen and (max-width: 800px){
             :host{
                 left:revert;
-                margin: auto;
+                padding: auto;
                 right: calc(50% - 10px);
             }
         }

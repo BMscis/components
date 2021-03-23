@@ -31,10 +31,10 @@ class Imagebar extends HTMLElement{
     }
     connectedCallback(){
         console.log('imagebar connected')
-        this.addEventListener('mouseover', e=>{
-            this.scrollIntoView({behavior:'smooth',block:'center'})
-            console.log('hover')
-        })
+        // this.addEventListener('mouseover', e=>{
+        //     this.scrollIntoView(alignToTop)
+        //     console.log('hover')
+        // })
         this.render()
     }
     render(){
@@ -71,13 +71,16 @@ class Imagebar extends HTMLElement{
             cursor:pointer;
             top:0;
             transition: 0.5s ease;
-            width: 50%;
-            height: auto;
+            width: 500px;
+            height: 500px;
             //transform: translate3d(-20px, 0px, 0px) scale(0.5);
             opacity:0.5;
             position:relative;
+            scroll-snap-type: y mandatory;
         }
         img{
+            height:100%;
+            scroll-snap-type: y mandatory;
         }
         .tooltiptext{
             opacity:0;

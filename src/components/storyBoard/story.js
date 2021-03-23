@@ -73,6 +73,7 @@ export class Story extends HTMLElement {
                 console.log('STORY: '+ this.getAttribute('class') +' RESIZE')
                 this.resize()
                 this.removeAttribute('resize')
+                this.render()
                 return
             case 'imgset':
                 this.imgset
@@ -441,7 +442,7 @@ export class Story extends HTMLElement {
         max-width:300px;
         position: relative;
         border-radius: 3px;
-        height: 500px;
+        height:calc(${window.innerHeight}px - 3vh - 20px - 80px);
         background-color: #b1b1;
         background-position: bottom;
         background-repeat: no-repeat;
@@ -457,6 +458,8 @@ export class Story extends HTMLElement {
         opacity: 0.5;
         z-index:0;
         filter: blur(5px);
+        overflow:hidden;
+
     }
     :host([backface]){
         display:flex;
@@ -504,13 +507,12 @@ export class Story extends HTMLElement {
         background-image:none;
         backdrop-filter: blur(5px);
         min-width: 80%;
-        height:100%;
         flex-wrap: wrap;
+        padding-left:20px;
         justify-content: end;
         flex-direction: column;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
         background:border-box;
-        overflow:hidden;
     }
     :host([expandstory]:hover){
         transform: scale(var(--ggs,1)) rotate(360deg);
