@@ -24,13 +24,10 @@ class Textboard extends HTMLElement{
     get styledTemplate(){
         return `<style>
        :host{
-            position:absolute;
-            top:30%;
-            left:10%;
-            z-index:1;
+            height:9vh;
         }
         text{
-            font-size:10vmin;
+            font-size:9vh;
             color:white;
             font-family:ACBoldCond;
             transition: 0.5s ease;

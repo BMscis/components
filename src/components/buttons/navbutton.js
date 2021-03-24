@@ -7,20 +7,12 @@ class Navbutton extends HTMLElement{
         return `
         <style>
             :host{
-                font-size: 20px;
-                z-index: 2;
-                font-family: 'ACBoldSemiCn';
-                //background: #ff5e00;
-                //-webkit-background-clip: text;
-                //-webkit-text-fill-color: transparent;
-                color:whitesmoke;
-                padding: 0 0 0px 20px ;
                 display: grid;
                 white-space: nowrap;
                 position:relative;
                 cursor:pointer;
                 transition:0.5s ease;
-                
+                margin-bottom: 1vh;
             }
             :host([active]){
                 background: linear-gradient(to right, #c30047, #1a71ff);
@@ -44,8 +36,10 @@ class Navbutton extends HTMLElement{
                 outline: none;
                 border-radius: 2px;
                 font-family: 'ACBlack';
+                font-size:2vh;
                 cursor:pointer;
-                z-index:3
+                margin:0;
+                padding:0;
             }
             :host([active]) button{
                 -webkit-background-clip: text;

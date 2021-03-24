@@ -46,8 +46,8 @@ class MenuButton extends HTMLElement {
             position: absolute;
             left:20px;
             transform: scale(var(--ggs,1));
-            padding-left: 2px;
-            padding-top: 10px;
+            //padding-left: 2px;
+            //padding-top: 10px;
             width: 25px;
             height: 3px;
             background-color: currentColor;
@@ -59,7 +59,7 @@ class MenuButton extends HTMLElement {
             flex-direction: column;
             align-self: flex-end;
             justify-self: center;
-            z-index:2;
+            //z-index:2;
           }
           
         :host::before {

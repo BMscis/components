@@ -130,19 +130,19 @@ class Carousel extends HTMLElement {
     get styledTemplate() {
         return `<style>
         :host{
+            position:absolute;
+            top:17vh;
             width:100vw;
-            top: calc(3vh + 20px + 80px);
-            height:calc(${window.innerHeight}px - 3vh - 20px - 80px);
-            right:0;
+            height:83vh;
             display: flex;
             flex-direction:row;
-            position:absolute;
             perspective: 600px;
             perspective-origin: center;
             transition:0.5s ease-in-out;
             -webkit-box-align: center;
             //background-image: radial-gradient(circle at bottom left,#00f5de00 ,68%,transparent 44%,#000024,rgb(0 54 142),transparent);
             background-repeat:no-repeat;
+            z-index:1;
         }
         :host([expand]){
             backdrop-filter: blur(5px);

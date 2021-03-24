@@ -46,10 +46,7 @@ class Imagebar extends HTMLElement{
             <div class="descriptiontext">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Ut enim ad minim veniam.
             </div>
             `
     }
@@ -71,23 +68,17 @@ class Imagebar extends HTMLElement{
             cursor:pointer;
             top:0;
             transition: 0.5s ease;
-            width: 500px;
-            height: 500px;
-            //transform: translate3d(-20px, 0px, 0px) scale(0.5);
             opacity:0.5;
             position:relative;
-            scroll-snap-type: y mandatory;
         }
         img{
-            height:100%;
-            scroll-snap-type: y mandatory;
+            height:73vh;
+            width:73vh;
         }
         .tooltiptext{
             opacity:0;
-            width: 200px;
             color: #fff;
             text-align: center;
-            padding: 5px 0;
             border-radius: 6px;
             position: absolute;
             left: calc(500px + 120px);
@@ -102,12 +93,11 @@ class Imagebar extends HTMLElement{
         }
         .descriptiontext{
             opacity:0;
-            width: 400px;
             color: #fff;
             text-align: center;
-            padding: 5px 0;
             border-radius: 6px;
             position: absolute;
+            width:70%;
             left: calc(500px + 60px);
             top: 40%;
             transition:1s ease-in-out;
@@ -118,7 +108,6 @@ class Imagebar extends HTMLElement{
             filter: drop-shadow(-27px 22px 5px black) saturate(0.5);
         }
         :host(:hover){
-            //transform: translate3d(0, -17%, 0px) scale(1);
             opacity:1;
         }
         :host(:hover) .tooltiptext{
@@ -128,6 +117,20 @@ class Imagebar extends HTMLElement{
         :host(:hover) .descriptiontext{
             opacity:1;
             filter: drop-shadow(2px 4px 6px black) saturate(1);
+        }
+        @media only Screen and (max-width:800px){
+            img{
+                height:73vw;
+                width:73vw;
+            }
+            .tooltiptext{
+                top: 50vw;
+                left: 60%;
+            }
+            .descriptiontext{
+                top: 55vw;
+                left: 10%;
+            }
         }
         </style>`
     }

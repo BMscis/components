@@ -8,13 +8,13 @@ class H2 extends HTMLElement{
         <style>
             :host{
                 font-size: 20px;
-                z-index: 2;
+                //z-index: 2;
                 font-family: 'ACBoldSemiCn';
                 //background: #ff5e00;
                 //-webkit-background-clip: text;
                 //-webkit-text-fill-color: transparent;
                 color:whitesmoke;
-                padding: 0 0 0px 20px ;
+                //padding: 0 0 0px 20px ;
                 display: grid;
                 white-space: nowrap;
                 position:relative;

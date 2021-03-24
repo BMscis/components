@@ -7,25 +7,24 @@ class Label extends HTMLElement{
         return  `
         <style>
             :host{
-                font-size: 16px;
-                z-index: 2;
+                font-size: 2vh;
+                //z-index: 2;
                 text-align: center;
                 font-family: 'ACBlack';
                 background: linear-gradient(to bottom right,#dedede 77%, transparent);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                padding: 0 0 0 20px;
                 position:relative;
             }
             :host::after{
                 content:"${this.textAfter}";
                 font-size: 16px;
-                z-index: 2;
+                //z-index: 2;
                 font-family: 'ACBlack';
                 background: linear-gradient(to right, #cc3e14, yellowgreen);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                padding: 0 0 20px 20px ;
+                //padding: 0 0 20px 20px ;
                 display: grid;
                 white-space: nowrap;
                 left: 25%;

@@ -7,25 +7,26 @@ class H1 extends HTMLElement{
         return  `
         <style>
             :host{
-                font-size: 50px;
-                z-index: 2;
+                height:calc((83vh * 0.1) + (83vh * 0.05));
+                position:relative;
+            }
+            text{
+                font-size: calc(83vh * 0.1);
                 text-align: center;
                 font-family: 'ACBlack';
                 background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                padding: 0 0 0 20px;
-                position:relative;
+
             }
             :host::after{
                 content:"${this.textAfter}";
-                font-size: 25px;
-                z-index: 2;
+                font-size: calc(83vh * 0.05);
                 font-family: 'ACBlack';
                 background: linear-gradient(to right, #cc3e14, yellowgreen);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                padding: 0 0 20px 20px ;
+                //padding: 0 0 20px 20px ;
                 display: grid;
                 white-space: nowrap;
                 left: 25%;
@@ -63,7 +64,8 @@ class H1 extends HTMLElement{
     render(){
         this.shadow.innerHTML=`
         ${this.stylesTemplate}
-        <text>${this.text}</text>`
+        <text>${this.text}</text>
+        `
     }
 }
 customElements.define('es-heading', H1);

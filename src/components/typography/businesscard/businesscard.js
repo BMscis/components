@@ -70,14 +70,14 @@ class Businesscard extends HTMLElement {
 
        :host{
         position: absolute;
-        width: 30%;
-        height: 70%;
+        width: calc(100vw * 0.3);
+        height: calc(83vh * 0.5);
         display:flex;
         flex-direction:row;
-        top:0;
-        padding:20px;
+        top:29vh;
+        //padding:20px;
         border-radius: 10px;
-        z-index: 1;
+        //z-index: 1;
         background: transparent;
         //border-top: 2px;
         //border-top-style: dotted;
@@ -85,6 +85,7 @@ class Businesscard extends HTMLElement {
         //border-image: ${this.borderImage};
         //border-image-slice: 8;
         opacity:0;
+        z-index:1;
         }
         .texture{
             position:absolute;
@@ -94,7 +95,7 @@ class Businesscard extends HTMLElement {
             left:0;
             width: calc(100% - 20px);
             height:calc(100% - 20px);
-            z-index:0;
+            //z-index:0;
         }
         .infocontainer, .labelcontainer{
             display:flex;
@@ -132,7 +133,7 @@ class Businesscard extends HTMLElement {
             color: silver;
             font-variant-caps: all-petite-caps;
             font-size: larger;
-            z-index:1;
+            //z-index:1;
             background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -143,7 +144,7 @@ class Businesscard extends HTMLElement {
             font-style: normal;
         }
         p{
-            padding:0;
+            //padding:0;
         }
         address{
             color:gold;

@@ -14,13 +14,12 @@ class AnchorButton extends HTMLElement{
             outline: none;
             border-radius: 5px;
             border:none;
-            padding: 2vmin;
+            padding: 10px;
             font-family:ACBoldSemiCn;
             cursor: pointer;
-            z-index:1;
             height: fit-content;
-            padding: 20px;
-            font-size: 25px;
+            calc(83vh * 0.03);
+            z-index: 1;
         }
         :host(:hover) {
             -webkit-background-clip: border-box;
@@ -66,6 +65,8 @@ class AnchorButton extends HTMLElement{
             //console.log("STORYBACKFACE: " + typeof(storyBackface))
 
             storyBackface.setAttribute('scaler','true')
+            var sidebar = document.querySelector('es-sidebar')
+            sidebar.setAttribute('style','z-index: 0')
         })
         this.render();
     }

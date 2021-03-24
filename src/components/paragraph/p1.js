@@ -34,9 +34,7 @@ class P1 extends HTMLElement{
             position: relative;
             font-family:ACLight;
             color: palegoldenrod;
-            padding: 20px;
-            z-index:1;
-            font-size: 16px;
+            font-size: calc(83vh * 0.025);
         }
         </style>`
     }

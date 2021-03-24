@@ -190,10 +190,10 @@ export class Story extends HTMLElement {
         // expandLeft = expand story positon
         // cd = close position
 
-        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var fullWidth = window.innerWidth
         var textBoardSpace = Math.round(0.2*fullWidth)
         var storyOffset = this.offsetLeft
-        if (fullWidth <= 700 ){
+        if (fullWidth <= 800 ){
             var storySpace = Math.round(fullWidth)
             var expandLeft = Math.round(-storyOffset )
         }
@@ -245,9 +245,9 @@ export class Story extends HTMLElement {
         }
     }
     xpand(){
-        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var fullWidth = window.innerWidth
         var textBoardSpace = Math.round(0.2*fullWidth)
-        if (fullWidth <= 700){
+        if (fullWidth <= 800){
             var storyOffset = this.offsetLeft
             var expandLeft = Math.round(-storyOffset )
         }
@@ -266,12 +266,12 @@ export class Story extends HTMLElement {
         return
     }
     cloze(){
-        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var fullWidth = window.innerWidth
         var textBoardSpace = Math.round(0.2*fullWidth)
         var storyOffset = this.offsetLeft
         var storyWidth = 300
 
-        if (fullWidth <= 700 ){
+        if (fullWidth <= 800 ){
             var storySpace = Math.round(fullWidth)
         }
         else{
@@ -294,12 +294,12 @@ export class Story extends HTMLElement {
         });
     }
     resize(){
-        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var fullWidth = window.innerWidth
         var textBoardSpace = Math.round(0.2*fullWidth)
         var storyOffset = this.offsetLeft
         var storyWidth = 300
 
-        if (fullWidth <= 700 ){
+        if (fullWidth <= 800 ){
             var storySpace = Math.round(fullWidth)
         }
         else{
@@ -442,12 +442,12 @@ export class Story extends HTMLElement {
         max-width:300px;
         position: relative;
         border-radius: 3px;
-        height:calc(${window.innerHeight}px - 3vh - 20px - 80px);
+        height:calc(83vh * 0.9);
         background-color: #b1b1;
         background-position: bottom;
         background-repeat: no-repeat;
         background-size: cover;
-        backdrop-filter: blur(40px);
+        backdrop-filter: blur(20px);
         transform-style: preserve-3d;
         transform-origin:center;
         transition: 0.5s ease;
@@ -457,8 +457,6 @@ export class Story extends HTMLElement {
         justify-content: space-around;
         opacity: 0.5;
         z-index:0;
-        filter: blur(5px);
-        overflow:hidden;
 
     }
     :host([backface]){
@@ -470,21 +468,23 @@ export class Story extends HTMLElement {
         display:flex;
         flex-direction: column;
         justify-content: space-evenly;
-        width:20%;
+        width: calc(80vw * 0.12);
+        position:absolute;
+        margin:10px;
+        z-index:2;
     }
     :host([active]){
         opacity: 1;
         position: relative;
-        transition: 0.5s ease-in-out;
-        //box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
+        box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
         transform-style: preserve-3d;
         transform-origin:center;
         filter: blur(0px);
-        z-index:1;
         border-right: 1px outset;
         border-left: 1px outset;
         border-image: linear-gradient(transparent, transparent,#e63380,transparent,transparent);
-        border-image-slice:1
+        border-image-slice:1;
+        z-index:1;
 
     }
     :host([active])::after,
@@ -506,13 +506,23 @@ export class Story extends HTMLElement {
     :host([expandstory]){
         background-image:none;
         backdrop-filter: blur(5px);
-        min-width: 80%;
+        min-width:calc(100vw * 0.8);
+        max-width:calc(100vw * 0.8);
         flex-wrap: wrap;
-        padding-left:20px;
         justify-content: end;
         flex-direction: column;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
         background:border-box;
+    }
+    @media only Screen and (max-width:800px){
+        :host([expandstory]){
+            max-width:100vw;
+            min-width:100vw;
+            flex-wrap:nowrap;
+        }
+        div{
+            margin-left: 5%;
+        }
     }
     :host([expandstory]:hover){
         transform: scale(var(--ggs,1)) rotate(360deg);

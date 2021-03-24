@@ -25,25 +25,20 @@ class Searchbar extends HTMLElement{
     get styledTemplate(){
         return `<style>
         :host{
-            //background-image:radial-gradient(circle at bottom,  #bd4411, transparent);
-            height: 40px;
-            //width: 40%;
+            height: 5vh;
             display:inline-grid;
             align-items:center;
             border-radius:10px;
-            padding-left:20px;
-            z-index:0;
+            //z-index:0;
             align-self:flex-end;
-            //box-shadow: inset 20px 1px 4px 0px #0000003d;
         }
         input{
             outline:none;
             border:none;
             font-size:medium;
-            padding-left:35px;
-            height:20px;
+            height:3vh;
             background:transparent;
-            z-index:1;
+            //z-index:1;
             text-spacing:2px;
             font-family: ACLight;
             border-image: linear-gradient(to right, blue , red);
@@ -57,9 +52,6 @@ class Searchbar extends HTMLElement{
             color:red;
         }
         .gg-search {
-            box-sizing: border-box;
-            position: absolute;
-            display: block;
             transform: scale(var(--ggs,1));
             width: 16px;
             height: 16px;
@@ -72,8 +64,6 @@ class Searchbar extends HTMLElement{
         }
         .gg-search::after {
             content: "";
-            display: block;
-            box-sizing: border-box;
             position: absolute;
             border-radius: 3px;
             width: 2px;

@@ -33,7 +33,7 @@ class WhiteBoardBlockPage extends HTMLElement{
             border-radius: 60px 60px 60px 0px;
             transform: matrix(1, 0.14, 0, 0.99, 0, 0);
             transform-origin: left bottom;
-            z-index: -1;
+            //z-index: -1;
             transition:1s ease;
         }
         :host(:hover){

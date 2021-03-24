@@ -13,29 +13,24 @@ class NextButton extends HTMLElement{
             <style>
             :host{
                 cursor: pointer;
-                box-sizing: border-box;
                 position: absolute;
                 top:calc((${window.innerHeight}px - 3vh - 20px - 80px)/2);
                 right:${this.cssX};
-                display: block;
                 transform: scale(var(--ggs,1));
                 transform-origin: center;
-                width: 22px;
-                height: 22px;
-                //border: 2px dotted;
+                width: calc(83vh * 0.05);
+                height: calc(83vh * 0.05);
                 border-image-slice: 8;
                 border-image-width: 7px;
-                border-image-outset: 0;
                 transition: 0.5s ease;
+                z-index:1;
             }
             :host::before{
                 content: "";
-                box-sizing: border-box;
                 position: absolute;
-                display: block;
                 transform: scale(var(--ggs,1)) rotate(45deg);
-                width: 22px;
-                height: 22px;
+                width: calc(83vh * 0.05);
+                height: calc(83vh * 0.05);
                 border-left: 2px dotted;
                 border-radius: 100px;
                 cursor: pointer;
@@ -43,11 +38,10 @@ class NextButton extends HTMLElement{
             }
             :host::after{
                 content: "";
-                display: block;
                 box-sizing: border-box;
                 position: absolute;
-                width: 22px;
-                height: 22px;
+                width: calc(83vh * 0.05);
+                height: calc(83vh * 0.05);
                 border-bottom: 7px inset;
                 border-right: 7px solid white;
                 border-radius:25%;
@@ -86,9 +80,9 @@ class NextButton extends HTMLElement{
 
     }
     move(){
-        var fullWidth = document.querySelector('es-carousel').clientWidth
+        var fullWidth = window.innerWidth
         var textBoardSpace = 0.2*fullWidth
-        if (fullWidth <= 700){
+        if (fullWidth <= 800){
             var storySpace = fullWidth/2
             nextToStoryBoard = 300/1.5
         }

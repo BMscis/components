@@ -24,6 +24,8 @@ class CloseButton extends HTMLElement{
             var story = document.querySelector("es-carousel").shadowRoot.querySelector("es-story[active]")
             story.setAttribute('close','')
             carousel.removeAttribute('expand')
+            var sidebar = document.querySelector('es-sidebar')
+            sidebar.setAttribute('style','z-index: 2')
 
         })
         this.render()
@@ -39,19 +41,13 @@ class CloseButton extends HTMLElement{
         :host {
             box-sizing: border-box;
             position: relative;
-            top: 0;
-            left: 0;
-            margin:20px;
-            display: block;
             transform: scale(var(--ggs,1));
             width: 22px;
             height: 22px;
-            border: 2px solid transparent;
             border-radius: 40px;
             cursor: pointer;
             color:#f20c9c;
             opacity:1;
-            z-index: 2;
         }
         :host(:hover){
             color:#00ff7e;
@@ -61,8 +57,6 @@ class CloseButton extends HTMLElement{
         :host::after,
         :host::before {
             content: "";
-            display: block;
-            box-sizing: border-box;
             position: absolute;
             width: 16px;
             height: 2px;

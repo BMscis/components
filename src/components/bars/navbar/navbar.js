@@ -45,21 +45,13 @@ class Navbar extends HTMLElement{
         position:relative;
         top:0;
         left:0;
-        width:100vw;
+        width:80vw;
         height:3vh;
         display:flex;
         justify-content:flex-end;
         align-items:center;
-        backgrond:transparent;
-        padding: 0 calc(10% - 20px);
-        box-shadow:inset 0px 1px 12px 0px #191717;
-        background-image: radial-gradient(circle at bottom right, #2b0023,1%, transparent)
+        z-index:2;
     }
-        hr{
-            position:absolute;
-            width:100vw;
-            top:9vmin;
-        }
         </style>`
     }
     disconnectedCallback(){

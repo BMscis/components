@@ -18,20 +18,22 @@ class Logo extends HTMLElement{
         //console.log('Logo rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
+            <div class="logo"></div>
             `
     }
     get styledTemplate(){
         return `<style>
-        :host
+        :host{
+            width:14vh;
+            height:14vh;
+            margin:auto;
+            display:block;
+            position:relative;
+        }
+        .logo
          {
-            position: absolute;
-            z-index:3;
             transform: scale(var(--ggs,1))
             box-sizing: border-box;
-            top:3vh;
-            left:calc(50% - 10px);
-            display: flex;
-            justify-content: center;
             width: 20px;
             height: 20px;
             border-radius: 3px;
@@ -39,19 +41,21 @@ class Logo extends HTMLElement{
             filter: saturate(2) blur(0.2px);
             transform: rotate(45deg);
             transition:0.5s ease;
-            
+            position: absolute;
+            left: calc(50% - 10px);
+            top: calc(50% - 10px);
         }
-        :host(:hover){
+        .logo(:hover){
             cursor: pointer;
         }
-        :host(:hover)::after,:host(:hover)::before {
+        .logo(:hover)::after,.logo(:hover)::before {
             cursor: pointer;
             animation-name:flashlogo;
             animation-duration:1s;
             animation-fill-mode: both;
             animation-timing-function: linear;
         }
-        :host::after,:host::before{
+        .logo::after,.logo::before{
             content:'';
             clip-path: polygon(50% 26px, 26% 50%, 50% 70%, 0px 50%);
             height: 80px;
@@ -62,22 +66,22 @@ class Logo extends HTMLElement{
             background-repeat: no-repeat;
             
         }
-        :host::after {
+        .logo::after {
             
             top: -28.75px;
             left: -32px;
             transform: rotate(310deg);
         }
-        :host::before {
+        .logo::before {
             top: -30.45px;
             right: -32px;
             transform: rotate(133deg);
             filter: brightness(0.6);
         }
         @media only screen and (max-width: 800px){
-            :host{
+            .logo{
                 left:revert;
-                padding: auto;
+                //padding: auto;
                 right: calc(50% - 10px);
             }
         }

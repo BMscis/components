@@ -15,27 +15,19 @@ class StoryImages extends HTMLElement{
         return `
         <style>
         :host{
-            width:50%;
-            height:50%;
-            display:flex;
             position:relative;
         }
         img{
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            height:100%;
-            width:100vw;
+            height:calc(83vh * 0.5);
             position:relative;
-            padding:5px;
             transition:0.5s ease;
-            opacity:0.5;
+            //opacity:0.5;
         }
         img{
             cursor:pointer;
         }
         img:hover{
-            transform:scale(1.5)
+            //transform:scale(1.5)
         }
         </style>
         `

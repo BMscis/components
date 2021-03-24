@@ -35,9 +35,9 @@ class WhiteBoardBlock extends HTMLElement{
             backdrop-filter: blur(40px);
             background-size:cover;
             background-repeat:no-repeat;
-            z-index:0;
+            //z-index:0;
             transition:1s ease;
-            padding:20px;
+            //padding:20px;
 
         }
         </style>`
