@@ -7,6 +7,9 @@ class AnchorButton extends HTMLElement{
     get styleTemplate(){
         return `
         <style>
+        *{
+            outline:none;
+        }
         :host{
             background: linear-gradient(to right, #cc3e14,  #e2e22ca9);
             -webkit-background-clip: text;
@@ -18,7 +21,7 @@ class AnchorButton extends HTMLElement{
             font-family:ACBoldSemiCn;
             cursor: pointer;
             height: fit-content;
-            calc(83vh * 0.03);
+            calc(78vh * 0.03);
             z-index: 1;
         }
         :host(:hover) {

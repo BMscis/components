@@ -6,12 +6,15 @@ class H1 extends HTMLElement{
     get stylesTemplate(){
         return  `
         <style>
+            *{
+                outline:none;
+            }
             :host{
-                height:calc((83vh * 0.1) + (83vh * 0.05));
+                height:calc((78vh * 0.1) + (78vh * 0.05));
                 position:relative;
             }
             text{
-                font-size: calc(83vh * 0.1);
+                font-size: calc(78vh * 0.1);
                 text-align: center;
                 font-family: 'ACBlack';
                 background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
@@ -21,7 +24,7 @@ class H1 extends HTMLElement{
             }
             :host::after{
                 content:"${this.textAfter}";
-                font-size: calc(83vh * 0.05);
+                font-size: calc(78vh * 0.05);
                 font-family: 'ACBlack';
                 background: linear-gradient(to right, #cc3e14, yellowgreen);
                 -webkit-background-clip: text;

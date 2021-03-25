@@ -20,24 +20,25 @@ class Navbar extends HTMLElement{
     }
     connectedCallback(){
         //console.log('Navbar connected')
+        window.addEventListener('resize',e=>{
+            console.log('resizing nav')
+            var navbar = document.querySelector('es-navbar')
+            if(window.outerWidth <= 850 && navbar != null){
+                document.body.removeChild(navbar)
+            }
+            if(window.outerWidth > 850 && navbar === null){
+                var nav = document.createElement('es-navbar')
+                document.body.prepend(nav)
+            }
+        })
         this.render()
     }
     render(){
         //console.log('Navbar rendering')
-        var htmlmobi = document.querySelector("html")
-        if(htmlmobi == true || htmlmobi.clientWidth < 800){
-            this.shadow.innerHTML =  `
-            ${this.styledTemplate}
-            <es-logo></es-logo>
-            <es-label text='Welcome to espii club.' textafter=''></es-label>
-            `
-        }
-        else{
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <es-label text='Welcome to espii club.' textafter=''></es-label>
             `
-        }
     }
     get styledTemplate(){
         return `<style>

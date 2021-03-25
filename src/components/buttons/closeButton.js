@@ -38,6 +38,9 @@ class CloseButton extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
+        *{
+            outline:none;
+        }
         :host {
             box-sizing: border-box;
             position: relative;

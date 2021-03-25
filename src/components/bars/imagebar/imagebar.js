@@ -64,6 +64,9 @@ class Imagebar extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
+        *{
+            outline:none;
+        }
         :host{
             cursor:pointer;
             top:0;
@@ -118,7 +121,7 @@ class Imagebar extends HTMLElement{
             opacity:1;
             filter: drop-shadow(2px 4px 6px black) saturate(1);
         }
-        @media only Screen and (max-width:800px){
+        @media only Screen and (max-width:850px){
             img{
                 height:73vw;
                 width:73vw;

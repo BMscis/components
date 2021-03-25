@@ -18,7 +18,7 @@ class StoryImages extends HTMLElement{
             position:relative;
         }
         img{
-            height:calc(83vh * 0.5);
+            height:calc(78vh * 0.5);
             position:relative;
             transition:0.5s ease;
             //opacity:0.5;

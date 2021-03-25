@@ -67,14 +67,17 @@ class StoryBackface extends HTMLElement{
         ::-webkit-scrollbar {
             width: 0;
         }
+        *{
+            outline:none;
+        }
         :host{
             display: flex;
             flex-direction:column;
             width: calc(80vw * 0.85);
-            height: calc(83vh * 0.9);
+            height: calc(78vh * 0.9);
             padding: 0;
             backdrop-filter: blur(40px);
-            background-image: linear-gradient(91deg, transparent, #800E11, #e51900 -15vmin, transparent 0vmin);
+            background-image: linear-gradient(91deg, transparent, #850E11, #e51900 -15vmin, transparent 0vmin);
             transform-style:preserve-3d;
             overflow:hidden;
             position:relative;
@@ -92,7 +95,7 @@ class StoryBackface extends HTMLElement{
         }
         slot{
             width: 100%;
-            height: calc(83vh * 0.9);
+            height: calc(78vh * 0.9);
             position:relative;
             display:flex;
             flex-direction: column;
@@ -121,9 +124,9 @@ class StoryBackface extends HTMLElement{
                 opacity:0;
             }
         }
-        @media only Screen and (max-width:800px){
+        @media only Screen and (max-width:850px){
             :host{
-                width:100vw;
+                width:95vw;
             }
         }
   

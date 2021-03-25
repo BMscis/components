@@ -29,12 +29,16 @@ class P1 extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
+        *{
+            outline:none;
+        }
         :host{
             width: fit-content;
             position: relative;
             font-family:ACLight;
             color: palegoldenrod;
-            font-size: calc(83vh * 0.025);
+            font-size: calc(78vh * 0.025);
+            padding:10px;
         }
         </style>`
     }

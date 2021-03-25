@@ -26,7 +26,7 @@ class Toolbar extends HTMLElement{
         return `<style>
         :host{
             height:10vmin;
-            width:100vw;
+            width:95vw;
             //z-index:3;
             position:fixed;
             bottom:0;

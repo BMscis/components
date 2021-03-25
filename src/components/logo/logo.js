@@ -78,10 +78,9 @@ class Logo extends HTMLElement{
             transform: rotate(133deg);
             filter: brightness(0.6);
         }
-        @media only screen and (max-width: 800px){
+        @media only screen and (max-width: 850px){
             .logo{
                 left:revert;
-                //padding: auto;
                 right: calc(50% - 10px);
             }
         }

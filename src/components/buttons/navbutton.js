@@ -6,6 +6,9 @@ class Navbutton extends HTMLElement{
     get styleTemplate(){
         return `
         <style>
+        *{
+            outline:none;
+        }
             :host{
                 display: grid;
                 white-space: nowrap;
@@ -13,6 +16,8 @@ class Navbutton extends HTMLElement{
                 cursor:pointer;
                 transition:0.5s ease;
                 margin-bottom: 1vh;
+                height: 4vh;
+                margin: 3vh;
             }
             :host([active]){
                 background: linear-gradient(to right, #c30047, #1a71ff);
@@ -40,6 +45,7 @@ class Navbutton extends HTMLElement{
                 cursor:pointer;
                 margin:0;
                 padding:0;
+                height: 3vh;
             }
             :host([active]) button{
                 -webkit-background-clip: text;
@@ -59,19 +65,32 @@ class Navbutton extends HTMLElement{
     }
     connectedCallback(){
         this.addEventListener('click',e=>{
+            if(this.hasAttribute('active')){
+                return
+            }
             if(this.hasAttribute('inactive')){
                 var activeNavbutton = document.querySelector("es-sidebar").shadowRoot.querySelector("es-navbutton[active]")
                 activeNavbutton.removeAttribute('active')
                 activeNavbutton.setAttribute('inactive','')
                 this.removeAttribute('inactive')
                 this.setAttribute('active','')
-                var businesscard = document.querySelector('es-carousel').shadowRoot.querySelector("es-businesscard");
-                businesscard.setAttribute('text',this.text)
+                if(window.outerWidth > 850){
+                    var businesscard = document.querySelector('es-carousel').shadowRoot.querySelector("es-businesscard");
+                    businesscard.setAttribute('text',this.text)
+                }
                 
             }
-            if(this.hasAttribute('active')){
-                return
+
+            if(window.outerWidth < 850){
+                var carousel = document.querySelector('es-carousel')
+                if(this.text === 'Contact Us'){
+                    carousel.setAttribute('mobibusinesscard','Contact Us')
+                }
+                if(this.text === 'Portfolio'){
+                    carousel.setAttribute('mobibusinesscard','Portfolio')
+                }
             }
+
         })
         this.render();
     }

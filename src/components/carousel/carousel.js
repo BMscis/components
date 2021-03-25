@@ -14,7 +14,7 @@ class Carousel extends HTMLElement {
     }
     //attributes
     static get observedAttributes() {
-        return ['width', 'nextwidth', 'backface','resize']
+        return ['width', 'nextwidth', 'resize','mobibusinesscard']
     }
     attributeChangedCallback(prop, oldVal, newVal) {
         //console.log('Carousel change')
@@ -22,28 +22,21 @@ class Carousel extends HTMLElement {
             case 'width':
                 //console.log('carousel width change')
                 return
-            case 'backface':
-                if (newVal == 'true') {
-                    //console.log('backface is true.')
-                    this.render(true)
-                    return
-                }
-                else {
-                    return
-                }
             case 'resize':
                 if(newVal == 'true' && oldVal != newVal){
                     //console.log('Carousel resize')
-                    this.resize = newVal
+                    this.resizeCar()
                     return
                 }
                 if(newVal == 'false' && oldVal != newVal){
-                    this.resize = newVal
                     return
                 }
                 else{
                     return
                 }
+            case 'mobibusinesscard':
+                this.render(newVal)
+                return
         }
 
     }
@@ -55,26 +48,15 @@ class Carousel extends HTMLElement {
         //console.log('Carousel set width')
         return this.setAttribute('width')
     }
-    get backface() {
-        //console.log('Carousel get backface')
-        return this.getAttribute('backface')
-    }
-    set backface(val) {
-        //console.log('Carousel set backface')
-        return this.setAttribute('backface', val)
-    }
     get resize(){
         return this.getAttribute('resize')
     }
     set resize(val){
         if(val === 'true'){
-            this.setAttribute('resize', val)
-            this.resizeCar()
-            this.setAttribute('resize','false')
-            return
+            return 
         }
         if(val === 'false'){
-            return this.setAttribute('resize',val)
+            return 
         }
     }
     setImages() {
@@ -84,40 +66,66 @@ class Carousel extends HTMLElement {
         return
     }
     resizeCar(){
+        var html = document.querySelector('html')
         //console.log('RESIZING')
-        var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
-        //var navbar = document.querySelector('es-navbar')
-        var prevButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-previous")
-        var nextButton = document.querySelector("body > es-carousel").shadowRoot.querySelector("es-next")
+        function detectMob() {
+            const toMatch = [
+                /Android/i,
+                /webOS/i,
+                /iPhone/i,
+                /iPad/i,
+                /iPod/i,
+                /BlackBerry/i,
+                /Windows Phone/i
+            ];
         
-        story.setAttribute('resize', 'true')
-        //navbar.setAttribute('render','true')
-        prevButton.setAttribute('move','')
-        nextButton.setAttribute('move','')
+            return toMatch.some((toMatchItem) => {
+                return navigator.userAgent.match(toMatchItem);
+            });
+        }
+        if(html.getAttribute('mobi') === "true"){
+            var navi  = detectMob()
+            html.setAttribute('mobi', navi)
+            if(navi === true || window.outerWidth < 850){
+                this.render(true)
+            }
+            if(navi === false){
+                this.render(false)
+            }
+        }
+        if(html.getAttribute('mobi') === 'false'){
+            var navi  = detectMob()                
+            html.setAttribute('mobi', navi)
+            if(navi === true || window.outerWidth < 850){
+                this.render(true)
+            }
+            else{
+                this.render(false)
+            }
+        }
         return
     }
     connectedCallback() {
         //console.log('Carousel connected')
-        this.render(false)
+        window.addEventListener('resize',e=>{
+            //console.log('@ WINDOW RESIZE')
+            this.setAttribute('resize', 'true')
+            this.setAttribute('resize', 'false')
+            return
+        })
+        if(document.querySelector('html').getAttribute('mobi' === 'true') || window.outerWidth < 850){
+            this.render(true)
+        }
+        else{
+            this.render(false)
+        }
         this.disconnectedCallback()
     }
     render(val) {
-        //console.log('Carousel rendered')
-        var cWidth = window.innerWidth
-        //console.log(cWidth)
-        if (val == true) {
+        //mobile
+        if(val == true) {
             this.shadow.innerHTML = `
             ${this.styledTemplate}
-            <es-story h1='3D' h2='Design ' img=${coa} ${this.setImages()} active class="0"></es-story>
-            <es-story h1='Web ' h2='Development ' img=${webdev} class="1"                ></es-story>
-            <es-story h1='Graphic' h2='Design' img=${me} class="2"               ></es-story>
-            <es-story h1='UI/UX' h2='Design' img=${stairs} class="3"               ></es-story>
-        `
-        }
-        else {
-            this.shadow.innerHTML = `
-            ${this.styledTemplate}
-            <es-businesscard text='Portfolio'></es-businesscard>
             <es-previous></es-previous>
             <es-story h1='3D' h2='Design ' img=${coa} active class="0" ptext="Get access to hyper-realistic 3D designs with real-time animation."></es-story>
             <es-story h1='Web ' h2='Development ' img=${webdev} class="1"  ptext='create modern websites '></es-story>
@@ -125,15 +133,47 @@ class Carousel extends HTMLElement {
             <es-story h1='UI/UX' h2='Design' img=${stairs} class="3" ptext="Create custom user-friendly interfaces with custom widgets."></es-story>
             <es-next><es-next>
         `}
+        //closed 
+        if(val == false) {
+            this.shadow.innerHTML = `
+            ${this.styledTemplate}
+            <es-businesscard ></es-businesscard>
+            <es-previous></es-previous>
+            <es-story h1='3D' h2='Design ' img=${coa} active class="0" ptext="Get access to hyper-realistic 3D designs with real-time animation."></es-story>
+            <es-story h1='Web ' h2='Development ' img=${webdev} class="1"  ptext='create modern websites '></es-story>
+            <es-story h1='Graphic' h2='Design' img=${me} class="2" ptext="Visualize your idea and bring it to life with awsome designs"></es-story>
+            <es-story h1='UI/UX' h2='Design' img=${stairs} class="3" ptext="Create custom user-friendly interfaces with custom widgets."></es-story>
+            <es-next><es-next>
+        `}
+        if(val === 'Contact Us'){
+            this.shadow.innerHTML = `
+            <es-businesscard text='Contact Us'></es-businesscard>
+            `
+        }
+        if(val === 'Portfolio'){
+            this.shadow.innerHTML = `
+            ${this.styledTemplate}
+            <es-previous></es-previous>
+            <es-story h1='3D' h2='Design ' img=${coa} active class="0" ptext="Get access to hyper-realistic 3D designs with real-time animation."></es-story>
+            <es-story h1='Web ' h2='Development ' img=${webdev} class="1"  ptext='create modern websites '></es-story>
+            <es-story h1='Graphic' h2='Design' img=${me} class="2" ptext="Visualize your idea and bring it to life with awsome designs"></es-story>
+            <es-story h1='UI/UX' h2='Design' img=${stairs} class="3" ptext="Create custom user-friendly interfaces with custom widgets."></es-story>
+            <es-next><es-next>
+        `
+        }
     }
 
     get styledTemplate() {
         return `<style>
+        *{
+            outline:none;
+        }
         :host{
             position:absolute;
-            top:17vh;
-            width:100vw;
-            height:83vh;
+            top:20vh;
+            left:0;
+            width:95vw;
+            height:78vh;
             display: flex;
             flex-direction:row;
             perspective: 600px;
@@ -151,9 +191,9 @@ class Carousel extends HTMLElement {
             //backdrop-filter: blur(15px);
 
         }
-        @media only Screen and (max-width:800px){
+        @media only Screen and (max-width:850px){
             :host{
-                
+                    transform: scale(0.8);
             }
         }
         </style>

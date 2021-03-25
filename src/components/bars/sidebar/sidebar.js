@@ -53,20 +53,20 @@ class Sidebar extends HTMLElement{
             box-sizing: border-box;
         }
         :host{
-        width:40vh;
+        //width:40vh;
         height:12vh;
-        backdrop-filter:blur(5px);
+        //backdrop-filter:blur(5px);
         z-index:2;
         position:relative;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
+        //box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
         border-radius:2px;
-        display:block;
+        display:flex;
         background:transparent;
     }
     :host([expand]){
         left:0;
     }
-    @media only Screen and (max-width:800px){
+    @media only Screen and (max-width:850px){
         :host{
         }
     }

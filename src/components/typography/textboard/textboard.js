@@ -35,9 +35,8 @@ class Textboard extends HTMLElement{
         :host([hide]){
             display: none
         }
-         @media only screen and (max-width: 800px){
+         @media only screen and (max-width: 850px){
             :host{
-                display:none;
             }
             text{
                 font-size:5vmin;

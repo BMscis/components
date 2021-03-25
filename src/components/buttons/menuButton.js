@@ -41,6 +41,9 @@ class MenuButton extends HTMLElement {
     }
     get styledTemplate() {
         return `<style>
+        *{
+            outline:none;
+        }
         :host {
             color: #01802c;
             position: absolute;

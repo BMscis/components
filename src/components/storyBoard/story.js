@@ -15,6 +15,7 @@ import four from '../../assets/img/jasenalogo.png'
 import five from '../../assets/img/Asset5.png'
 import six from '../../assets/img/Asset6.png'
 import seven from '../../assets/img/phone.png'
+import { initial } from 'lodash';
 
 export class Story extends HTMLElement {
     constructor() {
@@ -55,7 +56,7 @@ export class Story extends HTMLElement {
                         return
                 }
             case 'expandstory':
-                switch(this.hasAttribute('expandstory')){
+                switch (this.hasAttribute('expandstory')){
                     case true:
                         //console.log('STORY: '+ this.getAttribute('class') +' EXPAND')
                         this.xpand()
@@ -65,7 +66,7 @@ export class Story extends HTMLElement {
                     case false:
                         return
                 }
-                case 'close':
+            case 'close':
                 //console.log('STORY: '+ this.getAttribute('class') +' CONTRACT')
                 this.cloze()
                 return
@@ -150,20 +151,32 @@ export class Story extends HTMLElement {
         return this.getAttribute('imgset')
     }
     set imgset(val) {
-        for(var i = 0; i < val.length; i++){
-             ////console.log(i)
-             let img = document.createElement('es-imagebar')
-             img.setAttribute('src', val[i][0])
-             img.setAttribute('text',val[i][1])
-             //console.log(this.shadowRoot.lastElementChild)
-             this.shadowRoot.lastElementChild.shadowRoot.lastElementChild.appendChild(img)
-         }
-        return 
+        for (var i = 0; i < val.length; i++) {
+            ////console.log(i)
+            let img = document.createElement('es-imagebar')
+            img.setAttribute('src', val[i][0])
+            img.setAttribute('text', val[i][1])
+            //console.log(this.shadowRoot.lastElementChild)
+            this.shadowRoot.lastElementChild.shadowRoot.lastElementChild.appendChild(img)
+        }
+        return
     }
-    get ptext(){
+    get firstTouch(){
+        return this.getAttribute('firsttouch')
+    }
+    set firstTouch(val){
+        return this.setAttribute('firsttouch',val)
+    }
+    get lastTouch(){
+        return this.getAttribute('lasttouch')
+    }
+    set lastTouch(val){
+        return this.setAttribute('lasttouch',val)
+    }
+    get ptext() {
         return this.getAttribute('ptext')
     }
-    set ptext(val){
+    set ptext(val) {
         return this.setAttribute('ptext')
     }
     get active() {
@@ -178,9 +191,15 @@ export class Story extends HTMLElement {
     set inactive(val) {
         return this.setAttribute('inactive', '')
     }
+    get touchMove(){
+        return this.getAttribute('touchmove')
+    }
+    set touchMove(val){
+        return this.setAttribute('touchmove', val)
+    }
     setup() {
-        // fullWidth = clientwidth
-        // textBoardSpace = 20% of clientwidth
+        // fullWidth = outerWidth
+        // textBoardSpace = 20% of outerWidth
         // storySpace = offset to left of screen
         // storyWidth = storywidth
         // storyOffset = story offset
@@ -190,30 +209,33 @@ export class Story extends HTMLElement {
         // expandLeft = expand story positon
         // cd = close position
 
-        var fullWidth = window.innerWidth
-        var textBoardSpace = Math.round(0.2*fullWidth)
+        var fullWidth = window.outerWidth * 0.95
+        var textBoardSpace = Math.round(0.2 * fullWidth)
         var storyOffset = this.offsetLeft
-        if (fullWidth <= 800 ){
-            var storySpace = Math.round(fullWidth)
-            var expandLeft = Math.round(-storyOffset )
-        }
-        else{
-            var storySpace = Math.round(fullWidth + textBoardSpace)
-            var expandLeft = Math.round(-storyOffset + textBoardSpace)
-        }
+        // if (fullWidth <= 850) {
+        //     var storySpace = Math.round(fullWidth)
+        //     var expandLeft = Math.round(-storyOffset)
+        // }
+        // else {
+        //     var storySpace = Math.round(fullWidth + textBoardSpace)
+        //     var expandLeft = Math.round(-storyOffset + textBoardSpace)
+        // }
+        var storySpace = Math.round(fullWidth)
+        var expandLeft = Math.round(-storyOffset)
         var storyWidth = 300
-        var centerPosition = Math.round((storySpace - storyWidth)/2)
-        var cPosition = Math.round((fullWidth-storyWidth)/2)
+        var centerPosition = Math.round((storySpace - storyWidth) / 2)
+        var cPosition = Math.round((fullWidth - storyWidth) / 2)
 
-        this.cssMove = centerPosition + 'px'
-        this.setAttribute('storyOffset', storyOffset)
+        this.setAttribute('cssmove', centerPosition + 'px')
+        this.setAttribute('storyoffset', storyOffset)
         this.setAttribute('expandleft', expandLeft)
-        this.setAttribute('Cposition',cPosition)
+        this.setAttribute('Cposition', cPosition)
         switch (this.hasAttribute('active')) {
             case true:
                 this.moveActive()
                 return
             case false:
+                this.setAttribute('inactive','')
                 this.moveInactive()
         }
     }
@@ -224,7 +246,7 @@ export class Story extends HTMLElement {
                 var cssmove = this.cssMove
                 var moveStory = parseInt(cssmove) - 300
                 var moveStoryPx = moveStory + 'px'
-                this.cssMove = moveStoryPx
+                this.setAttribute('cssmove',moveStoryPx)
                 this.moveActive()
                 var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
                 storyInacitve.forEach(element => {
@@ -235,7 +257,7 @@ export class Story extends HTMLElement {
                 //console.log('STORY: '+ this.getAttribute('class')+ 'moveLEFT')
                 var moveStory = parseInt(this.cssMove) + 300
                 var moveStoryPx = moveStory + 'px'
-                this.cssMove = moveStoryPx
+                this.setAttribute('cssmove',moveStoryPx)
                 this.moveActive()
                 var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
                 storyInacitve.forEach(element => {
@@ -244,20 +266,20 @@ export class Story extends HTMLElement {
 
         }
     }
-    xpand(){
-        var fullWidth = window.innerWidth
-        var textBoardSpace = Math.round(0.2*fullWidth)
-        if (fullWidth <= 800){
+    xpand() {
+        var fullWidth = window.outerWidth 
+        var textBoardSpace = Math.round(0.2 * fullWidth)
+        if (fullWidth <= 850) {
             var storyOffset = this.offsetLeft
-            var expandLeft = Math.round(-storyOffset )
+            var expandLeft = Math.round(-storyOffset)
         }
-        else{
+        else {
             var storyOffset = this.offsetLeft
             //var expandLeft = Math.round(-storyOffset + textBoardSpace)
-            var expandLeft = Math.round(-storyOffset )
+            var expandLeft = Math.round(-storyOffset)
         }
         var expandLeftPx = expandLeft + 'px'
-        this.cssMove  = expandLeftPx
+        this.setAttribute('cssmove',expandLeftPx)
         this.moveActive()
         var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
         storyInacitve.forEach(element => {
@@ -265,25 +287,25 @@ export class Story extends HTMLElement {
         });
         return
     }
-    cloze(){
-        var fullWidth = window.innerWidth
-        var textBoardSpace = Math.round(0.2*fullWidth)
+    cloze() {
+        var fullWidth = window.outerWidth * 0.95
+        var textBoardSpace = Math.round(0.2 * fullWidth)
         var storyOffset = this.offsetLeft
         var storyWidth = 300
 
-        if (fullWidth <= 800 ){
-            var storySpace = Math.round(fullWidth)
-        }
-        else{
-            var storySpace = Math.round(fullWidth + textBoardSpace)
-        }
-
-        var centerPosition = Math.round((storySpace - storyWidth)/2) - storyOffset
+        // if (fullWidth <= 850) {
+        //     var storySpace = Math.round(fullWidth)
+        // }
+        // else {
+        //     var storySpace = Math.round(fullWidth + textBoardSpace)
+        // }
+        var storySpace = Math.round(fullWidth)
+        var centerPosition = Math.round((storySpace - storyWidth) / 2) - storyOffset
         var centerPositionPx = centerPosition + 'px'
 
         this.storyOffset = storyOffset
 
-        this.cssMove = centerPositionPx
+        this.setAttribute('cssmove',centerPositionPx)
         this.removeAttribute('expandstory')
         this.removeAttribute('backface')
         this.moveActive()
@@ -293,31 +315,35 @@ export class Story extends HTMLElement {
             element.setAttribute('cssmove', centerPositionPx)
         });
     }
-    resize(){
-        var fullWidth = window.innerWidth
-        var textBoardSpace = Math.round(0.2*fullWidth)
+    resize() {
+        //console.log(window.innerHeight)
+        var fullWidth = window.outerWidth * 0.95
+        var textBoardSpace = Math.round(0.2 * fullWidth)
         var storyOffset = this.offsetLeft
         var storyWidth = 300
 
-        if (fullWidth <= 800 ){
-            var storySpace = Math.round(fullWidth)
+        // if (fullWidth <= 850 ){
+        //     var storySpace = Math.round(fullWidth)
+        // }
+        // else {
+        //     var storySpace = Math.round(fullWidth + textBoardSpace)
+        // }
+        var storySpace = Math.round(fullWidth)
+        if(this.hasAttribute('active')){
+            var centerPosition = Math.round((storySpace - storyWidth) / 2) - storyOffset
+            var centerPositionPx = centerPosition + 'px'
+            this.cssMove = centerPositionPx
+            this.setAttribute('storyoffset', storyOffset)
+            this.moveActive()
+            var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
+            storyInacitve.forEach(element => {
+                 element.setAttribute('cssmove', centerPositionPx)
+            });
         }
-        else{
-            var storySpace = Math.round(fullWidth + textBoardSpace)
-        }
-        var centerPosition = Math.round((storySpace - storyWidth)/2) - storyOffset
-        var centerPositionPx = centerPosition + 'px'
 
-        this.cssMove = centerPositionPx
-        this.storyOffset = storyOffset
-        
-        this.moveActive()
 
-        var storyInacitve = document.querySelector('es-carousel').shadow.querySelectorAll('es-story:not([active])')
-        storyInacitve.forEach(element => {
-            element.setAttribute('cssmove', centerPositionPx)
-        });
-        
+
+
         //console.log("RESIZED")
         return
     }
@@ -326,12 +352,12 @@ export class Story extends HTMLElement {
         //console.log('STORY: ' + this.getAttribute('class') +" transform: translateX(" + cssmove + ") scale(0.8)")
         if (this.hasAttribute('active')) {
             anime({
-                targets:this,
-                translateX:parseInt(cssmove),
-                rotateY:0,
-                scale:1,
-                duration:200,
-                easing:'easeOutQuart'
+                targets: this,
+                translateX: parseInt(cssmove),
+                rotateY: 0,
+                scale: 1,
+                duration: 200,
+                easing: 'easeOutQuart'
             })
             // this.animate([
             //     { transform: "translateX(" + cssmove + ")" }
@@ -346,12 +372,12 @@ export class Story extends HTMLElement {
         }
         else {
             anime({
-                targets:this,
-                translateX:parseInt(cssmove),
-                scale:0.7,
-                rotateY:45,
-                easing:'easeOutQuart',
-                duration:200
+                targets: this,
+                translateX: parseInt(cssmove),
+                scale: 0.7,
+                rotateY: 45,
+                easing: 'easeOutQuart',
+                duration: 200
             })
             // this.animate([
             //     { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
@@ -370,12 +396,12 @@ export class Story extends HTMLElement {
         let cssmove = this.cssMove
         //console.log('STORY: ' + this.getAttribute('class') + " INACTIVE-TRANSFORM: translateX(" + cssmove + ") scale(0.8)")
         anime({
-            targets:this,
-            translateX:parseInt(cssmove),
-            scale:0.7,
-            rotateY:20,
-            easing:'easeOutQuart',
-            duration:200
+            targets: this,
+            translateX: parseInt(cssmove),
+            scale: 0.7,
+            rotateY: 20,
+            easing: 'easeOutQuart',
+            duration: 200
         })
         // this.animate([
         //     { transform: "translateX(" + cssmove + ") scale3d(0.7,0.7,0.7) rotateY(45deg)" }
@@ -390,12 +416,57 @@ export class Story extends HTMLElement {
     }
     connectedCallback() {
         //console.log('story connected: ' + this.classList)
+        // Handle the start of gestures
+        window.addEventListener('resize',e=>{
+            //console.log('resizing')
+            this.setAttribute('resize','true')
+
+        })
+        this.addEventListener('touchstart',e=>{
+            //console.log('start')
+            if(this.hasAttribute('expandstory')){
+                return
+            }
+            else{
+                var touches = e.changedTouches
+                this.firstTouch = touches[0].screenX
+                this.touchMove = false
+            }
+            return
+        })
+        this.addEventListener('touchmove',e=>{
+            //console.log('move')
+            this.touchMove = true
+        })
+        this.addEventListener('touchend',e=>{
+            console.log('end')
+            if(this.hasAttribute('expandstory')){
+                return
+            }
+            else{
+            var touches = e.changedTouches
+            this.lastTouch = touches[touches.length - 1].screenX
+            var firstTouch = this.firstTouch
+            var lastTouch = touches[touches.length - 1].screenX
+            if(firstTouch > lastTouch && this.touchMove === 'true' ){
+                document.querySelector('es-carousel').shadowRoot.querySelector('es-next').click()
+            }
+            if(firstTouch < lastTouch && this.touchMove === 'true' ){
+                document.querySelector('es-carousel').shadowRoot.querySelector('es-previous').click()
+
+            }
+        }
+            
+        })
+        this.addEventListener('touchcancel',e=>{
+            //console.log('cancel')
+        })
         this.render();
         this.disconnectedCallback()
     }
     static get observedAttributes() {
         return [
-            'active', 'move', 'cssmove', 'expandstory', 'close', 'resize', 'expandleft','imgset','ptext'
+            'active', 'move', 'cssmove', 'expandstory', 'close', 'resize', 'expandleft', 'imgset', 'ptext'
         ];
     }
     render() {
@@ -409,11 +480,11 @@ export class Story extends HTMLElement {
             </div>
             <es-storybackface ></es-storybackface>
             `
-            if(this.classList.contains('0')){
-                this.imgset = [[one, 'Organization Logos'], [two,'Coart Of Arms'],[three,'Corporate Logos'],[four,'Production Logos']]
+            if (this.classList.contains('0')) {
+                this.imgset = [[one, 'Organization Logos'], [two, 'Coart Of Arms'], [three, 'Corporate Logos'], [four, 'Production Logos']]
             }
-            if(this.classList.contains('1')){
-                this.imgset = [[five, 'Social Media Design'],[six,'App Design'],[seven,'App Design']]
+            if (this.classList.contains('1')) {
+                this.imgset = [[five, 'Social Media Design'], [six, 'App Design'], [seven, 'App Design']]
             }
         }
         else {
@@ -432,6 +503,7 @@ export class Story extends HTMLElement {
         return `<style>
         *{
             box-sizing:border-box;
+            outline:none;
         }
         ::-webkit-scrollbar {
             width: 0;
@@ -442,7 +514,7 @@ export class Story extends HTMLElement {
         max-width:300px;
         position: relative;
         border-radius: 3px;
-        height:calc(83vh * 0.9);
+        height:calc(78vh * 0.9);
         background-color: #b1b1;
         background-position: bottom;
         background-repeat: no-repeat;
@@ -506,18 +578,18 @@ export class Story extends HTMLElement {
     :host([expandstory]){
         background-image:none;
         backdrop-filter: blur(5px);
-        min-width:calc(100vw * 0.8);
-        max-width:calc(100vw * 0.8);
+        min-width:calc(95vw * 0.8);
+        max-width:calc(95vw * 0.8);
         flex-wrap: wrap;
         justify-content: end;
         flex-direction: column;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
         background:border-box;
     }
-    @media only Screen and (max-width:800px){
+    @media only Screen and (max-width:850px){
         :host([expandstory]){
-            max-width:100vw;
-            min-width:100vw;
+            max-width:95vw;
+            min-width:95vw;
             flex-wrap:nowrap;
         }
         div{

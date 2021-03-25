@@ -15,10 +15,10 @@ class Businesscard extends HTMLElement {
             case 'text':
                 if(newVal != oldVal){
                     this.show()
-                    this.text = newVal
                     this.render()
                     return
                 }
+                return
         }
     }
     get text(){
@@ -35,6 +35,10 @@ class Businesscard extends HTMLElement {
     }
     connectedCallback() {
         //console.log('businesscard connected')
+        if(this.getAttribute('text') === null){
+            var activeNavButton = document.querySelector("es-sidebar").shadowRoot.querySelector("es-navbutton[active]")
+            this.setAttribute('text',activeNavButton.getAttribute('text'))
+        }
         this.render()
     }
     render() {
@@ -70,44 +74,37 @@ class Businesscard extends HTMLElement {
 
        :host{
         position: absolute;
-        width: calc(100vw * 0.3);
-        height: calc(83vh * 0.5);
+        width: calc(95vw * 0.3);
+        height: calc(78vh * 0.5);
         display:flex;
         flex-direction:row;
         top:29vh;
-        //padding:20px;
+        left:5vw;
         border-radius: 10px;
-        //z-index: 1;
         background: transparent;
-        //border-top: 2px;
+        border-top: 2px;
         //border-top-style: dotted;
         //border-top-color: blueviolet;
-        //border-image: ${this.borderImage};
-        //border-image-slice: 8;
+        border-image: linear-gradient(to bottom right,#00368e 50%, transparent);
+        border-image-slice: 8;
         opacity:0;
         z-index:1;
         }
         .texture{
             position:absolute;
-            //background:black;
-            //filter:blur(20px);
             opacity:0.8;
             left:0;
             width: calc(100% - 20px);
             height:calc(100% - 20px);
-            //z-index:0;
         }
         .infocontainer, .labelcontainer{
             display:flex;
-            height:100%;
             flex-direction:column;
-            padding: 20px;
+            justify-content:space-evenly;
         }
         .labelcontainer{
-            width:30%;
         }
         .infocontainer{
-            width:70%
         }
         text{
             font-size:10vmin;
@@ -119,8 +116,7 @@ class Businesscard extends HTMLElement {
             filter: brightness(2);
             font-family: ACBlack;
             width:fit-content;
-            padding:20px;
-            
+            font-size:larger;            
         }
 
         a,p{
@@ -128,12 +124,12 @@ class Businesscard extends HTMLElement {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(2px 4px 6px white) invert(1);
+            margin:0;
         }
         label{
             color: silver;
             font-variant-caps: all-petite-caps;
             font-size: larger;
-            //z-index:1;
             background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -149,14 +145,12 @@ class Businesscard extends HTMLElement {
         address{
             color:gold;
             cursor:pointer;
-            padding: 20px 20px 30px 0;
         }
         :host([hide]){
             display: none
         }
-         @media only screen and (max-width: 800px){
+         @media only screen and (max-width: 850px){
             :host{
-                display:none;
             }
             text{
                 font-size:5vmin;

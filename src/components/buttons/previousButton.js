@@ -11,6 +11,9 @@ class PreviousButton extends HTMLElement {
     get styleTemplate() {
         return `
             <style>
+            *{
+                outline:none;
+            }
             :host{
                 cursor: pointer;
                 position: absolute;
@@ -18,8 +21,8 @@ class PreviousButton extends HTMLElement {
                 left:${this.cssX};
                 transform: scale(var(--ggs,1));
                 transform-origin: center;
-                width: calc(83vh * 0.05);
-                height: calc(83vh * 0.05);
+                width: calc(78vh * 0.05);
+                height: calc(78vh * 0.05);
                 border-image-slice: 8;
                 border-image-width: 7px;
                 transition: 0.5s ease;
@@ -29,8 +32,8 @@ class PreviousButton extends HTMLElement {
                 content: "";
                 position: absolute;
                 transform: scale(var(--ggs,1)) rotate(45deg);
-                width: calc(83vh * 0.05);
-                height: calc(83vh * 0.05);
+                width: calc(78vh * 0.05);
+                height: calc(78vh * 0.05);
                 border-left: 2px dotted;
                 border-radius: 100px;
                 cursor: pointer;
@@ -40,8 +43,8 @@ class PreviousButton extends HTMLElement {
                 content: "";
                 box-sizing: border-box;
                 position: absolute;
-                width: calc(83vh * 0.05);
-                height: calc(83vh * 0.05);
+                width: calc(78vh * 0.05);
+                height: calc(78vh * 0.05);
                 border-bottom: 7px inset;
                 border-left: 7px solid white;
                 border-radius:25%;
@@ -52,6 +55,11 @@ class PreviousButton extends HTMLElement {
             }
             :host(:hover){
                 transform: scaleY(1.5) scaleX(2);
+            }
+            @media only Screen and (max-width:850px){
+                :host{
+                    
+                }
             }
             </style>
         `
@@ -64,6 +72,9 @@ class PreviousButton extends HTMLElement {
     }
     connectedCallback() {
         //console.log('previousC')
+        window.addEventListener('resize',e=>{
+            this.setAttribute('move','')
+        })
         this.addEventListener('click', e => {
             //console.log('previous clicked')
             var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
@@ -72,22 +83,33 @@ class PreviousButton extends HTMLElement {
                     story.removeAttribute('active')
                     story.previousElementSibling.setAttribute('active', 'left')
                 }
+                return
             }
+            return
         })
         this.render()
     }
     move(){
-        var fullWidth = window.innerWidth
-        var textBoardSpace = 0.2*fullWidth
-        if (fullWidth <= 800){
-            var storySpace = fullWidth/2
-            nextToStoryBoard = 300/1.5
+        if(document.querySelector('html').mobi === 'true'){
+            this.setAttribute('hide','')
         }
         else{
-            var storySpace = Math.round((fullWidth + textBoardSpace)/2)
-            var nextToStoryBoard = 300/1.5
+            if(this.hasAttribute('hide')){
+                this.removeAttribute('hide','')
+            }
         }
-        
+        var fullWidth = window.outerWidth * 0.95
+        var textBoardSpace = 0.2*fullWidth
+        // if (fullWidth <= 850){
+        //     var storySpace = fullWidth/2
+        //     nextToStoryBoard = 300/1.5
+        // }
+        // else{
+        //     var storySpace = Math.round((fullWidth + textBoardSpace)/2)
+        //     var nextToStoryBoard = 300/1.5
+        // }
+        var storySpace = fullWidth/2
+        var nextToStoryBoard = 300/1.5
         var centerPosition = Math.round(storySpace - nextToStoryBoard)
         this.cssX = centerPosition + 'px'
     }
