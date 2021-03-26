@@ -85,18 +85,17 @@ class PreviousButton extends HTMLElement {
                 }
             }
         })
-        this.addEventListener('click',e=>{
-            //console.log('NEXT')
+        this.addEventListener('click', e => {
+            console.log('previous clicked')
             var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
-            if (story.nextElementSibling != document.querySelector('es-carousel').shadow.querySelector('es-next') ){
-                if (story.nextElementSibling){
-                //console.log('STORY: ' + story.getAttribute('class'))    
-                story.removeAttribute('active')
-                story.nextElementSibling.setAttribute('active','right')
+            if (story.previousElementSibling != document.querySelector('es-carousel').shadow.querySelector('es-previous')) {
+                if (story.previousElementSibling) {
+                    story.removeAttribute('active')
+                    story.previousElementSibling.setAttribute('active', 'left')
+                }
+                return
             }
             return
-        }
-        return
         })
         this.render()
 
