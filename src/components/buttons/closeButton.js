@@ -18,9 +18,15 @@ class CloseButton extends HTMLElement{
             var prevbutton = carousel.shadow.children[2]
             var textBoard = carousel.shadow.children[1]
             var nextbutton = carousel.shadow.lastChild
-            prevbutton.removeAttribute('hide','')
-            nextbutton.removeAttribute('hide','')
-            textBoard.removeAttribute('hide','')
+            if(document.querySelector('html').getAttribute('mobi') != 'true'){
+                prevbutton.removeAttribute('hide','')
+                nextbutton.removeAttribute('hide','')
+                textBoard.removeAttribute('hide','')
+            }
+            else{
+                console.log()
+            }
+
             var story = document.querySelector("es-carousel").shadowRoot.querySelector("es-story[active]")
             story.setAttribute('close','')
             carousel.removeAttribute('expand')

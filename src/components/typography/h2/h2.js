@@ -24,11 +24,11 @@ class H2 extends HTMLElement{
             :host([active]){
                 background: linear-gradient(to right, #c30047, #1a71ff);
                 -webkit-background-clip: text;
-                filter: brightness(2)
+                backdrop-filter: brightness(2)
                 opacity:1;
             }
             :host([inactive]){
-                filter:brightness(0.5);
+                backdrop-filter:brightness(0.5);
                 opacity:0.5;
             }
             :host(:hover){

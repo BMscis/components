@@ -113,7 +113,7 @@ class Businesscard extends HTMLElement {
             transition: 0.5s ease;
         }
         label, a, p{
-            filter: brightness(2);
+            backdrop-filter: brightness(2);
             font-family: ACBlack;
             width:fit-content;
             font-size:larger;            
@@ -123,7 +123,7 @@ class Businesscard extends HTMLElement {
             background: linear-gradient(to bottom right,#00368e 50%, transparent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 4px 6px white) invert(1);
+            backdrop-filter: drop-shadow(2px 4px 6px white) invert(1);
             margin:0;
         }
         label{
@@ -133,7 +133,7 @@ class Businesscard extends HTMLElement {
             background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: brightness(0.5);
+            backdrop-filter: brightness(0.5);
         }
         a{
             text-decoration: none;

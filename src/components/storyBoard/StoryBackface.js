@@ -76,7 +76,7 @@ class StoryBackface extends HTMLElement{
             width: calc(80vw * 0.85);
             height: calc(78vh * 0.9);
             padding: 0;
-            backdrop-filter: blur(40px);
+            backdrop-filter: blur(0px);
             background-image: linear-gradient(91deg, transparent, #850E11, #e51900 -15vmin, transparent 0vmin);
             transform-style:preserve-3d;
             overflow:hidden;
@@ -97,9 +97,11 @@ class StoryBackface extends HTMLElement{
             width: 100%;
             height: calc(78vh * 0.9);
             position:relative;
-            display:flex;
-            flex-direction: column;
-            overflow:scroll;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow-y:scroll;
+            scroll-snap-type: y mandatory;
+
         }
         .mouse-outline{
             fill:none;

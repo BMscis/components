@@ -519,7 +519,7 @@ export class Story extends HTMLElement {
         background-position: bottom;
         background-repeat: no-repeat;
         background-size: cover;
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(0px);
         transform-style: preserve-3d;
         transform-origin:center;
         transition: 0.5s ease;
@@ -551,7 +551,7 @@ export class Story extends HTMLElement {
         box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
         transform-style: preserve-3d;
         transform-origin:center;
-        filter: blur(0px);
+        backdrop-filter: blur(20px);
         border-right: 1px outset;
         border-left: 1px outset;
         border-image: linear-gradient(transparent, transparent,#e63380,transparent,transparent);
@@ -572,12 +572,12 @@ export class Story extends HTMLElement {
         transform-style: preserve-3d;
         transform-origin: top;
         -webkit-box-reflect: below;
-        filter:opacity(0.5);
+        backdrop-filter:opacity(0.5);
         z-index: -1;
     }
     :host([expandstory]){
         background-image:none;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(0px);
         min-width:calc(95vw * 0.8);
         max-width:calc(95vw * 0.8);
         flex-wrap: wrap;

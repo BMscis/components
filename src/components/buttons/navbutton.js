@@ -22,7 +22,7 @@ class Navbutton extends HTMLElement{
             :host([active]){
                 background: linear-gradient(to right, #c30047, #1a71ff);
                 -webkit-background-clip: text;
-                filter: brightness(2)
+                backdrop-filter: brightness(2)
                 opacity:1;
                 transition:0.5s ease;
             }

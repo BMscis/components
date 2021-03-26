@@ -62,6 +62,7 @@ class Sidebar extends HTMLElement{
         border-radius:2px;
         display:flex;
         background:transparent;
+        padding-bottom:20px;
     }
     :host([expand]){
         left:0;

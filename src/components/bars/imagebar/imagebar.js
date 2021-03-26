@@ -35,6 +35,10 @@ class Imagebar extends HTMLElement{
         //     this.scrollIntoView(alignToTop)
         //     //console.log('hover')
         // })
+        this.addEventListener('focusin',e=>{
+            console.log('focus')
+            this.setAttribute('hover','')
+        })
         this.render()
     }
     render(){
@@ -42,12 +46,12 @@ class Imagebar extends HTMLElement{
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <img src=${this.src}>
-            <span class="tooltiptext">${this.text}</span>
-            <div class="descriptiontext">
+            <es-p class="tooltiptext">${this.text}</es-p>
+            <es-p class="descriptiontext">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             Ut enim ad minim veniam.
-            </div>
+            </es-p>
             `
     }
     get src(){
@@ -66,73 +70,71 @@ class Imagebar extends HTMLElement{
         return `<style>
         *{
             outline:none;
+            user-select:none;
         }
         :host{
-            cursor:pointer;
-            top:0;
             transition: 0.5s ease;
-            opacity:0.5;
             position:relative;
+            height: calc(78vh * 0.9);
+            display: flex;
+            justify-content: center;
+            margin:10px;
+            scroll-snap-align: start;
+            z-index:1;
+            user-select:none;
+
         }
         img{
-            height:73vh;
-            width:73vh;
+            height: calc(78vh * 0.5);
+            //width:73vh;
+            scroll-snap-align: start;
+            z-index:0;
+            user-select:none;
+
         }
         .tooltiptext{
-            opacity:0;
-            color: #fff;
-            text-align: center;
             border-radius: 6px;
             position: absolute;
             left: calc(500px + 120px);
             top: 30%;
-            white-space: pre;
             transition:1s ease-in-out;
-            font-family: ACSemiLight;
-            background: radial-gradient(#ffffff 28%, transparent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(-27px 22px 5px black) saturate(0.5);
         }
         .descriptiontext{
-            opacity:0;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
             position: absolute;
-            width:70%;
             left: calc(500px + 60px);
             top: 40%;
             transition:1s ease-in-out;
-            font-family: ACSemiLight;
-            background: radial-gradient(#ffffff 28%, transparent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(-27px 22px 5px black) saturate(0.5);
+        }
+        :host([hover]){
+            opacity:1;
         }
         :host(:hover){
             opacity:1;
         }
         :host(:hover) .tooltiptext{
             opacity:1;
-            filter: drop-shadow(2px 4px 6px black) saturate(1);
         }
         :host(:hover) .descriptiontext{
             opacity:1;
-            filter: drop-shadow(2px 4px 6px black) saturate(1);
         }
         @media only Screen and (max-width:850px){
             img{
-                height:73vw;
-                width:73vw;
+                //height:73vw;
+                //width:73vw;
+            }
+            :host{
+                opacity:1;
+                justify-content:flex-end;
             }
             .tooltiptext{
-                top: 50vw;
-                left: 60%;
+                top: 40vh;
+                left: 0%;
+                opacity:1;
             }
             .descriptiontext{
-                top: 55vw;
-                left: 10%;
+                top: 45vh;
+                left: 0%;
+                opacity:1;
             }
         }
         </style>`

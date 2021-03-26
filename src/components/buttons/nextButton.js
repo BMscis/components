@@ -72,8 +72,19 @@ class NextButton extends HTMLElement{
         return this.setAttribute('cssX',val)
     }
     connectedCallback(){
+        if(document.querySelector('html').getAttribute('mobi') === 'true'){
+            this.setAttribute('hide','')
+        }
         window.addEventListener('resize',e=>{
             this.setAttribute('move','')
+            if(document.querySelector('html').getAttribute('mobi') === 'true'){
+                this.setAttribute('hide','')
+            }
+            else{
+                if(this.hasAttribute('hide')){
+                    this.removeAttribute('hide')
+                }
+            }
         })
         this.addEventListener('click',e=>{
             //console.log('NEXT')

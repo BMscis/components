@@ -38,7 +38,7 @@ class Logo extends HTMLElement{
             height: 20px;
             border-radius: 3px;
             background-image: linear-gradient(to bottom right , #3ffd1e ,#1b5028 46% 45%,transparent 55%, #1b5028 55% ,#3bab57 );
-            filter: saturate(2) blur(0.2px);
+            backdrop-filter: saturate(2) blur(0.2px);
             transform: rotate(45deg);
             transition:0.5s ease;
             position: absolute;
@@ -76,7 +76,7 @@ class Logo extends HTMLElement{
             top: -30.45px;
             right: -32px;
             transform: rotate(133deg);
-            filter: brightness(0.6);
+            backdrop-filter: brightness(0.6);
         }
         @media only screen and (max-width: 850px){
             .logo{

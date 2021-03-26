@@ -193,7 +193,10 @@ class Carousel extends HTMLElement {
         }
         @media only Screen and (max-width:850px){
             :host{
-                    transform: scale(0.8);
+                transform: scale(0.8);
+            }
+            :host([expand]){
+                transform: scale(1);
             }
         }
         </style>

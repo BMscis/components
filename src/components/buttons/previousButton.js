@@ -6,7 +6,7 @@ class PreviousButton extends HTMLElement {
         this.move()
     }
     static get observedAttributes() {
-        return ['cssX','move']
+        return ['onclick','move']
     }
     get styleTemplate() {
         return `
@@ -70,24 +70,36 @@ class PreviousButton extends HTMLElement {
     set cssX(val){
         return this.setAttribute('cssX',val)
     }
-    connectedCallback() {
-        //console.log('previousC')
+    connectedCallback(){
+        if(document.querySelector('html').getAttribute('mobi') === 'true'){
+            this.setAttribute('hide','')
+        }
         window.addEventListener('resize',e=>{
             this.setAttribute('move','')
-        })
-        this.addEventListener('click', e => {
-            //console.log('previous clicked')
-            var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
-            if (story.previousElementSibling != document.querySelector('es-carousel').shadow.querySelector('es-previous')) {
-                if (story.previousElementSibling) {
-                    story.removeAttribute('active')
-                    story.previousElementSibling.setAttribute('active', 'left')
+            if(document.querySelector('html').getAttribute('mobi') === 'true'){
+                this.setAttribute('hide','')
+            }
+            else{
+                if(this.hasAttribute('hide')){
+                    this.removeAttribute('hide')
                 }
-                return
+            }
+        })
+        this.addEventListener('click',e=>{
+            //console.log('NEXT')
+            var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
+            if (story.nextElementSibling != document.querySelector('es-carousel').shadow.querySelector('es-next') ){
+                if (story.nextElementSibling){
+                //console.log('STORY: ' + story.getAttribute('class'))    
+                story.removeAttribute('active')
+                story.nextElementSibling.setAttribute('active','right')
             }
             return
+        }
+        return
         })
         this.render()
+
     }
     move(){
         if(document.querySelector('html').mobi === 'true'){
@@ -105,25 +117,27 @@ class PreviousButton extends HTMLElement {
         //     nextToStoryBoard = 300/1.5
         // }
         // else{
-        //     var storySpace = Math.round((fullWidth + textBoardSpace)/2)
+        //     var storySpace = (fullWidth - textBoardSpace)/2
         //     var nextToStoryBoard = 300/1.5
         // }
         var storySpace = fullWidth/2
         var nextToStoryBoard = 300/1.5
+        
         var centerPosition = Math.round(storySpace - nextToStoryBoard)
         this.cssX = centerPosition + 'px'
+
     }
-    disconnectedCallback() {
-        //console.log('previousD')
+    disconnectedCallback(){
+        //console.log('nextD')
     }
-    attributeChangedCallback(prop, oldVal, newVal) {
+    attributeChangedCallback(prop,oldVal,newVal){
         if (prop == 'move'){
             this.move()
             this.render()
         }
     }
-
-    render() {
+    
+    render(){
         return this.shadow.innerHTML = `
             ${this.styleTemplate}
         `
