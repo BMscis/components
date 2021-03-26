@@ -131,7 +131,8 @@ class Carousel extends HTMLElement {
             <es-story h1='Web ' h2='Development ' img=${webdev} class="1"  ptext='create modern websites '></es-story>
             <es-story h1='Graphic' h2='Design' img=${me} class="2" ptext="Visualize your idea and bring it to life with awsome designs"></es-story>
             <es-story h1='UI/UX' h2='Design' img=${stairs} class="3" ptext="Create custom user-friendly interfaces with custom widgets."></es-story>
-            <es-next><es-next>
+            <es-next></es-next>
+            <es-scrollpad mobi></es-scrollpad>
         `}
         //closed 
         if(val == false) {

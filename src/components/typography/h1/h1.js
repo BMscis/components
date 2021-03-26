@@ -21,6 +21,7 @@ class H1 extends HTMLElement{
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
 
+
             }
             :host::after{
                 content:"${this.textAfter}";
@@ -32,7 +33,7 @@ class H1 extends HTMLElement{
                 //padding: 0 0 20px 20px ;
                 display: grid;
                 white-space: nowrap;
-                left: 25%;
+                left: 2%;
                 top: 60%;
                 position: absolute;
             }
