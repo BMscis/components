@@ -15,13 +15,20 @@ class CloseButton extends HTMLElement{
         this.addEventListener('click',e =>{
             //console.log('CLOSE')
             var carousel = document.querySelector('es-carousel')
-            var prevbutton = carousel.shadow.children[2]
-            var textBoard = carousel.shadow.children[1]
-            var nextbutton = carousel.shadow.lastChild
+            var prevButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-previous')
+            var textBoard = document.querySelector("#body > es-carousel").shadow.querySelector('es-textboard')
+            var nextButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-next')
+
             if(document.querySelector('html').getAttribute('mobi') != 'true'){
-                prevbutton.removeAttribute('hide','')
-                nextbutton.removeAttribute('hide','')
-                textBoard.removeAttribute('hide','')
+                if(nextButton != null){
+                    nextButton.setAttribute('hide','')
+                }
+                if(prevButton != null){
+                    prevButton.setAttribute('hide','')
+                }
+                if(textBoard != null){
+                    textBoard.setAttribute('hide','')
+                }
             }
             else{
                 console.log()

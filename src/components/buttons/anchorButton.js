@@ -54,12 +54,18 @@ class AnchorButton extends HTMLElement{
         this.addEventListener('click', e=>{
             //console.log('EXPAND')
             var carousel = document.querySelector('es-carousel')
-            var prevButton = carousel.shadow.children[2]
-            var textBoard = carousel.shadow.children[1]
-            var nextButton = carousel.shadow.lastChild
-            prevButton.setAttribute('hide','')
-            textBoard.setAttribute('hide','')
-            nextButton.setAttribute('hide','')
+            var prevButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-previous')
+            var textBoard = document.querySelector("#body > es-carousel").shadow.querySelector('es-textboard')
+            var nextButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-next')
+            if(nextButton != null){
+                nextButton.setAttribute('hide','')
+            }
+            if(prevButton != null){
+                prevButton.setAttribute('hide','')
+            }
+            if(textBoard != null){
+                textBoard.setAttribute('hide','')
+            }
             var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
             var closeButton = story.shadowRoot.querySelector("es-closebutton")
             story.setAttribute('expandstory','')
