@@ -20,7 +20,7 @@ class AnchorButton extends HTMLElement{
             padding: 10px;
             font-family:ACBoldSemiCn;
             cursor: pointer;
-            height: fit-content;
+            height: auto;
             calc(78vh * 0.03);
             z-index: 1;
         }

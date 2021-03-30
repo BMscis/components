@@ -33,6 +33,7 @@ class WhiteBoardBlock extends HTMLElement{
             left: 0;
             background:rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
             background-size:cover;
             background-repeat:no-repeat;
             //z-index:0;

@@ -124,6 +124,7 @@ class MenuButton extends HTMLElement {
             height: 5px;
             background-color: currentColor;
             backdrop-filter: drop-shadow(2px 2px 1px black);
+            -webkit-backdrop-filter: drop-shadow(2px 2px 1px black);
         }
         </style>`
     }

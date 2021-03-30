@@ -73,14 +73,17 @@ class StoryBackface extends HTMLElement{
         :host{
             display: flex;
             flex-direction:column;
+            align-items:center;
             width: calc(80vw * 0.85);
             height: calc(78vh * 0.9);
             padding: 0;
             backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
             background-image: linear-gradient(91deg, transparent, #850E11, #e51900 -15vmin, transparent 0vmin);
             transform-style:preserve-3d;
             overflow:hidden;
-            position:relative;
+            position:absolute;
+            right:0;
             z-index:1;
         }
         svg{
@@ -94,7 +97,7 @@ class StoryBackface extends HTMLElement{
             width: 10vh;
         }
         slot{
-            width: 100%;
+            width: auto;
             height: calc(78vh * 0.9);
             position:relative;
             display: -webkit-box;
@@ -129,7 +132,10 @@ class StoryBackface extends HTMLElement{
         }
         @media only Screen and (max-width:850px){
             :host{
-                width:95vw;
+                width:85vw;
+            }
+            slot{
+                width:calc(78vh * 0.6);
             }
         }
   

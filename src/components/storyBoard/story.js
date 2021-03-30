@@ -506,7 +506,7 @@ export class Story extends HTMLElement {
             //console.log('story render')
             this.shadow.innerHTML = `
         ${this.styleTemplate}
-        <es-image img = ${this.img}></es-image>
+        <es-image alt="${this.h1 + this.h2}" img = ${this.img}></es-image>
         <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
         <es-p text='${this.ptext}'></es-p>
         <es-button></es-button>`}
@@ -535,6 +535,7 @@ export class Story extends HTMLElement {
         background-repeat: no-repeat;
         background-size: cover;
         backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
         transform-style: preserve-3d;
         transform-origin:center;
         transition: 0.5s ease;
@@ -569,6 +570,7 @@ export class Story extends HTMLElement {
         transform-style: preserve-3d;
         transform-origin:center;
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border-right: 1px outset;
         border-left: 1px outset;
         border-image: linear-gradient(transparent, transparent,#e63380,transparent,transparent);
@@ -588,13 +590,20 @@ export class Story extends HTMLElement {
         bottom: 0;
         transform-style: preserve-3d;
         transform-origin: top;
-        -webkit-box-reflect: below;
         backdrop-filter:opacity(0.5);
+        -webkit-backdrop-filter:opacity(0.5);
         z-index: -1;
+    }
+    @supports (-webkit-box-reflect: below;) {
+        :host([active])::after,
+    :host::after{
+        -webkit-box-reflect: below;
+        }
     }
     :host([expandstory]){
         background-image:none;
         backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
         min-width:calc(95vw * 0.8);
         max-width:calc(95vw * 0.8);
         flex-wrap: wrap;
@@ -610,7 +619,7 @@ export class Story extends HTMLElement {
             flex-wrap:nowrap;
         }
         div{
-            margin-left: 5%;
+            //margin-left: 5%;
         }
     }
     :host([expandstory]:hover){

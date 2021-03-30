@@ -26,7 +26,7 @@ function detectMob() {
 var navi = detectMob()
 
 html.setAttribute('dir','ltr')
-html.setAttribute('lang','eng')
+html.setAttribute('lang','en')
 html.setAttribute('mobi', navi)
 
 

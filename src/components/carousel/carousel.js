@@ -187,6 +187,7 @@ class Carousel extends HTMLElement {
         }
         :host([expand]){
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         :host(:hover){
             //backdrop-filter: blur(15px);

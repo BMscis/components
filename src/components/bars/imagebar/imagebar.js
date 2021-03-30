@@ -53,7 +53,7 @@ class Imagebar extends HTMLElement{
         //console.log('imagebar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            <img src=${this.src}>
+            <img alt='${this.text}' src=${this.src}>
             <es-p class="tooltiptext">${this.text}</es-p>
             <es-p class="descriptiontext">
             ${this.description}
@@ -88,7 +88,8 @@ class Imagebar extends HTMLElement{
             transition: 0.5s ease;
             position:relative;
             height: calc(78vh * 0.9);
-            display: flex;
+            width:calc(78vh * 0.5);
+            display: inline-flex;
             justify-content: center;
             margin:10px;
             scroll-snap-align: start;

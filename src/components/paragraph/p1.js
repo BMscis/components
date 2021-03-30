@@ -33,7 +33,7 @@ class P1 extends HTMLElement{
             outline:none;
         }
         :host{
-            width: fit-content;
+            width: auto;
             position: relative;
             font-family:ACLight;
             color: palegoldenrod;

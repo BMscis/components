@@ -18,8 +18,11 @@ class Searchbar extends HTMLElement{
         //console.log('searchbar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            <button type="submit" class='gg-search'></button>
+            <button type="submit" name='searchbutton' class='gg-search'></button>
+            <form>
+            <label for='search'>Search</label>
             <input  type="search" name='search' id='search' autofocus="autofocus" input>
+            </form>
             `
     }
     get styledTemplate(){

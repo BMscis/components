@@ -114,6 +114,7 @@ class Businesscard extends HTMLElement {
         }
         label, a, p{
             backdrop-filter: brightness(2);
+            -webkit-backdrop-filter: brightness(2);
             font-family: ACLight;
             width:fit-content;
             font-size:larger;            
@@ -133,6 +134,7 @@ class Businesscard extends HTMLElement {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             backdrop-filter: brightness(0.5);
+            -webkit-backdrop-filter: brightness(0.5);
         }
         a{
             text-decoration: none;
@@ -150,6 +152,7 @@ class Businesscard extends HTMLElement {
         }
          @media only screen and (max-width: 850px){
             :host{
+                top:29vh
             }
             text{
                 font-size:5vmin;

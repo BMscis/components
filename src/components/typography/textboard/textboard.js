@@ -27,7 +27,7 @@ class Textboard extends HTMLElement{
             height:9vh;
         }
         text{
-            font-size:9vh;
+            font-size:6vw;
             color:white;
             font-family:ACBoldCond;
             transition: 0.5s ease;
