@@ -95,14 +95,16 @@ class Imagebar extends HTMLElement{
         .tooltiptext{
             border-radius: 6px;
             position: absolute;
-            left: calc(500px + 120px);
-            top: 30%;
+            top: 40vh;
+            left: 0%;
+            opacity:1;
             transition:1s ease-in-out;
         }
         .descriptiontext{
             position: absolute;
-            left: calc(500px + 60px);
-            top: 40%;
+            top: 45vh;
+            left: 0%;
+            opacity:1;
             transition:1s ease-in-out;
         }
         :host([hover]){
@@ -127,14 +129,10 @@ class Imagebar extends HTMLElement{
                 justify-content:flex-end;
             }
             .tooltiptext{
-                top: 40vh;
-                left: 0%;
-                opacity:1;
+
             }
             .descriptiontext{
-                top: 45vh;
-                left: 0%;
-                opacity:1;
+
             }
         }
         </style>`

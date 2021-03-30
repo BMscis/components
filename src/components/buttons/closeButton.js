@@ -16,7 +16,7 @@ class CloseButton extends HTMLElement{
             //console.log('CLOSE')
             var carousel = document.querySelector('es-carousel')
             var prevButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-previous')
-            var textBoard = document.querySelector("#body > es-carousel").shadow.querySelector('es-textboard')
+            var businessCard = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-businesscard")
             var nextButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-next')
 
             if(document.querySelector('html').getAttribute('mobi') != 'true'){
@@ -25,6 +25,9 @@ class CloseButton extends HTMLElement{
                 }
                 if(prevButton != null){
                     prevButton.removeAttribute('hide','')
+                }
+                if(businessCard != null ){
+                    businessCard.removeAttribute('hide','')
                 }
             }
             else{

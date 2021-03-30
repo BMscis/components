@@ -55,7 +55,7 @@ class AnchorButton extends HTMLElement{
             //console.log('EXPAND')
             var carousel = document.querySelector('es-carousel')
             var prevButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-previous')
-            var textBoard = document.querySelector("#body > es-carousel").shadow.querySelector('es-textboard')
+            var businessCard = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-businesscard")
             var nextButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-next')
             if(nextButton != null){
                 nextButton.setAttribute('hide','')
@@ -63,8 +63,8 @@ class AnchorButton extends HTMLElement{
             if(prevButton != null){
                 prevButton.setAttribute('hide','')
             }
-            if(textBoard != null){
-                textBoard.setAttribute('hide','')
+            if(businessCard != null ){
+                businessCard.setAttribute('hide','')
             }
             var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
             var closeButton = story.shadowRoot.querySelector("es-closebutton")
