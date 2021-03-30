@@ -78,7 +78,7 @@ class Businesscard extends HTMLElement {
         height: calc(78vh * 0.5);
         display:flex;
         flex-direction:row;
-        top:29vh;
+        top:14vh;
         left:5vw;
         border-radius: 10px;
         background: transparent;
@@ -100,7 +100,7 @@ class Businesscard extends HTMLElement {
         .infocontainer, .labelcontainer{
             display:flex;
             flex-direction:column;
-            justify-content:space-evenly;
+            justify-content:start;
         }
         .labelcontainer{
         }
@@ -114,16 +114,15 @@ class Businesscard extends HTMLElement {
         }
         label, a, p{
             backdrop-filter: brightness(2);
-            font-family: ACBlack;
+            font-family: ACLight;
             width:fit-content;
             font-size:larger;            
         }
 
         a,p{
-            background: linear-gradient(to bottom right,#00368e 50%, transparent);
+            background: linear-gradient(to bottom right,#00368e 50%, #a90101);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            backdrop-filter: drop-shadow(2px 4px 6px white) invert(1);
             margin:0;
         }
         label{

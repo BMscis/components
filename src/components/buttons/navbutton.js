@@ -40,7 +40,7 @@ class Navbutton extends HTMLElement{
                 -webkit-text-fill-color: transparent;
                 outline: none;
                 border-radius: 2px;
-                font-family: 'ACBlack';
+                font-family: 'ACLight';
                 font-size:2vh;
                 cursor:pointer;
                 margin:0;
@@ -49,7 +49,6 @@ class Navbutton extends HTMLElement{
             }
             :host([active]) button{
                 -webkit-background-clip: text;
-                -webkit-text-fill-color: #e22b99;
                 background: transparent;
                 border-bottom: 2px solid;
                 border-bottom-color: blueviolet;

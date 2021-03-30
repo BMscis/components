@@ -542,8 +542,10 @@ export class Story extends HTMLElement {
         justify-content: space-evenly;
         width: calc(80vw * 0.12);
         position:absolute;
+        top:0;
         margin:10px;
         z-index:2;
+        padding-left:20px;
     }
     :host([active]){
         opacity: 1;

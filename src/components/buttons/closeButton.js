@@ -75,7 +75,7 @@ class CloseButton extends HTMLElement{
             content: "";
             position: absolute;
             width: 16px;
-            height: 2px;
+            height: 4px;
             background: currentColor;
             transform: rotate(45deg);
             border-radius: 5px;

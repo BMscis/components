@@ -101,6 +101,7 @@ class StoryBackface extends HTMLElement{
             -webkit-box-orient: vertical;
             overflow-y:scroll;
             scroll-snap-type: y mandatory;
+            scrollbar-width:none;
 
         }
         .mouse-outline{
