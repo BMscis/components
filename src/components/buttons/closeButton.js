@@ -21,13 +21,10 @@ class CloseButton extends HTMLElement{
 
             if(document.querySelector('html').getAttribute('mobi') != 'true'){
                 if(nextButton != null){
-                    nextButton.setAttribute('hide','')
+                    nextButton.removeAttribute('hide','')
                 }
                 if(prevButton != null){
-                    prevButton.setAttribute('hide','')
-                }
-                if(textBoard != null){
-                    textBoard.setAttribute('hide','')
+                    prevButton.removeAttribute('hide','')
                 }
             }
             else{
