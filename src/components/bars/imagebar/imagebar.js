@@ -5,7 +5,7 @@ class Imagebar extends HTMLElement{
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
-        return ['src','text']
+        return ['src','text','description']
     }
     attributeChangedCallback(prop,oldVal,newVal){
         //console.log('imagebar attribute change')
@@ -25,8 +25,16 @@ class Imagebar extends HTMLElement{
                 }
                 else{
                     this.text = newVal
+                    return
                 }
-                return
+            case 'description':
+                if(newVal === oldVal){
+                    return
+                }
+                else{
+                    this.description = newVal
+                    return
+                }
         }
     }
     connectedCallback(){
@@ -48,9 +56,7 @@ class Imagebar extends HTMLElement{
             <img src=${this.src}>
             <es-p class="tooltiptext">${this.text}</es-p>
             <es-p class="descriptiontext">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam.
+            ${this.description}
             </es-p>
             `
     }
@@ -65,6 +71,12 @@ class Imagebar extends HTMLElement{
     }
     set text(val){
         return this.setAttribute('text',val)
+    }
+    get description(){
+        return this.getAttribute('description')
+    }
+    set description(val){
+        return this.setAttribute('description',val)
     }
     get styledTemplate(){
         return `<style>

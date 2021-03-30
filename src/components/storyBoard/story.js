@@ -156,6 +156,7 @@ export class Story extends HTMLElement {
             let img = document.createElement('es-imagebar')
             img.setAttribute('src', val[i][0])
             img.setAttribute('text', val[i][1])
+            img.setAttribute('description', val[i][2])
             //console.log(this.shadowRoot.lastElementChild)
             this.shadowRoot.lastElementChild.shadowRoot.lastElementChild.appendChild(img)
         }
@@ -481,7 +482,21 @@ export class Story extends HTMLElement {
             <es-storybackface ></es-storybackface>
             `
             if (this.classList.contains('0')) {
-                this.imgset = [[one, 'Organization Logos'], [two, 'Coart Of Arms'], [three, 'Corporate Logos'], [four, 'Production Logos']]
+                this.imgset = [
+                    [one,
+                    'Coart of Arms',
+                    'We design family, company, organizational or state escutcheons with personalized mottos. '], 
+                    [two,
+                    'Escutcheons',
+                    'Rolls of arms are the primary sentiment for brand recognition. Shields have been used across time by noble families and organizations to inform the public about genealogy.'],
+                    [three,
+                    'Corporate Logos',
+                    'Make creative graphic symbols to aid and promote brand recognition across different platforms.'],
+                    [four,
+                    'Production Logos',
+                    'Get digitized logos that can be animated and be used accross multiple digital platforms.'
+                    ]
+                ]
             }
             if (this.classList.contains('1')) {
                 this.imgset = [[five, 'Social Media Design'], [six, 'App Design'], [seven, 'App Design']]
