@@ -1,14 +1,19 @@
 class Imagebar extends HTMLElement{
     constructor(){
         super()
-        //console.log('imagebar constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
+        this.setup()
     }
     static get observedAttributes(){
         return ['src','text','description']
     }
+    setup(){
+        this.addEventListener('focusin',e=>{
+            this.setAttribute('hover','')
+        })
+    }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('imagebar attribute change')
         switch(prop){
             case 'src':
                 if(newVal === oldVal){
@@ -37,20 +42,15 @@ class Imagebar extends HTMLElement{
                 }
         }
     }
-    connectedCallback(){
-        //console.log('imagebar connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         // this.addEventListener('mouseover', e=>{
         //     this.scrollIntoView(alignToTop)
-        //     //console.log('hover')
         // })
-        this.addEventListener('focusin',e=>{
-            console.log('focus')
-            this.setAttribute('hover','')
-        })
+
         this.render()
     }
     render(){
-        //console.log('imagebar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <img alt='${this.text}' src=${this.src}>
@@ -112,6 +112,9 @@ class Imagebar extends HTMLElement{
             left: 0%;
             opacity:1;
             transition:1s ease-in-out;
+            font-variant-numeric: ordinal;
+            font-size: calc(78vh * 0.045);
+            opacity:0.5;
         }
         .descriptiontext{
             position: absolute;
@@ -119,6 +122,9 @@ class Imagebar extends HTMLElement{
             left: 0%;
             opacity:1;
             transition:1s ease-in-out;
+            font-variant-caps: all-petite-caps;
+            font-family: 'ACBoldSemiCn';
+            font-size: calc(78vh * 0.035);
         }
         :host([hover]){
             opacity:1;
@@ -127,10 +133,10 @@ class Imagebar extends HTMLElement{
             opacity:1;
         }
         :host(:hover) .tooltiptext{
-            opacity:1;
+            //opacity:1;
         }
         :host(:hover) .descriptiontext{
-            opacity:1;
+            //opacity:1;
         }
         @media only Screen and (max-width:850px){
             img{
@@ -150,8 +156,8 @@ class Imagebar extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('imagebar disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-imagebar', Imagebar);

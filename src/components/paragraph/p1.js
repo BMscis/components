@@ -1,17 +1,16 @@
 class P1 extends HTMLElement{
     constructor(){
         super()
-        //console.log('p1 constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('p1 attribute change')
     }
-    connectedCallback(){
-        //console.log('p1 connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render()
     }
     get text(){
@@ -21,7 +20,6 @@ class P1 extends HTMLElement{
         return this.setAttribute('text',val)
     }
     render(){
-        //console.log('p1 rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <slot>${this.text}</slot>
@@ -33,17 +31,18 @@ class P1 extends HTMLElement{
             outline:none;
         }
         :host{
-            width: auto;
+            width: 80%;
             position: relative;
             font-family:ACLight;
             color: palegoldenrod;
             font-size: calc(78vh * 0.025);
             padding:10px;
+            text-align:center;
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('p1 disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-p', P1);

@@ -1,24 +1,20 @@
 class CloseButton extends HTMLElement{
     constructor(){
         super()
-        //console.log('CloseButton constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
+        this.setup()
     }
-    static get observedAttributes(){
-        return []
-    }
-    attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('CloseButton attribute change')
-    }
-    connectedCallback(){
-        //console.log('CloseButton connected')
+    setup(){
         this.addEventListener('click',e =>{
-            //console.log('CLOSE')
             var carousel = document.querySelector('es-carousel')
             var prevButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-previous')
             var businessCard = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-businesscard")
             var nextButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-next')
-
+            if(document.querySelector('html').getAttribute('mobi') === 'true'){
+                var scrollpad = document.querySelector('es-carousel').shadow.querySelector('es-scrollpad')
+                scrollpad.removeAttribute('hide')
+            }
             if(document.querySelector('html').getAttribute('mobi') != 'true'){
                 if(nextButton != null){
                     nextButton.removeAttribute('hide','')
@@ -31,7 +27,7 @@ class CloseButton extends HTMLElement{
                 }
             }
             else{
-                console.log()
+                return
             }
 
             var story = document.querySelector("es-carousel").shadowRoot.querySelector("es-story[active]")
@@ -41,10 +37,18 @@ class CloseButton extends HTMLElement{
             sidebar.setAttribute('style','z-index: 2')
 
         })
+    }
+    static get observedAttributes(){
+        return []
+    }
+    attributeChangedCallback(prop,oldVal,newVal){
+    }
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+
         this.render()
     }
     render(){
-        //console.log('CloseButton rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             `
@@ -90,8 +94,8 @@ class CloseButton extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('CloseButton disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-closebutton', CloseButton);

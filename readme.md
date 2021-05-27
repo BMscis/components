@@ -1,5 +1,5 @@
-npm install --save-dev webpack-dev-server webpack webpack-cli style-loader css-loader file-loader csv-loader xml-loader toml yamljs json5 html-webpack-plugin webpack-manifest-plugin sass-loader webpack-merge sass preload-webpack-plugin @vue/preload-webpack-plugin
-npm install -g sass animejs jquery @svgdotjs/svg.js
+npm install --save-dev webpack-dev-server webpack webpack-cli style-loader css-loader file-loader csv-loader xml-loader toml yamljs json5 html-webpack-plugin webpack-manifest-plugin sass-loader webpack-merge sass preload-webpack-plugin @vue/preload-webpack-plugin coinmon
+npm install -g sass animejs jquery @svgdotjs/svg.js typescript ts-loader @babel/preset-typescript
 
 npm install @svgdotjs/svg.js
 or

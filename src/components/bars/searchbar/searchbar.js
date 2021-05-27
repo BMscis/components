@@ -1,26 +1,23 @@
 class Searchbar extends HTMLElement{
     constructor(){
         super()
-        //console.log('searchbar constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('searchbar attribute change')
     }
-    connectedCallback(){
-        //console.log('searchbar connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render()
     }
     render(){
-        //console.log('searchbar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <button type="submit" name='searchbutton' class='gg-search'></button>
             <form>
-            <label for='search'>Search</label>
             <input  type="search" name='search' id='search' autofocus="autofocus" input>
             </form>
             `
@@ -28,7 +25,6 @@ class Searchbar extends HTMLElement{
     get styledTemplate(){
         return `<style>
         :host{
-            height: 5vh;
             display:inline-grid;
             align-items:center;
             border-radius:10px;
@@ -55,7 +51,7 @@ class Searchbar extends HTMLElement{
             color:red;
         }
         .gg-search {
-            transform: scale(var(--ggs,1));
+            transform: scale(var(--ggs,0.7));
             width: 16px;
             height: 16px;
             border: 2px solid;
@@ -64,6 +60,7 @@ class Searchbar extends HTMLElement{
             background-color:transparent;
             cursor:pointer;
             outline: none;
+            position:absolute;
         }
         .gg-search::after {
             content: "";
@@ -78,8 +75,8 @@ class Searchbar extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('searchbar disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-searchbar', Searchbar);

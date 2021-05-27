@@ -10,13 +10,15 @@ class H1 extends HTMLElement{
                 outline:none;
             }
             :host{
+                //width:calc((78vh * 0.1) + (78vh * 0.05));
                 height:calc((78vh * 0.1) + (78vh * 0.05));
                 position:relative;
+                transform: scale(var(--ggs,1));
             }
             text{
-                font-size: calc(78vh * 0.1);
+                font-size: calc(78vh * 0.08);
                 text-align: center;
-                font-family: 'ACBlack';
+                font-family: 'ACLight';
                 background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
@@ -25,17 +27,17 @@ class H1 extends HTMLElement{
             }
             :host::after{
                 content:"${this.textAfter}";
-                font-size: calc(78vh * 0.05);
-                font-family: 'ACBlack';
+                //font-size: calc(78vh * 0.05);
+                font-family: 'ACLight';
                 background: linear-gradient(to right, #cc3e14, yellowgreen);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 //padding: 0 0 20px 20px ;
                 display: grid;
                 white-space: nowrap;
-                left: 2%;
-                top: 60%;
-                position: absolute;
+                //left: 2%;
+                //top: 60%;
+                //position: absolute;
             }
         </style>
         `
@@ -43,7 +45,6 @@ class H1 extends HTMLElement{
 
     attributeChangedCallback(prop,oldVal,newVal){
         if (prop === "text" ){
-            //console.log('text rendered')}
         }
     }
     get text(){
@@ -60,9 +61,11 @@ class H1 extends HTMLElement{
     }
     constructor (){
         super()
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
-    connectedCallback(){
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render();
     }
     render(){
@@ -70,6 +73,9 @@ class H1 extends HTMLElement{
         ${this.stylesTemplate}
         <text>${this.text}</text>
         `
+    }
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-heading', H1);

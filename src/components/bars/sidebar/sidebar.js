@@ -1,16 +1,24 @@
 //components
+import { Dimensions } from '../../../Classes/spacemaps/dimensions'
+import  Navbutton from '../../buttons/navbutton'
 
-class Sidebar extends HTMLElement{
+export class Sidebar extends HTMLElement{
     constructor(){
         super()
-        //console.log('Sidebar constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
+        this.setup()
+    }
+    setup(){
+        this.dimension = new Dimensions()
+        window.addEventListener("resize", e=> {
+            this.resize()
+        })
     }
     static get observedAttributes(){
         return ['expand']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('Sidebar attribute change')
         if( prop == 'expand'){
             if( newVal == 'true'){
                 this.expand = 1
@@ -23,8 +31,9 @@ class Sidebar extends HTMLElement{
             }
         }
     }
-    connectedCallback(){
-        //console.log('Sidebar connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+
         this.render()
     }
     get expand(){
@@ -38,31 +47,30 @@ class Sidebar extends HTMLElement{
             return this.removeAttribute('expand')
         }
     }
+    resize(){
+        this.style.height = this.dimension.sidebarSetup + "px"
+    }
     render(){
-        //console.log('Sidebar rendering')
-        this.shadow.innerHTML =  `
-            ${this.styledTemplate}
-            <es-searchbar></es-searchbar>
-            <es-navbutton active text='Portfolio'></es-navbutton>
-            <es-navbutton inactive text='Contact Us'></es-navbutton>
-            `
+        
+        this.shadow.innerHTML = `${this.styledTemplate}`
+        this.shadow.append(new Navbutton(true,"Portfolio"))
+        this.shadow.append(new Navbutton(false,"Graph"))
+        this.shadow.append(new Navbutton(false,"About Us"))
     }
     get styledTemplate(){
         return `<style>
         *{
             box-sizing: border-box;
+            margin-left:1.5vw;
+            margin-right:1.5vw;
         }
         :host{
-        //width:40vh;
-        height:12vh;
-        //backdrop-filter:blur(5px);
-        z-index:2;
-        position:relative;
-        //box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
-        border-radius:2px;
-        display:flex;
-        background:transparent;
-        padding-bottom:20px;
+            height:${this.dimension.sidebarSetup + "px"};
+            z-index:2;
+            position:relative;
+            border-radius:2px;
+            display:flex;
+            background:transparent;
     }
     :host([expand]){
         left:0;
@@ -73,8 +81,8 @@ class Sidebar extends HTMLElement{
     }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('Sidebar disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-sidebar', Sidebar);

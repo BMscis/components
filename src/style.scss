@@ -12,9 +12,10 @@ html{
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    height: 95vh;
-    width: 95vw;
-    overflow: hidden;
+}
+html.darkmode{
+    background-color: #1b1b1b;
+    background-image: none;
 }
 ::-webkit-scrollbar{
     width: 0;
@@ -24,7 +25,6 @@ html{
     scroll-behavior: smooth;
     transition: 0.5s ease-in-out;
     outline:none;
-    margin:0;
 
 }
 .markdown-body{
@@ -32,21 +32,13 @@ html{
 }
 body{
     background:transparent;
-    height: 95vh;
-    width: 95vw;
-    padding-left: 5vw;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width: webkit-fill-available;
 }
-body, es-carousel{
-    overflow: hidden;
+es-logo,es-carousel,es-navbar,es-sidebar{
+    margin:auto;
 }
 @media only Screen and (max-width:850px){
-    body{
-    }
-    es-sidebar{
-        position:absolute;
-
-    }
-    es-logo{
-    }
-
 }

@@ -1,21 +1,20 @@
 class Textboard extends HTMLElement{
     constructor(){
         super()
-        //console.log('textboard constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('textboard attribute change')
     }
-    connectedCallback(){
-        //console.log('textboard connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+        this.classList.add('darkmode')
         this.render()
     }
     render(){
-        //console.log('textboard rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <text>Build better products faster.</tex>
@@ -24,13 +23,18 @@ class Textboard extends HTMLElement{
     get styledTemplate(){
         return `<style>
        :host{
-            height:9vh;
+            text-align:center
         }
         text{
-            font-size:6vw;
-            color:white;
-            font-family:ACBoldCond;
+            font-size: 5vw;
+            color: white;
+            font-family: MarkOT,Arial,sans-serif;
             transition: 0.5s ease;
+        }
+        :host(.darkmode) text{
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(218deg, red,#0b12e4, #cd06f1,red);
         }
         :host([hide]){
             display: none
@@ -44,8 +48,8 @@ class Textboard extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('textboard disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-textboard', Textboard);

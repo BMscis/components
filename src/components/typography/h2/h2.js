@@ -42,14 +42,15 @@ class H2 extends HTMLElement{
     }
     constructor (){
         super()
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
-    connectedCallback(){
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render();
     }
     attributeChangedCallback(prop,oldVal,newVal){
         if (prop === "text" ){
-            //console.log('text rendered')}
         }
     }
     get text(){
@@ -62,6 +63,9 @@ class H2 extends HTMLElement{
         this.shadow.innerHTML=`
         ${this.styleTemplate}
         <text>${this.text}</text>`
+    }
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-heading2', H2);

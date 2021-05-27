@@ -1,8 +1,15 @@
-class Logo extends HTMLElement{
+import { Dimensions } from "../../Classes/spacemaps/dimensions"
+
+export class Logo extends HTMLElement{
     constructor(){
         super()
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         //console.log('Logo constructed')
         this.shadow = this.attachShadow({mode:'open'})
+        this.setup()
+    }
+    setup(){
+        this.dimension = new Dimensions()
     }
     static get observedAttributes(){
         return []
@@ -10,9 +17,13 @@ class Logo extends HTMLElement{
     attributeChangedCallback(prop,oldVal,newVal){
         //console.log('Logo attribute change')
     }
-    connectedCallback(){
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         //console.log('Logo connected')
         this.render()
+    }
+    resize(){
+        console.log("RESIZING LOGO")
     }
     render(){
         //console.log('Logo rendering')
@@ -24,27 +35,25 @@ class Logo extends HTMLElement{
     get styledTemplate(){
         return `<style>
         :host{
-            width:14vh;
-            height:14vh;
+            width:auto;
+            height:auto;
             margin:auto;
             display:block;
-            position:relative;
         }
         .logo
          {
             transform: scale(var(--ggs,1))
             box-sizing: border-box;
-            width: 20px;
-            height: 20px;
+            width: ${this.dimension.logoSetup + "px"};
+            height: ${this.dimension.logoSetup + "px"};
             border-radius: 3px;
             background-image: linear-gradient(to bottom right , #3ffd1e ,#1b5028 46% 45%,transparent 55%, #1b5028 55% ,#3bab57 );
             backdrop-filter: saturate(2) blur(0.2px);
             -webkit-backdrop-filter: saturate(2) blur(0.2px);
             transform: rotate(45deg);
             transition:0.5s ease;
-            position: absolute;
-            left: calc(50% - 10px);
-            top: calc(50% - 10px);
+            position:relative;
+            margin:auto;
         }
         .logo(:hover){
             cursor: pointer;
@@ -88,7 +97,8 @@ class Logo extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
         //console.log('Logo disconnect')
     }
 }

@@ -1,19 +1,12 @@
 class MenuButton extends HTMLElement {
     constructor() {
         super()
-        //console.log('MenuButton constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({ mode: 'open' })
+        this.setup()
     }
-    static get observedAttributes() {
-        return []
-    }
-    attributeChangedCallback(prop, oldVal, newVal) {
-        //console.log('MenuButton attribute change')
-    }
-    connectedCallback() {
-        //console.log('MenuButton connected')
+    setup(){
         this.addEventListener('click', e => {
-            //console.log('sidebar')
             if (this.active == 'true') {
                 var sidebar = document.querySelector("es-sidebar")
                 sidebar.setAttribute('expand', 'false')
@@ -25,6 +18,15 @@ class MenuButton extends HTMLElement {
                 this.active = 'true'
             }
         })
+    }
+    static get observedAttributes() {
+        return []
+    }
+    attributeChangedCallback(prop, oldVal, newVal) {
+    }
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+
         this.render()
     }
     get active() {
@@ -34,7 +36,6 @@ class MenuButton extends HTMLElement {
         return this.setAttribute('active', val)
     }
     render() {
-        //console.log('MenuButton rendering')
         this.shadow.innerHTML = `
             ${this.styledTemplate}
             `
@@ -129,7 +130,7 @@ class MenuButton extends HTMLElement {
         </style>`
     }
     disconnectedCallback() {
-        //console.log('MenuButton disconnect')
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
     }
 }
 customElements.define('es-menubutton', MenuButton);

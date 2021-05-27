@@ -1,44 +1,37 @@
+
+import { EspiiContainer } from '../Classes/DOM/espiicontainer';
 const animescript = document.createElement('script');
 animescript.setAttribute('src', 'anime.min.js')
 
-//divs()
-//logoIcon()
-//renderStory()
-//load()
-//console.log("@INDEX")
-var html = document.querySelector("html")
+const docu = new EspiiContainer(document,window)
+window.Espii = docu
 
-function detectMob() {
-    const toMatch = [
-        /Android/i,
-        /webOS/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Windows Phone/i
-    ];
+var comps = window.Espii.EspiiNodeList
+comps.forEach(element => {
+    window.Espii.body.append(element)
+});
 
-    return toMatch.some((toMatchItem) => {
-        return navigator.userAgent.match(toMatchItem);
-    });
-}
-var navi = detectMob()
-
-html.setAttribute('dir','ltr')
-html.setAttribute('lang','en')
-html.setAttribute('mobi', navi)
+//Event listenters
+window.addEventListener('load', e => {
+    document.body.setAttribute('id', 'body')
+    //document.querySelector("html").classList.add('darkmode')
+    
+    //appDimensions()
+    // toggleHtml()
+    // addComponents()
+})
+// document.body.addEventListener('resize', e => {
+//     appDimensions()
+// })
 
 
-    var navbar= document.createElement('es-navbar')
-    var sidebar= document.createElement('es-sidebar')
-    var carousel = document.createElement('es-carousel')
-    var logo = document.createElement('es-logo')
-
-    document.body.appendChild(logo)
-    document.body.appendChild(navbar)
-    document.body.appendChild(sidebar)
-    document.body.appendChild(carousel)
-
-
-document.body.setAttribute('id', 'body')
+Electron
+  window.addEventListener('DOMContentLoaded', () => {
+      const replaceText = (selector, text) => {
+          const element = document.getElementById(selector)
+          if (element) element.innerText = text
+      }
+      for (const type of ['chrome', 'node', 'electron']) {
+          replaceText(`${type}-version`, process.versions[type])
+      }
+  })

@@ -1,114 +1,133 @@
+const { Dimensions } = require("../../Classes/spacemaps/dimensions")
 
-class Navbutton extends HTMLElement{
-    static get properties(){
-        return ['text']
-    }
-    get styleTemplate(){
-        return `
-        <style>
-        *{
-            outline:none;
-        }
-            :host{
-                display: grid;
-                white-space: nowrap;
-                position:relative;
-                cursor:pointer;
-                transition:0.5s ease;
-                margin-bottom: 1vh;
-                height: 4vh;
-                margin: 3vh;
-            }
-            :host([active]){
-                background: linear-gradient(to right, #c30047, #1a71ff);
-                -webkit-background-clip: text;
-                backdrop-filter: brightness(2)
-                -webkit-backdrop-filter: brightness(2)
-                opacity:1;
-                transition:0.5s ease;
-            }
-            :host([inactive]){
-                opacity:0.5;
-                transition:0.5s ease;
-            }
-            :host([inactive]:hover){
-                opacity:1;
-
-            }
-            button {
-                border: none;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                outline: none;
-                border-radius: 2px;
-                font-family: 'ACLight';
-                font-size:2vh;
-                cursor:pointer;
-                margin:0;
-                padding:0;
-                height: 3vh;
-            }
-            :host([active]) button{
-                -webkit-background-clip: text;
-                background: transparent;
-                border-bottom: 2px solid;
-                border-bottom-color: blueviolet;
-                border-image: linear-gradient(to right,transparent 30%, blue 35%, red 50%, transparent 70%);
-                border-image-slice: 8;
-            }
-        </style>
-        `
-    }
-    constructor (){
+class Navbutton extends HTMLElement {
+    constructor(active, text) {
         super()
-        this.shadow = this.attachShadow({mode:'open'})
+        console.log(`${this.nodeName} has been constructed` )                                                                             
+        this.text = text
+        this.active = active
+        this.shadow = this.attachShadow({ mode: 'open' })
+        this.setup()
     }
-    connectedCallback(){
-        this.addEventListener('click',e=>{
-            if(this.hasAttribute('active')){
-                return
+    static get properties() {
+        return ['active', 'text']
+    }
+    setup(){
+        this.dimension = new Dimensions()
+        this.addEventListener('click', e => {
+            var active = this.hasAttribute("active")
+            switch (active) {
+                case true:
+                    return
+                case false:
+                    var activeNavbutton = document.querySelector("es-sidebar").shadowRoot.querySelector("es-navbutton[active]")
+                    activeNavbutton.toggleAttribute('active', false)
+                    this.toggleAttribute('active', true)
+                    var carousel = document.querySelector('es-carousel')
+                    carousel.render(this.text)
+                    return
             }
-            if(this.hasAttribute('inactive')){
-                var activeNavbutton = document.querySelector("es-sidebar").shadowRoot.querySelector("es-navbutton[active]")
-                activeNavbutton.removeAttribute('active')
-                activeNavbutton.setAttribute('inactive','')
-                this.removeAttribute('inactive')
-                this.setAttribute('active','')
-                if(window.outerWidth > 850){
-                    var businesscard = document.querySelector('es-carousel').shadowRoot.querySelector("es-businesscard");
-                    businesscard.setAttribute('text',this.text)
-                }
-                
-            }
-
-            if(window.outerWidth < 850){
-                var carousel = document.querySelector('es-carousel')
-                if(this.text === 'Contact Us'){
-                    carousel.setAttribute('mobibusinesscard','Contact Us')
-                }
-                if(this.text === 'Portfolio'){
-                    carousel.setAttribute('mobibusinesscard','Portfolio')
-                }
-            }
-
         })
-        this.render();
     }
-    attributeChangedCallback(prop,oldVal,newVal){
-        if (prop === "text" ){
-            //console.log('text rendered')
+    get styleTemplate() {
+        return `
+            <style>
+            *{
+                outline:none;
+            }
+                :host{
+                    display: grid;
+                    white-space: nowrap;
+                    position:relative;
+                    cursor:pointer;
+                    transition:0.5s ease;
+                    margin-bottom: 1vh;
+                    height: 4vh;
+                    margin: 3vh;
+                }
+                :host([active]){
+                    background: linear-gradient(to right, #c30047, #1a71ff);
+                    -webkit-background-clip: text;
+                    backdrop-filter: brightness(2)
+                    -webkit-backdrop-filter: brightness(2)
+                    opacity:1;
+                    transition:0.5s ease;
+                }
+                :host([inactive]){
+                    opacity:0.5;
+                    transition:0.5s ease;
+                }
+                :host([inactive]:hover){
+                    opacity:1;
+    
+                }
+                button {
+                    border: none;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    outline: none;
+                    border-radius: 2px;
+                    font-family: 'ACLight';
+                    font-size:2vh;
+                    cursor:pointer;
+                    margin:0;
+                    padding:0;
+                    height: 3vh;
+                }
+                :host(.darkmode) button{
+                    -webkit-background-clip: none;
+                    -webkit-text-fill-color: black;
+                    padding:0 10px;
+                    background: hsl(0deg 0% 100%);
+                }
+                :host(.darkmode[active]) button{
+                    -webkit-background-clip: none;
+                    background: transparent;
+                    background-image:linear-gradient(45deg, #3ffd1e, transparent);
+                    border: none;
+                }
+                :host([active]) button{
+                    -webkit-background-clip: text;
+                    background: transparent;
+                    border-bottom: 2px solid;
+                    border-bottom-color: blueviolet;
+                    border-image: linear-gradient(to right,transparent 30%, blue 35%, red 50%, transparent 70%);
+                    border-image-slice: 8;
+                }
+            </style>
+            `
+
+    }
+    toggleActive(){
+        if (this.active) {
+            this.toggleAttribute("active", true)
+        } else {
+            //this.setAttribute('inactive','')
         }
     }
-    get text(){
-        return this.getAttribute('text')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+
+        this.classList.add(`Navbutton`)
+        this.classList.add(`darkmode`)
+
+        this.render();
+        this.toggleActive()
     }
-    set text(val){
-        return this.setAttribute('text',val)
+    attributeChangedCallback(prop, oldVal, newVal) {
+        if (prop === "text") {
+        }
+        if (prop === "active") {
+        }
     }
-    render(){
-        this.shadow.innerHTML=`
-        ${this.styleTemplate}
-        <button>${this.text}</button>`
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
+    }
+    render() {
+        return this.shadow.innerHTML = `
+${this.styleTemplate}
+<button>${this.text} </button>`
     }
 }
-customElements.define('es-navbutton', Navbutton);
+customElements.define(`es-navbutton`, Navbutton);
+module.exports = Navbutton

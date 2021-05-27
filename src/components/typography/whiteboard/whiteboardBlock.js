@@ -2,21 +2,19 @@
 class WhiteBoardBlock extends HTMLElement{
     constructor(){
         super()
-        //console.log('WhiteBoardBlock constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('WhiteBoardBlock attribute change')
     }
-    connectedCallback(){
-        //console.log('WhiteBoardBlock connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render()
     }
     render(){
-        //console.log('WhiteBoardBlock rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
 
@@ -43,8 +41,8 @@ class WhiteBoardBlock extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('WhiteBoardBlock disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-whiteboardblock', WhiteBoardBlock);

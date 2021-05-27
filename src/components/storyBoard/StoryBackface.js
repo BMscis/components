@@ -1,5 +1,4 @@
 //modules
-import anime from '../../../node_modules/animejs/lib/anime.es.js';
 //components
 
 //images
@@ -11,20 +10,30 @@ import anime from '../../../node_modules/animejs/lib/anime.es.js';
 class StoryBackface extends HTMLElement{
     constructor(){
         super()
-        //console.log('StoryBackface constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
+        this.setup()
+    }
+    setup(){
+        this.addEventListener('resize',e=>{
+            var html = document.querySelector('html').getAttribute('mobi')
+            if(html === 'true'){
+                this.setAttribute('style','position:relative')
+            }
+            if(html === 'false'){
+                this.setAttribute('style', 'position:absolute')
+            }
+        })
     }
     static get observedAttributes(){
         return ['scaler','images']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('StoryBackface attribute change')
         switch(prop){
             case 'scaler':
                 this.scale()
                 return
             case 'images':
-                //console.log()
                 return
         }
     }
@@ -35,20 +44,20 @@ class StoryBackface extends HTMLElement{
         return this.setAttribute('images',val)
     }
 
-    connectedCallback(){
-        //console.log('StoryBackface connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+        var html = document.querySelector('html').getAttribute('mobi')
+        if(html === 'true'){
+            this.setAttribute('style','position:relative')
+        }
+
         this.render()
     }
     render(){
-        //console.log('StoryBackface rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
-            <div >
-            <svg viewbox="0 0 14 22">
-            <rect class="mouse-outline" width="7" height='11' x='4' y='7' rx='3'/>
-            <circle class="scroll" cx='7.5' cy='11' r='0.5'/>
-            </div>
-            <slot ></slot>
+            <es-scrollpad vertical ></es-scrollpad>
+            <slot></slot>
             `
     }
     scale(){
@@ -88,13 +97,6 @@ class StoryBackface extends HTMLElement{
         }
         svg{
             position:absolute;
-        }
-        div{
-            position: absolute;
-            z-index: -1;
-            right: 0%;
-            bottom: 22%;
-            width: 10vh;
         }
         slot{
             width: auto;
@@ -141,8 +143,8 @@ class StoryBackface extends HTMLElement{
   
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('StoryBackface disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-storybackface', StoryBackface);

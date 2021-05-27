@@ -1,25 +1,27 @@
 class Component extends HTMLElement{
     constructor(){
         super()
-        //console.log('Component constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
+        this.setup()
+    }
+    setup(){
+        
     }
     static get observedAttributes(){
-        return []
+        return ['']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('Component attribute change')
         switch(prop){
             case '':
                 return
         }
     }
-    connectedCallback(){
-        //console.log('Component connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render()
     }
     render(){
-        //console.log('Component rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             `
@@ -27,8 +29,8 @@ class Component extends HTMLElement{
     get styledTemplate(){
         return `<style></style>`
     }
-    disconnectedCallback(){
-        //console.log('Component disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-component', Component);

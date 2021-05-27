@@ -1,25 +1,23 @@
 class Scrollpad extends HTMLElement{
     constructor(){
         super()
-        //console.log('scrollpad constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
-        return []
+        return ['']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('scrollpad attribute change')
         switch(prop){
             case '':
                 return
         }
     }
-    connectedCallback(){
-        //console.log('scrollpad connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render()
     }
     render(){
-        //console.log('scrollpad rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <svg viewbox="0 0 14 22">
@@ -29,9 +27,12 @@ class Scrollpad extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
+        :host([hide]){
+            display:none;
+        }
         :host([mobi]){
             position: absolute;
-            z-index: -1;
+            z-index: 1;
             right: 0%;
             bottom: 5%;
             width: 10vh;
@@ -72,8 +73,8 @@ class Scrollpad extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('scrollpad disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-scrollpad', Scrollpad);

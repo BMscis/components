@@ -1,40 +1,43 @@
 //components
 
+import { Dimensions } from "../../../Classes/spacemaps/dimensions"
+
 //images
-class Navbar extends HTMLElement{
+export class Navbar extends HTMLElement{
     constructor(){
         super()
-        //console.log('Navbar constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
+        this.setup()
     }
     static get observedAttributes(){
-        return ['render']
+        return ['']
+    }
+    setup(){
+        this.dimension = new Dimensions()
+        window.addEventListener("resize", e=> {
+            this.resize()
+        })
+        window.addEventListener('orientationchange',e=>{
+            this.resize()
+        })
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('Navbar attribute change')
         switch(prop){
             case 'render':
                 this.render()
                 return
         }
     }
-    connectedCallback(){
-        //console.log('Navbar connected')
-        window.addEventListener('resize',e=>{
-            console.log('resizing nav')
-            var navbar = document.querySelector('es-navbar')
-            if(window.outerWidth <= 850 && navbar != null){
-                document.body.removeChild(navbar)
-            }
-            if(window.outerWidth > 850 && navbar === null){
-                var nav = document.createElement('es-navbar')
-                document.body.prepend(nav)
-            }
-        })
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+
         this.render()
     }
+    resize(){
+        this.style.height = this.dimension.navbarSetup + "px"
+    }
     render(){
-        //console.log('Navbar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <es-label text='Welcome to espii club.' textafter=''></es-label>
@@ -44,10 +47,8 @@ class Navbar extends HTMLElement{
         return `<style>
         :host{
         position:relative;
-        top:0;
-        left:0;
-        width:80vw;
-        height:3vh;
+        width:fit-content;
+        height:${this.dimension.navbarSetup + "px"};
         display:flex;
         justify-content:flex-end;
         align-items:center;
@@ -55,8 +56,8 @@ class Navbar extends HTMLElement{
     }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('Navbar disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-navbar', Navbar);

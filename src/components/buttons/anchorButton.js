@@ -40,43 +40,26 @@ class AnchorButton extends HTMLElement{
     }
     constructor (){
         super()
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
         this.active = false
+        this.setup()
+    }
+    setup(){
+        this.addEventListener('click', e=>{
+            var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
+            story.expand()
+        })
     }
     attributeChangedCallback(prop,oldVal,newVal){
         if (prop === "active" ){
             this.css = 0
             this.render()}
     }
-    connectedCallback(){
-        
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )        
         this.css = 0
-        this.addEventListener('click', e=>{
-            //console.log('EXPAND')
-            var carousel = document.querySelector('es-carousel')
-            var prevButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-previous')
-            var businessCard = document.querySelector("#body > es-carousel").shadowRoot.querySelector("es-businesscard")
-            var nextButton = document.querySelector("#body > es-carousel").shadow.querySelector('es-next')
-            if(nextButton != null){
-                nextButton.setAttribute('hide','')
-            }
-            if(prevButton != null){
-                prevButton.setAttribute('hide','')
-            }
-            if(businessCard != null ){
-                businessCard.setAttribute('hide','')
-            }
-            var story = document.querySelector('es-carousel').shadow.querySelector('es-story[active]')
-            var closeButton = story.shadowRoot.querySelector("es-closebutton")
-            story.setAttribute('expandstory','')
-            carousel.setAttribute('expand','')
-            var storyBackface = document.querySelector("es-carousel").shadowRoot.querySelector("es-story[active] ").shadowRoot.querySelector("es-storybackface")
-            //console.log("STORYBACKFACE: " + typeof(storyBackface))
 
-            storyBackface.setAttribute('scaler','true')
-            var sidebar = document.querySelector('es-sidebar')
-            sidebar.setAttribute('style','z-index: 0')
-        })
         this.render();
     }
     render(){
@@ -84,6 +67,9 @@ class AnchorButton extends HTMLElement{
         `
         ${this.styleTemplate}
         <a>Expand</a>`
+    }
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
     }
 }
 customElements.define('es-button', AnchorButton);

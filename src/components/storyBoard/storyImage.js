@@ -6,6 +6,7 @@ class StoryImages extends HTMLElement{
 
     constructor(){
         super()
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observeredAttributes() {
@@ -18,7 +19,7 @@ class StoryImages extends HTMLElement{
             position:relative;
         }
         img{
-            height:calc(78vh * 0.5);
+            height:calc(60vh * 0.5);
             position:relative;
             transition:0.5s ease;
             //opacity:0.5;
@@ -54,7 +55,8 @@ class StoryImages extends HTMLElement{
     attributeChangedCallback(prop,oldVal,newVal){
         if (prop === "img" || "width" || "alt"){this.render()}
     }
-    connectedCallback(){
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         //this.width = '50%'
         this.render();
     }
@@ -62,6 +64,9 @@ class StoryImages extends HTMLElement{
         return this.shadow.innerHTML = `
         ${this.styleTemplate}
         <img alt="${this.alt} "src=${this.img}>`
+    }
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-image', StoryImages);

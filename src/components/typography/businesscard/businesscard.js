@@ -1,72 +1,61 @@
-import anime from '../../../../node_modules/animejs/lib/anime.es.js';
+import { Dimensions } from '../../../Classes/spacemaps/dimensions.js';
 
-class Businesscard extends HTMLElement {
-    constructor() {
+export class BusinessCard extends HTMLElement {
+    constructor(text) {
         super()
-        //console.log('businesscard constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({ mode: 'open' })
+        this.text = text
+        this.setup()
     }
     static get observedAttributes() {
-        return ['text']
+        return ['']
+    }
+    setup(){
+        this.dimension = new Dimensions()
+        window.addEventListener('resize', e => {
+            this.resize()
+        })
+    }
+    resize(){
     }
     attributeChangedCallback(prop, oldVal, newVal) {
-        //console.log('businesscard attribute change')
-        switch(prop){
-            case 'text':
-                if(newVal != oldVal){
-                    this.show()
-                    this.render()
-                    return
-                }
-                return
-        }
-    }
-    get text(){
-        return this.getAttribute('text')
-    }
-    set text(val){
-        return this.setAttribute('text',val)
-    }
-    get borderImage(){
-        return this.getAttribute('backgroundimage')
-    }
-    set borderImage(val){
-        return this.setAttribute('backgroundimage', val)
     }
     connectedCallback() {
-        //console.log('businesscard connected')
-        if(this.getAttribute('text') === null){
-            var activeNavButton = document.querySelector("es-sidebar").shadowRoot.querySelector("es-navbutton[active]")
-            this.setAttribute('text',activeNavButton.getAttribute('text'))
-        }
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+
         this.render()
+        this.show()
     }
     render() {
-        //console.log('businesscard rendering')
-        this.shadow.innerHTML = `
-            ${this.getTemplate()}
-            ${this.styledTemplate}
-            `
+        this.templates
     }
-    getTemplate(){
-        if(this.text === 'Contact Us'){
-            return this.contactUs
-        }
-        if(this.text === 'Portfolio'){
-            return this.textBoard
-        }
-        else{
-            return
+    get templates(){
+        switch(this.text){
+            case "Portfolio":
+                this.shadow.innerHTML = `
+                ${this.textBoard}
+                ${this.styledTemplate}
+                `
+                return
+            case "Graph":
+                this.shadow.innerHTML = `
+                ${this.graphStyle}
+                ${this.graph}
+                `
+                return
+            case "About Us":
+                return this.aboutUs
         }
     }
     show(){
-            anime({
-                targets:this,
-                opacity:[0,1],
-                delay:500,
-                duration:1000,
-                easing:'easeOutQuart'
-            })
+            // anime({
+            //     targets:this,
+            //     opacity:[0,1],
+            //     delay:500,
+            //     duration:1000,
+            //     easing:'easeOutQuart'
+            // })
         return
     }
     get styledTemplate() {
@@ -160,7 +149,7 @@ class Businesscard extends HTMLElement {
         }
         </style>`
     }
-    get contactUs() {
+    get aboutUs() {
         //this.borderImage = 'linear-gradient(to left,transparent 10%, blue 20%, red 30%, transparent 35%)'
         return`
         <div class=texture></div>
@@ -188,8 +177,23 @@ class Businesscard extends HTMLElement {
         //this.borderImage = 'linear-gradient(to right,transparent 20%, blue 30%, red 40%, transparent 50%)'
         return '<es-textboard ></es-textboard>'
     }
+    get graph(){
+        return `<es-graph></es-graph>`
+    }
+    get graphStyle(){
+        return `
+        <style>
+            :host{
+            width:100%;
+            height:100%;
+            display:grid;
+            }
+        </style>
+        `
+
+    }
     disconnectedCallback() {
-        //console.log('businesscard disconnect')
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
     }
 }
-customElements.define('es-businesscard', Businesscard);
+customElements.define('es-businesscard', BusinessCard);

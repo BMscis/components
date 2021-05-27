@@ -1,21 +1,19 @@
 class Toolbar extends HTMLElement{
     constructor(){
         super()
-        //console.log('toolbar constructed')
+        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.shadow = this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        //console.log('toolbar attribute change')
     }
-    connectedCallback(){
-        //console.log('toolbar connected')
+    connectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render()
     }
     render(){
-        //console.log('toolbar rendering')
         this.shadow.innerHTML =  `
             ${this.styledTemplate}
             <es-menubutton></es-menubutton>
@@ -34,8 +32,8 @@ class Toolbar extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback(){
-        //console.log('toolbar disconnect')
+    disconnectedCallback() {
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
 customElements.define('es-toolbar', Toolbar);
