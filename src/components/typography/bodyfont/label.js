@@ -6,7 +6,7 @@ class Label extends HTMLElement{
     get stylesTemplate(){
         return  `
         <style>
-            :host{
+            es-label{
                 font-size: 2vh;
                 //z-index: 2;
                 text-align: center;
@@ -16,7 +16,7 @@ class Label extends HTMLElement{
                 -webkit-text-fill-color: transparent;
                 position:relative;
             }
-            :host::after{
+            es-label::after{
                 content:"${this.textAfter}";
                 font-size: 16px;
                 //z-index: 2;
@@ -54,18 +54,21 @@ class Label extends HTMLElement{
     constructor (){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
     }
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render();
     }
     render(){
-        this.shadow.innerHTML=`
+        this.innerHtml=`
         ${this.stylesTemplate}
         <text>${this.text}</text>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

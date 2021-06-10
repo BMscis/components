@@ -64,7 +64,7 @@ export class Dimensions {
         return (this.fullWidth - this.storyWidth) / 2
     }
     get storySetup() {
-        this.storyTranslate = this.storyTranslateXStart
+        //this.storyTranslate = this.storyTranslateXStart
         this.storyHeight = this.carouselSetup * .85
         return
     }

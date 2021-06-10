@@ -5,7 +5,7 @@ export class Logo extends HTMLElement{
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
         //console.log('Logo constructed')
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
         this.setup()
     }
     setup(){
@@ -27,14 +27,17 @@ export class Logo extends HTMLElement{
     }
     render(){
         //console.log('Logo rendering')
-        this.shadow.innerHTML =  `
-            ${this.styledTemplate}
-            <div class="logo"></div>
-            `
+        this.style = `
+        width: ${this.dimension.logoSetup + "px"};
+        height: ${this.dimension.logoSetup + "px"};`
+        var rx = document.createElement('div')
+        rx.classList.add('logo')
+        this.appendChild(rx)
+        return
     }
     get styledTemplate(){
         return `<style>
-        :host{
+        es-logo{
             width:auto;
             height:auto;
             margin:auto;
@@ -97,7 +100,10 @@ export class Logo extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
         //console.log('Logo disconnect')
     }

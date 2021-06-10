@@ -47,7 +47,9 @@ export class EspiiContainer{
         return new Logo()
     }
     set logo(val){return val}
-
+    get componentList(){
+        return [document.querySelector("es-logo"), document.querySelector("es-navbar"), document.querySelector("es-sidebar"), document.querySelector("es-carousel")]
+    }
     get components(){
         return [this.logo, this.navbar, this.sidebar, this.carousel]
     }

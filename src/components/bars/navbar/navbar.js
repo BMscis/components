@@ -7,7 +7,7 @@ export class Navbar extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
         this.setup()
     }
     static get observedAttributes(){
@@ -38,14 +38,13 @@ export class Navbar extends HTMLElement{
         this.style.height = this.dimension.navbarSetup + "px"
     }
     render(){
-        this.shadow.innerHTML =  `
-            ${this.styledTemplate}
-            <es-label text='Welcome to espii club.' textafter=''></es-label>
-            `
+        this.style = `height:${this.dimension.navbarSetup + "px"};`
+            //<es-label text='Welcome to espii club.' textafter=''></es-label>
+            return
     }
     get styledTemplate(){
         return `<style>
-        :host{
+        es-navbar{
         position:relative;
         width:fit-content;
         height:${this.dimension.navbarSetup + "px"};
@@ -56,7 +55,10 @@ export class Navbar extends HTMLElement{
     }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

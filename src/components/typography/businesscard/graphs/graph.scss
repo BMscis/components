@@ -1,0 +1,245 @@
+es-graph{
+    width:100%;
+    height:inherit;
+    display:grid;
+    margin: 0 20px;
+    overflow: auto;
+ }
+ table{
+    width:100%;
+    height:inherit;
+    display:grid;
+    overflow: auto;
+ }
+ tbody{
+    width:100%;
+    height:inherit;
+    display:grid;
+    grid-auto-flow: column;
+    overflow: auto;
+ }
+ tr{
+    width:400px;
+    height:450px;
+    display: grid;
+    position:relative;
+    background:transparent;
+    margin:auto;
+    overflow: auto;
+   
+ }
+//  tr:hover th{
+//     background-image:radial-gradient(circle at top left,#3b149833 0 65%,#3f00ff00 20% 31%, #038bff)
+//  }
+ th{
+    width: -webkit-fill-available;
+    height:inherit;
+    display: grid;
+    //background-image: radial-gradient(circle at top left,#3b149833,#3f00ff00, #038bff);
+    border-radius: 30px;
+    filter: drop-shadow(2px 4px 6px black);
+    cursor: pointer;
+    position: absolute;
+    transition:0.5s ease-in-out;
+ }
+
+ td{
+    //width:321.5px;
+    height:inherit;
+    border-radius: 30px;
+    cursor: pointer;
+    text-align:center;
+    z-index:1;
+    font-family: 'ACBoldSemiCn';
+    text-shadow: 9px 6px 6px #00000080;
+    color:#ffefd5;
+    //background-image: linear-gradient(to top, #58ff034f 0 39%,#ff005238, transparent 62% 100%);
+ }
+ hr {
+    opacity: 0.2;
+}
+ h1{
+    margin: auto;
+    width: fit-content;
+    white-space: nowrap;
+    opacity:0.3
+    }
+ ul{
+    list-style-type: none;
+    position: relative;
+    flex-direction: column;
+    padding: 0;
+    margin: auto;
+    overflow:auto;
+    height:inherit;
+    justify-content:flex-end;
+}
+#hightrades{
+    overflow-y:scroll;
+    overflow-x:hidden;
+    margin:0;
+    //height:calc(${this.halfHeight});
+    margin-bottom: 20px; 
+    margin-left:20px;
+}
+#hightradeshead{
+    display:grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows:20px;
+}
+#hightradecontainer{
+    display:grid;
+    grid-template-areas: "htag hdet hvad";
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 20px;
+    margin: 0 0 20px 0;
+}
+#hightradecontainer label{
+    grid-area: htag;
+    text-align: left;
+}
+#hightradecontainer li{
+    grid-area:hdet;
+    text-align: left;
+}
+#hightradecontainer span{
+    grid-area:hvad;
+    text-align: left;
+}
+.list{
+    display:grid;
+    margin:13px 10px;
+    grid-auto-flow:column;
+    grid-template-columns: 40% 1fr 40%;
+
+}
+ .btcusd{
+    position: relative;
+    display: grid;
+    grid-template-areas: "tag price";
+    grid-template-columns:50% 50%;
+    grid-auto-flow: column;
+    margin: auto;
+    justify-content: space-evenly;
+ }
+ #buyarea{
+    grid-area:tag;
+    justify-self: center;
+ }
+ #sellarea{
+     grid-area:tag;
+     justify-self: center;
+ }
+ #price, #quantity{
+     grid-area:price;
+     justify-self: center;
+ }
+ #amnt::after{
+     content: attr(sym);
+     color:white;
+     padding-left: 5px;
+ }
+ #fromowner[owner=binance],
+ #toowner[owner=binance]
+ {
+    color:#FCD535;
+ }
+ #fromowner[owner=huobi],
+ #toowner[owner=huobi]
+ {
+     color:#07145f;
+     backdrop-filter:brightness(2);
+ }
+ #fromowner[owner=bitfinex],
+ #toowner[owner=bitfinex]{
+     color:#01a781;
+ }
+ #fromowner[owner=coinbase],
+   #toowner[owner=coinbase]{
+     color:rgb(10, 70, 228);
+ }
+ #fromowner[owner=bitstamp],
+   #toowner[owner=bitstamp]{
+     color:#25a54b;
+ }
+ #fromowner[owner=ftx],
+   #toowner[owner=ftx]{
+     color:#00B4C9;
+ }
+ #amntusd::after{
+    content:' $';
+    color:white;
+ }
+ #whalefrom{
+    position: relative;
+    display: grid;
+    justify-items: center;
+ }
+ .sell{
+     color:red
+ }
+ .buy{
+     color:green
+ }
+ #price::after,#quantity::after{
+     content: ' BTC';
+ }
+ label{
+    font-family: 'ACBoldSemiCn';
+    color: whitesmoke;
+    text-align:center;
+    width:fit-content
+ }
+ p{
+    font-family: 'ACBoldSemiCn';
+    color: gray;
+    text-align:center;
+    width:fit-content;
+    margin:auto;
+ }
+ es-graph img{
+     width:25%;
+     opacity:0.3
+ }
+ .arrow {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs,1));
+    border-radius: 20px;
+    margin:auto;
+   }
+   
+   .arrow::after,
+   .arrow::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    right: 4px
+   }
+   
+   .arrow::after {
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    transform: rotate(45deg);
+    bottom: 6px
+   }
+   
+   .arrow::before {
+    width: 10px;
+    height: 2px;
+    bottom: 8px;
+    background: currentColor
+   }
+   @media only screen and (max-width: 700px){
+    tbody {
+        grid-auto-flow: row;
+        overflow: auto;
+    }
+   }

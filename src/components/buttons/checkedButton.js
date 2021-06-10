@@ -1,42 +1,50 @@
-class WhiteBoardBlockPage extends HTMLElement{
+export class CheckedButton extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
         //this.shadow =this.attachShadow({mode:'open'})
+        this.components = []
+        this.setup()
+    }
+    setup(){
+        this.getInputs = 0
+        return
+    }
+    get getInputs(){return}
+    set getInputs(val){
+        for(let i = 0; i < 4; i++){
+            let xm = document.createElement('input')
+            if(i == 0){
+                xm.checked = "checked"
+            }
+            xm.type = "radio"
+            xm.id = `story-${i}`
+            this.components.push(xm)
+        }
+        return
     }
     static get observedAttributes(){
-        return []
+        return ['']
     }
     attributeChangedCallback(prop,oldVal,newVal){
+        switch(prop){
+            case '':
+                return
+        }
     }
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
         this.render()
     }
     render(){
-        this.innerHtml =  `
-            ${this.styledTemplate}
-            `
+        for(let i = 0; i < 4; i++){
+            this.appendChild(this.components[i])
+        }
+
     }
     get styledTemplate(){
         return `<style>
-        es-whiteboardblockpage{
-            width:95vw;
-            height:100%;
-            border-radius:10px;
-            position:absolute;
-            top: 0;
-            left: 0;
-            background-image:linear-gradient(rgb(47, 184, 255) 0%, rgb(158, 236, 217) 100%);
-            border-radius: 60px 60px 60px 0px;
-            transform: matrix(1, 0.14, 0, 0.99, 0, 0);
-            transform-origin: left bottom;
-            //z-index: -1;
-            transition:1s ease;
-        }
-        es-whiteboardblockpage(:hover){
-            transform: rotateX(30deg) rotateY(30deg) translateY(-3px)
-        }
+
         </style>`
     }
     disconnectedCallback(){
@@ -46,4 +54,4 @@ class WhiteBoardBlockPage extends HTMLElement{
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
-customElements.define('es-whiteboardblockpage', WhiteBoardBlockPage);
+customElements.define('es-checkedbutton', CheckedButton);

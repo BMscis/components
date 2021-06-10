@@ -7,11 +7,11 @@
 // import three from '../../assets/img/Asset3.png'
 // import four from '../../assets/img/Asset1.png'
 
-class StoryBackface extends HTMLElement{
+export class StoryBackface extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
         this.setup()
     }
     setup(){
@@ -29,13 +29,6 @@ class StoryBackface extends HTMLElement{
         return ['scaler','images']
     }
     attributeChangedCallback(prop,oldVal,newVal){
-        switch(prop){
-            case 'scaler':
-                this.scale()
-                return
-            case 'images':
-                return
-        }
     }
     get images(){
         return this.getAttribute('images')
@@ -46,15 +39,10 @@ class StoryBackface extends HTMLElement{
 
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
-        var html = document.querySelector('html').getAttribute('mobi')
-        if(html === 'true'){
-            this.setAttribute('style','position:relative')
-        }
-
         this.render()
     }
     render(){
-        this.shadow.innerHTML =  `
+        this.innerHtml =  `
             ${this.styledTemplate}
             <es-scrollpad vertical ></es-scrollpad>
             <slot></slot>
@@ -79,7 +67,7 @@ class StoryBackface extends HTMLElement{
         *{
             outline:none;
         }
-        :host{
+        es-storybackface{
             display: flex;
             flex-direction:column;
             align-items:center;
@@ -133,7 +121,7 @@ class StoryBackface extends HTMLElement{
             }
         }
         @media only Screen and (max-width:850px){
-            :host{
+            es-storybackface{
                 width:85vw;
             }
             slot{
@@ -143,7 +131,10 @@ class StoryBackface extends HTMLElement{
   
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

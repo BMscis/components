@@ -2,7 +2,7 @@ class Searchbar extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
@@ -14,7 +14,7 @@ class Searchbar extends HTMLElement{
         this.render()
     }
     render(){
-        this.shadow.innerHTML =  `
+        this.innerHtml =  `
             ${this.styledTemplate}
             <button type="submit" name='searchbutton' class='gg-search'></button>
             <form>
@@ -24,7 +24,7 @@ class Searchbar extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
-        :host{
+        es-searchbar{
             display:inline-grid;
             align-items:center;
             border-radius:10px;
@@ -75,7 +75,10 @@ class Searchbar extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

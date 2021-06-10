@@ -1,10 +1,9 @@
-export class StoryImage extends HTMLElement{
-    constructor(alt,source){
+export class P1 extends HTMLElement{
+    constructor(text){
         super()
         console.log(`${this.nodeName} has been constructed`)
         //this.shadow = this.attachShadow({mode:'open'})
-        this.alt = alt
-        this.source = source
+        this.text = text
         this.components = {}
         this.setup()
 
@@ -25,10 +24,9 @@ export class StoryImage extends HTMLElement{
     attributeChangedCallback(prop, oldVal, newVal) {
     }
     render(){
-        var rx = document.createElement("img")
-        rx.src = this.source
-        rx.alt = this.alt
-        this.appendChild(rx)
+        var slt = document.createElement("slot")
+        slt.innerHTML =this.text
+        this.appendChild(slt)
         return
     }
     disconnectedCallback(){
@@ -38,4 +36,4 @@ export class StoryImage extends HTMLElement{
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )   
     }
 }
-customElements.define('es-storyimage', StoryImage);
+customElements.define('es-p', P1);

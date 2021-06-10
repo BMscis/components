@@ -68,35 +68,33 @@ export class WhaleAlert{
         for(i; i < len; i++){
             var list = document.createElement('li')
             list.classList.add("list")
-            var ls = document.createElement('div')
-            var fm = document.createElement('div')
-            var dv = document.createElement('div')
-            
 
+            var ls = document.createElement('div')
+            ls.id = "whalefrom"
+            var fm = document.createElement('div')
+            fm.id = "whalemid"
+            var dv = document.createElement('div')
+            dv.id = "whaleto"
 
             var symbol = document.createElement('p')
+            var sym = window.Espii.whalealert.data[i].symbol
             symbol.innerHTML = sym
             switch(window.Espii.whalealert.data[i].transaction_type){
                 case "sell":
-                    var sym = window.Espii.whalealert.data[i].symbol
                     var arrow = document.createElement('label')
                     arrow.classList.add("arrow")
                     arrow.classList.add("sell")
                     break
                 case "buy":
-                    var sym = window.Espii.whalealert.data[i].symbol
                     var arrow = document.createElement('label')
                     arrow.classList.add("arrow")
                     arrow.classList.add("buy")
                     break
-                case "sell":
-                    var sym = window.Espii.whalealert.data[i].symbol
-                    var arrow = document.createElement('label')
-                    arrow.classList.add("arrow")
-                    break
             }
             var frm = window.Espii.whalealert.data[i].from_owner_type
             var fromOwner = document.createElement('p')
+            fromOwner.id = "fromowner"
+            fromOwner.setAttribute("owner",frm)
             fromOwner.innerHTML = frm
 
             var dollar = document.createElement('div')
@@ -104,15 +102,20 @@ export class WhaleAlert{
 
             var to = window.Espii.whalealert.data[i].to_owner_type
             var toOwner = document.createElement('p')
+            toOwner.id = "toowner"
+            toOwner.setAttribute("owner",to)
             toOwner.innerHTML = to
 
             var amn = window.Espii.whalealert.data[i].amount
             var amount = document.createElement('p')
-            amount.innerHTML = amn
+            amount.id = "amnt"
+            amount.setAttribute("sym",sym)
+            amount.innerHTML = amn.toLocaleString()
 
             var amU = window.Espii.whalealert.data[i].amount_usd
             var amountUsd = document.createElement('p')
-            amountUsd.innerHTML = amU
+            amountUsd.innerHTML = amU.toLocaleString()
+            amountUsd.id ="amntusd"
             //var tcc = window.Espii.whalealert.data[i].transaction_count
             //arrow
             ls.appendChild(symbol)            
@@ -128,7 +131,7 @@ export class WhaleAlert{
             list.appendChild(fm)
             list.appendChild(dv)
             //list.appendChild(lt)
-            window.Espii.esgraph.shadow.children.table.children.tbody.children.whalealert.children.bg.children.data.appendChild(list)
+            document.querySelector("#whaledata").appendChild(list)
         }
         return
     }

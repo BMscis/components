@@ -2,7 +2,7 @@ class MenuButton extends HTMLElement {
     constructor() {
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({ mode: 'open' })
+        //this.shadow =this.attachShadow({ mode: 'open' })
         this.setup()
     }
     setup(){
@@ -36,7 +36,7 @@ class MenuButton extends HTMLElement {
         return this.setAttribute('active', val)
     }
     render() {
-        this.shadow.innerHTML = `
+        this.innerHtml = `
             ${this.styledTemplate}
             `
     }
@@ -45,7 +45,7 @@ class MenuButton extends HTMLElement {
         *{
             outline:none;
         }
-        :host {
+        es-menubutton {
             color: #01802c;
             position: absolute;
             left:20px;
@@ -66,7 +66,7 @@ class MenuButton extends HTMLElement {
             //z-index:2;
           }
           
-        :host::before {
+        es-menubutton::before {
             content: '';
             position: absolute;
             top: -5px;
@@ -79,7 +79,7 @@ class MenuButton extends HTMLElement {
             transform-origin: center;
           }
           
-        :host::after {
+        es-menubutton::after {
             content: '';
             position: absolute;
             top: 5px;
@@ -91,11 +91,11 @@ class MenuButton extends HTMLElement {
             transform-style:preserve-3d;
             transform-origin: center;
           }
-        :host(:hover){
+        es-menubutton(:hover){
             color:#81e900;
             width:6px;
         }
-        :host([active]){
+        es-menubutton([active]){
             background-color: #00000a;
             background-blend-mode: hard-light;
             background-position: top;
@@ -105,7 +105,7 @@ class MenuButton extends HTMLElement {
             border-radius: 5px;
             width:0;
         }
-        :host([active])::before{
+        es-menubutton([active])::before{
             content: '';
             position: absolute;
             top: -5px;
@@ -115,7 +115,7 @@ class MenuButton extends HTMLElement {
             height: 3px;
             background-color: currentColor;
         }
-        :host([active])::after {
+        es-menubutton([active])::after {
             content: '';
             position: absolute;
             top: -5px;
@@ -129,7 +129,10 @@ class MenuButton extends HTMLElement {
         }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
     }
 }

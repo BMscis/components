@@ -4,7 +4,7 @@ class WhiteBoard extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
@@ -16,7 +16,7 @@ class WhiteBoard extends HTMLElement{
         this.render()
     }
     render(){
-        this.shadow.innerHTML =  `
+        this.innerHtml =  `
         ${this.styledTemplate}
         <es-heading text=3D></es-heading>
         <es-heading2 text=Design></es-heading2>
@@ -26,7 +26,7 @@ class WhiteBoard extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
-        :host{
+        es-whiteboard{
             width:70%;
             height:70%;
             border-radius: 60px 60px 60px 0px;
@@ -37,14 +37,17 @@ class WhiteBoard extends HTMLElement{
             transition:1s ease;
             transform:scale(0)
         }
-        :host([active]){
+        es-whiteboard([active]){
             transform:scale(1)
         }
         </style>
         `
         
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

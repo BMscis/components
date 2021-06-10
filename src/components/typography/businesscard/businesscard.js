@@ -1,52 +1,68 @@
 import { Dimensions } from '../../../Classes/spacemaps/dimensions.js';
+import { AboutUs } from './aboutus/aboutus.js';
+import { Graph } from './graphs/graph.js';
+import { Textboard } from './textboard/textboard.js';
 
 export class BusinessCard extends HTMLElement {
     constructor(text) {
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({ mode: 'open' })
+        //this.shadow =this.attachShadow({ mode: 'open' })
         this.text = text
+        this.components = {}
         this.setup()
+        return
     }
     static get observedAttributes() {
         return ['']
     }
     setup(){
         this.dimension = new Dimensions()
+        this.components = this.getcomponents
+        this.styletemplate = this.getstyles
         window.addEventListener('resize', e => {
             this.resize()
         })
+        return
     }
-    resize(){
+    get getcomponents(){
+        switch(this.text){
+            case "Portfolio":
+                return {"Portfolio":new Textboard()}
+            case "Graph":
+                return {"Graph":new Graph()}
+            case "About Us":
+                return {"About Us":new AboutUs()}
+        }
+        return
+    }
+    get getstyles(){
+        var sm = document.createElement("style")
+        switch(this.text){
+            case "Portfolio":
+                sm.innerHTML = this.portfolioStyle
+                return {"Portfolio":sm}
+            case "Graph":
+                sm.innerHTML = this.graphStyle
+                return {"Graph": sm}
+            case "About Us":
+                sm.innerHTML = this.portfolioStyle
+                return {"About Us":sm}
+        }
+        return
     }
     attributeChangedCallback(prop, oldVal, newVal) {
     }
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
-
         this.render()
-        this.show()
+        //this.show()
+        return
     }
     render() {
-        this.templates
-    }
-    get templates(){
-        switch(this.text){
-            case "Portfolio":
-                this.shadow.innerHTML = `
-                ${this.textBoard}
-                ${this.styledTemplate}
-                `
-                return
-            case "Graph":
-                this.shadow.innerHTML = `
-                ${this.graphStyle}
-                ${this.graph}
-                `
-                return
-            case "About Us":
-                return this.aboutUs
-        }
+        this.appendChild(this.components[this.text])
+        this.appendChild(this.styletemplate[this.text])
+        return
     }
     show(){
             // anime({
@@ -58,64 +74,63 @@ export class BusinessCard extends HTMLElement {
             // })
         return
     }
-    get styledTemplate() {
-        return `<style>
-
-       :host{
-        position: absolute;
-        width: calc(95vw * 0.3);
-        height: calc(78vh * 0.5);
-        display:flex;
-        flex-direction:row;
-        top:14vh;
-        left:5vw;
-        border-radius: 10px;
-        background: transparent;
-        border-top: 2px;
-        //border-top-style: dotted;
-        //border-top-color: blueviolet;
-        border-image: linear-gradient(to bottom right,#00368e 50%, transparent);
-        border-image-slice: 8;
-        opacity:0;
-        z-index:1;
+    get portfolioStyle() {
+        return `
+        
+        es-businesscard{
+            position: absolute;
+            width: calc(95vw * 0.3);
+            height: calc(78vh * 0.5);
+            display:flex;
+            flex-direction:row;
+            top:14vh;
+            left:0vw;
+            border-radius: 10px;
+            background: transparent;
+            border-top: 2px;
+            //border-top-style: dotted;
+            //border-top-color: blueviolet;
+            border-image: linear-gradient(to bottom right,#00368e 50%, transparent);
+            border-image-slice: 8;
+            //opacity:0;
+            z-index:1;
         }
-        .texture{
+        es-businesscard .texture{
             position:absolute;
             opacity:0.8;
             left:0;
             width: calc(100% - 20px);
             height:calc(100% - 20px);
         }
-        .infocontainer, .labelcontainer{
+        es-businesscard .infocontainer, .labelcontainer{
             display:flex;
             flex-direction:column;
             justify-content:start;
         }
-        .labelcontainer{
+        es-businesscard .labelcontainer{
         }
-        .infocontainer{
+        es-businesscard .infocontainer{
         }
-        text{
+        es-businesscard text{
             font-size:10vmin;
             color:white;
             font-family:ACBoldCond;
             transition: 0.5s ease;
         }
-        label, a, p{
+        es-businesscard label, es-businesscard a, es-businesscard p{
             backdrop-filter: brightness(2);
             -webkit-backdrop-filter: brightness(2);
             font-family: ACLight;
             width:fit-content;
             font-size:larger;            
         }
-
-        a,p{
+        es-businesscard a,es-businesscard p{
             background: linear-gradient(to bottom right,#00368e 50%, #a90101);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin:0;
         }
-        label{
+        es-businesscard label{
             color: silver;
             font-variant-caps: all-petite-caps;
             font-size: larger;
@@ -125,75 +140,46 @@ export class BusinessCard extends HTMLElement {
             backdrop-filter: brightness(0.5);
             -webkit-backdrop-filter: brightness(0.5);
         }
-        a{
+        es-businesscard a{
             text-decoration: none;
             font-style: normal;
         }
-        p{
-            //padding:0;
-        }
-        address{
+        es-businesscard address{
             color:gold;
             cursor:pointer;
         }
-        :host([hide]){
+        es-businesscard[hide]{
             display: none
         }
-         @media only screen and (max-width: 850px){
-            :host{
+            @media only screen and (max-width: 850px){
+            es-businesscard{
+                display:none;
                 top:29vh
             }
-            text{
+            es-businesscard text{
                 font-size:5vmin;
             }
         }
-        </style>`
-    }
-    get aboutUs() {
-        //this.borderImage = 'linear-gradient(to left,transparent 10%, blue 20%, red 30%, transparent 35%)'
-        return`
-        <div class=texture></div>
-        <div class=labelcontainer>
-        <label>Name: </label>
-        <label>Email: </label>
-        <label>Contact: </label>
-        </div>
-        <div class=infocontainer>
-        <p>Melvin Wakhungu Wafula</p>
-        <address>
-        <a href="mailto:melvinwafula@gmail.com">
-        melvinwafula@gmail.com
-        </a>
-        </address>
-        <address>
-        <a href="tel:+254729675138">
-        +254729675138
-        </a>
-        </address>
-        </div>
+        
         `
-    }
-    get textBoard(){
-        //this.borderImage = 'linear-gradient(to right,transparent 20%, blue 30%, red 40%, transparent 50%)'
-        return '<es-textboard ></es-textboard>'
-    }
-    get graph(){
-        return `<es-graph></es-graph>`
     }
     get graphStyle(){
         return `
-        <style>
-            :host{
+            
+            es-businesscard{
             width:100%;
             height:100%;
             display:grid;
             }
-        </style>
+            
         `
-
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
+        return
     }
 }
 customElements.define('es-businesscard', BusinessCard);

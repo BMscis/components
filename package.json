@@ -1,6 +1,6 @@
 {
   "name": "espii-components",
-  "version": "3.6.0",
+  "version": "4.1.0",
   "description": "Components for espii club",
   "main": "main.js",
   "scripts": {

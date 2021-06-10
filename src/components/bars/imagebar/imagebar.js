@@ -2,7 +2,7 @@ class Imagebar extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
         this.setup()
     }
     static get observedAttributes(){
@@ -51,7 +51,7 @@ class Imagebar extends HTMLElement{
         this.render()
     }
     render(){
-        this.shadow.innerHTML =  `
+        this.innerHtml =  `
             ${this.styledTemplate}
             <img alt='${this.text}' src=${this.src}>
             <es-p class="tooltiptext">${this.text}</es-p>
@@ -84,7 +84,7 @@ class Imagebar extends HTMLElement{
             outline:none;
             user-select:none;
         }
-        :host{
+        es-imagebar{
             transition: 0.5s ease;
             position:relative;
             height: calc(78vh * 0.9);
@@ -126,16 +126,16 @@ class Imagebar extends HTMLElement{
             font-family: 'ACBoldSemiCn';
             font-size: calc(78vh * 0.035);
         }
-        :host([hover]){
+        es-imagebar([hover]){
             opacity:1;
         }
-        :host(:hover){
+        es-imagebar(:hover){
             opacity:1;
         }
-        :host(:hover) .tooltiptext{
+        es-imagebar(:hover) .tooltiptext{
             //opacity:1;
         }
-        :host(:hover) .descriptiontext{
+        es-imagebar(:hover) .descriptiontext{
             //opacity:1;
         }
         @media only Screen and (max-width:850px){
@@ -143,7 +143,7 @@ class Imagebar extends HTMLElement{
                 //height:73vw;
                 //width:73vw;
             }
-            :host{
+            es-imagebar{
                 opacity:1;
                 justify-content:flex-end;
             }
@@ -156,7 +156,10 @@ class Imagebar extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

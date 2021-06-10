@@ -1,0 +1,29 @@
+es-heading{
+    //width:calc((78vh * 0.1) + (78vh * 0.05));
+    height:calc((78vh * 0.1) + (78vh * 0.05));
+    position:relative;
+    transform: scale(var(--ggs,1));
+}
+es-heading{
+text{
+    font-size: calc(78vh * 0.08);
+    text-align: center;
+    font-family: 'ACLight';
+    background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}}
+es-heading::after{
+    content:attr(textafter);
+    //font-size: calc(78vh * 0.05);
+    font-family: 'ACLight';
+    background: linear-gradient(to right, #cc3e14, yellowgreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    //padding: 0 0 20px 20px ;
+    display: grid;
+    white-space: nowrap;
+    //left: 2%;
+    //top: 60%;
+    //position: absolute;
+}

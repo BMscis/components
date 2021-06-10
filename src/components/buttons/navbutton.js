@@ -6,7 +6,7 @@ class Navbutton extends HTMLElement {
         console.log(`${this.nodeName} has been constructed` )                                                                             
         this.text = text
         this.active = active
-        this.shadow = this.attachShadow({ mode: 'open' })
+        //this.shadow =this.attachShadow({ mode: 'open' })
         this.setup()
     }
     static get properties() {
@@ -20,7 +20,7 @@ class Navbutton extends HTMLElement {
                 case true:
                     return
                 case false:
-                    var activeNavbutton = document.querySelector("es-sidebar").shadowRoot.querySelector("es-navbutton[active]")
+                    var activeNavbutton = document.querySelector("es-navbutton[active]")
                     activeNavbutton.toggleAttribute('active', false)
                     this.toggleAttribute('active', true)
                     var carousel = document.querySelector('es-carousel')
@@ -35,7 +35,7 @@ class Navbutton extends HTMLElement {
             *{
                 outline:none;
             }
-                :host{
+                es-navbutton{
                     display: grid;
                     white-space: nowrap;
                     position:relative;
@@ -45,7 +45,7 @@ class Navbutton extends HTMLElement {
                     height: 4vh;
                     margin: 3vh;
                 }
-                :host([active]){
+                es-navbutton([active]){
                     background: linear-gradient(to right, #c30047, #1a71ff);
                     -webkit-background-clip: text;
                     backdrop-filter: brightness(2)
@@ -53,11 +53,11 @@ class Navbutton extends HTMLElement {
                     opacity:1;
                     transition:0.5s ease;
                 }
-                :host([inactive]){
+                es-navbutton([inactive]){
                     opacity:0.5;
                     transition:0.5s ease;
                 }
-                :host([inactive]:hover){
+                es-navbutton([inactive]:hover){
                     opacity:1;
     
                 }
@@ -74,19 +74,19 @@ class Navbutton extends HTMLElement {
                     padding:0;
                     height: 3vh;
                 }
-                :host(.darkmode) button{
+                es-navbutton(.darkmode) button{
                     -webkit-background-clip: none;
                     -webkit-text-fill-color: black;
                     padding:0 10px;
                     background: hsl(0deg 0% 100%);
                 }
-                :host(.darkmode[active]) button{
+                es-navbutton(.darkmode[active]) button{
                     -webkit-background-clip: none;
                     background: transparent;
                     background-image:linear-gradient(45deg, #3ffd1e, transparent);
                     border: none;
                 }
-                :host([active]) button{
+                es-navbutton([active]) button{
                     -webkit-background-clip: text;
                     background: transparent;
                     border-bottom: 2px solid;
@@ -120,13 +120,17 @@ class Navbutton extends HTMLElement {
         if (prop === "active") {
         }
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
     }
     render() {
-        return this.shadow.innerHTML = `
-${this.styleTemplate}
-<button>${this.text} </button>`
+        var rx = document.createElement("button")
+        rx.innerHTML = this.text
+        this.appendChild(rx)
+        return
     }
 }
 customElements.define(`es-navbutton`, Navbutton);

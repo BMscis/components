@@ -2,7 +2,7 @@ class Toolbar extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
     }
     static get observedAttributes(){
         return []
@@ -14,7 +14,7 @@ class Toolbar extends HTMLElement{
         this.render()
     }
     render(){
-        this.shadow.innerHTML =  `
+        this.innerHtml =  `
             ${this.styledTemplate}
             <es-menubutton></es-menubutton>
             <es-searchbar contracted></es-searchbar>
@@ -22,7 +22,7 @@ class Toolbar extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
-        :host{
+        es-toolbar{
             height:10vmin;
             width:95vw;
             //z-index:3;
@@ -32,7 +32,10 @@ class Toolbar extends HTMLElement{
         }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

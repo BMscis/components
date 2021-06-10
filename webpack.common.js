@@ -9,7 +9,7 @@ module.exports = {
     entry: {
         entry:glob.sync('./src/entry/index.js'),
         fonts:glob.sync('./src/assets/fonts/*.otf'),
-        style:glob.sync('./src/*.scss'),
+        style:glob.sync('./src/**/*.scss'),
         images:glob.sync('./src/assets/img/*.{gif,jpg,png}'),
         preloadImages:('./src/assets/img/ws382.jpg'),
         es_components:glob.sync('./src/components/**/*.{js,ts}'),

@@ -6,7 +6,7 @@ class H2 extends HTMLElement{
     get styleTemplate(){
         return `
         <style>
-            :host{
+            es-h2{
                 font-size: 20px;
                 //z-index: 2;
                 font-family: 'ACBoldSemiCn';
@@ -21,19 +21,19 @@ class H2 extends HTMLElement{
                 cursor:pointer;
                 
             }
-            :host([active]){
+            es-h2([active]){
                 background: linear-gradient(to right, #c30047, #1a71ff);
                 -webkit-background-clip: text;
                 backdrop-filter: brightness(2);
                 -webkit-backdrop-filter: brightness(2)
                 opacity:1;
             }
-            :host([inactive]){
+            es-h2([inactive]){
                 backdrop-filter:brightness(0.5);
                 -webkit-backdrop-filter:brightness(0.5);
                 opacity:0.5;
             }
-            :host(:hover){
+            es-h2(:hover){
                 background: linear-gradient(to right, #c30047, #1a71ff);
                 -webkit-background-clip: text;
             }
@@ -43,7 +43,7 @@ class H2 extends HTMLElement{
     constructor (){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
     }
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
@@ -60,11 +60,14 @@ class H2 extends HTMLElement{
         return this.setAttribute('text',val)
     }
     render(){
-        this.shadow.innerHTML=`
+        this.innerHtml=`
         ${this.styleTemplate}
         <text>${this.text}</text>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

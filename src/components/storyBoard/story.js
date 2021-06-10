@@ -8,6 +8,11 @@ import four from '../../assets/img/jasenalogo.png'
 import five from '../../assets/img/Asset5.png'
 import six from '../../assets/img/Asset6.png'
 import seven from '../../assets/img/phone.png'
+import { StoryImage } from "./storyImage"
+import { H1 } from "../typography/h1/h1"
+import { P1 } from "../typography/paragraph/p1"
+import {AnchorButton} from "../buttons/anchorButton"
+import { CloseComponent } from "./closecomponent"
 
 export class Story extends HTMLElement {
     constructor(h1, h2, img, active, aclass, ptext) {
@@ -19,7 +24,8 @@ export class Story extends HTMLElement {
         this.active = active
         this.aclass = aclass
         this.ptext = ptext
-        this.shadow = this.attachShadow({ mode: 'open' })
+        this.components = {}
+        //this.shadow =this.attachShadow({ mode: 'open' })
         this.setup()
     }
     static get observedAttributes() {
@@ -33,52 +39,63 @@ export class Story extends HTMLElement {
     setup() {
         this.dimension = new Dimensions()
         this.dimension.storySetup
-        this.translateX()
-        this.addEventListener("dbclick", e => {
-            this.expand()
-        })
-        window.addEventListener('resize', e => {
-            this.resize()
-        })
-        this.addEventListener('orientationchange', e => {
-            this.setAttribute('resize', 'true')
+        this.getcomponents
+        //this.translateX()
+        // this.addEventListener("dbclick", e => {
+        //     this.expand()
+        // })
+        // window.addEventListener('resize', e => {
+        //     this.resize()
+        // })
+        // this.addEventListener('orientationchange', e => {
+        //     this.setAttribute('resize', 'true')
 
-        })
-        this.addEventListener('touchstart', e => {
-            if (this.hasAttribute('expandstory')) {
-                return
-            }
-            else {
-                var touches = e.changedTouches
-                this.firstTouch = touches[0].screenX
-                this.touchMove = false
-            }
-            return
-        })
-        this.addEventListener('touchmove', e => {
-            this.touchMove = true
-        })
-        this.addEventListener('touchend', e => {
-            if (this.hasAttribute('expandstory')) {
-                return
-            }
-            else {
-                var touches = e.changedTouches
-                this.lastTouch = touches[touches.length - 1].screenX
-                var firstTouch = this.firstTouch
-                var lastTouch = touches[touches.length - 1].screenX
-                if (firstTouch > lastTouch && this.touchMove === 'true') {
-                    document.querySelector('es-carousel').shadowRoot.querySelector('es-next').click()
-                }
-                if (firstTouch < lastTouch && this.touchMove === 'true') {
-                    document.querySelector('es-carousel').shadowRoot.querySelector('es-previous').click()
+        // })
+        // this.addEventListener('touchstart', e => {
+        //     if (this.hasAttribute('expandstory')) {
+        //         return
+        //     }
+        //     else {
+        //         var touches = e.changedTouches
+        //         this.firstTouch = touches[0].screenX
+        //         this.touchMove = false
+        //     }
+        //     return
+        // })
+        // this.addEventListener('touchmove', e => {
+        //     this.touchMove = true
+        // })
+        // this.addEventListener('touchend', e => {
+        //     if (this.hasAttribute('expandstory')) {
+        //         return
+        //     }
+        //     else {
+        //         var touches = e.changedTouches
+        //         this.lastTouch = touches[touches.length - 1].screenX
+        //         var firstTouch = this.firstTouch
+        //         var lastTouch = touches[touches.length - 1].screenX
+        //         if (firstTouch > lastTouch && this.touchMove === 'true') {
+        //             document.querySelector('es-carousel').shadowRoot.querySelector('es-next').click()
+        //         }
+        //         if (firstTouch < lastTouch && this.touchMove === 'true') {
+        //             document.querySelector('es-carousel').shadowRoot.querySelector('es-previous').click()
 
-                }
-            }
+        //         }
+        //     }
 
-        })
-        this.addEventListener('touchcancel', e => {
-        })
+        // })
+        // this.addEventListener('touchcancel', e => {
+        // })
+    }
+
+    get getcomponents(){
+        this.components["esimage"] = new StoryImage(this.h1 + this.h2, this.img)
+        this.components["heading"] = new H1(this.h1, this.h2)
+        this.components["p2"] = new P1(this.ptext)
+        this.components["esbutton"] = new AnchorButton()
+        this.components["backface"] = new StoryImage()
+        this.components["close"] = new CloseComponent()
+        return
     }
     animateTranslateX() {
         switch (this.active) {
@@ -150,35 +167,37 @@ export class Story extends HTMLElement {
     }
     moveActive() {
         this.toggleActive()
-        this.animate([
-            { transform: "translateX(" + this.dimension.storyTranslate + ") scale(1) rotate(0)" }
-        ],
-            {
-                duration: 350,
-                delay: this.offsetLeft / 3,
-                fill: 'forwards',
-                easing: 'cubic-bezier(.39,.11,.61,.84)'
-            }
-        )
+        //this.style.left = this.dimension.storyTranslate + "px"
+        // this.animate([
+        //     { transform: "translateX(" + this.dimension.storyTranslate + ") scale(1) rotate(0)" }
+        // ],
+        //     {
+        //         duration: 350,
+        //         delay: this.offsetLeft / 3,
+        //         fill: 'forwards',
+        //         easing: 'cubic-bezier(.39,.11,.61,.84)'
+        //     }
+        // )
     }
     moveInactive() {
         this.toggleActive()
-        this.animate([
-            { transform: "translateX(" + this.dimension.storyTranslate + ") scale3d(0.7,0.7,0.7) rotateY(20deg)" }
-        ],
-            {
-                duration: 350,
-                delay: this.offsetLeft / 3,
-                fill: 'forwards',
-                easing: 'cubic-bezier(.39,.11,.61,.84)'
-            }
-        )
+        //this.style.left = this.dimension.storyTranslate + "px"
+        // this.animate([
+        //     { transform: "translateX(" + this.dimension.storyTranslate + ") scale3d(0.7,0.7,0.7) rotateY(20deg)" }
+        // ],
+        //     {
+        //         duration: 350,
+        //         delay: this.offsetLeft / 3,
+        //         fill: 'forwards',
+        //         easing: 'cubic-bezier(.39,.11,.61,.84)'
+        //     }
+        // )
     }
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" ) 
         this.toggleAttribute('darkmode', true)
         this.render();
-        this.toggleActive()
+        //this.toggleActive()
     }
     toggleActive() {
         switch(this.active){
@@ -191,12 +210,10 @@ export class Story extends HTMLElement {
         }
     }
     render() {
-        if (this.backface) {
-            this.shadow.innerHTML = `
-            ${this.styleTemplate}
-            <es-closecomponent text=${this.h1} textafter=${this.h2}></es-closecomponent>
-            <es-storybackface></es-storybackface>
-            `
+        this.style.height = this.dimension.storyHeight + "px"
+        this.setAttribute("backface",'')
+        this.appendChild(this.components.close)
+        this.appendChild(this.components.backface)
             if (this.classList.contains('0')) {
                 this.imgset = [
                     [one,
@@ -232,131 +249,20 @@ export class Story extends HTMLElement {
                     ]
                 ]
             }
-        }
-        else {
-            this.shadow.innerHTML = `
-        ${this.styleTemplate}
-        <es-image alt="${this.h1 + this.h2}" img = ${this.img}></es-image>
-        <es-heading text=${this.h1} textafter=${this.h2}></es-heading>
-        <es-p text='${this.ptext}'></es-p>
-        <es-button></es-button>`}
+            // this.appendChild(this.components.esimage)
+            // this.appendChild(this.components.heading)
+            // this.appendChild(this.components.p2)
+            // this.appendChild(this.components.esbutton)
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+        this.childNodes.prototype.forEach(element => {
+            this.removeChild(element)
+        });
+
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
     }
     get styleTemplate() {
-        return `<style>
-        *{
-            box-sizing:border-box;
-            outline:none;
-        }
-        ::-webkit-scrollbar {
-            width: 0;
-        }
-        :host{
-            height:${this.dimension.storyHeight + "px"};
-            width:300px;
-            min-width:300px;
-            max-width:300px;
-            position: relative;
-            border-radius: 3px;
-            background-color: #b1b1;
-            background-position: bottom;
-            background-repeat: no-repeat;
-            background-size: cover;
-            backdrop-filter: blur(0px);
-            -webkit-backdrop-filter: blur(0px);
-            transform-style: preserve-3d;
-            transform-origin:center;
-            transition: 0.5s ease;
-            align-items: center;
-            display: grid;
-            grid-auto-flow: row;
-            justify-items: center;                                          
-            opacity: 0.5;
-            z-index:0;
-
-        }
-        :host([darkmode]){
-            background-color: #000000;
-        }
-        :host([backface]){
-            display:flex;
-            flex-direction:row;
-            align-items:flex-start;
-        }
-        :host([active]){
-            opacity: 1;
-            box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-right: 1px outset;
-            border-left: 1px outset;
-            border-image: linear-gradient(transparent, transparent,#e63380,transparent,transparent);
-            border-image-slice:1;
-            z-index:1;
-        
-        }
-        :host([darkmode][active]){
-            //border:none;
-            //box-shadow:2px 3px 15px 18px hsl(0deg 0% 5%), 0 0 4px 3px hsl(0deg 0% 9%);
-        }
-        :host([darkmode][active])::after,
-        :host::after{
-            content:none;
-        }
-        :host([active])::after,
-        :host::after{
-            content: " ";
-            border-radius: 10px;
-            width: 100%;
-            height: 10%;
-            box-shadow: -10px 20px 16px 5px #00000008;
-            position: absolute;
-            background: linear-gradient(to top, currentColor, transparent, transparent);
-            bottom: 0;
-            transform-style: preserve-3d;
-            transform-origin: top;
-            backdrop-filter:opacity(0.5);
-            -webkit-backdrop-filter:opacity(0.5);
-            z-index: -1;
-        }
-        @supports (-webkit-box-reflect: below;) {
-            :host([active])::after,
-        :host::after{
-            -webkit-box-reflect: below;
-            }
-        }
-        :host([expandstory]){
-            background-image:none;
-            backdrop-filter: blur(0px);
-            -webkit-backdrop-filter: blur(0px);
-            min-width:calc(95vw * 0.8);
-            max-width:calc(95vw * 0.8);
-            flex-wrap: wrap;
-            justify-content: end;
-            flex-direction: column;
-            box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08);
-            background:border-box;
-        }
-        :host([expandstorymobi]){
-            height:calc(85vh * 0.9);
-        }
-        @media only Screen and (max-width:850px){
-            :host([expandstory]){
-                max-width:95vw;
-                min-width:95vw;
-                flex-wrap:nowrap;
-            }
-            div{
-                //margin-left: 5%;
-            }
-        }
-        :host([expandstory]:hover){
-        
-        }
-        </style>
-    `
+        return
     }
 }
 customElements.define('es-story', Story);

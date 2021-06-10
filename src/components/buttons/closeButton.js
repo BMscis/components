@@ -2,7 +2,7 @@ class CloseButton extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
         this.setup()
     }
     setup(){
@@ -49,7 +49,7 @@ class CloseButton extends HTMLElement{
         this.render()
     }
     render(){
-        this.shadow.innerHTML =  `
+        this.innerHtml =  `
             ${this.styledTemplate}
             `
     }
@@ -58,7 +58,7 @@ class CloseButton extends HTMLElement{
         *{
             outline:none;
         }
-        :host {
+        es-closebutton {
             box-sizing: border-box;
             position: relative;
             transform: scale(var(--ggs,1));
@@ -69,13 +69,13 @@ class CloseButton extends HTMLElement{
             color:#f20c9c;
             opacity:1;
         }
-        :host(:hover){
+        es-closebutton(:hover){
             color:#00ff7e;
             transform:scale(1.5)
         
         }
-        :host::after,
-        :host::before {
+        es-closebutton::after,
+        es-closebutton::before {
             content: "";
             position: absolute;
             width: 16px;
@@ -86,15 +86,18 @@ class CloseButton extends HTMLElement{
             top: 8px;
             left: 1px
         }
-        :host::after {
+        es-closebutton::after {
             transform: rotate(-45deg)
         }
-        :host([show]){
+        es-closebutton([show]){
             opacity:1;
         }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

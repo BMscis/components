@@ -1,0 +1,66 @@
+es-toggle{
+    cursor: pointer;
+    position: absolute;
+    transform: scale(var(--ggs,1));
+    border-image-slice: 8;
+    border-image-width: 7px;
+    transition: 0.5s ease;
+    z-index:2;
+}
+es-toggle[prev]{
+    transform-origin: right;
+    transform: translateX(calc(100vw / 2 - 175px));
+}
+es-toggle[next]{
+    transform-origin: right;
+    transform: translateX(calc(100vw / 2 + 150px));
+}
+es-toggle::before{
+    content: "";
+    position: absolute;
+    transform: scale(var(--ggs,1)) rotate(45deg);
+    width: calc(78vh * 0.05);
+    height: calc(78vh * 0.05);
+    border-radius: 100px;
+    cursor: pointer;
+    border-image-width: 2px;
+}
+es-toggle::after{
+    content: counter(story);
+    box-sizing: border-box;
+    position: absolute;
+    width: calc(78vh * 0.05);
+    height: calc(78vh * 0.05);
+    background: white;
+    border-radius:25%;
+}
+
+es-toggle[prev]::after{
+    border-bottom: 7px inset;
+    border-left: 7px solid white;
+    transform: rotate(45deg);
+}
+es-toggle[next]::after{
+    border-bottom: 7px inset;
+    border-right: 7px solid white;
+    transform: rotate(-45deg);
+}
+
+es-toggle[hide]{
+    display:none;
+}
+@function trs(){
+    @return translateX(calc(100vw / 2 - 150px - 300px * 2)) scale3d(0.7,0.7,0.7) rotateY(20deg);
+}
+es-toggle[next]:active {
+    es-checkedbutton{
+    #story-1:checked es-story:first-of-type,
+    #story-2:checked es-story:nth-child(6),
+    #story-3:checked es-story:nth-child(7),
+    #story-4:checked es-story:last-of-type{
+        transform: translateX(calc(100vw / 2 - 150px)) scale(1);
+    }
+}}
+// es-toggle:hover ~ es-story{
+//     transform: translateX(-300px) scale3d(0.7,0.7,0.7) rotateY(20deg);
+// }

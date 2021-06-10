@@ -1,4 +1,4 @@
-export class Component extends HTMLElement{
+export class AboutUs extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed`)
@@ -29,6 +29,25 @@ export class Component extends HTMLElement{
     }
     render(){
         this.innerHTML = `
+        <div class=texture></div>
+        <div class=labelcontainer>
+        <label>Name: </label>
+        <label>Email: </label>
+        <label>Contact: </label>
+        </div>
+        <div class=infocontainer>
+        <p>Melvin Wakhungu Wafula</p>
+        <address>
+        <a href="mailto:melvinwafula@gmail.com">
+        melvinwafula@gmail.com
+        </a>
+        </address>
+        <address>
+        <a href="tel:+254729675138">
+        +254729675138
+        </a>
+        </address>
+        </div>
         `
         return
     }
@@ -46,4 +65,4 @@ export class Component extends HTMLElement{
         return
     }
 }
-customElements.define('es-component', Component);
+customElements.define('es-aboutus', AboutUs);

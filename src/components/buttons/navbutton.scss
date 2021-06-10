@@ -1,0 +1,56 @@
+es-navbutton{
+    display: grid;
+    white-space: nowrap;
+    position:relative;
+    cursor:pointer;
+    transition:0.5s ease;
+    margin-bottom: 1vh;
+    height: 4vh;
+    margin: 3vh;
+}
+es-navbutton[active]{
+    background: linear-gradient(to right, #c30047, #1a71ff);
+    -webkit-background-clip: text;
+    opacity:1;
+    transition:0.5s ease;
+}
+es-navbutton[inactive]{
+    opacity:0.5;
+    transition:0.5s ease;
+}
+es-navbutton[inactive]:hover{
+    opacity:1;
+}
+button {
+    border: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    outline: none;
+    border-radius: 2px;
+    font-family: 'ACLight';
+    font-size:2vh;
+    cursor:pointer;
+    margin:0;
+    padding:0;
+    height: 3vh;
+}
+es-navbutton.darkmode button{
+    -webkit-background-clip: none;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+    padding:0 10px;
+    background: transparent;
+}
+es-navbutton.darkmode[active] button{
+    -webkit-background-clip: none;
+    background: transparent;
+    background-image:linear-gradient(45deg, #3ffd1e, transparent);
+    border: none;
+}
+es-navbutton[active] button{
+    -webkit-background-clip: text;
+    background: transparent;
+    border-bottom: 2px solid;
+    border-bottom-color: blueviolet;
+    border-image: linear-gradient(to right,transparent 30%, blue 35%, red 50%, transparent 70%);
+    border-image-slice: 8;
+}

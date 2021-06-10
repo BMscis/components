@@ -1,8 +1,8 @@
-class CloseComponent extends HTMLElement{
+export class CloseComponent extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
         this.setup()
     }
     setup(){
@@ -65,7 +65,7 @@ class CloseComponent extends HTMLElement{
         this.render()
     }
     render(){
-        this.shadow.innerHTML =  `
+        this.innerHtml =  `
             ${this.styledTemplate}
             <es-closebutton></es-closebutton>
             <es-heading text=${this.text} textafter=${this.textafter}></es-heading>
@@ -73,7 +73,7 @@ class CloseComponent extends HTMLElement{
     }
     get styledTemplate(){
         return `<style>
-        :host{
+        es-closecomponent{
             display:flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -85,12 +85,15 @@ class CloseComponent extends HTMLElement{
             z-index:2;
             transform: scale(var(--ggs,1));
         }
-        :host([mobi]){
+        es-closecomponent([mobi]){
             transform: scale(var(--ggs,0.6));
         }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }

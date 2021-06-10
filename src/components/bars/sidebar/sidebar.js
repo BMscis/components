@@ -6,7 +6,7 @@ export class Sidebar extends HTMLElement{
     constructor(){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
-        this.shadow = this.attachShadow({mode:'open'})
+        //this.shadow =this.attachShadow({mode:'open'})
         this.setup()
     }
     setup(){
@@ -52,10 +52,10 @@ export class Sidebar extends HTMLElement{
     }
     render(){
         
-        this.shadow.innerHTML = `${this.styledTemplate}`
-        this.shadow.append(new Navbutton(true,"Portfolio"))
-        this.shadow.append(new Navbutton(false,"Graph"))
-        this.shadow.append(new Navbutton(false,"About Us"))
+        this.style = `height:${this.dimension.sidebarSetup + "px"};`
+        this.appendChild(new Navbutton(true,"Portfolio"))
+        this.appendChild(new Navbutton(false,"Graph"))
+        this.appendChild(new Navbutton(false,"About Us"))
     }
     get styledTemplate(){
         return `<style>
@@ -64,7 +64,7 @@ export class Sidebar extends HTMLElement{
             margin-left:1.5vw;
             margin-right:1.5vw;
         }
-        :host{
+        es-sidebar{
             height:${this.dimension.sidebarSetup + "px"};
             z-index:2;
             position:relative;
@@ -72,16 +72,19 @@ export class Sidebar extends HTMLElement{
             display:flex;
             background:transparent;
     }
-    :host([expand]){
+    es-sidebar([expand]){
         left:0;
     }
     @media only Screen and (max-width:850px){
-        :host{
+        es-sidebar{
         }
     }
         </style>`
     }
-    disconnectedCallback() {
+    disconnectedCallback(){
+            for(let i = 0; i < this.childElementCount + 1; i++){
+            this.removeChild(this.children[0])
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
     }
 }
