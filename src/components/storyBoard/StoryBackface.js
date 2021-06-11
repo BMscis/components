@@ -1,54 +1,63 @@
 //modules
 //components
 
-//images
-// import one from '../../assets/img/lg.png'
-// import two from '../../assets/img/Asset2.png'
-// import three from '../../assets/img/Asset3.png'
-// import four from '../../assets/img/Asset1.png'
+//import images
 
-export class StoryBackface extends HTMLElement{
-    constructor(){
+import { ScrollPad } from '../typography/scrollpad/scrollpad'
+import { StoryContainer } from './storycontainer'
+
+export class StoryBackface extends HTMLElement {
+    constructor(imageset) {
         super()
-        console.log(`${this.nodeName} has been constructed` )                                                                             
+        console.log(`${this.nodeName} has been constructed`)
         //this.shadow =this.attachShadow({mode:'open'})
+        this.components = {}
+        this.imageset = imageset
         this.setup()
+        return
     }
-    setup(){
-        this.addEventListener('resize',e=>{
+    setup() {
+        this.components = this.getComponents
+        this.addEventListener('resize', e => {
             var html = document.querySelector('html').getAttribute('mobi')
-            if(html === 'true'){
-                this.setAttribute('style','position:relative')
+            if (html === 'true') {
+                this.setAttribute('style', 'position:relative')
             }
-            if(html === 'false'){
+            if (html === 'false') {
                 this.setAttribute('style', 'position:absolute')
             }
         })
+        return
     }
-    static get observedAttributes(){
-        return ['scaler','images']
+    get getComponents() {
+        var scr = new ScrollPad()
+        scr.setAttribute("vertical", '')
+        return {"scrollpadvert":scr,"container":new StoryContainer(this.imageset)}
     }
-    attributeChangedCallback(prop,oldVal,newVal){
+    static get observedAttributes() {
+        return ['scaler', 'images']
     }
-    get images(){
+    attributeChangedCallback(prop, oldVal, newVal) {
+        return
+    }
+    get images() {
         return this.getAttribute('images')
     }
-    set images(val){
-        return this.setAttribute('images',val)
+    set images(val) {
+        return this.setAttribute('images', val)
     }
 
     connectedCallback() {
-        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
+        console.log(`%c ${this.nodeName} %c has been %c CONNECTED`, "color:#cd4cf7", "color:black", "color:#0ee232")
         this.render()
+        return
     }
-    render(){
-        this.innerHtml =  `
-            ${this.styledTemplate}
-            <es-scrollpad vertical ></es-scrollpad>
-            <slot></slot>
-            `
+    render() {
+        this.appendChild(this.components.container)
+        this.appendChild(this.components.scrollpadvert)
+        return
     }
-    scale(){
+    scale() {
         // var images = this.shadowRoot.querySelectorAll('slot')
         // anime({
         //     targets: images,
@@ -59,83 +68,15 @@ export class StoryBackface extends HTMLElement{
         // })
         return
     }
-    get styledTemplate(){
-        return `<style>
-        ::-webkit-scrollbar {
-            width: 0;
-        }
-        *{
-            outline:none;
-        }
-        es-storybackface{
-            display: flex;
-            flex-direction:column;
-            align-items:center;
-            width: calc(80vw * 0.85);
-            height: calc(78vh * 0.9);
-            padding: 0;
-            backdrop-filter: blur(0px);
-            -webkit-backdrop-filter: blur(0px);
-            background-image: linear-gradient(91deg, transparent, #850E11, #e51900 -15vmin, transparent 0vmin);
-            transform-style:preserve-3d;
-            overflow:hidden;
-            position:absolute;
-            right:0;
-            z-index:1;
-        }
-        svg{
-            position:absolute;
-        }
-        slot{
-            width: auto;
-            height: calc(78vh * 0.9);
-            position:relative;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow-y:scroll;
-            scroll-snap-type: y mandatory;
-            scrollbar-width:none;
-
-        }
-        .mouse-outline{
-            fill:none;
-            stroke:pink;
-            stroke-width:0.5;
-        }
-        .scroll{
-            fill: white;
-            opacity:1;
-            transform-origin: 50% 10px;
-            animation-name:scroll;
-            animation-duration: 1.5s;
-            animation-iteration-count: infinite;
-        }
-        @keyframes scroll{
-            0,
-            20%{
-                transform: translateY(0) scaleY(1)
-            }
-            100%{
-                transform:translateY(6px) scaleY(2);
-                opacity:0;
-            }
-        }
-        @media only Screen and (max-width:850px){
-            es-storybackface{
-                width:85vw;
-            }
-            slot{
-                width:calc(78vh * 0.6);
-            }
-        }
-  
-        </style>`
+    get styledTemplate() {
+        return 
     }
-    disconnectedCallback(){
-            for(let i = 0; i < this.childElementCount + 1; i++){
+    disconnectedCallback() {
+        for (let i = 0; i < this.childElementCount + 1; i++) {
             this.removeChild(this.children[0])
         }
-        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )                                                                              
+        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`, "color:#cd4cf7", "color:black", "color:#ef1a1a")
+        return
     }
 }
 customElements.define('es-storybackface', StoryBackface);

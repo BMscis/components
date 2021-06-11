@@ -32,13 +32,13 @@ export class Carousel extends HTMLElement{
         return {"storycontainer":this.storyContainer,"togglebuttons":this.toggleButtons,"businesscards":this.businessCards,"scrollpad":this.scrollpad}
     }
     get storyContainer(){
-        return new StoryContainer()
+        return new StoryContainer("story")
     }
     get toggleButtons(){
         return {"prev":new ToggleButton("prev"), "next": new ToggleButton("next")}
     }
     get businessCards(){
-        return {"port": new BusinessCard("Portfolio"),"aboutus": new BusinessCard("About Us"), "graph": new BusinessCard("Graph")}
+        return {"port": new BusinessCard("Portfolio"),"aboutus": new BusinessCard("About Us"), "graph": new BusinessCard("Crypto Meter")}
     }
     get scrollpad(){
         return new ScrollPad()
@@ -87,7 +87,7 @@ export class Carousel extends HTMLElement{
             case 'Portfolio':
                 this.forPortfolio
                 return 
-            case 'Graph':
+            case "Crypto Meter":
                 this.forGraphs
                 return 
         }

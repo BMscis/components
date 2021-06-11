@@ -54,7 +54,7 @@ export class Sidebar extends HTMLElement{
         
         this.style = `height:${this.dimension.sidebarSetup + "px"};`
         this.appendChild(new Navbutton(true,"Portfolio"))
-        this.appendChild(new Navbutton(false,"Graph"))
+        this.appendChild(new Navbutton(false,"Crypto Meter"))
         this.appendChild(new Navbutton(false,"About Us"))
     }
     get styledTemplate(){

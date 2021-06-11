@@ -9,6 +9,13 @@ export class AnchorButton extends HTMLElement{
     }
     setup(){
         this.getComponents
+        this.addEventListener("click",e =>{
+            this.parentElement.render('backface')
+            var xm = document.querySelectorAll('es-story:not([backface])')
+            xm.forEach(element => {
+                element.setAttribute("filter",'')  
+            });
+        })
     }
     get getComponents(){
         return

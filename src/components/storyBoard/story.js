@@ -13,6 +13,7 @@ import { H1 } from "../typography/h1/h1"
 import { P1 } from "../typography/paragraph/p1"
 import {AnchorButton} from "../buttons/anchorButton"
 import { CloseComponent } from "./closecomponent"
+import { StoryBackface } from "./StoryBackface"
 
 export class Story extends HTMLElement {
     constructor(h1, h2, img, active, aclass, ptext) {
@@ -87,14 +88,13 @@ export class Story extends HTMLElement {
         // this.addEventListener('touchcancel', e => {
         // })
     }
-
     get getcomponents(){
         this.components["esimage"] = new StoryImage(this.h1 + this.h2, this.img)
         this.components["heading"] = new H1(this.h1, this.h2)
         this.components["p2"] = new P1(this.ptext)
         this.components["esbutton"] = new AnchorButton()
-        this.components["backface"] = new StoryImage()
-        this.components["close"] = new CloseComponent()
+        this.components["backface"] = new StoryBackface(this.aclass)
+        this.components["close"] = new CloseComponent(this.h1, this.h2)
         return
     }
     animateTranslateX() {
@@ -196,7 +196,7 @@ export class Story extends HTMLElement {
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" ) 
         this.toggleAttribute('darkmode', true)
-        this.render();
+        this.render("front");
         //this.toggleActive()
     }
     toggleActive() {
@@ -209,57 +209,39 @@ export class Story extends HTMLElement {
                 return
         }
     }
-    render() {
+    render(val) {
         this.style.height = this.dimension.storyHeight + "px"
-        this.setAttribute("backface",'')
-        this.appendChild(this.components.close)
-        this.appendChild(this.components.backface)
-            if (this.classList.contains('0')) {
-                this.imgset = [
-                    [one,
-                        'Coart of Arms',
-                        'We design family, company, organizational or state escutcheons with personalized mottos.',
-                    ],
-                    [two,
-                        'Escutcheons',
-                        'Rolls of arms are the primary sentiment for brand recognition. Shields have been used across time by noble families and organizations to inform the public about genealogy.'],
-                    [three,
-                        'Corporate Logos',
-                        'Make creative graphic symbols to aid and promote brand recognition across different platforms.'],
-                    [four,
-                        'Production Logos',
-                        'Get digitized logos that can be animated and be used accross multiple digital platforms.'
-                    ]
-                ]
-            }
-            if (this.classList.contains('1')) {
-                this.imgset = [
-                    [five,
-                        'Social Media Design',
-                        'Get custom social media design for your websites and chat rooms'
-                    ],
-                    [six,
-                        'App Design',
-                        'Get userflow concepts that customers and users can easily adapt to. '
-
-                    ],
-                    [seven,
-                        'Mobile Design',
-                        'Get design templates that seamlessly transition from web to mobile. '
-                    ]
-                ]
-            }
-            // this.appendChild(this.components.esimage)
-            // this.appendChild(this.components.heading)
-            // this.appendChild(this.components.p2)
-            // this.appendChild(this.components.esbutton)
+        switch(val){
+            case "backface":
+                this.disconnectedCallback()
+                this.setAttribute("backface",'')
+                this.appendChild(this.components.close)
+                this.appendChild(this.components.backface)
+                return
+            case "front":
+                this.appendChild(this.components.esimage)
+                this.appendChild(this.components.heading)
+                this.appendChild(this.components.p2)
+                this.appendChild(this.components.esbutton)
+                return
+            case "closeback":
+                this.removeAttribute("backface")
+                this.disconnectedCallback()
+                this.appendChild(this.components.esimage)
+                this.appendChild(this.components.heading)
+                this.appendChild(this.components.p2)
+                this.appendChild(this.components.esbutton)
+                return
+        }
+        
+        
     }
     disconnectedCallback(){
-        this.childNodes.prototype.forEach(element => {
-            this.removeChild(element)
-        });
-
+        for (var [key,val] of Object.entries(this.childNodes)){
+            this.removeChild(val)
+        }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
+        return
     }
     get styleTemplate() {
         return

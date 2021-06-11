@@ -29,8 +29,8 @@ export class BusinessCard extends HTMLElement {
         switch(this.text){
             case "Portfolio":
                 return {"Portfolio":new Textboard()}
-            case "Graph":
-                return {"Graph":new Graph()}
+            case "Crypto Meter":
+                return {"Crypto Meter":new Graph()}
             case "About Us":
                 return {"About Us":new AboutUs()}
         }
@@ -42,9 +42,9 @@ export class BusinessCard extends HTMLElement {
             case "Portfolio":
                 sm.innerHTML = this.portfolioStyle
                 return {"Portfolio":sm}
-            case "Graph":
+            case "Crypto Meter":
                 sm.innerHTML = this.graphStyle
-                return {"Graph": sm}
+                return {"Crypto Meter": sm}
             case "About Us":
                 sm.innerHTML = this.portfolioStyle
                 return {"About Us":sm}
@@ -92,7 +92,7 @@ export class BusinessCard extends HTMLElement {
             //border-top-color: blueviolet;
             border-image: linear-gradient(to bottom right,#00368e 50%, transparent);
             border-image-slice: 8;
-            //opacity:0;
+            opacity:0;
             z-index:1;
         }
         es-businesscard .texture{

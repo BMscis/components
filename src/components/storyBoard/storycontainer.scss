@@ -14,11 +14,11 @@ es-storycontainer div{
 es-storycontainer input {
     display: none;
 }
-// #story-0:checked ~ .sc #es-story-0{
+// #story-0:checked ~  #es-story-0{
 //     margin:500px;
 // }
 
-es-storycontainer div label{
+es-storycontainer label{
     width:300px;
     min-width:300px;
     max-width:300px;
@@ -31,12 +31,15 @@ es-storycontainer div label{
     cursor: pointer;
     backdrop-filter: blur(10px);
     border-radius: 20px;
+    transform-style: preserve-3d;
+    perspective: 1800px;
+    transform-origin: center;
 }
   
-#story-1:checked ~ .sc #es-story-1, 
-#story-2:checked ~ .sc #es-story-2, 
-#story-3:checked ~ .sc #es-story-3,
-#story-4:checked ~ .sc #es-story-4{
+#story-1:checked ~  #es-story-1, 
+#story-2:checked ~  #es-story-2, 
+#story-3:checked ~  #es-story-3,
+#story-4:checked ~  #es-story-4{
   transform: translatex(0) scale(1);
   opacity: 1;
   z-index: 1;
@@ -69,32 +72,35 @@ es-storycontainer div label{
 }
 }
 
-#story-1:checked ~ .sc #es-story-2, 
-#story-2:checked ~ .sc #es-story-3, 
-#story-3:checked ~ .sc #es-story-4,
-#story-4:checked ~ .sc #es-story-1
+#story-1:checked ~  #es-story-2, 
+#story-2:checked ~  #es-story-3, 
+#story-3:checked ~  #es-story-4,
+#story-4:checked ~  #es-story-1
  {
   transform: translatex(65%) scale(.8);
   opacity: .4;
   z-index: 0;
+  //filter: blur(15px);
 }
 
-#story-1:checked ~ .sc #es-story-4, 
-#story-2:checked ~ .sc #es-story-1, 
-#story-3:checked ~ .sc #es-story-2,
-#story-4:checked ~ .sc #es-story-3
+#story-1:checked ~  #es-story-4, 
+#story-2:checked ~  #es-story-1, 
+#story-3:checked ~  #es-story-2,
+#story-4:checked ~  #es-story-3
  {
   transform: translatex(-65%) scale(.8);
   opacity: .4;
   z-index: 0;
+  //filter: blur(15px);
 }
 
-#story-1:checked ~ .sc #es-story-3,
-#story-2:checked ~ .sc #es-story-4,
-#story-3:checked ~ .sc #es-story-1,
-#story-4:checked ~ .sc #es-story-2
+#story-1:checked ~  #es-story-3,
+#story-2:checked ~  #es-story-4,
+#story-3:checked ~  #es-story-1,
+#story-4:checked ~  #es-story-2
 {
   transform: scale(.8);
   opacity: 0;
   z-index: 0;
+  //filter: blur(15px);
 }
