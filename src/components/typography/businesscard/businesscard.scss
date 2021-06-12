@@ -1,0 +1,106 @@
+es-businesscard[name~=Portfolio]{
+    grid-area:businesscard1;
+    position: absolute;
+    width: 100%;
+    display:none;
+    flex-direction:row;
+    top:14vh;
+    left:0vw;
+    border-radius: 10px;
+    background: transparent;
+    border-top: 2px;
+    //border-top-style: dotted;
+    //border-top-color: blueviolet;
+    border-image: linear-gradient(to bottom right,#00368e 50%, transparent);
+    border-image-slice: 8;
+    opacity:0;
+    z-index:1;
+}
+es-businesscard[name ~= About]{
+    grid-area:businesscard2;
+    right: 0;
+    left: unset;
+    justify-content: center;
+}
+es-businesscard[name~=Crypto]{
+    width:100vw;
+    height:100%;
+    display:grid;
+    }
+es-aboutus {
+    padding: 20px;
+}
+es-businesscard[name ~= About] text{
+    font-size: small;
+    color: white;
+    font-family: 'ACLight';
+    text-align:justify;
+    line-height: 25px;
+    display: inline-block;
+}
+
+es-businesscard .texture{
+    position:absolute;
+    opacity:0.8;
+    left:0;
+    width: calc(100% - 20px);
+    height:calc(100% - 20px);
+}
+es-businesscard .infocontainer, .labelcontainer{
+    display:flex;
+    flex-direction:column;
+    justify-content:start;
+}
+es-businesscard .labelcontainer{
+}
+es-businesscard .infocontainer{
+}
+es-businesscard > text{
+    font-size:10vmin;
+    color:white;
+    font-family:ACBoldCond;
+    transition: 0.5s ease;
+}
+es-businesscard > label, es-businesscard > a, es-businesscard > p{
+    backdrop-filter: brightness(2);
+    -webkit-backdrop-filter: brightness(2);
+    font-family: ACLight;
+    width:fit-content;
+    font-size:larger;            
+}
+es-businesscard > a,es-businesscard > p{
+    background: linear-gradient(to bottom right,#00368e 50%, #a90101);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin:0;
+}
+es-businesscard > label{
+    color: silver;
+    font-variant-caps: all-petite-caps;
+    font-size: larger;
+    background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    backdrop-filter: brightness(0.5);
+    -webkit-backdrop-filter: brightness(0.5);
+}
+es-businesscard > a{
+    text-decoration: none;
+    font-style: normal;
+}
+es-businesscard > address{
+    color:gold;
+    cursor:pointer;
+}
+es-businesscard[hide]{
+    display: none
+}
+    @media only screen and (max-width: 850px){
+    es-businesscard{
+        display:none;
+        top:29vh
+    }
+    es-businesscard > text{
+        font-size:5vmin;
+    }
+}

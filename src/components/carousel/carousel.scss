@@ -3,8 +3,9 @@ es-carousel{
     position:relative;
     align-items: center;
     padding-top: 20px;
-    display: -webkit-box;
-    grid-auto-flow: column;
+    display: grid;
+    grid-template-areas: "businesscard1 stories businesscard2";
+    grid-template-columns:25% 50% 25%;
     perspective: 600px;
     perspective-origin: center;
     transition:0.5s ease-in-out;

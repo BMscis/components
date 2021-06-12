@@ -3,6 +3,7 @@ es-heading{
     height:calc((78vh * 0.1) + (78vh * 0.05));
     position:relative;
     transform: scale(var(--ggs,1));
+    z-index: 0;
 }
 es-heading{
 text{

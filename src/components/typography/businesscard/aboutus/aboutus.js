@@ -29,25 +29,9 @@ export class AboutUs extends HTMLElement{
     }
     render(){
         this.innerHTML = `
-        <div class=texture></div>
-        <div class=labelcontainer>
-        <label>Name: </label>
-        <label>Email: </label>
-        <label>Contact: </label>
-        </div>
-        <div class=infocontainer>
-        <p>Melvin Wakhungu Wafula</p>
-        <address>
-        <a href="mailto:melvinwafula@gmail.com">
-        melvinwafula@gmail.com
-        </a>
-        </address>
-        <address>
-        <a href="tel:+254729675138">
-        +254729675138
-        </a>
-        </address>
-        </div>
+        <text>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </text>
         `
         return
     }

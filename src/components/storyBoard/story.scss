@@ -33,10 +33,14 @@ $fullwidth:calc(100vw / 2 - 150px);
 }
 
 es-story{
-    counter-reset: backfacefilter;
-    width:300px;
-    min-width:300px;
-    max-width:300px;
+    es-closecomponent{
+        opacity: 0;
+    }
+    es-storybackface{
+        opacity: 0;
+        display: none;
+    }
+    width:100%;
     margin: auto;
     border-radius: 20px;
     background-color: #0f43a0;
@@ -51,6 +55,7 @@ es-story{
     grid-auto-flow: row;
     justify-items: center;                                          
     z-index:0;
+    opacity: 0;
     //box-shadow: rgb(0 0 0) 0px 0px 3px 1px;
     //transform: translateX(calc(100vw / 2 - 150px)) scale3d(0.7,0.7,0.7) rotateY(20deg);
     //animation-name:moveinactive;
@@ -67,6 +72,7 @@ es-story{
         filter:blur(50px);
     };
 };
+
 es-story[filter]{
     filter:blur(15px);
 }

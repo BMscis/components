@@ -42,7 +42,13 @@ es-closecomponent{
 es-closecomponent[mobi]{
     transform: scale(var(--ggs,0.6));
 }
-es-closebutton {
+es-closebutton{
+    display: block;
+    z-index: 2;
+    width: 24px;
+    height: 24px;
+}
+es-closebutton > a{
     box-sizing: border-box;
     position: relative;
     transform: scale(var(--ggs,1));
@@ -53,16 +59,16 @@ es-closebutton {
     color:#f20c9c;
     opacity:1;
 }
-es-closebutton:hover{
+es-closebutton > a:hover{
     color:#00ff7e;
     transform:scale(1.5)
 
 }
-es-closebutton::after,
-es-closebutton::before {
+es-closebutton > a::after,
+es-closebutton > a::before {
     content: "";
     position: absolute;
-    width: 16px;
+    width: 24px;
     height: 4px;
     background: currentColor;
     transform: rotate(45deg);
@@ -70,10 +76,10 @@ es-closebutton::before {
     top: 8px;
     left: 1px
 }
-es-closebutton::after {
+es-closebutton > a::after {
     transform: rotate(-45deg)
 }
-es-closebutton[show]{
+es-closebutton > a[show]{
     opacity:1;
 }
 @keyframes scroll{

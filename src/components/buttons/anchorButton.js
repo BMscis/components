@@ -1,21 +1,26 @@
 export class AnchorButton extends HTMLElement{
-    constructor(){
+    constructor(ident){
         super()
         console.log(`${this.nodeName} has been constructed`)
         //this.shadow = this.attachShadow({mode:'open'})
+        this.ident = ident
         this.components = {}
         this.setup()
 
     }
     setup(){
         this.getComponents
-        this.addEventListener("click",e =>{
-            this.parentElement.render('backface')
-            var xm = document.querySelectorAll('es-story:not([backface])')
-            xm.forEach(element => {
-                element.setAttribute("filter",'')  
-            });
-        })
+        // this.addEventListener("click",e =>{
+        //     this.parentElement.render('backface')
+        //     var xm = document.querySelectorAll('es-story:not([backface])')
+        //     xm.forEach(element => {
+        //         element.setAttribute("filter",'')  
+        //     });
+        //     var bs = document.querySelectorAll('es-businesscard')
+        //     bs.forEach(element => {
+        //         element.hide()
+        //     });  
+        // })
     }
     get getComponents(){
         return
@@ -32,6 +37,7 @@ export class AnchorButton extends HTMLElement{
     render(){
         var rx = document.createElement("a")
         rx.innerHTML = "Expand"
+        rx.href = this.ident
         this.appendChild(rx)
         return
     }

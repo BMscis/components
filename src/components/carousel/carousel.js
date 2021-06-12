@@ -81,7 +81,7 @@ export class Carousel extends HTMLElement{
             case false:
                 this.forWebsite
                 return 
-            case 'Contact Us':
+            case 'About Us':
                 this.forContacts
                 return 
             case 'Portfolio':
@@ -112,9 +112,9 @@ export class Carousel extends HTMLElement{
         return
     }
     get forContacts(){
-        for(let i = 0; i < this.childElementCount + 1; i++){
-            this.removeChild(this.children[0])
-        }
+        // for(let i = 0; i < this.childElementCount + 1; i++){
+        //     this.removeChild(this.children[0])
+        // }
         this.appendChild(this.components.businesscards.aboutus)
         return
     }

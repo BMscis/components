@@ -1,19 +1,24 @@
 export class CloseButton extends HTMLElement{
-    constructor(){
+    constructor(ident){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
         //this.shadow =this.attachShadow({mode:'open'})
+        this.ident = ident
         this.setup()
         return
     }
     setup(){
-        this.addEventListener('click',e =>{
-            this.parentElement.parentElement.render("closeback")
-            var xm = document.querySelectorAll('es-story[filter]')
-            xm.forEach(element => {
-                element.removeAttribute("filter")  
-            });          
-        })
+        // this.addEventListener('click',e =>{
+        //     this.parentElement.parentElement.render("closeback")
+        //     var xm = document.querySelectorAll('es-story[filter]')
+        //     xm.forEach(element => {
+        //         element.removeAttribute("filter")  
+        //     });
+        //     var bs = document.querySelectorAll('es-businesscard')
+        //     bs.forEach(element => {
+        //         element.show()
+        //     });       
+        //})
         return
     }
     static get observedAttributes(){
@@ -28,6 +33,9 @@ export class CloseButton extends HTMLElement{
         return
     }
     render(){
+        var xm = document.createElement('a')
+        xm.setAttribute("href",this.ident)
+        this.appendChild(xm)
         return
     }
     get styledTemplate(){

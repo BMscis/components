@@ -2,12 +2,13 @@ import { CloseButton } from "../buttons/closeButton"
 import { H1 } from "../typography/h1/h1"
 
 export class CloseComponent extends HTMLElement{
-    constructor(txt,textafter){
+    constructor(txt,textafter,ident){
         super()
         console.log(`${this.nodeName} has been constructed` )                                                                             
         //this.shadow =this.attachShadow({mode:'open'})
         this.text = txt
         this.textafter = textafter
+        this.ident = ident
         this.components = {}
         this.setup()
         return
@@ -30,7 +31,7 @@ export class CloseComponent extends HTMLElement{
         return
     }
     get getComponents(){
-        return {"closebutton": new CloseButton(),"heading":new H1(this.text,this.textafter)}
+        return {"closebutton": new CloseButton(this.ident),"heading":new H1(this.text,this.textafter)}
     }
     static get observedAttributes(){
         return ['text','textafter']

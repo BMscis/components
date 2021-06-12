@@ -56,7 +56,6 @@ export class StoryContainer extends HTMLElement{
             var xm = document.createElement('input')
             if(i == 0){
                 xm.checked = "checked"
-                console.log(this.component,xm.checked)
             }
             xm.type = "radio"
             xm.name = `${this.component}-slider`
@@ -78,16 +77,16 @@ export class StoryContainer extends HTMLElement{
     }
     get story() {
         var s1 = new Story(
-            "3D", "Design", coa, false, "imagesetone", "Get access to hyper-realistic 3D designs with real-time animation."
+            "3D", "Design", coa, false, "imagesetone", "Get access to hyper-realistic 3D designs with real-time animation.",1
         )
         var s2 = new Story(
-            "Web", "Development", webdev, false, "imagesettwo", "create modern websites."
+            "Web", "Development", webdev, false, "imagesettwo", "create modern websites.",2
         )
         var s3 = new Story(
-            "Graphic", "Design", me, false, "imagesethree", "Visualize your idea and bring it to life with awsome designs."
+            "Graphic", "Design", me, false, "imagesethree", "Visualize your idea and bring it to life with awsome designs.",3
         )
         var s4 = new Story(
-            "UI/UX", "Design", stairs, false, "imagesetfour", "Create custom user-friendly interfaces with custom widgets."
+            "UI/UX", "Design", stairs, false, "imagesetfour", "Create custom user-friendly interfaces with custom widgets.",4
         )
         return [s1,s2,s3,s4]
     }
@@ -160,29 +159,48 @@ export class StoryContainer extends HTMLElement{
     connectedCallback(){
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )
         this.render()
+        this.show()
     }
     attributeChangedCallback(prop, oldVal, newVal) {
     }
+    show(){
+        this.animate(
+            [{opacity:1}],
+            {
+                duration: 1000,
+                easing: "ease-in-out",
+                fill:'forwards'
+            }
+        )
+        return
+    }
+    hide(){
+        this.animate(
+            [{opacity:0}],
+            {
+                duration: 1000,
+                easing: "ease-in-out",
+                fill:'forwards'
+            }
+        )
+        return
+    }
     render(){
         for (var [key,val] of Object.entries(this.components.inputs)){
-            console.log(this.component,val.checked)
             this.appendChild(val)
         }
         for (var [k,v] of Object.entries(this.components.labels)){
             v.style.height = this.dimension.storyHeight + "px"
-            this.components.components[k].style.height = this.dimension.storyHeight + "px"
             v.appendChild(this.components.components[k])
             this.appendChild(v)
         }
         return
     }
     disconnectedCallback(){
+        this.hide()
         console.log(this.childElementCount)
             for(let i = 0; i < this.childElementCount + 1; i++){
-                console.log(i)
-                console.log(this.children[0])
                 this.removeChild(this.children[0])
-                console.log(this.childElementCount)
                 i -= 1
         }
         console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )   

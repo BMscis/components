@@ -60,121 +60,43 @@ export class BusinessCard extends HTMLElement {
         return
     }
     render() {
+        this.setAttribute("name", this.text)
         this.appendChild(this.components[this.text])
         this.appendChild(this.styletemplate[this.text])
         return
     }
     show(){
-            // anime({
-            //     targets:this,
-            //     opacity:[0,1],
-            //     delay:500,
-            //     duration:1000,
-            //     easing:'easeOutQuart'
-            // })
+            this.animate(
+                [{opacity:1}],
+                {
+                    duration: 1000,
+                    easing: "ease-in-out",
+                    fill:'forwards'
+                }
+            )
         return
     }
+    hide(){
+        this.animate(
+            [{opacity:0}],
+            {
+                duration: 1000,
+                easing: "ease-in-out",
+                fill:'forwards'
+            }
+        )
+        return
+        }
     get portfolioStyle() {
-        return `
-        
-        es-businesscard{
-            position: absolute;
-            width: calc(95vw * 0.3);
-            height: calc(78vh * 0.5);
-            display:flex;
-            flex-direction:row;
-            top:14vh;
-            left:0vw;
-            border-radius: 10px;
-            background: transparent;
-            border-top: 2px;
-            //border-top-style: dotted;
-            //border-top-color: blueviolet;
-            border-image: linear-gradient(to bottom right,#00368e 50%, transparent);
-            border-image-slice: 8;
-            opacity:0;
-            z-index:1;
-        }
-        es-businesscard .texture{
-            position:absolute;
-            opacity:0.8;
-            left:0;
-            width: calc(100% - 20px);
-            height:calc(100% - 20px);
-        }
-        es-businesscard .infocontainer, .labelcontainer{
-            display:flex;
-            flex-direction:column;
-            justify-content:start;
-        }
-        es-businesscard .labelcontainer{
-        }
-        es-businesscard .infocontainer{
-        }
-        es-businesscard text{
-            font-size:10vmin;
-            color:white;
-            font-family:ACBoldCond;
-            transition: 0.5s ease;
-        }
-        es-businesscard label, es-businesscard a, es-businesscard p{
-            backdrop-filter: brightness(2);
-            -webkit-backdrop-filter: brightness(2);
-            font-family: ACLight;
-            width:fit-content;
-            font-size:larger;            
-        }
-        es-businesscard a,es-businesscard p{
-            background: linear-gradient(to bottom right,#00368e 50%, #a90101);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin:0;
-        }
-        es-businesscard label{
-            color: silver;
-            font-variant-caps: all-petite-caps;
-            font-size: larger;
-            background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            backdrop-filter: brightness(0.5);
-            -webkit-backdrop-filter: brightness(0.5);
-        }
-        es-businesscard a{
-            text-decoration: none;
-            font-style: normal;
-        }
-        es-businesscard address{
-            color:gold;
-            cursor:pointer;
-        }
-        es-businesscard[hide]{
-            display: none
-        }
-            @media only screen and (max-width: 850px){
-            es-businesscard{
-                display:none;
-                top:29vh
-            }
-            es-businesscard text{
-                font-size:5vmin;
-            }
-        }
-        
-        `
+        return
     }
     get graphStyle(){
         return `
-            
-            es-businesscard{
-            width:100%;
-            height:100%;
-            display:grid;
-            }
-            
+
         `
     }
     disconnectedCallback(){
+        this.hide()
             for(let i = 0; i < this.childElementCount + 1; i++){
             this.removeChild(this.children[0])
         }
