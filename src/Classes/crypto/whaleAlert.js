@@ -10,7 +10,7 @@ export class WhaleAlert{
             {mode:"cors"},
             {headers:{
             'cache-control':'no-cache',
-            "Access-Control-Allow-Origin":"http://bmscis.github.io/components/"
+            "Access-Control-Allow-Origin":"http://bmscis.github.io"
         }})
         .then(response => response.json())
         .then(data => this.clean(data))
