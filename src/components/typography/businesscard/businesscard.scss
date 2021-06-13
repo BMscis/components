@@ -2,7 +2,7 @@ es-businesscard[name~=Portfolio]{
     grid-area:businesscard1;
     position: absolute;
     width: 100%;
-    display:none;
+    display:flex;
     flex-direction:row;
     top:14vh;
     left:0vw;
@@ -17,10 +17,12 @@ es-businesscard[name~=Portfolio]{
     z-index:1;
 }
 es-businesscard[name ~= About]{
-    grid-area:businesscard2;
-    right: 0;
-    left: unset;
+    grid-area: businesscard2;
     justify-content: center;
+    width: 80%;
+    height: 100%;
+    display: inline-block;
+    opacity: 0;
 }
 es-businesscard[name~=Crypto]{
     width:100vw;

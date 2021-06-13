@@ -8,17 +8,6 @@ export class CloseButton extends HTMLElement{
         return
     }
     setup(){
-        // this.addEventListener('click',e =>{
-        //     this.parentElement.parentElement.render("closeback")
-        //     var xm = document.querySelectorAll('es-story[filter]')
-        //     xm.forEach(element => {
-        //         element.removeAttribute("filter")  
-        //     });
-        //     var bs = document.querySelectorAll('es-businesscard')
-        //     bs.forEach(element => {
-        //         element.show()
-        //     });       
-        //})
         return
     }
     static get observedAttributes(){

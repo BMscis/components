@@ -15,6 +15,7 @@ class Navbutton extends HTMLElement {
     setup(){
         this.dimension = new Dimensions()
         this.addEventListener('click', e => {
+            console.log()
             var active = this.hasAttribute("active")
             switch (active) {
                 case true:
