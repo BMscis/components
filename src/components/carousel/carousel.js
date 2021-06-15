@@ -1,4 +1,5 @@
 import { Dimensions } from "../../Classes/spacemaps/dimensions"
+import { BlockchainComponent } from "../blockchainComponent/blockchaincomponent"
 import { ToggleButton } from "../buttons/toggleButton"
 import { StoryContainer } from "../storyBoard/storycontainer"
 import { BusinessCard } from "../typography/businesscard/businesscard"
@@ -29,7 +30,7 @@ export class Carousel extends HTMLElement{
     }
     //
     get getComponents(){
-        return {"storycontainer":this.storyContainer,"togglebuttons":this.toggleButtons,"businesscards":this.businessCards,"scrollpad":this.scrollpad}
+        return {"storycontainer":this.storyContainer,"togglebuttons":this.toggleButtons,"businesscards":this.businessCards,"scrollpad":this.scrollpad,'blockchain':this.blockchain}
     }
     get storyContainer(){
         return new StoryContainer("story")
@@ -42,6 +43,9 @@ export class Carousel extends HTMLElement{
     }
     get scrollpad(){
         return new ScrollPad()
+    }
+    get blockchain(){
+        return new BlockchainComponent()
     }
     //
     setCarousel() {
@@ -123,6 +127,7 @@ export class Carousel extends HTMLElement{
             this.removeChild(this.children[0])
         }
         this.appendChild(this.components.businesscards.graph)
+        this.appendChild(this.components.blockchain)
         return
     }
     //
