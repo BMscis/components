@@ -1,6 +1,6 @@
-import ecdsa from"elliptic";
+//import ecdsa from"elliptic";
 
-const ec = new ecdsa.ec('secp256k1');
+//const ec = new ecdsa.ec('secp256k1');
 const COINBASE_AMOUNT = 50;
 export class UnspentTxOut {
     constructor(txOutId, txOutIndex, address, amount) {

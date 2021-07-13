@@ -1,7 +1,8 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Manifest = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const webpack = require('webpack');
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const glob = require('glob')
@@ -10,10 +11,10 @@ module.exports = {
         entry:glob.sync('./src/entry/index.js'),
         fonts:glob.sync('./src/assets/fonts/*.otf'),
         style:glob.sync('./src/**/*.scss'),
-        blockchain:glob.sync('./src/blockchain/**/*.{js,ts}'),
+        blockchain:glob.sync('./src/blockchain/**/*.js'),
         images:glob.sync('./src/assets/img/*.{gif,jpg,png}'),
         preloadImages:('./src/assets/img/ws382.jpg'),
-        es_components:glob.sync('./src/components/**/*.{js,ts}'),
+        es_components:glob.sync('./src/components/**/*.js'),
         es_workers:glob.sync('./src/workers/**/*.js'),
     },
     module: {
@@ -101,6 +102,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Home',
+            template:path.resolve(__dirname,'./src/index.html'),
             filename:'index.html'
         }),
          new PreloadWebpackPlugin({
@@ -115,6 +117,19 @@ module.exports = {
             jQuery:'jquery',
             "window.jQuery": "jquery"
         }),
+        new FaviconsWebpackPlugin({
+            logo:path.resolve(__dirname,"./src/assets/svg/espiilogo2.svg"),
+            favicons:{
+                appName:"Espii Club",
+                appDescription:"Development Platform for the Espii Corporation",
+                developerName:"BMscis",
+                developerURL:"https://bmscis.github.io",
+                background:"transparent",
+                theme_color:"#F44336"
+            },
+            inject: true,
+        }),
+        new WebpackManifestPlugin()
     ],
     output: {
         filename: '[name].[contenthash].js',

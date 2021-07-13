@@ -1,5 +1,5 @@
-import {BlockChain} from '../../blockchain/blockchain';
-import {connectToPeers, getSockets, initP2PServer} from '../../blockchain/p2p';
+//import {BlockChain} from '../../blockchain/blockchain';
+//import {connectToPeers, getSockets, initP2PServer} from '../../blockchain/p2p';
 
 const p2pPort = "ws:/localhost:6001";
 export class BlockchainComponent extends HTMLElement{
@@ -18,7 +18,7 @@ export class BlockchainComponent extends HTMLElement{
         this.getComponents
         // this.block = new BlockChain()
         // this.block.generateNextBlock("this is a new block")
-        //this.webserver = initP2PServer(p2pPort);
+        // this.webserver = initP2PServer(p2pPort);
         return
     }
     //
