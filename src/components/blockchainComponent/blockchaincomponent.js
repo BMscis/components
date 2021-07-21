@@ -1,4 +1,4 @@
-//import {BlockChain} from '../../blockchain/blockchain';
+import {BlockChain} from '../../blockchain/blockchain';
 //import {connectToPeers, getSockets, initP2PServer} from '../../blockchain/p2p';
 
 const p2pPort = "ws:/localhost:6001";

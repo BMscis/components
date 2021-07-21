@@ -27,9 +27,9 @@ export class Logo extends HTMLElement{
     }
     render(){
         //console.log('Logo rendering')
-        this.style = `
-        width: ${this.dimension.logoSetup + "px"};
-        height: ${this.dimension.logoSetup + "px"};`
+        // this.style = `
+        // width: ${this.dimension.logoSetup + "px"};
+        // height: ${this.dimension.logoSetup + "px"};`
         var rx = document.createElement('div')
         rx.classList.add('logo')
         this.appendChild(rx)

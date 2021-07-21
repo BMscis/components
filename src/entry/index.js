@@ -1,5 +1,5 @@
 
-import { EspiiContainer } from '../Classes/DOM/espiicontainer';
+import { EspiiContainer } from '../Classes/DOM/espiicontainer.js';
 
 const docu = new EspiiContainer(document,window)
 window.Espii = docu

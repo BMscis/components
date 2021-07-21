@@ -11,7 +11,7 @@ module.exports = {
         entry:glob.sync('./src/entry/index.js'),
         fonts:glob.sync('./src/assets/fonts/*.otf'),
         style:glob.sync('./src/**/*.scss'),
-        blockchain:glob.sync('./src/blockchain/**/*.js'),
+        blockchain:glob.sync('./src/blockchain/**/*.{js,ts}'),
         images:glob.sync('./src/assets/img/*.{gif,jpg,png}'),
         preloadImages:('./src/assets/img/ws382.jpg'),
         es_components:glob.sync('./src/components/**/*.js'),
@@ -65,11 +65,11 @@ module.exports = {
             //     ],
             // },
             //Typescript
-            // {
-            //     test: /\.(tsx|ts|js)?$/,
-            //     use: 'ts-loader',
-            //     exclude: /node_modules/,
-            // }
+            {
+                test: /\.(tsx|ts)?$/,
+                use: 'ts-loader',
+                exclude: [/node_modules/,"/src/components/","/src/Classes/"],
+            }
 
             // {
             //     test: /\.toml$/,
@@ -94,10 +94,9 @@ module.exports = {
             // }
         ],
     },
-    // resolve: {
-    //     extensions: ['.tsx','.ts','.js'],
-
-    // },
+     resolve: {
+         extensions: ['.tsx','.ts','.js'],
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -118,7 +117,7 @@ module.exports = {
             "window.jQuery": "jquery"
         }),
         new FaviconsWebpackPlugin({
-            logo:path.resolve(__dirname,"./src/assets/svg/espiilogo2.svg"),
+            logo:path.resolve(__dirname,"./src/assets/svg/espiifavicon2.svg"),
             favicons:{
                 appName:"Espii Club",
                 appDescription:"Development Platform for the Espii Corporation",

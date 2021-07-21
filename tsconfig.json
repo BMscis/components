@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "module": "ES2020",
+      "target": "ES6",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "sourceMap": true,
+      "baseUrl": ".",
+      "rootDir": ".",
+      "outDir": "docs",
+      "allowJs": true,
+      "checkJs": false,
+      "esModuleInterop": true
+    },
+    "include": ["src/blockchain/*ts"],
+    "exclude": ["node_modules", "src/Classes/**","src/components/**"]
+    }

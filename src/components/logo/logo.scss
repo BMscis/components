@@ -1,58 +1,63 @@
 es-logo{
     margin:auto;
     display:block;
-}
-.logo{
-    transform: scale(var(--ggs,1));
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-    background-image: linear-gradient(to bottom right , #3ffd1e ,#1b5028 46% 45%,transparent 55%, #1b5028 55% ,#3bab57 );
-    backdrop-filter: saturate(2) blur(0.2px);
-    -webkit-backdrop-filter: saturate(2) blur(0.2px);
-    transform: rotate(45deg);
-    transition:0.5s ease;
-    position:relative;
-    margin:auto;
-}
-.logo:hover{
-    cursor: pointer;
-}
-.logo:hover::after,.logo:hover::before {
-    cursor: pointer;
-    animation-name:flashlogo;
-    animation-duration:1s;
-    animation-fill-mode: both;
-    animation-timing-function: linear;
-}
-.logo::after,.logo::before{
-    content:'';
-    clip-path: polygon(50% 26px, 26% 50%, 50% 70%, 0px 50%);
-    height: 80px;
-    width: 80px;
-    position: absolute;
-    background-image: radial-gradient(circle at top,#3ffd1e,32%,#010500 63%);
-    background-size: contain;
+    background-image: url(/src/assets/svg/espiilogo3.svg);
+    width: 180px;
+    height: 70px;
     background-repeat: no-repeat;
+}
+
+// .logo{
+//     transform: scale(var(--ggs,1));
+//     box-sizing: border-box;
+//     width: 100%;
+//     height: 100%;
+//     border-radius: 3px;
+//     background-image: linear-gradient(to bottom right , #3ffd1e ,#1b5028 46% 45%,transparent 55%, #1b5028 55% ,#3bab57 );
+//     backdrop-filter: saturate(2) blur(0.2px);
+//     -webkit-backdrop-filter: saturate(2) blur(0.2px);
+//     transform: rotate(45deg);
+//     transition:0.5s ease;
+//     position:relative;
+//     margin:auto;
+// }
+// .logo:hover{
+//     cursor: pointer;
+// }
+// .logo:hover::after,.logo:hover::before {
+//     cursor: pointer;
+//     animation-name:flashlogo;
+//     animation-duration:1s;
+//     animation-fill-mode: both;
+//     animation-timing-function: linear;
+// }
+// .logo::after,.logo::before{
+//     content:'';
+//     clip-path: polygon(50% 26px, 26% 50%, 50% 70%, 0px 50%);
+//     height: 80px;
+//     width: 80px;
+//     position: absolute;
+//     background-image: radial-gradient(circle at top,#3ffd1e,32%,#010500 63%);
+//     background-size: contain;
+//     background-repeat: no-repeat;
     
-}
-.logo::after {
+// }
+// .logo::after {
     
-    top: -28.75px;
-    left: -32px;
-    transform: rotate(310deg);
-}
-.logo::before {
-    top: -30.45px;
-    right: -32px;
-    transform: rotate(133deg);
-    backdrop-filter: brightness(0.6);
-    -webkit-backdrop-filter: brightness(0.6);
-}
-@media only screen and (max-width: 850px){
-    .logo{
-        left:revert;
-        right: calc(50% - 10px);
-    }
-}
+//     top: -28.75px;
+//     left: -32px;
+//     transform: rotate(310deg);
+// }
+// .logo::before {
+//     top: -30.45px;
+//     right: -32px;
+//     transform: rotate(133deg);
+//     backdrop-filter: brightness(0.6);
+//     -webkit-backdrop-filter: brightness(0.6);
+// }
+// @media only screen and (max-width: 850px){
+//     .logo{
+//         left:revert;
+//         right: calc(50% - 10px);
+//     }
+// }
