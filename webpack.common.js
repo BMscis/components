@@ -117,7 +117,7 @@ module.exports = {
             "window.jQuery": "jquery"
         }),
         new FaviconsWebpackPlugin({
-            logo:path.resolve(__dirname,"./src/assets/svg/espiifavicon2.svg"),
+            logo:path.resolve(__dirname,"./src/assets/svg/espiifavicon4.svg"),
             favicons:{
                 appName:"Espii Club",
                 appDescription:"Development Platform for the Espii Corporation",
