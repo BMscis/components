@@ -1,0 +1,110 @@
+es-storybackface{
+    grid-area: imagebar;
+    background-image:url(../Assets/Svg/bgL.svg),url(../Assets/Svg/bgR.svg);
+    background-blend-mode: color;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width:100%;
+    height:100%;
+    background-position: top left, top right;
+    //background-size: 10%;
+    //background-size: 400px;
+}
+es-storybackface svg{
+    position:absolute;
+}
+slot{
+    position:relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow-y:hidden;
+    scroll-snap-type: y mandatory;
+    scrollbar-width:none;
+
+}
+.mouse-outline{
+    fill:none;
+    stroke:pink;
+    stroke-width:0.5;
+}
+.scroll{
+    fill: white;
+    opacity:1;
+    transform-origin: 50% 10px;
+    animation-name:scroll;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+es-closeheading{
+    grid-area: close;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 5px;
+    z-index: 2;
+    transform: scale(var(--ggs, 1));
+    opacity: 0;
+    margin: max(1vh,1vw);
+}
+es-closeheading[mobi]{
+    transform: scale(var(--ggs,0.6));
+}
+es-closebutton{
+    display: block;
+    z-index: 2;
+    width: 24px;
+    height: 24px;
+    a{
+        pointer-events: all;
+    }
+}
+es-closebutton > a{
+    box-sizing: border-box;
+    position: relative;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border-radius: 40px;
+    cursor: pointer;
+    color:#f20c9c;
+    opacity:1;
+}
+es-closebutton > a:hover{
+    color:#00ff7e;
+    transform:scale(1.5)
+
+}
+es-closebutton > a::after,
+es-closebutton > a::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 4px;
+    background: currentColor;
+    transform: rotate(45deg);
+    border-radius: 5px;
+    top: 8px;
+    left: 1px
+}
+es-closebutton > a::after {
+    transform: rotate(-45deg)
+}
+es-closebutton > a[show]{
+    opacity:1;
+}
+@keyframes scroll{
+    0%,
+    20%{
+        transform: translateY(0) scaleY(1)
+    }
+    100%{
+        transform:translateY(6px) scaleY(2);
+        opacity:0;
+    }
+}
+@media only Screen and (max-width:700px){
+    es-storybackface{
+        background-size: 10%;
+    }
+}

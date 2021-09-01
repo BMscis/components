@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-      "module": "ES2020",
-      "target": "ES6",
+      "module": "CommonJS",
+      "target": "ES2015",
       "noImplicitAny": true,
       "removeComments": true,
       "preserveConstEnums": true,
@@ -13,6 +13,6 @@
       "checkJs": false,
       "esModuleInterop": true
     },
-    "include": ["src/blockchain/*ts"],
-    "exclude": ["node_modules", "src/Classes/**","src/components/**"]
+    "include": ["src/**/*.ts", "src/components/Typography/BusinessCard/Graphs/Graph.js"],
+    "exclude": ["node_modules"]
     }

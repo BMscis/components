@@ -1,31 +1,15 @@
-import btc from "../../../../assets/img/btc.svg"
-import whalealert from "../../../../assets/img/whalealert.svg"
-import { Dimensions } from "../../../../Classes/spacemaps/dimensions"
-export class Graph extends HTMLElement {
+import { removeAllChildren } from "../../../../ComponentKontrol/removeChildKontrol"
+import { hide } from "../../../../ComponentKontrol/showKontrol"
+import { EspiiElement } from "../../../../Interfaces/index"
+import images from "../../../AssetImport/assets"
+export class Graph extends EspiiElement {
     constructor() {
         super()
-        console.log(`${this.nodeName} has been constructed` )                                                                             
-        //this =this.attachShadow({ mode: 'open' })
-        this.setup()
         this.sell = 0.0
         this.buy = 0.0
     }
-    static get observedAttributes() {
-        return []
-    }
-    setup() {
-        this.dimension = new Dimensions()
-        var varH = this.dimension.carouselSetup
-    }
-    attributeChangedCallback(prop, oldVal, newVal) {
-        switch (prop) {
-            case '':
-                return
-        }
-    }
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
-
         window.Espii.esgraph = this
         this.render()
         this.getsream()
@@ -35,7 +19,7 @@ export class Graph extends HTMLElement {
             await window.Espii.whalealert.fetchData()
         }
         function getwebSock(){
-            window.Espii.aggTrade.aggwebsocket.addEventListener("open", function (event) {
+            window.Espii.aggTrade.aggwebsocket.addEventListener("open", function () {
                 //window.Espii.aggTrade.aggwebsocket.send("t1")
             })
             window.Espii.aggTrade.aggwebsocket.addEventListener("message", function (event) {
@@ -168,7 +152,7 @@ export class Graph extends HTMLElement {
                         </ul>
                     </td>
                     <th>
-                        <img src=${btc}>
+                        <img src=${images.btc}>
                     </th>
                 </tr>
                 <tr id="whalealert">
@@ -179,23 +163,16 @@ export class Graph extends HTMLElement {
                         </ul>
                     </td>
                     <th>
-                        <img src=${whalealert}>
+                        <img src=${images.whalealert}>
                     </th>
                 </tr>
             </tbody>
         </table>
         `
     }
-    get styledTemplate() {
-        return `
-
-        `
-    }
     disconnectedCallback(){
-            for(let i = 0; i < this.childElementCount + 1; i++){
-            this.removeChild(this.children[0])
-        }
-        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" ) 
+        //hide(this)
+        removeAllChildren(this) 
         window.Espii.aggTrade.aggwebsocket.close()
     }
 }

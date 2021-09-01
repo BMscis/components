@@ -6,9 +6,9 @@ or
 npm install  swiper --save-dev
 
 fonts:
-    es-label,es-heading - ACBlack
+    es-label,es-cardheader - ACBlack
     es-textboard - ACBoldCond
     es-paragraph - ACLight
-    es-button - ACBoldSemiCn
+    es-anchorbutton - ACBoldSemiCn
 
 npm install -g localtunnel

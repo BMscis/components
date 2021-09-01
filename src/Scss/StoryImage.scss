@@ -1,0 +1,13 @@
+@import './Properties.scss';
+es-imagecontainer{
+    position:relative;
+}
+img{
+    height:$Image-Height;
+    position:relative;
+    transition:0.5s ease;
+    //opacity:0.5;
+}
+img{
+    cursor:pointer;
+}

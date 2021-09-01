@@ -1,0 +1,43 @@
+es-scroll[hide]{
+    display:none;
+}
+es-scroll[mobi]{
+    position: absolute;
+    z-index: 1;
+    right: 5%;
+    bottom: 5%;
+    width: 10vh;
+    transform: rotate3d0, 0, 1, 90deg;
+}
+es-scroll{
+    position: absolute;
+    z-index: -1;
+    right: 5%;
+    width: 10vh;
+}
+es-scroll svg{
+    position:absolute;
+}
+.mouse-outline{
+    fill:none;
+    stroke:pink;
+    stroke-width:0.5;
+}
+.scroll{
+    fill: white;
+    opacity:1;
+    transform-origin: 50% 10px;
+    animation-name:scroll;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes scroll{
+    0%,
+    20%{
+        transform: translateY0 scaleY1
+    }
+    100%{
+        transform:translateY6px scaleY2;
+        opacity:0;
+    }
+}

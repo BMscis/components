@@ -1,0 +1,14 @@
+es-sidebar{
+z-index:2;
+position:relative;
+border-radius:2px;
+display:flex;
+background:transparent;
+justify-content:center;
+margin: 10px 0;
+}
+es-sidebar[expand]{
+left:0;
+}
+@media only Screen and (max-width:850px){
+}

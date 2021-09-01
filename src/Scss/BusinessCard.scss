@@ -1,0 +1,85 @@
+es-businesscard[name~=Portfolio]{
+    grid-area:businesscard1;
+    position: relative;
+    display:flex;
+    flex-direction:row;
+    top:0vh;
+    left:0vw;
+    border-radius: 10px;
+    background: transparent;
+    border-top: 2px;
+    //border-top-style: dotted;
+    //border-top-color: blueviolet;
+    border-image: linear-gradient(to bottom right,#00368e 50%, transparent);
+    border-image-slice: 8;
+    z-index:1;
+}
+es-businesscard[name ~= About]{
+    grid-area: businesscard2;
+    justify-content: center;
+    height: 100%;
+    display: inline-block;
+}
+es-businesscard[name~=Crypto]{
+    display:grid;
+    }
+es-aboutus {
+}
+es-businesscard[name ~= About] text{
+    color: white;
+    text-align:justify;
+    line-height: 25px;
+    display: inline-block;
+}
+
+es-businesscard .texture{
+    position:absolute;
+    opacity:0.8;
+    left:0;
+}
+es-businesscard .infocontainer, .labelcontainer{
+    display:flex;
+    flex-direction:column;
+    justify-content:start;
+}
+es-businesscard > text{
+    color:white;
+    transition: 0.5s ease;
+}
+es-businesscard > label, es-businesscard > a, es-businesscard > p{
+    backdrop-filter: brightness(2);
+    -webkit-backdrop-filter: brightness(2);
+}
+es-businesscard > a,es-businesscard > p{
+    background: linear-gradient(to bottom right,#00368e 50%, #a90101);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+es-businesscard > label{
+    color: silver;
+    font-variant-caps: all-petite-caps;
+    background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    backdrop-filter: brightness(0.5);
+    -webkit-backdrop-filter: brightness(0.5);
+}
+es-businesscard > a{
+    text-decoration: none;
+    font-style: normal;
+}
+es-businesscard > address{
+    color:gold;
+    cursor:pointer;
+}
+es-businesscard[hide]{
+    display: none
+}
+    @media only screen and (max-width: 850px){
+    es-businesscard{
+        display:none;
+        top:29vh
+    }
+    es-businesscard > text{
+    }
+}

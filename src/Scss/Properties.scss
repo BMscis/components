@@ -1,0 +1,11 @@
+$Logo-Height: Calc(100vh * 0.04 + 30px);
+$Logo-Width: Calc(#{$Logo-Height} * 2.96);
+$NavButton-FontSize: min(3vw,3vh);
+$NavButton-Height: max(3vw,3vh);
+$Carousel-Height: Calc(100vh - #{$Logo-Height} - #{$NavButton-Height});
+$TextBoard-Text-FontSize:max(3vw,3vh);
+$TextBoard-Height:max(4vw,4vh);
+$StoryContainer-Height:Calc((100vh - #{$Logo-Height} - #{$NavButton-Height}) - #{$TextBoard-Height});
+$Story-Height:Calc(#{$StoryContainer-Height} * 0.85);
+$Story-Width:clamp(25vw,80vw,45vh);
+$Image-Height:clamp(150px,#{$Story-Height},250px)

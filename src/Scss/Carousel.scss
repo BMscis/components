@@ -1,0 +1,30 @@
+@import './Properties.scss';
+es-carousel{
+    //overflow:hidden;
+    position:relative;
+    align-items: center;
+    height: $Carousel-Height;
+    //display: grid;
+    //grid-template-areas: "businesscard1 stories businesscard2";
+    perspective: 600px;
+    perspective-origin: center;
+    transition:0.5s ease-in-out;
+    -webkit-box-align: center;
+    //background-image: radial-gradient(circle at bottom left,#00f5de00 ,68%,transparent 44%,#000024,rgb(0 54 142),transparent);
+    background-repeat:no-repeat;
+    z-index:1;
+}
+es-carousel[darkmode]{
+    background-color: hsl(0deg 0% 8%);
+    border-radius: 20px;
+    background-image:linear-gradient(to right, #1b1b1b 0 50%,50%, hsl(0deg 0% 8%));
+}
+es-carousel[expand]{
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+@media only screen and (max-width: 600px){
+    es-carousel{
+        display: block;
+    }
+}

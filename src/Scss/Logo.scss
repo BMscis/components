@@ -1,0 +1,10 @@
+@import './Properties.scss';
+es-logo{
+    display:block;
+    background-image: url(../Assets/Svg/espiilogo4.svg);
+    background-position: center;
+    width: $Logo-Width;
+    height:$Logo-Height;
+    margin:10px auto;
+    background-repeat: no-repeat;
+}

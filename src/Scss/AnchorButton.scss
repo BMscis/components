@@ -1,0 +1,27 @@
+es-anchorbutton{
+    background: linear-gradient(to right, #cc3e14,  #e2e22ca9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    outline: none;
+    border-radius: 5px;
+    border:none;
+    cursor: pointer;
+    height: auto;
+    z-index: 1;
+    pointer-events: all;
+
+    a{
+        pointer-events: all;
+    }
+}
+es-anchorbutton:hover {
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: #f1f1f1;
+    opacity:1;
+
+}
+
+es-anchorbutton a:visited{
+    background: green;
+
+}

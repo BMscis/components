@@ -1,0 +1,23 @@
+@import './Properties.scss';
+es-textboard{
+    text-align:center;
+    height:$TextBoard-Height;
+}
+es-textboard text{
+    font-size: $TextBoard-Text-FontSize;
+    color: white;
+    font-family: MarkOT,Arial,sans-serif;
+    transition: 0.5s ease;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(218deg, red,#0b12e4, #cd06f1,red);
+    margin-left: 10px;
+    padding: 5px 0;
+}
+es-textboard[hide]{
+    display: none
+}
+ @media only screen and (max-width: 850px){
+    es-textboard text{
+    }
+}

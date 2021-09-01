@@ -1,0 +1,65 @@
+$espii-primary-color:#F44336;
+$espii-secondary-color:#30D975;
+$espii-tetiary-color:#DF7B74;
+$espii-base-color:whitesmoke;
+$espii-accent-color:#1A78D9;
+$espii-taste-color:#e2e22c;
+
+@keyframes bg1{
+    from{
+        background-image:repeating-radial-gradient(circle at top right,transparent, #ff0000 , transparent ,#0f43a0,transparent 21%)
+    }
+    to{
+        background-image:repeating-radial-gradient(circle at top right,transparent, #ff0000 , transparent ,#0f43a0,transparent 59%)
+    }
+}
+html{
+    //background-image:url(../Assets/Svg/bx2.svg);
+    // background-image: 
+    // linear-gradient(90deg, hsl(216deg 100% 16%) 0 0%, .5%, transparent), 
+    // linear-gradient(-90deg, hsl(2deg 100% 27%), .5%, transparent),
+    // radial-gradient(at top right,#ff0900,1%, transparent),
+    // radial-gradient(at bottom,black 0 64%, transparent );
+    //background-image:repeating-radial-gradient(circle at top right,transparent, #ff0000 , transparent ,#0f43a0,transparent 21%);
+    background-color: #080C15;
+    background-repeat: no-repeat;
+    background-position: right;
+    //animation: bg1 2s ease-in-out 0 infinite alternate both;
+    //background-size: cover;
+    //background-attachment: fixed;
+}
+html.darkmode{
+    background-color: #020A22;
+    background-image: none;
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    transition: 0.5s ease-in-out;
+    pointer-events: none;
+    outline:none;
+
+}
+html,body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.markdown-body{
+    display: none;
+}
+body{
+    background:transparent;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 0 0;
+}
+es-logo,es-navbar,es-sidebar{
+}
+@media only Screen and (max-width:850px){
+}

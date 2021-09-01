@@ -1,4 +1,6 @@
-import {BlockChain} from '../../blockchain/blockchain';
+import { removeAllChildren } from '../../ComponentKontrol/removeChildKontrol';
+import { hide } from '../../ComponentKontrol/showKontrol';
+import {BlockChain} from '../../Blockchain/blockchain';
 //import {connectToPeers, getSockets, initP2PServer} from '../../blockchain/p2p';
 
 const p2pPort = "ws:/localhost:6001";
@@ -57,10 +59,8 @@ export class BlockchainComponent extends HTMLElement{
         return``
     }
     disconnectedCallback(){
-            for(let i = 0; i < this.childElementCount + 1; i++){
-            this.removeChild(this.children[0])
-        }
-        console.log(`%c ${this.nodeName} %c has been %c DISCONNECTED`,"color:#cd4cf7","color:black","color:#ef1a1a" )   
+        //hide(this)
+        removeAllChildren(this)
         return
     }
 }

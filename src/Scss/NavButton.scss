@@ -1,0 +1,40 @@
+@import './Properties.scss';
+es-navbutton{
+    display: grid;
+    white-space: nowrap;
+    position:relative;
+    cursor:pointer;
+    transition:0.5s ease;
+    pointer-events: all;
+    margin:0 2vw;
+}
+es-navbutton[active]{
+    opacity:1;
+    transition:0.5s ease;
+}
+es-navbutton[inactive]{
+    opacity:0.5;
+    transition:0.5s ease;
+}
+es-navbutton[inactive]:hover{
+    opacity:1;
+}
+button {
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    font-size:$NavButton-FontSize;
+    cursor:pointer;
+    color:#589BFA;
+    background: transparent;
+    height: $NavButton-Height;
+}
+es-navbutton[active] button{
+    // background: transparent;
+    // border-bottom: 2px solid;
+    // border-bottom-color: blueviolet;
+    // border-image: linear-gradient(to right,transparent 30%, blue 35%, red 50%, transparent 70%);
+    // border-image-slice: 8;
+    background: transparent;
+    border: none;
+}
