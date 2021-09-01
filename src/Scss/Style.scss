@@ -41,7 +41,9 @@ html.darkmode{
     transition: 0.5s ease-in-out;
     pointer-events: none;
     outline:none;
-
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 html,body{
     width: 100vw;
