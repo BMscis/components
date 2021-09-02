@@ -37,7 +37,8 @@ export class Story extends EspiiElement {
             Paragraph     : new Paragraph(this.paragraph),
             AnchorButton  : new AnchorButton(`#es-story-${this.identity}`),
             StoryBackface : new StoryBackface(this.className,`#backface-${this.identity}`),
-            CloseHeading  : new CloseHeading(this.heading, this.lowerHeading,`#co-story-${this.identity}`)}
+            CloseHeading  : new CloseHeading(this.heading, this.lowerHeading,`#co-story-${this.identity}`)
+        }
         this.setAttribute("id",`#co-story-${this.identity}`)
             
     }

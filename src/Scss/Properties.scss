@@ -1,11 +1,26 @@
-$Logo-Height: Calc(100vh * 0.04 + 30px);
+$Small-font-size: min(3vw,3vh);
+$Large-font-size: max(3vw,3vh);
+$margin:10px;
+$Upper-Lower-Margin:20px;
+
+$Logo-Height: Calc(100vh * 0.04);
 $Logo-Width: Calc(#{$Logo-Height} * 2.96);
+$Logo-Top: $margin;
+
 $NavButton-FontSize: min(3vw,3vh);
 $NavButton-Height: max(3vw,3vh);
-$Carousel-Height: Calc(100vh - #{$Logo-Height} - #{$NavButton-Height});
+$SideBar-Height: Calc(#{$NavButton-Height});
+$Sidebar-Top: Calc(#{$Logo-Height} + #{$Logo-Top} + #{$Upper-Lower-Margin});
+
+$Carousel-Top:Calc(#{$Sidebar-Top} + #{$SideBar-Height} + (#{$Upper-Lower-Margin} * 2));
+$Carousel-Height: Calc(100vh - #{$Carousel-Top} - #{$margin});
+
 $TextBoard-Text-FontSize:max(3vw,3vh);
 $TextBoard-Height:max(4vw,4vh);
-$StoryContainer-Height:Calc((100vh - #{$Logo-Height} - #{$NavButton-Height}) - #{$TextBoard-Height});
+
+$StoryContainer-Height:Calc(#{$Carousel-Height} - #{$TextBoard-Height});
 $Story-Height:Calc(#{$StoryContainer-Height} * 0.85);
 $Story-Width:clamp(25vw,80vw,45vh);
-$Image-Height:clamp(150px,#{$Story-Height},250px)
+//$Image-Height:clamp(150px,#{$Story-Height},250px);
+
+$Image-Height:Calc(#{$Story-Height} * 0.75);

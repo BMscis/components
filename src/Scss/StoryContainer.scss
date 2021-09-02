@@ -1,4 +1,5 @@
 @import './Properties.scss';
+@import './Animation.scss';
 es-storycontainer{
     grid-area: stories;
     transform-style: preserve-3d;
@@ -51,6 +52,11 @@ es-storycontainer label{
       es-storybackface{
         opacity: 1;
         display: flex;
+        animation-name: backfaceSize;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
         es-imagecontainer,es-cardheader,es-paragraph,es-anchorbutton{
           display: initial;
         }
@@ -102,7 +108,7 @@ es-storycontainer label{
   transform: translatex(0) scale(1);
   opacity: 1;
   z-index: 1;
-  background-color: #080c15;
+  background-color: #1d2c4e;
   es-story{
     opacity: 1;
     //box-shadow: 2px 3px 19px 2px rgb(0 0 0 / 71%), 0 0 2px 1px rgb(0 0 0 / 76%);
@@ -136,7 +142,7 @@ es-storycontainer label{
 #story-3:checked ~  #es-story-4,
 #story-4:checked ~  #es-story-1
  {
-  transform: translatex(min(25vh,25vw)) scale(.8);
+  transform: translatex(Calc(#{$Story-Width} / 3)) scale(.8);
   opacity: .4;
   z-index: 0;
   es-anchorbutton{
@@ -150,7 +156,7 @@ es-storycontainer label{
 #story-3:checked ~  #es-story-2,
 #story-4:checked ~  #es-story-3
  {
-  transform: translatex(min(-15vh,-15vw)) scale(.8);
+  transform: translatex(Calc(#{$Story-Width} / -3)) scale(.8);
   opacity: .4;
   z-index: 0;
   es-anchorbutton{

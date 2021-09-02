@@ -11,7 +11,7 @@ export class StoryContainer extends EspiiElement{
         this.len = len
         this.setup()
     }
-    setup(){
+    async setup(){
         switch(this.componentname){
             case 'story':
                 this.getStoryComponents(this.story,this.checkedBox(4),this.checkedLabel(4))
@@ -31,7 +31,7 @@ export class StoryContainer extends EspiiElement{
         }
     }
     
-    getStoryComponents(komp: Story[] | ImageBar[], input: HTMLInputElement[], label: HTMLLabelElement[]){
+    async getStoryComponents(komp: Story[] | ImageBar[], input: HTMLInputElement[], label: HTMLLabelElement[]){
         this.componentList = {
             Story : komp,
             Inputs: input,
@@ -79,7 +79,7 @@ export class StoryContainer extends EspiiElement{
             
         return [s1,s2,s3,s4]
     }
-    getBackfaceComponents(val:string){
+    async getBackfaceComponents(val:string){
         return this.getImgSet(val)
     }
     getImgSet(val:string){

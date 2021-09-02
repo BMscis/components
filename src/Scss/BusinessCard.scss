@@ -1,3 +1,4 @@
+@import './Properties.scss';
 es-businesscard[name~=Portfolio]{
     grid-area:businesscard1;
     position: relative;
@@ -21,6 +22,8 @@ es-businesscard[name ~= About]{
     display: inline-block;
 }
 es-businesscard[name~=Crypto]{
+    width: 100vw;
+    height: $StoryContainer-Height;
     display:grid;
     }
 es-aboutus {

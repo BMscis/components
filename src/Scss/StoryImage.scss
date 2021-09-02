@@ -1,11 +1,13 @@
 @import './Properties.scss';
 es-imagecontainer{
     position:relative;
+    width: 100%;
 }
 img{
-    height:$Image-Height;
     position:relative;
     transition:0.5s ease;
+    max-height: $Image-Height;
+    max-width: 100%;
     //opacity:0.5;
 }
 img{

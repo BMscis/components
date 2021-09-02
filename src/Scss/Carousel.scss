@@ -1,9 +1,11 @@
 @import './Properties.scss';
 es-carousel{
-    //overflow:hidden;
-    position:relative;
+    overflow:hidden;
+    position:absolute;
+    top:$Carousel-Top;
     align-items: center;
     height: $Carousel-Height;
+    width: 100vw;
     //display: grid;
     //grid-template-areas: "businesscard1 stories businesscard2";
     perspective: 600px;

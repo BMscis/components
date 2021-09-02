@@ -38,8 +38,10 @@ export class ImageBar extends EspiiElement{
     }
     override render(){
         this.appendChild(this.component.Image)
-        this.appendChild(this.componentList.Paragraph[0])
-        this.appendChild(this.componentList.Paragraph[1])
+        // let fdiv = document.createElement("div")
+        // fdiv.appendChild(this.componentList.Paragraph[0])
+        // fdiv.appendChild(this.componentList.Paragraph[1])
+        // this.appendChild(fdiv)
     }
 }
 customElements.define('es-imagebar', ImageBar);

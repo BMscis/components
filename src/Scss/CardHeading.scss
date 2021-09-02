@@ -2,6 +2,7 @@ es-cardheader{
     position:relative;
     transform: scale(var(--ggs,1));
     z-index: 0;
+    font-family: sans-serif;
 }
 es-cardheader{
 text{
@@ -12,7 +13,7 @@ text{
 }}
 es-cardheader::after{
     content:attr(lowerheading);
-    background: linear-gradient(to right, #cc3e14, yellowgreen);
+    background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: grid;
@@ -20,4 +21,26 @@ es-cardheader::after{
     //left: 2%;
     //top: 60%;
     //position: absolute;
+}
+es-storybackface{
+    es-cardheader{
+        text{
+            background: linear-gradient(to bottom right, #1d2c4e 50%, transparent);
+        }
+    }
+    es-cardheader::after{
+        background: linear-gradient(to right, #080c15, #1d2c4e);
+    }
+}
+@media only Screen and (max-width:700px){
+    es-storybackface{    
+        es-cardheader{
+            text{
+                background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
+            }
+        }
+        es-cardheader::after{
+            background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
+        }
+    }
 }

@@ -1,9 +1,12 @@
+
+
 es-storybackface{
     grid-area: imagebar;
     background-image:url(../Assets/Svg/bgL.svg),url(../Assets/Svg/bgR.svg);
     background-blend-mode: color;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 0;
+    background-attachment: fixed;
     width:100%;
     height:100%;
     background-position: top left, top right;
@@ -45,7 +48,7 @@ es-closeheading{
     z-index: 2;
     transform: scale(var(--ggs, 1));
     opacity: 0;
-    margin: max(1vh,1vw);
+    margin: max(1vh, 1vw);
 }
 es-closeheading[mobi]{
     transform: scale(var(--ggs,0.6));
@@ -67,8 +70,9 @@ es-closebutton > a{
     height: 22px;
     border-radius: 40px;
     cursor: pointer;
-    color:#f20c9c;
+    color:whitesmoke;
     opacity:1;
+    display: block;
 }
 es-closebutton > a:hover{
     color:#00ff7e;
@@ -93,18 +97,9 @@ es-closebutton > a::after {
 es-closebutton > a[show]{
     opacity:1;
 }
-@keyframes scroll{
-    0%,
-    20%{
-        transform: translateY(0) scaleY(1)
-    }
-    100%{
-        transform:translateY(6px) scaleY(2);
-        opacity:0;
-    }
-}
+
 @media only Screen and (max-width:700px){
-    es-storybackface{
-        background-size: 10%;
+    es-closeheading{
+        margin: max(1vh, 1vw) 7vw;
     }
 }

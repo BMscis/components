@@ -7,22 +7,22 @@ export class Graph extends EspiiElement {
         super()
         this.sell = 0.0
         this.buy = 0.0
+        window.esgraph = this
     }
     connectedCallback() {
         console.log(`%c ${this.nodeName} %c has been %c CONNECTED`,"color:#cd4cf7","color:black","color:#0ee232" )                                                                             
-        window.Espii.esgraph = this
-        this.render()
         this.getsream()
+        this.render()
     }
     getsream() {
         async function getWhales() {
-            await window.Espii.whalealert.fetchData()
+            await window.whalealert.fetchData()
         }
         function getwebSock(){
-            window.Espii.aggTrade.aggwebsocket.addEventListener("open", function () {
-                //window.Espii.aggTrade.aggwebsocket.send("t1")
+            window.aggTrade.aggwebsocket.addEventListener("open", function () {
+                //window.aggTrade.aggwebsocket.send("t1")
             })
-            window.Espii.aggTrade.aggwebsocket.addEventListener("message", function (event) {
+            window.aggTrade.aggwebsocket.addEventListener("message", function (event) {
                 var datar = JSON.parse(event.data)
 
                 var price = document.querySelector('#price')
@@ -31,20 +31,20 @@ export class Graph extends EspiiElement {
                 if (parseFloat(datar.q).toFixed(4).toLocaleString() < 1) {
                     switch (datar.m) {
                         case true:
-                            window.Espii.esgraph.sell += parseFloat(datar.q)
-                            price.innerHTML = window.Espii.esgraph.sell.toFixed(2)
+                            window.esgraph.sell += parseFloat(datar.q)
+                            price.innerHTML = window.esgraph.sell.toFixed(2)
                             return
                         case "true":
-                            window.Espii.esgraph.sell += parseFloat(datar.q)
-                            price.innerHTML = window.Espii.esgraph.sell.toFixed(2)
+                            window.esgraph.sell += parseFloat(datar.q)
+                            price.innerHTML = window.esgraph.sell.toFixed(2)
                             return
                         case false:
-                            window.Espii.esgraph.buy += parseFloat(datar.q)
-                            quantity.innerHTML = window.Espii.esgraph.buy.toFixed(2)
+                            window.esgraph.buy += parseFloat(datar.q)
+                            quantity.innerHTML = window.esgraph.buy.toFixed(2)
                             return
                         case "false":
-                            window.Espii.esgraph.buy += parseFloat(datar.q)
-                            quantity.innerHTML = window.Espii.esgraph.buy.toFixed(2)
+                            window.esgraph.buy += parseFloat(datar.q)
+                            quantity.innerHTML = window.esgraph.buy.toFixed(2)
                             return
                     }
                 }
@@ -65,7 +65,7 @@ export class Graph extends EspiiElement {
                             cont.appendChild(spn)
                             cont.appendChild(li)
                             cont.appendChild(qtt)
-                            highT.appendChild(cont)
+                            highT.prepend(cont)
                             return
                         case false:
                             var li = document.createElement('li')
@@ -82,27 +82,27 @@ export class Graph extends EspiiElement {
                             cont.appendChild(spn)
                             cont.appendChild(li)
                             cont.appendChild(qtt)
-                            highT.appendChild(cont)
+                            highT.prepend(cont)
                             return
                     }
                     var li = document.createElement('li')
                     li.innerHTML = "BTC @ " + parseFloat(datar.p).toFixed(2).toLocaleString() + " qty " + parseFloat(datar.q).toFixed(4).toLocaleString()
                     price.innerHTML = parseFloat(datar.p).toFixed(2).toLocaleString()
                     quantity.innerHTML = parseFloat(datar.q).toFixed(4).toLocaleString()
-                    highT.appendChild(li)
+                    highT.prepend(li)
                 }
             })
         }
         getWhales()
         getwebSock()
-        // window.Espii.abnormalTrade.abwebsocket.addEventListener("open", function (event1) {
-        //     window.Espii.abnormalTrade.websocket.send("t1")
+        // window.abnormalTrade.abwebsocket.addEventListener("open", function (event1) {
+        //     window.abnormalTrade.websocket.send("t1")
         // })
-        // window.Espii.abnormalTrade.abwebsocket.addEventListener("message", function (event1) {
+        // window.abnormalTrade.abwebsocket.addEventListener("message", function (event1) {
         //     var datax = JSON.parse(event1.data)
-        //     var asset = window.Espii.esgraph.children.table.children.tbody.children.abnormaltrade.children.bg.children.data.children.as.children.symbol
-        //     var evt = window.Espii.esgraph.children.table.children.tbody.children.abnormaltrade.children.bg.children.data.children.ev.children.event
-        //     var vlm = window.Espii.esgraph.children.table.children.tbody.children.abnormaltrade.children.bg.children.data.children.ev.children.volume
+        //     var asset = window.esgraph.children.table.children.tbody.children.abnormaltrade.children.bg.children.data.children.as.children.symbol
+        //     var evt = window.esgraph.children.table.children.tbody.children.abnormaltrade.children.bg.children.data.children.ev.children.event
+        //     var vlm = window.esgraph.children.table.children.tbody.children.abnormaltrade.children.bg.children.data.children.ev.children.volume
         //     if(datax.data.volume != undefined){
         //         vlm.innerHTML = datax.data.volume
         //     }else{
@@ -173,7 +173,7 @@ export class Graph extends EspiiElement {
     disconnectedCallback(){
         //hide(this)
         removeAllChildren(this) 
-        window.Espii.aggTrade.aggwebsocket.close()
+        //window.aggTrade.aggwebsocket.close()
     }
 }
 customElements.define('es-graph', Graph);

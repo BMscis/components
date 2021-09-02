@@ -8,16 +8,15 @@ export class BusinessCard extends EspiiElement {
     text: string;
     constructor(text: string) {
         super()
-        console.log(`${this.nodeName} has been constructed` )                                                                             
         this.text = text
         this.setup()
         return
     }
     setup(){
-        this.getcomponents
+        this.getcomponents()
         return
     }
-    get getcomponents(){
+    async getcomponents(){
         switch(this.text){
             case "Portfolio":
                 this.component = { "Portfolio" :new Textboard()}

@@ -1,14 +1,18 @@
+@import './Properties.scss';
 es-sidebar{
-z-index:2;
-position:relative;
-border-radius:2px;
-display:flex;
-background:transparent;
-justify-content:center;
-margin: 10px 0;
+    z-index:2;
+    position:absolute;
+    border-radius:2px;
+    display:flex;
+    background:transparent;
+    justify-content:center;
+    margin: $margin auto;
+    top:$Sidebar-Top;
+    height: $SideBar-Height;
+    width: 100%;
 }
 es-sidebar[expand]{
-left:0;
+    left:0;
 }
 @media only Screen and (max-width:850px){
 }

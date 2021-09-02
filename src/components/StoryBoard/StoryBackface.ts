@@ -29,17 +29,15 @@ export class StoryBackface extends EspiiElement {
         return
     }
     get getComponents() {
-        var scr = new ScrollPad()
-        scr.setAttribute("vertical", '')
+        //var scr = new ScrollPad()
+        //scr.setAttribute("vertical", '')
         this.component = {
-        ScrollPad : scr,
         StoryContainer : new StoryContainer(this.imageset,1)
     }
         return
     }
     override render() {
         this.appendChild(this.component.StoryContainer)
-        this.appendChild(this.component.ScrollPad)
         return
     }
 }

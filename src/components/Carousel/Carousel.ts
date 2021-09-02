@@ -12,10 +12,10 @@ export class Carousel extends EspiiElement{
         return
     }
     setup(){
-        this.getComponents
+        //this.getComponents()
         this.send("first")
     }
-    get getComponents(){
+    async getComponents(){
         this.component = {
             StoryContainer :this.storyContainer,
             ScrollPad      :this.scrollpad,
@@ -80,28 +80,28 @@ export class Carousel extends EspiiElement{
     }
     get forWebsite(){
         this.disconnectedCallback()
-        this.sendComponents = [this.componentDictionary.BusinessCard.Portfolio,this.component.StoryContainer]
+        this.sendComponents = [new BusinessCard("Portfolio"),new StoryContainer("story",0)]
         this.connectedCallback()
         return
     }
     get firstWebsite(){
-        this.sendComponents = [this.componentDictionary.BusinessCard.Portfolio,this.component.StoryContainer]
+        this.sendComponents = [new BusinessCard("Portfolio"),new StoryContainer("story",0)]
         return
     }
     get forPortfolio(){
         this.disconnectedCallback()
-        this.sendComponents = [this.componentDictionary.BusinessCard.Portfolio,this.component.StoryContainer]
+        this.sendComponents = [new BusinessCard("Portfolio"),new StoryContainer("story",0)]
         this.connectedCallback()
         return
     }
     get forContacts(){
-        this.sendComponents = [this.componentDictionary.BusinessCard.AboutUs]
+        this.sendComponents = [new BusinessCard("About Us")]
         this.connectedCallback()
         return
     }
     get forGraphs(){
         this.disconnectedCallback()
-        this.sendComponents = [this.componentDictionary.BusinessCard.Graph ,this.component.Blockchain]
+        this.sendComponents = [new BusinessCard("Crypto Meter") ,new BlockchainComponent()]
         this.connectedCallback()
 
         return

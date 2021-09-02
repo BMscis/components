@@ -65,7 +65,7 @@ interface EspiiComponent extends HTMLElement{
 export class EspiiElement extends HTMLElement {
     send?(text: boolean | string):void;
     component:Component<EspiiComponent>
-    componentList?: ComponentList<EspiiComponent>
+    componentList?: ComponentList<EspiiComponent> 
     componentDictionary?: ComponentDictionary<EspiiComponent>
     dimension?: Dimensions
     sendComponents?: EspiiComponent[]
