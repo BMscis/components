@@ -2,13 +2,13 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const {FaviconsWebpackPlugin} = require('favicons-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const webpack = require('webpack');
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const glob = require('glob')
 const madge = require("madge")
 madge(glob.sync('./src/entry/index.js')).then((res)=>{
-    console.log(res.circular())
+    console.log(res.depends())
 })
 module.exports = {
     entry: {
