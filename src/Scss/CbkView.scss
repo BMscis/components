@@ -1,0 +1,33 @@
+@import './Properties.scss';
+es-cbkview{
+    width: 100vw;
+    display: block;
+    margin: auto;
+}
+es-charts{
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    padding: 20px;
+}
+#button-container{
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#button-container button{
+    pointer-events: all;
+    background-color: $espii-tetiary-color;
+    font-size: small;
+    color: white;
+    margin: $margin 0;
+    width: -webkit-fill-available;
+}
+#button-container button[selected]{
+    background-color: $espii-primary-color;
+}
+#inflationChart{
+    pointer-events: all;
+    user-select: all;
+}

@@ -61,7 +61,6 @@ export interface ComponentDictionary <EspiiComponentMap> {
 interface EspiiComponent extends HTMLElement{
     //name<K extends keyof EspiiComponentMap>(type: EspiiComponentMap[K]):EspiiComponent
 }
-
 export class EspiiElement extends HTMLElement {
     send?(text: boolean | string):void;
     component:Component<EspiiComponent>
@@ -69,6 +68,12 @@ export class EspiiElement extends HTMLElement {
     componentDictionary?: ComponentDictionary<EspiiComponent>
     dimension?: Dimensions
     sendComponents?: EspiiComponent[]
+    button?:HTMLButtonElement
+    readonly nextElementSibling: Element | null | HTMLElement;
+    /**
+     * Returns the first preceding sibling that is an element, and null otherwise.
+     */
+    readonly previousElementSibling: Element | null | HTMLElement;
     connectedCallback() {
         this.render();
         //show(this)

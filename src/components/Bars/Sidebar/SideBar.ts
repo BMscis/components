@@ -11,6 +11,7 @@ export class SideBar extends EspiiElement{
         this.appendChild(new NavButton(true,"Portfolio"))
         this.appendChild(new NavButton(false,"Crypto Meter"))
         this.appendChild(new NavButton(false,"About Us"))
+        this.appendChild(new NavButton(false, "CBK"))
     }
 }
 customElements.define('es-sidebar', SideBar);

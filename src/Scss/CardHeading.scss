@@ -7,20 +7,22 @@ es-cardheader{
 es-cardheader{
 text{
     text-align: center;
-    background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
+    background: linear-gradient(to bottom right, #ceff1a 50%, #e63380);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: x-large;
 }}
 es-cardheader::after{
-    content:attr(lowerheading);
-    background: linear-gradient(to bottom right,#ceff1a 50%, transparent);
+    content: attr(lowerheading);
+    background: linear-gradient(to bottom right, #00ff7e 50%, #e63380);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: grid;
     white-space: nowrap;
-    //left: 2%;
-    //top: 60%;
-    //position: absolute;
+    font-size: large;
+    width: fit-content;
+    text-align: center;
+    margin: auto;
 }
 es-storybackface{
     es-cardheader{

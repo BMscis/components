@@ -173,7 +173,7 @@ export class Graph extends EspiiElement {
     disconnectedCallback(){
         //hide(this)
         removeAllChildren(this) 
-        //window.aggTrade.aggwebsocket.close()
+        window.aggTrade.aggwebsocket.close()
     }
 }
 customElements.define('es-graph', Graph);

@@ -3,6 +3,14 @@ $Large-font-size: max(3vw,3vh);
 $margin:10px;
 $Upper-Lower-Margin:20px;
 
+
+$espii-primary-color:#F44336;
+$espii-secondary-color:#30D975;
+$espii-tetiary-color:#DF7B74;
+$espii-base-color:whitesmoke;
+$espii-accent-color:#1A78D9;
+$espii-taste-color:#e2e22c;
+
 $Logo-Height: Calc(100vh * 0.04);
 $Logo-Width: Calc(#{$Logo-Height} * 2.96);
 $Logo-Top: $margin;
@@ -24,3 +32,5 @@ $Story-Width:clamp(25vw,80vw,45vh);
 //$Image-Height:clamp(150px,#{$Story-Height},250px);
 
 $Image-Height:Calc(#{$Story-Height} * 0.75);
+
+//colors

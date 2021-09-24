@@ -1,0 +1,128 @@
+{
+    "Securitization":
+    {
+        "description":[
+            "Securitization is the financial practice of pooling various types of contractual debt such as residential mortgages",
+            "commercial mortgages, auto loans or credit card debt obligations (or other non-debt assets which generate receivables)",
+            "and selling their related cash flows to third party investors as securities, which may be described as bonds, pass-through",
+            "securities, or collateralized debt obligations (CDOs)."
+        ],
+        "structure":{
+            "originator": {
+                "Collateral": "yes",
+                "Pool":{
+                    "Reference Portfolio":"Collateral"
+                },
+                "Action":[ 
+                    "Sell Reference Portfolio to an issuer",
+                    "Service the loan",
+                    "Collect payment from the original borrowers",
+                    "Deduct servicing fee"
+                    ],
+                "Intent":[
+                    "Raise Capital",
+                    "Restructure Debt",
+                    "Generate Marketable Debt",
+                    "Receive Present Value of a future cash flow"
+                ]
+            },
+            "Issuer":{
+                "Collateral": "no",
+                "Pool":{
+                    "Specific_Purpose_Vehicle":{
+                        "Interest_Bearing_Securities": "Sold to Capital Market Investors"
+                    }
+                    
+                },
+                "Action":[
+                    "Setup SPV to purchase assets and realize off-balance-sheet treatment legal and accounting reasons",
+                    "Finances the aquisition of the pooled assets by issuing tradable,interest bearing securities"
+                ],
+                "Intent":[
+                    "Availe tradable interest bearing securities to the capital market"
+                ]
+            },
+            "Caoital_Markets_Investors":{
+                "Collateral": "no",
+                "Pool":{
+                    "Reference Portfolio":{
+                        "Trustee Account":{
+                            "Payments":["fixed rate", "floating rate"]
+                        }
+                    }
+                },
+                "Action":[
+                    "Issues Asset Backed Securities."
+                ]
+            },
+            "Definitions":{
+                "Reference_Portfolio":{
+                    "Tranches":{
+                        "Junior":[
+                            "Smallest",
+                            "Highest Credit Exposure",
+                            "Highest Returns",
+                            "First Loss Position"
+                        ],
+                        "Mezzainine":[
+                            "Smaller",
+                            "High Credit Exposure",
+                            "High Returns",
+                            "Second Loss Position"
+                        ],
+                        "Senior":[
+                            "Small",
+                            "Low Credit Exposure",
+                            "Low Returns",
+                            "Third Loss Position"
+                        ]
+                    }
+                }
+            }
+        },
+        "Backing":{
+            "Assets":[
+                "Any Asset with stable cash flow"
+            ],
+            "Asset_Backed_Securities":[
+                "Mortgages",
+                "Collateral Debt Obligation"
+            ],
+            "Asset Backed Securities":[
+                "Corporate Loans",
+                "Sovereign loans",
+                "Consumer Credit",
+                "Porject Finance",
+                "Lease",
+                "Trade Receivables",
+                "Individual Lending Agreement"
+            ]
+        },
+        "Central_Bank_Rate": 
+            {
+                "description":
+                [
+                    "Lowest rate of interest it charges",
+                    "Reviewed at least every two months by the Monetary Policy Committee",
+                    "When CBK is injecting liquidity (through reverse repo) the CBK accepts the lowest acceptable rate",
+                    "When CBK is withdrawing liquidity (through vertical repo) the CBR is the highest rate that the CBK will pay on any bid received"
+                ],
+                "current_rate": 7.0
+            },
+        "Repurchase_Agreement":
+            {
+                "description": [
+                    "Are conducted whenever the central bank is mopping up excess liquidity",
+                    "A repo collateralized loan involves a contractual arrangement between two parties",
+                    "One party sells a security at a specified price with a commitment to buy back the same at a later date."
+                ],
+                "Repo_Rate":
+                    {
+                        "description": [
+                            "This is the interest paid by the CBK to commercial banks for lending money into the repo market."
+                        ]
+                    }
+            }
+        
+    }
+}
