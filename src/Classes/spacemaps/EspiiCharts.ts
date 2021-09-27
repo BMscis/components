@@ -8,7 +8,9 @@ const danger_color_full = "#FF4A3D"
 const mid_color = "#c8d945"
 const safe_color = "#7fff00"
 const income_inflation_text_color = "#C8D945"
-const text_color = "#1A78D9"
+const espii_unique_back = "#005250"
+const espii_unique = "#7fff00"
+const text_color = "#87B0FE"
 const transparent = "1A"
 const translusent = "33"
 const lightest = "66"
@@ -238,7 +240,7 @@ export class EspiiChart extends EspiiElement {
                                     borderRadius: 4,
                                     borderWidth: 1,
                                     padding: 5,
-                                    extraCssText: '',
+                                    extraCssText: 'filter:blur(10px)',
                                     axisPointer: {
                                         type: "line",
                                         axis: "auto",
@@ -247,12 +249,12 @@ export class EspiiChart extends EspiiElement {
                                         animationEasingUpdate: "exponentialOut",
                                     },
                                     crossStyle: {
-                                        color: "#999",
+                                        color: "#000000",
                                         width: 1,
                                         type: "dashed",
                                     },
                                     textStyle: {
-                                        color: "#666",
+                                        color: espii_unique,
                                         fontSize: 14
                                     }
                                 },
@@ -268,6 +270,8 @@ export class EspiiChart extends EspiiElement {
                                     show: true,
                                     min: 0,
                                     max: 20,
+                                    top:'20%',
+                                    align:"top",
                                     color: [danger_color, mid_color, safe_color],
                                     hoverLink: true,
                                     axisLabel: {}
@@ -343,8 +347,8 @@ export class EspiiChart extends EspiiElement {
                     {
                         indicator: [
                             { name: 'Upper-Income Inflation', max: 20 },
-                            { name: 'Middle-Income Inflation', max: 20 },
-                            { name: 'Lower-Income Inflation', max: 20 },
+                            { name: 'Middle-Income', max: 20 },
+                            { name: 'Lower-Income', max: 20 },
                             
                         ],
                         shape: 'circle',
@@ -437,7 +441,7 @@ export class EspiiChart extends EspiiElement {
                                     borderRadius: 4,
                                     borderWidth: 1,
                                     padding: 5,
-                                    extraCssText: '',
+                                    extraCssText: 'filter:blur(10px)',
                                     axisPointer: {
                                         type: "line",
                                         axis: "auto",
@@ -446,12 +450,12 @@ export class EspiiChart extends EspiiElement {
                                         animationEasingUpdate: "exponentialOut",
                                     },
                                     crossStyle: {
-                                        color: "#999",
+                                        color: "#00000000",
                                         width: 1,
                                         type: "dashed",
                                     },
                                     textStyle: {
-                                        color: "#666",
+                                        color: espii_unique,
                                         fontSize: 14
                                     }
                                 },
@@ -467,6 +471,8 @@ export class EspiiChart extends EspiiElement {
                                     show: true,
                                     min: 0,
                                     max: 20,
+                                    top:'20%',
+                                    align:"top",
                                     color: [danger_color, mid_color, safe_color],
                                     hoverLink: true,
                                     axisLabel: {}
