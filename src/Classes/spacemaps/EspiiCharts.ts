@@ -1,10 +1,12 @@
 
 import { EspiiElement } from '../../Interfaces';
 import * as echarts from '../../../../../echarts';
-import { ChartButton } from '../../Components/Buttons/ChartButton';
-const danger_color = "#A62D24"
+const danger_color = "#EA4337"
+const danger_color_low = "#DE4035"
+const danger_color_semi = "#E64337"
+const danger_color_full = "#FF4A3D"
 const mid_color = "#c8d945"
-const safe_color = "#30D975"
+const safe_color = "#7fff00"
 const income_inflation_text_color = "#C8D945"
 const text_color = "#1A78D9"
 const transparent = "1A"
@@ -15,7 +17,7 @@ const light = "CC"
 
 export class EspiiChart extends EspiiElement {
     elementGraph: HTMLElement
-    chartInsert: echarts.ECharts
+    chartInsert: any
     generalInflationData: {}
     fuelData: {}
     foodData: {};
@@ -27,6 +29,7 @@ export class EspiiChart extends EspiiElement {
     incomeInflation: any;
     months: string[];
     lineStyle: { normal: { width: number; type: string; }; };
+    zRender: any;
     /**
      * 
      * @param chart_id "Element ID"
@@ -55,11 +58,15 @@ export class EspiiChart extends EspiiElement {
             "May",
             "June"
         ]
-        this.chartInsert = echarts.init(this.elementGraph, "dark")
+        echarts.zrender.init(this.elementGraph)
+        this.chartInsert = echarts.init(this.elementGraph, null, { 
+            renderer: 'canvas',
+        });
         this.chartInsert.setOption(this.generalInflationChart)
         //this.resize()
         window.addEventListener('resize', e => {
             this.resize()
+            this.resizeChart()
         })
     }
     chartButton(id: string, active: string, name: string) {
@@ -129,20 +136,25 @@ export class EspiiChart extends EspiiElement {
                     {
                         indicator: [
                             { name: 'General Inflation', max: 20 },
-                            { name: 'Fuel Inflation', max: 20 },
-                            { name: 'Food Inflation', max: 20 },
-                            { name: 'Clothing Inflation', max: 20 },
-                            { name: 'Household Inflation', max: 20 },
-                            { name: 'Health Inflation', max: 20 },
-                            { name: 'Transport Inflation', max: 20 }
+                            { name: 'Fuel', max: 20 },
+                            { name: 'Food', max: 20 },
+                            { name: 'Clothing', max: 20 },
+                            { name: 'Household', max: 20 },
+                            { name: 'Health', max: 20 },
+                            { name: 'Transport', max: 20 }
                         ],
+                        radius:['10%','50%'],
                         shape: 'circle',
                         scale: true,
                         splitNumber: 5,
                         name: {
+                            fontSize:16,
                             textStyle: {
                                 color: text_color
-                            }
+                            },
+                            overflow:'truncate',
+                            elipsis:'...,',
+                            lineOverflow:'truncate',
                         },
                         splitArea: {
                             show: false,
@@ -153,12 +165,12 @@ export class EspiiChart extends EspiiElement {
                                 width: 1,
                                 type: 'dashed',
                                 color: [
-                                    safe_color + translusent,
+                                    mid_color,
                                     safe_color,
                                     safe_color + translusent,
-                                    danger_color + lightest,
-                                    danger_color + lighter,
+                                    danger_color_low,
                                     danger_color,
+                                    danger_color_full,
                                 ]
                             }
                         },
@@ -174,7 +186,7 @@ export class EspiiChart extends EspiiElement {
                             rotate: 0,
                             margin: 8,
                             fontSize: 12
-                        }
+                        },
 
                     }
                 ],
@@ -504,12 +516,36 @@ export class EspiiChart extends EspiiElement {
     }
     resize() {
         this.elementGraph.setAttribute("width", (
-            document.querySelector('es-carousel').scrollWidth * 0.8
+            (
+                window.innerWidth > 600 ?
+                window.innerWidth * 0.8 :
+                window.innerWidth
+                )
         ).toString()
         )
         this.elementGraph.setAttribute("height", (
-            document.querySelector('es-carousel').scrollHeight * 0.8).toString()
+            document.querySelector('es-carousel').scrollHeight > 600 ?
+            document.querySelector('es-carousel').scrollHeight * 0.8 :
+            document.querySelector('es-carousel').scrollHeight * 0.8
+            ).toString()
         )
+        return
+    }
+    resizeChart(){
+        this.chartInsert.resize(
+            {
+                width:(
+                    window.innerWidth > 600 ?
+                    window.innerWidth * 0.8 :
+                    window.innerWidth * 0.7
+                ),
+                height:(
+                    document.querySelector('es-carousel').scrollHeight > 600 ?
+                    document.querySelector('es-carousel').scrollHeight * 0.8 :
+                    document.querySelector('es-carousel').scrollHeight * 0.8
+                )
+            }
+        )    
         return
     }
     override render() {

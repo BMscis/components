@@ -163,7 +163,7 @@ export class CBKView extends EspiiElement{
         ]
     }
     override render(){
-        let header = new CardHeader("Central Bank Of Kenya", "Weekly Bulleting")
+        let header = new CardHeader("", "Weekly Bulleting")
         this.appendChild(header)
         let inflationChart = new EspiiChart(
             "inflationChart",

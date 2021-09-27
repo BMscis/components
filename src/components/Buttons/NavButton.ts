@@ -1,3 +1,4 @@
+import { A } from "@svgdotjs/svg.js"
 import { EspiiElement } from "../../Interfaces/index"
 
 export class NavButton extends EspiiElement {
@@ -10,6 +11,7 @@ export class NavButton extends EspiiElement {
         this.setup()
     }
     setup(){
+
         this.addEventListener('click', e => {
             var active = this.hasAttribute("active")
             switch (active) {

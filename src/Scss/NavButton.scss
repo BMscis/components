@@ -11,6 +11,7 @@ es-navbutton{
 es-navbutton[active]{
     opacity:1;
     transition:0.5s ease;
+    border-bottom: 1px solid $espii-unique-color;
 }
 es-navbutton[inactive]{
     opacity:0.5;
@@ -29,12 +30,13 @@ button {
     background: transparent;
     height: $NavButton-Height;
 }
-es-navbutton[active] button{
-    // background: transparent;
-    // border-bottom: 2px solid;
-    // border-bottom-color: blueviolet;
-    // border-image: linear-gradient(to right,transparent 30%, blue 35%, red 50%, transparent 70%);
-    // border-image-slice: 8;
-    background: transparent;
-    border: none;
+es-navbutton:nth-last-child(1) button{
+    color:#ffff2e
+}
+@media only Screen and (max-width:850px){
+    es-navbutton{
+        button{
+            font-size: calc(max(3vw, 3vh) * 0.7);
+        }
+    }
 }

@@ -45,7 +45,7 @@ export class Story extends EspiiElement {
     override render() {
                 this.appendChild(this.component.ImageContainer)
                 this.appendChild(this.component.CardHeader)
-                this.appendChild(this.component.Paragraph)
+                //this.appendChild(this.component.Paragraph)
                 this.appendChild(this.component.AnchorButton)
                 this.appendChild(this.component.StoryBackface)
                 this.appendChild(this.component.CloseHeading)

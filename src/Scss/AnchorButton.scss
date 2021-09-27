@@ -1,3 +1,4 @@
+@import './Properties.scss';
 es-anchorbutton{
     background: linear-gradient(to right, #cc3e14,  #e2e22ca9);
     -webkit-background-clip: text;
@@ -6,12 +7,20 @@ es-anchorbutton{
     border-radius: 5px;
     border:none;
     cursor: pointer;
-    height: auto;
+    height: $Story-Button-Height;
+    width: $Story-Button-Width;
     z-index: 1;
     pointer-events: all;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 
     a{
         pointer-events: all;
+        text-decoration: none;
+        color:white;
+        font-family:monospace;
+        font-size: $Story-Font-Size;
     }
 }
 es-anchorbutton:hover {

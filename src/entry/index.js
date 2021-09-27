@@ -4,6 +4,8 @@ import { WhaleAlert } from '../Classes/Crypto/WhaleAlert'
 import { SideBar } from '../Components/Bars/Sidebar/SideBar';
 import { Carousel } from '../Components/Carousel/Carousel';
 import { Logo } from '../Components/Logo/Logo';
+import { Footer} from '../Components/Footer/Footer'
+
 async function getContainer(){
     const logo = new Logo()
     const sidebar = new SideBar()

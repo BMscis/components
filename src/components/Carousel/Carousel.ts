@@ -2,6 +2,7 @@ import { EspiiElement } from "../../Interfaces/index"
 import { BlockchainComponent } from "../BlockchainComponent/BlockchainComponent"
 import { ToggleButton } from "../buttons/toggleButton"
 import { CBKView } from "../CBK/CBKView"
+import { Footer } from "../Footer/Footer"
 import { StoryContainer } from "../StoryBoard/StoryContainer"
 import { BusinessCard } from "../Typography/BusinessCard/BusinessCard"
 import { ScrollPad } from "../Typography/ScrollPad/ScrollPad"
@@ -70,7 +71,7 @@ export class Carousel extends EspiiElement{
             case "Crypto Meter":
                 this.forGraphs
                 return
-            case "CBK":
+            case "Central Bank of Kenya":
                 this.forCBK
             default :
                 this.firstWebsite
@@ -98,7 +99,8 @@ export class Carousel extends EspiiElement{
         return
     }
     get forContacts(){
-        this.sendComponents = [new BusinessCard("About Us")]
+        this.disconnectedCallback()
+        this.sendComponents = [new Footer()]
         this.connectedCallback()
         return
     }

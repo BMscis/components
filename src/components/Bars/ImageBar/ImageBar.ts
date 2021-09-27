@@ -24,16 +24,18 @@ export class ImageBar extends EspiiElement{
         var imag = document.createElement("img")
         imag.src = this.source
         imag.alt = this.altern
-        var txt = new Paragraph(this.tooltip)
-        txt.classList.add("tooltiptext")
-        var dsr = new Paragraph(this.description)
-        dsr.classList.add("descriptiontext")
+
         this.component = {
             Image: imag
         }
-        this.componentList = {
-            Paragraph:[txt,dsr]
-        }
+        //var txt = new Paragraph(this.tooltip)
+        //txt.classList.add("tooltiptext")
+        //var dsr = new Paragraph(this.description)
+        //dsr.classList.add("descriptiontext")
+
+        // this.componentList = {
+        //     Paragraph:[txt,dsr]
+        // }
         return 
     }
     override render(){

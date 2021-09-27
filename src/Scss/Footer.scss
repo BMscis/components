@@ -1,0 +1,86 @@
+@import './Properties.scss';
+es-footer{
+    position: relative;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    background-color: $espii-unique-complement-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 10px;
+    z-index: 1000;
+    text{
+        color: $espii-unique-color;
+        font-size: $Small-font-size;
+        font-family: monospace;
+    }
+    es-closeheading{
+        opacity: 1;
+        display: block;
+        margin: auto;
+        right:$margin;
+        a{
+            color:#FEABAB;
+            margin:auto
+        }
+        es-cardheader::after, text{
+            background: none;
+            -webkit-background-clip: none;
+            -webkit-text-fill-color:unset;
+            color: $espii-unique-color;
+            font-size: $Small-font-size;
+        }
+        es-cardheader::after{
+            position: absolute;
+            right: 0;
+        }
+    }
+    a{
+        text-decoration: none;
+        font-family: monospace;
+        font-size: $Small-font-size;
+        margin:$margin $margin $margin 40px;
+        cursor: pointer;
+        pointer-events: all;
+    }
+    span{
+        pointer-events: all;
+        cursor: pointer;
+        position: relative;
+        margin: 10px;
+        a::after{
+            content: attr(showContent);
+            color: white;
+        }
+    }
+    .forward_to_inbox{
+        background-image: url(../Assets/Svg/gmail.svg);
+        background-repeat: no-repeat;
+        background-position: left;
+        pointer-events: all;
+    }
+    
+    #forward_to_inbox::after{
+        content: '';
+        background-image: url(../Assets/Svg/content_copy_black_24dp.svg);
+        background-repeat: no-repeat;
+        padding: 20px;
+        background-position:center;
+    }
+    .github{
+        background-image: url(../Assets/Svg/github.svg);
+        background-repeat: no-repeat;
+        background-position: left;
+        pointer-events: all;
+    }
+    .linkedin{
+        background-image: url(../Assets/Svg/linkedin.svg);
+        background-repeat: no-repeat;
+        background-position: left;
+        pointer-events: all;
+    }
+}

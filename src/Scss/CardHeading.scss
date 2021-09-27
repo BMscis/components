@@ -1,8 +1,14 @@
+@import './Properties.scss';
 es-cardheader{
     position:relative;
     transform: scale(var(--ggs,1));
     z-index: 0;
     font-family: sans-serif;
+}
+es-story es-cardheader{
+    position: absolute;
+    top:$margin;
+    left:$margin;
 }
 es-cardheader{
 text{

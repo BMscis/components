@@ -10,21 +10,23 @@ $espii-tetiary-color:#DF7B74;
 $espii-base-color:whitesmoke;
 $espii-accent-color:#1A78D9;
 $espii-taste-color:#e2e22c;
+$espii-unique-color:chartreuse;
+$espii-unique-complement-color:#005250;
 
 $Logo-Height: Calc(100vh * 0.04);
 $Logo-Width: Calc(#{$Logo-Height} * 2.96);
 $Logo-Top: $margin;
 
-$NavButton-FontSize: min(3vw,3vh);
 $NavButton-Height: max(3vw,3vh);
 $SideBar-Height: Calc(#{$NavButton-Height});
+$NavButton-FontSize: Calc(#{$NavButton-Height} * 0.3);
 $Sidebar-Top: Calc(#{$Logo-Height} + #{$Logo-Top} + #{$Upper-Lower-Margin});
 
 $Carousel-Top:Calc(#{$Sidebar-Top} + #{$SideBar-Height} + (#{$Upper-Lower-Margin} * 2));
 $Carousel-Height: Calc(100vh - #{$Carousel-Top} - #{$margin});
 
-$TextBoard-Text-FontSize:max(3vw,3vh);
 $TextBoard-Height:max(4vw,4vh);
+$TextBoard-Text-FontSize:Calc(#{$TextBoard-Height} * 0.5);
 
 $StoryContainer-Height:Calc(#{$Carousel-Height} - #{$TextBoard-Height});
 $Story-Height:Calc(#{$StoryContainer-Height} * 0.85);
@@ -32,5 +34,9 @@ $Story-Width:clamp(25vw,80vw,45vh);
 //$Image-Height:clamp(150px,#{$Story-Height},250px);
 
 $Image-Height:Calc(#{$Story-Height} * 0.75);
+$Story-Button-Height:Calc(#{$Story-Height} - #{$Image-Height} - #{$Upper-Lower-Margin});
+$Story-Button-Width:Calc(#{$Story-Height} - #{$Image-Height} - #{$Upper-Lower-Margin});
+$Story-Font-Size:Calc(#{$Story-Button-Width} * 0.2);
 
-//colors
+$Footer-Height:#{$Carousel-Top};
+$Footer-Position:Calc(100vh - #{$Logo-Height});
