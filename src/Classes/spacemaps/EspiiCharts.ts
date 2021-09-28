@@ -347,8 +347,8 @@ export class EspiiChart extends EspiiElement {
                     {
                         indicator: [
                             { name: 'Upper-Income Inflation', max: 20 },
-                            { name: 'Middle-Income', max: 20 },
-                            { name: 'Lower-Income', max: 20 },
+                            { name: 'Middle', max: 20 },
+                            { name: 'Lower', max: 20 },
                             
                         ],
                         shape: 'circle',
