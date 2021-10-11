@@ -4,18 +4,20 @@ import { WhaleAlert } from '../Classes/Crypto/WhaleAlert'
 import { SideBar } from '../Components/Bars/Sidebar/SideBar';
 import { Carousel } from '../Components/Carousel/Carousel';
 import { Logo } from '../Components/Logo/Logo';
-import { Footer} from '../Components/Footer/Footer'
+import { News} from '../Components/News/News'
 
 async function getContainer(){
     const logo = new Logo()
     const sidebar = new SideBar()
     const carousel = new Carousel()
+    const news = new News()
     window.aggTrade = new EspiiBinance("aggtrade")
     window.whalealert = new WhaleAlert()
     window.esgraph = ""
     document.body.appendChild(logo)
     document.body.appendChild(sidebar)
     document.body.appendChild(carousel)
+    document.body.appendChild(news)
 }
 
 getContainer()

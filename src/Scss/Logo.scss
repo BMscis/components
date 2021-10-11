@@ -14,8 +14,11 @@ es-logo{
 }
 @media only Screen and (max-width:600px){
     es-logo{
+        top:0;
         background-position: left;
-        background-size: 20%;
-        width: 100%;
+        width: $Wide-Logo-Width;
+        margin-left: 10px;
+        position: fixed;
+        z-index: 100;
     }
 }

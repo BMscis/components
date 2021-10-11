@@ -35,7 +35,9 @@ es-navbutton:nth-last-child(1) button{
 }
 @media only Screen and (max-width:850px){
     es-navbutton{
+        width: 30%;
         button{
+            text-align: left;
             font-size: calc(max(3vw, 3vh) * 0.7);
         }
     }

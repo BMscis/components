@@ -1,6 +1,6 @@
 {
-  "entry.js": "autoentry.6d9d6fe8cd22fea86361.js",
-  "style.js": "autostyle.a4a62a359cb6997cab6f.js",
+  "entry.js": "autoentry.96b747c24f50a3c68e84.js",
+  "style.js": "autostyle.d04976c06c02d470d8c0.js",
   "runtime.js": "autoruntime.311075b2e2ee68baaf60.js",
   "vendors.js": "autovendors.e40bd4825a882732f9ff.js",
   "assets/apple-touch-startup-image-2732x2048.png": "autoassets/apple-touch-startup-image-2732x2048.png",
@@ -84,6 +84,7 @@
   "assets/browserconfig.xml": "autoassets/browserconfig.xml",
   "bgR.svg": "auto269a72c82357a8659f564fe472d5b1cb.svg",
   "assets/manifest.webapp": "autoassets/manifest.webapp",
+  "open_in_new_black_24dp.svg": "auto9302ca7a903d8c5076dbe82f7f6ebd60.svg",
   "content_copy_black_24dp.svg": "auto2f646a83e380ce9896887f604cc8e759.svg",
   "assets/yandex-browser-manifest.json": "autoassets/yandex-browser-manifest.json"
 }

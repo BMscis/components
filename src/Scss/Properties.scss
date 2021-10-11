@@ -12,10 +12,13 @@ $espii-accent-color:#1A78D9;
 $espii-taste-color:#e2e22c;
 $espii-unique-color:chartreuse;
 $espii-unique-complement-color:#005250;
+$espii-background-color:#040C1A;
+$espii-background-color-translucent:#040c1adb;
 
 $Logo-Height: Calc(100vh * 0.04);
 $Logo-Width: Calc(#{$Logo-Height} * 2.96);
 $Logo-Top: $margin;
+$Wide-Logo-Width: calc(100vw - 20px);
 
 $NavButton-Height: max(3vw,3vh);
 $SideBar-Height: Calc(#{$NavButton-Height});
@@ -32,6 +35,9 @@ $StoryContainer-Height:Calc(#{$Carousel-Height} - #{$TextBoard-Height});
 $Story-Height:Calc(#{$StoryContainer-Height} * 0.85);
 $Story-Width:clamp(25vw,80vw,45vh);
 //$Image-Height:clamp(150px,#{$Story-Height},250px);
+$Mini-Story-Height:Calc(#{$Story-Height} / 2);
+$Mini-Story-Width:Calc(#{$Story-Width} * 0.34);
+$Mini-Story-Bottom:Calc(#{$Carousel-Top} + #{$Carousel-Height});
 
 $Image-Height:Calc(#{$Story-Height} * 0.75);
 $Story-Button-Height:Calc(#{$Story-Height} - #{$Image-Height} - #{$Upper-Lower-Margin});

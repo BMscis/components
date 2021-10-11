@@ -16,9 +16,13 @@ es-sidebar[expand]{
 }
 @media only Screen and (max-width:600px){
     es-sidebar{
-        top:$margin;
+        top:0;
         height: $Carousel-Top;
         flex-direction: column;
         margin: auto;
+        position:fixed;
+        display: flex;
+        align-items: center;
+        background-color: $espii-background-color-translucent;
     }
 }
