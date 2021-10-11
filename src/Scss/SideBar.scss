@@ -1,26 +1,25 @@
 @import './Properties.scss';
-es-sidebar{
+es-topbar{
     z-index:2;
-    position:absolute;
+    position:fixed;
     border-radius:2px;
     display:flex;
     background:transparent;
     justify-content:center;
     margin: $margin auto;
-    top:$Sidebar-Top;
-    height: $SideBar-Height;
+    top:$Topbar-Top;
+    height: $Topbar-Height;
     width: 100%;
 }
-es-sidebar[expand]{
+es-topbar[expand]{
     left:0;
 }
 @media only Screen and (max-width:600px){
-    es-sidebar{
+    es-topbar{
         top:0;
         height: $Carousel-Top;
         flex-direction: column;
         margin: auto;
-        position:fixed;
         display: flex;
         align-items: center;
         background-color: $espii-background-color-translucent;

@@ -21,11 +21,11 @@ $Logo-Top: $margin;
 $Wide-Logo-Width: calc(100vw - 20px);
 
 $NavButton-Height: max(3vw,3vh);
-$SideBar-Height: Calc(#{$NavButton-Height});
+$Topbar-Height: Calc(#{$NavButton-Height});
 $NavButton-FontSize: Calc(#{$NavButton-Height} * 0.3);
-$Sidebar-Top: Calc(#{$Logo-Height} + #{$Logo-Top} + #{$Upper-Lower-Margin});
+$Topbar-Top: Calc(#{$Logo-Height} + #{$Logo-Top} + #{$Upper-Lower-Margin});
 
-$Carousel-Top:Calc(#{$Sidebar-Top} + #{$SideBar-Height} + (#{$Upper-Lower-Margin} * 2));
+$Carousel-Top:Calc(#{$Topbar-Top} + #{$Topbar-Height} + (#{$Upper-Lower-Margin} * 2));
 $Carousel-Height: Calc(100vh - #{$Carousel-Top} - #{$margin});
 
 $TextBoard-Height:max(4vw,4vh);

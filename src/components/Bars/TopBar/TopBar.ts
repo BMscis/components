@@ -2,7 +2,7 @@
 import { EspiiElement } from '../../../Interfaces/index'
 import  {NavButton} from '../../Buttons/NavButton'
 
-export class SideBar extends EspiiElement{
+export class TopBar extends EspiiElement{
     constructor(){
         super()
     }
@@ -14,4 +14,4 @@ export class SideBar extends EspiiElement{
         this.appendChild(new NavButton(false, "Central Bank of Kenya"))
     }
 }
-customElements.define('es-sidebar', SideBar);
+customElements.define('es-topbar', TopBar);

@@ -1,4 +1,4 @@
-import { SideBar } from '../../Components/Bars/Sidebar/SideBar'
+import { TopBar } from '../../Components/Bars/TopBar/TopBar'
 import { Carousel } from '../../Components/Carousel/Carousel'
 import { Logo } from '../../Components/Logo/Logo'
 import { EspiiBinance } from '../Crypto/BinanceEspii'
@@ -9,7 +9,7 @@ export class EspiiContainer{
     body: HTMLElement
     aggTrade: EspiiBinance
     whalealert: WhaleAlert
-    EspiiNodeList: (Logo | SideBar | Carousel)[]
+    EspiiNodeList: (Logo | TopBar | Carousel)[]
     constructor(){
         this.aggTrade = new EspiiBinance("aggtrade")
         //this.abnormalTrade = new EspiiBinance("abnormaltrade")
@@ -17,7 +17,7 @@ export class EspiiContainer{
         this.EspiiNodeList = this.components
     }
     get sidebar(){
-        return new SideBar()
+        return new TopBar()
     }
     get carousel(){
         return new Carousel()

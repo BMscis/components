@@ -1,6 +1,6 @@
 @import './Properties.scss';
 es-logo{
-    position: absolute;
+    position: fixed;
     display:block;
     background-image: url(../Assets/Svg/espiilogo4.svg);
     background-position: center;
@@ -18,7 +18,6 @@ es-logo{
         background-position: left;
         width: $Wide-Logo-Width;
         margin-left: 10px;
-        position: fixed;
         z-index: 100;
     }
 }
