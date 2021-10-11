@@ -12,8 +12,13 @@ export class News extends EspiiElement{
         let link = document.createElement('a')
         link.href = "https://www.businessdailyafrica.com/bd/economy/kenya-tops-in-china-projects-completion-ahead-deadline-3579114"
         link.innerHTML = "Kenya Tops In China BRI Completion Rate."
+
+        let link2 = document.createElement('a')
+        link2.href = "https://www.lynalden.com/fraying-petrodollar-system/"
+        link2.innerHTML = "The Fraying of the US Global Currency Reserve System."
         this.appendChild(heading)
         this.appendChild(link)
+        this.appendChild(link2)
         return
     }
 }
